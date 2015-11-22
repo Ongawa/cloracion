@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<?import layouttests.migfxml.sample1.*?>
+
+<GridPane id="basinSelector" hgap="10" vgap="10"
+    fx:controller="org.ongawa.peru.chlorination.gui.manage.ProvinceSelector"
+    styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
+    <Label text="Elige Cuenca" GridPane.columnIndex="0"
+        GridPane.rowIndex="0" />
+    <ComboBox id="basinCombo" layoutX="50" layoutY="40"
+        prefHeight="27.0" prefWidth="102.0" promptText="Elija Cuenca"
+        onAction="#basinSelected" GridPane.columnIndex="1"
+        GridPane.rowIndex="0" GridPane.columnSpan="2">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Manzanayocc" />
+                <String fx:value="Cuyocc" />
+                <String fx:value="Arma" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <Label text="Localidad" GridPane.columnIndex="0"
+        GridPane.rowIndex="1" />
+    <ComboBox id="townCombo" layoutX="50" layoutY="70"
+        prefHeight="27.0" prefWidth="102.0" promptText="Elija Localidad"
+        onAction="#townSelected" GridPane.columnIndex="1"
+        GridPane.rowIndex="1" GridPane.columnSpan="2">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Item 1" />
+                <String fx:value="Item 2" />
+                <String fx:value="Item 3" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+    <Label text="Sistema de Agua" GridPane.columnIndex="0"
+        GridPane.rowIndex="2" />
+    <ComboBox id="systemCombo" layoutX="50" layoutY="100"
+        prefHeight="27.0" prefWidth="102.0" promptText="Elija Sistema"
+        onAction="#basinSelected" GridPane.columnIndex="1"
+        GridPane.rowIndex="2" GridPane.columnSpan="2">
+        <items>
+            <FXCollections fx:factory="observableArrayList">
+                <String fx:value="Item 1" />
+                <String fx:value="Item 2" />
+                <String fx:value="Item 3" />
+            </FXCollections>
+        </items>
+    </ComboBox>
+</GridPane>
