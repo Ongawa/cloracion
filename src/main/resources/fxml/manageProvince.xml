@@ -21,7 +21,7 @@
         layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
         <Label text="Elige Cuenca" GridPane.columnIndex="0"
             GridPane.rowIndex="0" layoutX="20" layoutY="20" />
-        <ComboBox id="basinCombo" layoutX="50" layoutY="40"
+        <ComboBox id="basinCombo" fx:id="basinCombo" layoutX="50" layoutY="40"
             prefHeight="27.0" prefWidth="200" promptText="Elija Cuenca"
             onAction="#basinSelected" GridPane.columnIndex="1"
             GridPane.rowIndex="0" GridPane.columnSpan="2">
@@ -35,7 +35,7 @@
         </ComboBox>
         <Label text="Localidad" GridPane.columnIndex="0"
             GridPane.rowIndex="1" />
-        <ComboBox id="townCombo" layoutX="50" layoutY="70"
+        <ComboBox id="townCombo" fx:id="townCombo" layoutX="50" layoutY="70"
             prefHeight="27.0" prefWidth="200" promptText="Elija Localidad"
             onAction="#townSelected" GridPane.columnIndex="1"
             GridPane.rowIndex="1" GridPane.columnSpan="2">
@@ -49,7 +49,7 @@
         </ComboBox>
         <Label text="Sistema de Agua" GridPane.columnIndex="0"
             GridPane.rowIndex="2" />
-        <ComboBox id="systemCombo" layoutX="50" layoutY="100"
+        <ComboBox id="systemCombo" fx:id="systemCombo" layoutX="50" layoutY="100"
             prefHeight="27.0" prefWidth="200" promptText="Elija Sistema"
             onAction="#basinSelected" GridPane.columnIndex="2"
             GridPane.rowIndex="2" GridPane.columnSpan="2">
@@ -63,12 +63,12 @@
         </ComboBox>
         <Label text="Número Familias:" GridPane.columnIndex="0"
             GridPane.rowIndex="3" GridPane.columnSpan="1" />
-        <TextField fx:id="familiesCount" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
+        <TextField fx:id="familiesCount" id="familiesCount" GridPane.columnIndex="2" GridPane.rowIndex="3" GridPane.columnSpan="2"/>
         <Label text="Número Habitantes:" GridPane.columnIndex="0"
             GridPane.rowIndex="4" GridPane.columnSpan="1" />
-        <TextField fx:id="inhabintantsCount" GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="2" />
+        <TextField fx:id="inhabintantsCount" id="inhabintantsCount"  GridPane.columnIndex="1" GridPane.rowIndex="4" GridPane.columnSpan="2" />
             
-        <Button text="Atrás" onAction="#triggerBack" id="triggerBack" GridPane.columnIndex="8" GridPane.rowIndex="6"/>
-        <Button text="Siguiente" onAction="#triggerNext" id="triggerNext" GridPane.columnIndex="9" GridPane.rowIndex="6"/>    
+        <Button text="Atrás" fx:id="backButton" onAction="#triggerBack" id="triggerBack" GridPane.columnIndex="8" GridPane.rowIndex="6"/>
+        <Button text="Siguiente" fx:id="nextButton" onAction="#triggerNext" id="triggerNext" GridPane.columnIndex="9" GridPane.rowIndex="6"/>    
     </GridPane>
 </MigPane>

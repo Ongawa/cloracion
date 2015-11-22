@@ -9,10 +9,27 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
+/**
+ * 
+ * Controller for the selector window 
+ * 
+ * @author Alberto Mardomingo
+ *
+ */
 public class LaunchWindow {
     
     private static final Logger log = LoggerFactory.getLogger(LaunchWindow.class);
     
+    /**
+     * 
+     * Button pressed for managing existing systems
+     * 
+     *  TODO: Maybe change this so the Manage are actually two buttons:
+     *    - Clhorination every 15 days
+     *    - Desinfectation twice a year
+     * 
+     * @throws Exception
+     */
     public void triggerManage() throws Exception {
         Stage stage = MainApp.getStage();
         
@@ -20,7 +37,7 @@ public class LaunchWindow {
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/manageProvince.xml"));
 
         log.debug("Showing JFX scene");
-        Scene scene = new Scene(rootNode, 800, 600);
+        Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");
         stage.setScene(scene);
         
