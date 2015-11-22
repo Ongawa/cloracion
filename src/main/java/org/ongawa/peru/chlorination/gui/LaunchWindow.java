@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 public class LaunchWindow {
     
     private static final Logger log = LoggerFactory.getLogger(LaunchWindow.class);
-
     
     public void triggerManage() throws Exception {
         Stage stage = MainApp.getStage();
@@ -29,8 +28,7 @@ public class LaunchWindow {
     
     public void triggerDesign() {
         Stage stage = MainApp.getStage();
-        
-        
+
     }
 
 }

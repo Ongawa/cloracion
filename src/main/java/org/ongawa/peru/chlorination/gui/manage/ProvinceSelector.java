@@ -11,4 +11,12 @@ public class ProvinceSelector {
         
     }
     
+    public void triggerBack() {
+        
+    }
+    
+    public void triggerNext() {
+        
+    }
+    
 }
