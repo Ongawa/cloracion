@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
- * 
+ * Main 
  * 
  * @author Alberto Mardomingo
  *
@@ -31,7 +31,7 @@ public class MainApp extends Application {
 
         log.info("Starting Hello JavaFX and Maven demonstration application");
         
-        String fxmlFile = "/fxml/hello.fxml";
+        String fxmlFile = "/fxml/selectorWindow.fxml";
         log.debug("Loading FXML for main view from: {}", fxmlFile);
         
         // Create the loader and get the root node from the .fxml file describing the scene
@@ -48,6 +48,6 @@ public class MainApp extends Application {
         stage.setTitle("Cloración");
         stage.setScene(scene);
         stage.show();
-        mainStage = stage;
+        this.mainStage = stage;
     }
 }
