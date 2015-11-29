@@ -34,13 +34,16 @@ public class LaunchWindow {
         Stage stage = MainApp.getStage();
         
         FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/manageProvince.xml"));
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/manageProvince.fxml"));
 
-        log.debug("Showing JFX scene");
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");
         stage.setScene(scene);
         
+    }
+    
+    public void triggerDessinfect() throws Exception {
+        Stage stage = MainApp.getStage();
     }
     
     public void triggerDesign() {
