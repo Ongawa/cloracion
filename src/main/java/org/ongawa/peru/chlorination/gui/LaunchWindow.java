@@ -26,7 +26,7 @@ public class LaunchWindow {
      * 
      *  TODO: Maybe change this so the Manage are actually two buttons:
      *    - Clhorination every 15 days
-     *    - Desinfectation twice a year
+     *    - Desinfect twice a year
      * 
      * @throws Exception
      */
@@ -46,9 +46,20 @@ public class LaunchWindow {
         Stage stage = MainApp.getStage();
     }
     
-    public void triggerDesign() {
+    /**
+     * 
+     * Launches the Design process for a new system
+     * 
+     * @throws Exception
+     */
+    public void triggerDesign() throws Exception{
         Stage stage = MainApp.getStage();
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/designProvince.fxml"));
 
+        Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
+        scene.getStylesheets().add("/styles/styles.css");
+        stage.setScene(scene);
     }
 
 }

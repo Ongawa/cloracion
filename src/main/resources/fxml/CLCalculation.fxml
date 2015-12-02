@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
+<?import layouttests.migfxml.sample1.*?>
+
+
+<MigPane id="rootPane"
+    fx:controller="org.ongawa.peru.chlorination.gui.design.CLCalculator"
+    styleClass="main-panel" layout="insets 20" cols="[label, pref!][grow, 50::]"
+    rows="" xmlns:fx="http://javafx.com/fxml">
+
+    <GridPane id="ClCalculator" hgap="10" vgap="10" layoutX="20"
+        layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
+        <!-- 'Left' column -->
+        <Label text="Caudal Nautral:" GridPane.columnIndex="0"
+            GridPane.rowIndex="0" GridPane.columnSpan="1" />
+        <TextField fx:id="naturalFlowRate" id="naturalFlowRate" GridPane.columnIndex="1"
+            GridPane.rowIndex="0" GridPane.columnSpan="1"/>
+        <Label text="Listros/seg"  GridPane.columnIndex="3"
+            GridPane.rowIndex="1" GridPane.columnSpan="1" />
+            
+        <Label text="Caudal requerido población actual:" GridPane.columnIndex="0"
+            GridPane.rowIndex="1" GridPane.columnSpan="1" />
+        <Label text="N" fx:id="currentFlowRate" id="currentFlowRate" GridPane.columnIndex="1"
+            GridPane.rowIndex="1" GridPane.columnSpan="1"/>
+        <Label text="Listros/seg"  GridPane.columnIndex="3"
+            GridPane.rowIndex="1" GridPane.columnSpan="1" />
+            
+        <Label text="Caudal requerido población futura:" GridPane.columnIndex="0"
+            GridPane.rowIndex="2" GridPane.columnSpan="1" />
+        <Label text="N" fx:id="currentFlowRate" id="currentFlowRate" GridPane.columnIndex="1" 
+            GridPane.rowIndex="2" GridPane.columnSpan="1"/>
+        <Label text="Listros/seg"  GridPane.columnIndex="3"
+            GridPane.rowIndex="2" GridPane.columnSpan="1" />
+            
+        
+        <Label text="Pureza del cloro:" GridPane.columnIndex="0"
+            GridPane.rowIndex="3" GridPane.columnSpan="1" />
+        <TextField fx:id="clPurity" id="clPurity"  GridPane.columnIndex="1" 
+            GridPane.rowIndex="3" GridPane.columnSpan="1" />
+        
+        <Label text="Tiempo de recargs:" GridPane.columnIndex="0"
+            GridPane.rowIndex="4" GridPane.columnSpan="1" />
+        <TextField fx:id="rechargePeriod" id="rechargePeriod"  GridPane.columnIndex="1"
+            GridPane.rowIndex="4" GridPane.columnSpan="1" />
+        
+        <!--  'Right' column -->
+        <Label text="Horas de goteo diario:" GridPane.columnIndex="5"
+            GridPane.rowIndex="0" GridPane.columnSpan="1" />
+        <TextField fx:id="dailyDripRate" id="dailyDripRate" GridPane.columnIndex="6"
+            GridPane.rowIndex="0" GridPane.columnSpan="1"/>
+        <Label text="horas/dia" GridPane.columnIndex="7"
+            GridPane.rowIndex="0" GridPane.columnSpan="1" />
+        
+        <Label text="Demanda de cloro:" GridPane.columnIndex="5"
+            GridPane.rowIndex="1" GridPane.columnSpan="1" />
+        <TextField fx:id="clDemmand" id="clDemmand"  GridPane.columnIndex="6"
+            GridPane.rowIndex="1" GridPane.columnSpan="1" />
+        <Label text="mg/l" GridPane.columnIndex="7"
+            GridPane.rowIndex="1" GridPane.columnSpan="1" />
+        <Label text="Clima" GridPane.columnIndex="5"
+            GridPane.rowIndex="2" GridPane.columnSpan="1" />
+        <ComboBox id="climateCombo" fx:id="climateCombo" layoutX="50" layoutY="40"
+            prefHeight="27.0" prefWidth="200" promptText="Tipo de clima"
+             GridPane.columnIndex="6"
+            GridPane.rowIndex="2" GridPane.columnSpan="2">
+            <items>
+                <FXCollections fx:factory="observableArrayList">
+                    <String fx:value="Calido" />
+                    <String fx:value="Templado" />
+                    <String fx:value="Arma" />
+                </FXCollections>
+            </items>
+        </ComboBox>
+
+        <Button text="Calcular" fx:id="backButton" onAction="#triggerBack" id="triggerCalculation" 
+            GridPane.columnIndex="7" GridPane.rowIndex="5"/>
+        <!-- results --> 
+        <Label text="Cantidad de cloro necesario:" GridPane.columnIndex="0"
+            GridPane.rowIndex="6" GridPane.columnSpan="2" />
+        <Label text="g/dia:" GridPane.columnIndex="2"
+            GridPane.rowIndex="6" GridPane.columnSpan="1" />
+        <Label text="kg/quincena:" GridPane.columnIndex="3"
+            GridPane.rowIndex="6" GridPane.columnSpan="1" />
+        <Label text="kg/mes" GridPane.columnIndex="4"
+            GridPane.rowIndex="6" GridPane.columnSpan="1" />
+        
+        <Label text="Tamaño mínimo del tanque:" GridPane.columnIndex="0"
+            GridPane.rowIndex="7" GridPane.columnSpan="2" />
+        <Label text="litros:" GridPane.columnIndex="2"
+            GridPane.rowIndex="7" GridPane.columnSpan="1" />
+        
+        <!-- Navigation -->  
+        <Button text="Atrás" fx:id="backButton" onAction="#triggerBack" id="triggerBack" GridPane.columnIndex="6" GridPane.rowIndex="8"/>
+        <Button text="Siguiente" fx:id="nextButton" onAction="#triggerNext" id="triggerNext" GridPane.columnIndex="7" GridPane.rowIndex="8"/>    
+    </GridPane>
+</MigPane>
