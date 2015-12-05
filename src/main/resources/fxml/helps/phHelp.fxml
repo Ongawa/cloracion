@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.AnchorPane?>
+
+<ScrollPane xmlns:fx="http://javafx.com/fxml/1">
+    <!-- TODO Add Nodes -->
+    <Text id="flowInfo" text=" Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent 
+        ac aliquet tortor. Sed aliquet pellentesque odio. Aliquam dictum elit ac 
+        justo viverra, et vulputate arcu malesuada. Aliquam maximus pulvinar vestibulum. 
+        Sed consequat, orci ut porttitor aliquet, libero leo mattis neque, quis condimentum 
+        dolor libero vel ipsum. Proin lacus leo, pellentesque posuere dapibus eu, 
+        ultricies id massa. Aliquam lacinia risus ac magna tincidunt, ac tempor lorem 
+        malesuada. Nulla accumsan varius orci, sed facilisis mi condimentum at.
+        
+        Morbi a volutpat nibh. Aliquam semper lorem et tempus consequat. Fusce magna lectus, 
+        commodo nec ornare vel, euismod a diam. Nam nec risus efficitur augue fermentum 
+        consectetur et sit amet erat. Nam vehicula ex nec risus ultricies, mollis 
+        aliquam erat aliquam. Aliquam non aliquam mauris, nec dapibus dolor. Maecenas 
+        eget malesuada ante. Nam pretium tellus in ipsum iaculis sagittis. Aliquam 
+        sed nisl aliquet, elementum dolor sit amet, congue diam. Curabitur eros lectus, 
+        vestibulum ut molestie ornare, laoreet sed velit. In ultricies cursus purus, 
+        eget eleifend nulla cursus maximus. Interdum et malesuada fames ac ante ipsum 
+        primis in faucibus. Donec interdum pharetra nisi in molestie. 
+        
+        Pellentesque eget nisi porta, ultricies diam vel, vestibulum ex. Quisque pulvinar 
+        nulla nunc, eget convallis purus bibendum quis. Praesent at mi tempor, malesuada 
+        mauris ac, sagittis odio. Vestibulum id tellus sit amet neque aliquet aliquam 
+        non sed odio. Suspendisse maximus nibh felis, non euismod nulla vestibulum 
+        nec. Aliquam erat volutpat. In rhoncus nisi velit, ac lobortis leo vestibulum 
+        a. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere 
+        cubilia Curae; Donec lobortis lectus et ullamcorper mattis. Vestibulum tincidunt 
+        sagittis lorem, at gravida nisl rhoncus ut. Sed tempus, tortor quis mollis 
+        pharetra, diam nulla convallis justo, ut egestas enim nibh id erat. Vestibulum 
+        accumsan finibus interdum. Ut sodales dapibus convallis. Morbi volutpat risus 
+        et bibendum consectetur. Cras a rhoncus mauris. Nulla leo dui, ullamcorper 
+        id pulvinar vel, vulputate sagittis nisl. Praesent sed ipsum non turpis accumsan 
+        pellentesque. Lorem ipsum dolor sit amet, consectetur adipiscing elit. 
+        
+        Curabitur quis dictum ante, et laoreet leo. Fusce vitae ullamcorper purus.
+        Aliquam non quam mi. In egestas purus id cursus volutpat. Praesent felis sapien, 
+        hendrerit eu placerat ut, pellentesque et erat. Aenean gravida nulla sit 
+        amet porttitor commodo. In vel auctor erat. Donec orci felis, aliquam vitae 
+        dignissim ut, congue eget massa. Donec vel congue quam, bibendum imperdiet 
+        justo. Duis viverra pharetra justo, id semper metus consectetur eu. Etiam 
+        elementum pharetra nisi, non pellentesque elit viverra vel. Nullam lectus 
+        lacus, sagittis quis pretium in, consequat ac ante." 
+</ScrollPane>
+

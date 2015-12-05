@@ -27,13 +27,23 @@
             GridPane.columnIndex="0" GridPane.rowIndex="1"
             GridPane.columnSpan="8" GridPane.rowSpan="5">
             <!-- Left 'column' -->
-            <Label text="Caudal Natura" GridPane.columnIndex="0"
+            <Label text="Caudal Natural" GridPane.columnIndex="0"
                 GridPane.rowIndex="0" />
             <TextField fx:id="naturalCaudal" id="naturalCaudal"
                 GridPane.columnIndex="1" GridPane.rowIndex="0"
                 GridPane.columnSpan="2" />
             <Label text="Litros / seg" GridPane.columnIndex="3"
                 GridPane.rowIndex="0" />
+            <Button onAction="#triggerInfo" id="naturalCaudalInfo"
+                GridPane.columnIndex="4" GridPane.rowIndex="0">
+                <ImageView fitHeight="150.0" fitWidth="200.0"
+                    pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image
+                            url="img/help.png" />
+                    </image>
+                </ImageView>
+            </Button>
 
             <Label text="Caudal a clorar" GridPane.columnIndex="0"
                 GridPane.rowIndex="1" />
@@ -98,21 +108,21 @@
             <Label text="Contenido de cloro" GridPane.columnIndex="0"
                 GridPane.rowIndex="0" GridPane.columnSpan="2" />
             <Label text="gr/día" GridPane.columnIndex="2"
-                GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                GridPane.rowIndex="0" GridPane.columnSpan="2" />
             <Label text="kg/quincena" GridPane.columnIndex="4"
-                GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                GridPane.rowIndex="0" GridPane.columnSpan="2" />
             <Label text="kg/mes" GridPane.columnIndex="6"
-                GridPane.rowIndex="0" GridPane.columnSpan="2"/>
+                GridPane.rowIndex="0" GridPane.columnSpan="2" />
 
             <!-- Drip rate -->
             <Label text="Caudal de goteo" GridPane.columnIndex="0"
                 GridPane.rowIndex="1" GridPane.columnSpan="2" />
             <Label text="gotas/seg" GridPane.columnIndex="2"
-                GridPane.rowIndex="2" GridPane.columnSpan="2"/>
+                GridPane.rowIndex="2" GridPane.columnSpan="2" />
             <Label text="ml/seg" GridPane.columnIndex="4"
-                GridPane.rowIndex="1" GridPane.columnSpan="2"/>
+                GridPane.rowIndex="1" GridPane.columnSpan="2" />
             <Label text="litros/min" GridPane.columnIndex="6"
-                GridPane.rowIndex="1" GridPane.columnSpan="2"/>
+                GridPane.rowIndex="1" GridPane.columnSpan="2" />
         </GridPane>
         <Button text="Imprimir" onAction="#triggerSave" id="triggerPrint"
             GridPane.columnIndex="6" GridPane.rowIndex="10" />

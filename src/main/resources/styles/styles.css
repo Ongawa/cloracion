@@ -5,3 +5,7 @@ TextField {
     -fx-width: 20px;
     -fx-max-width: 50px;
 }
+
+.infoText {
+    -fx-max-width: 600px;
+}
