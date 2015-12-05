@@ -42,12 +42,16 @@ public class MainApp extends Application {
         
         // Create the scene (maybe get the size from the stage?
         // Only after the .show(): stage.getWidth() 
-        Scene scene = new Scene(rootNode, 800, 600);
+        Scene scene = new Scene(rootNode, 700, 1000);
         scene.getStylesheets().add("/styles/styles.css");
-
+        
+        // Set max size
+        stage.setMaxHeight(700);
+        stage.setMaxWidth(1000);
+        
         stage.setTitle("Cloración");
         stage.setScene(scene);
         stage.show();
-        this.mainStage = stage;
+        mainStage = stage;
     }
 }
