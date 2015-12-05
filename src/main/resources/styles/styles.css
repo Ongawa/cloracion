@@ -1,43 +1,7 @@
 /* Application wide styles */
 
-xml {
-    -fx-text-fill: #AA0000;
-    -fx-font-weight: bold;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
-
-.label {
-    -fx-font-size: 12px;
-    -fx-font-weight: bold;
-    -fx-text-fill: #333333;
-    -fx-effect: dropshadow( gaussian , rgba(255,255,255,0.5) , 0,0,0,1 );
-}
-
-.button {
-    -fx-text-fill: white;
-    -fx-font-family: "Arial Narrow";
-    -fx-font-weight: bold;
-    -fx-background-color: linear-gradient(#61a2b1, #2A5058);
-    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );
-}
-
-.button:hover{
-    -fx-base: #395bae;
-}
-
-/* Component specific styles */
-
-
-.main-panel {
-    -fx-background-color: #DDDDDD;
-}
-
-#triggerDesign{
-    width: 200px;
-    height: 50px;
-}
-
-#triggerManage{
-    width: 200px;
-    height: 50px;
+/* limit textfield size */
+TextField {
+    -fx-width: 20px;
+    -fx-max-width: 50px;
 }
