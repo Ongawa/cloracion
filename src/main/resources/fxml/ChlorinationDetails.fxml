@@ -4,6 +4,8 @@
 <?import javafx.geometry.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
@@ -36,13 +38,14 @@
                 GridPane.rowIndex="0" />
             <Button onAction="#triggerInfo" id="naturalCaudalInfo"
                 GridPane.columnIndex="4" GridPane.rowIndex="0">
-                <ImageView fitHeight="150.0" fitWidth="200.0"
-                    pickOnBounds="true" preserveRatio="true">
-                    <image>
-                        <Image
-                            url="img/help.png" />
-                    </image>
-                </ImageView>
+                <graphic>
+                    <ImageView fitHeight="20.0" fitWidth="20.0"
+                        pickOnBounds="true" preserveRatio="true">
+                        <image>
+                            <Image url="img/info.png" />
+                        </image>
+                    </ImageView>
+                </graphic>
             </Button>
 
             <Label text="Caudal a clorar" GridPane.columnIndex="0"
@@ -102,7 +105,7 @@
             GridPane.rowIndex="7" />
         <GridPane id="resultsGrid" hgap="10" vgap="10" layoutX="20"
             layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml"
-            GridPane.columnIndex="0" GridPane.rowIndex="7"
+            GridPane.columnIndex="0" GridPane.rowIndex="8"
             GridPane.columnSpan="8" GridPane.rowSpan="3">
             <!-- Chlorine Content -->
             <Label text="Contenido de cloro" GridPane.columnIndex="0"
@@ -125,9 +128,9 @@
                 GridPane.rowIndex="1" GridPane.columnSpan="2" />
         </GridPane>
         <Button text="Imprimir" onAction="#triggerSave" id="triggerPrint"
-            GridPane.columnIndex="6" GridPane.rowIndex="10" />
+            GridPane.columnIndex="6" GridPane.rowIndex="11" />
         <Button text="Guardar" onAction="#triggerSave" id="triggerSave"
-            GridPane.columnIndex="7" GridPane.rowIndex="10" />
+            GridPane.columnIndex="7" GridPane.rowIndex="11" />
     </GridPane>
 </MigPane>
 
