@@ -25,13 +25,6 @@
             prefHeight="27.0" prefWidth="200" promptText="Elija Cuenca"
             onAction="#basinSelected" GridPane.columnIndex="1"
             GridPane.rowIndex="0" GridPane.columnSpan="2">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Manzanayocc" />
-                    <String fx:value="Cuyocc" />
-                    <String fx:value="Arma" />
-                </FXCollections>
-            </items>
         </ComboBox>
         <Label text="Localidad" GridPane.columnIndex="0"
             GridPane.rowIndex="1" />
@@ -39,27 +32,13 @@
             prefHeight="27.0" prefWidth="200" promptText="Elija Localidad"
             onAction="#townSelected" GridPane.columnIndex="1"
             GridPane.rowIndex="1" GridPane.columnSpan="2">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Item 1" />
-                    <String fx:value="Item 2" />
-                    <String fx:value="Item 3" />
-                </FXCollections>
-            </items>
         </ComboBox>
         <Label text="Sistema de Agua" GridPane.columnIndex="0"
             GridPane.rowIndex="2" />
         <ComboBox id="systemCombo" fx:id="systemCombo" layoutX="50" layoutY="100"
             prefHeight="27.0" prefWidth="200" promptText="Elija Sistema"
-            onAction="#basinSelected" GridPane.columnIndex="2"
+            onAction="#systemSelected" GridPane.columnIndex="2"
             GridPane.rowIndex="2" GridPane.columnSpan="2">
-            <items>
-                <FXCollections fx:factory="observableArrayList">
-                    <String fx:value="Item 1" />
-                    <String fx:value="Item 2" />
-                    <String fx:value="Item 3" />
-                </FXCollections>
-            </items>
         </ComboBox>
         <Label text="Número Familias:" GridPane.columnIndex="0"
             GridPane.rowIndex="3" GridPane.columnSpan="1" />
