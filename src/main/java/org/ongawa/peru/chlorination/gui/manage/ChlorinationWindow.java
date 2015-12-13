@@ -1,14 +1,128 @@
 package org.ongawa.peru.chlorination.gui.manage;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import org.ongawa.peru.chlorination.HelpStage;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 
-public class ChlorinationWindow {
+public class ChlorinationWindow  implements Initializable{
+
+    @FXML
+    private TextField naturalCaudal;
+    
+    @FXML
+    private TextField chlorableCaudal;
+    
+    private String basin;
+    
+    private String town;
+    
+    private String systemName;
+    
+    private int familiesCount;
+    private int inhabitants;
+    
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        
+        this.naturalCaudal.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                System.out.println("Old: "+oldValue);
+                System.out.println("New" + newValue);
+            }
+        });
+        
+        this.chlorableCaudal.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                //I can only chlorate a caudal smaller than the natural one.
+                if (Integer.parseInt(naturalCaudal.textProperty().get()) < Integer.parseInt(newValue)){
+                    chlorableCaudal.setStyle("-fx-text-fill: red;");
+                    // TODO: Add a text alert
+                } else {
+                    chlorableCaudal.setStyle("-fx-text-fill: black;");
+                }
+            }
+        });
+        
+    }
+    
+    
+    
+    public String getBasin() {
+        return basin;
+    }
+
+
+
+    public void setBasin(String basin) {
+        this.basin = basin;
+    }
+
+
+
+    public String getTown() {
+        return town;
+    }
+
+
+
+    public void setTown(String town) {
+        this.town = town;
+    }
+
+
+
+    public String getSystemName() {
+        return systemName;
+    }
+
+
+
+    public void setSystemName(String systemName) {
+        this.systemName = systemName;
+    }
 
     
+    public TextField getNaturalCaudal() {
+        return naturalCaudal;
+    }
+
+
+
+    public void setNaturalCaudal(TextField naturalCaudal) {
+        this.naturalCaudal = naturalCaudal;
+    }
+
+
+    public void setFamiliesCount(int familiesCount) {
+        this.familiesCount = familiesCount;
+    }
+    
+    public int getFamiliesCount() {
+        return this.familiesCount;
+    }
+
+    public int getInhabitants() {
+        return inhabitants;
+    }
+
+
+    public void setInhabitants(int inhabitants) {
+        this.inhabitants = inhabitants;
+    }
+
     public void triggerInfo() throws Exception{
         String fxmlFile = "/fxml/helps/NaturalCaudalHelp.fxml";
         HelpStage help = new HelpStage(fxmlFile);
@@ -31,6 +145,9 @@ public class ChlorinationWindow {
         help.show();
         }
     
+    
+    /* General methods */
+    
     public void triggerCalculation(){
         // TODO: Do the calculations
     }
@@ -42,4 +159,8 @@ public class ChlorinationWindow {
     public void triggerPrint() {
         // TODO: Print the results
     }
+    
+    /* Validation methods */
+    
+    
 }
