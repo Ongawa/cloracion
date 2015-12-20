@@ -5,7 +5,10 @@ import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.logic.DataLoader;
+import org.ongawa.peru.chlorination.logic.DataValidator;
 
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -120,6 +123,16 @@ public class ProvinceSelector implements Initializable{
         this.dataLoader = DataLoader.getDataLoader();
         this.basinCombo.getItems().clear();
         this.basinCombo.setItems(FXCollections.observableArrayList(dataLoader.getBasins()));
+        
+        this.familiesCount.textProperty().addListener(
+                new ChangeListener<String>() {
+                    @Override
+                    public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
+                        // Set the inhabitants from the families
+                        if (familiesCount.textProperty().getValue() != null)
+                            inhabintantsCount.textProperty().set(DataValidator.getInhabitantsFromFamilies(familiesCount.textProperty().getValue()));
+                    }
+        });
     }
 
 }
