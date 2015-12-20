@@ -1,5 +1,9 @@
 /* Application wide styles */
 
+ScrollPane {
+    -fx-padding: 10 10 10 10;
+}
+
 /* limit textfield size */
 TextField {
     -fx-width: 20px;

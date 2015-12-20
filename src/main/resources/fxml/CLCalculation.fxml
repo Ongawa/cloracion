@@ -8,14 +8,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-<?import layouttests.migfxml.sample1.*?>
 
-
-<MigPane id="rootPane"
-    fx:controller="org.ongawa.peru.chlorination.gui.design.CLCalculator"
-    styleClass="main-panel" layout="insets 20" cols="[label, pref!][grow, 50::]"
-    rows="" xmlns:fx="http://javafx.com/fxml">
+<ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
+    prefWidth="1000" fx:controller="org.ongawa.peru.chlorination.gui.design.CLCalculator"
+    xmlns:fx="http://javafx.com/fxml">
 
     <GridPane id="ClCalculator" hgap="10" vgap="10" layoutX="20"
         layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
@@ -102,4 +99,4 @@
         <Button text="Atrás" fx:id="backButton" onAction="#triggerBack" id="triggerBack" GridPane.columnIndex="6" GridPane.rowIndex="8"/>
         <Button text="Siguiente" fx:id="nextButton" onAction="#triggerNext" id="triggerNext" GridPane.columnIndex="7" GridPane.rowIndex="8"/>    
     </GridPane>
-</MigPane>
+</ScrollPane>

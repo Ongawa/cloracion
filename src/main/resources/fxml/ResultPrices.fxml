@@ -8,14 +8,12 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
-<?import org.tbee.javafx.scene.layout.fxml.MigPane?>
-<?import layouttests.migfxml.sample1.*?>
 
-
-<MigPane id="rootPane"
+<ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
+    prefWidth="1000"
     fx:controller="org.ongawa.peru.chlorination.gui.design.PricesController"
-    styleClass="main-panel" layout="insets 20" cols="[label, pref!][grow, 50::]"
-    rows="" xmlns:fx="http://javafx.com/fxml">
+    xmlns:fx="http://javafx.com/fxml">
     
     <GridPane  hgap="10" vgap="10" layoutX="20"
         layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
@@ -68,4 +66,4 @@
         <Label text="N soles/año" GridPane.columnIndex="1"
             GridPane.rowIndex="13" GridPane.columnSpan="1" />    
     </GridPane>
-</MigPane>
+</ScrollPane>
