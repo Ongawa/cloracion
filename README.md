@@ -43,6 +43,7 @@ usuario@ongawa:~/chlorination$ mvn package
 
 * Alberto Mardomingo
 * Alfonso Portabales
+* Ana Ortega-Gil
 * Grupo TIC de Ongawa
 
 ## Licencia
