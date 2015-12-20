@@ -129,8 +129,8 @@ public class ProvinceSelector implements Initializable{
                     @Override
                     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                         // Set the inhabitants from the families
-                        if (familiesCount.textProperty().getValue() != null)
-                            inhabintantsCount.textProperty().set(DataValidator.getInhabitantsFromFamilies(familiesCount.textProperty().getValue()));
+                        if (!newValue.equals(""))
+                            inhabintantsCount.textProperty().set(DataValidator.getInhabitantsFromFamilies(newValue));
                     }
         });
     }
