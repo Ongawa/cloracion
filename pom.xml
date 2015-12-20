@@ -15,13 +15,16 @@
         <!-- Used as the 'Vendor' for JNLP generation -->
         <name>Ongawa</name>
     </organization>
-    
+
     <developers>
         <developer>
             <name>Alfonso Portabales</name>
         </developer>
         <developer>
-        <name>Ana Ortega-Gil</name>
+            <name>Ana Ortega-Gil</name>
+        </developer>
+        <developer>
+            <name>Alberto Mardomingo</name>
         </developer>
     </developers>
 
