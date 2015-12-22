@@ -10,7 +10,13 @@ public class DataCalculator {
     public static final int VOL_COMP_MADRE_L =1;
     public static final int VOL_BALDE_L =10;
     public static final int CONC_COMP_MADRE = 10; // g/L =  1%
+    public static final int FAMILIES_TO_INHABITANTS = 5;
     
+    public static String getInhabitantsFromFamilies(String familiesCount) {
+        int nFamilies = Integer.parseInt(familiesCount);
+        int nInhabitants = nFamilies*FAMILIES_TO_INHABITANTS;
+        return String.valueOf(nInhabitants);
+    }
     /**
      *  Function getSolucionMadre to compute the weight (gr) of Cl
      *  compound to prepare the mother compound to measure CL demand by the Baldes method 

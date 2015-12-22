@@ -6,6 +6,7 @@ import java.util.ResourceBundle;
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.DataValidator;
+import org.ongawa.peru.chlorination.logic.DataCalculator;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -130,7 +131,7 @@ public class ProvinceSelector implements Initializable{
                     public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                         // Set the inhabitants from the families
                         if (!newValue.equals(""))
-                            inhabintantsCount.textProperty().set(DataValidator.getInhabitantsFromFamilies(newValue));
+                            inhabintantsCount.textProperty().set(DataCalculator.getInhabitantsFromFamilies(newValue));
                     }
         });
     }
