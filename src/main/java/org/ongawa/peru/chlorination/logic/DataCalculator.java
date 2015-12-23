@@ -85,7 +85,26 @@ public class DataCalculator {
     	
     }
     
-    
+    /**
+     * Function volTanCaD to compute the minimum volume of the tank to keep the concentration of Cl in an accurate range
+     * as a function of the climate
+     * input  quantity of Cl to ration 
+     *        climate concentration ppm: warm zones 10000 ppm cold zones 5000ppm
+     * output vol in litres        
+     */
+    public static double volTanqueCaD (String climate, String cloroAdosificar){
+    	
+    	double tempConc;
+    	if (climate.equals("Calido")||climate.equals("Templado"))
+    	tempConc = 5000; // ppm mg/L
+    	else 
+    		tempConc = 10000;//ppm mg/L
+    	double cAd = Double.parseDouble(cloroAdosificar);  //g/Trecarga
+        
+        double vt = cAd/tempConc*1000;//1000 stands for mg 
+        return vt;// L
+    	
+    }
     
     
 }
