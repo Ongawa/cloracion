@@ -49,6 +49,7 @@ public class DataCalculator {
      *  	   #days of recharging the ration tank
      *         % of the free Cl of the comercial Cl compound 
      *  output: mgr/l of Cl 
+     *  		drops per sec
     */
     public static String[] chlorination(String caudal,String concentracionCl, String volTanque, String tRegarga, String hGoteoDia, String demCl) {
     	String[] res = new String [6];
@@ -92,7 +93,7 @@ public class DataCalculator {
      *        climate concentration ppm: warm zones 10000 ppm cold zones 5000ppm
      * output vol in litres        
      */
-    public static double volTanqueCaD (String climate, String cloroAdosificar){
+    public static double volTanCaD (String climate, String cloroAdosificar){
     	
     	double tempConc;
     	if (climate.equals("Calido")||climate.equals("Templado"))
@@ -106,5 +107,59 @@ public class DataCalculator {
     	
     }
     
+    /**
+     * Function volTanTam to compute the volume of the tank as a function of its size
+     * input  length (m)
+     * 		  width (m)
+     * 		  height (m)
+     * output vol in litres        
+     */
+    public static double volTanTam (String length, String width, String height){
+    	
+    	double l = Double.parseDouble(length);  //m
+    	double w = Double.parseDouble(width); //m
+    	double h = Double.parseDouble(height); //m
+        
+        double vt = l*w*h*1000;//1000 stands for m3 to liters 
+        return vt;// L
+    	
+    }
+    /*
+    * Function volTub to compute the volume of the pipes as a function of its diameter 
+    * input  diameter (")
+    *        longitud m
+    * output vol in litres        
+    */
+   public static double volTub (String diametro, String longitud){
+   	
+   	double r = Double.parseDouble(diametro)/2 * PULGADA2M;  //m
+   	double l = Double.parseDouble(longitud); //m
+   	double area = (3.1416*r*r);
+       double vt = l*area*1000;//1000 stands for m3 to liters 
+       return vt;// L
+   	
+   }
+    /**
+     *  Function desinfection to compute the quantities for desinfection procedure 
+     *  input: # units
+     *  	   vol L
+     *         concentration of the desinfectant compound  mg/L
+     *  output: mgr/l of Cl 
+    */
+    public static String[] desinfection(String units, String vol,String concentracion, String concentracionCl) {
+    	String[] res = new String [3];
+    	double vTank = Double.parseDouble(vol);
+    	double concDes = Double.parseDouble(concentracion); 
+    	double concCl = Double.parseDouble(concentracionCl);
+        int numEle = Integer.parseInt(units);
+        
+        double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
+        res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
+        res[1] = String.valueOf(cucharasDesin);//  
+        res[2] = String.valueOf(cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
+        //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
+        
+        return res; 
+    }
     
 }
