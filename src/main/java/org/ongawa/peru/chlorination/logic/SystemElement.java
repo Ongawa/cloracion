@@ -32,4 +32,11 @@ public interface SystemElement {
      * 
      */
     public double getCombinedVolume();
+
+    /**
+     * Returns the required concentration per element.
+     * 
+     * @return
+     */
+    public int getConcentration();
 }

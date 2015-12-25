@@ -13,3 +13,9 @@ TextField {
 .infoText {
     -fx-max-width: 600px;
 }
+
+.tableLabel {
+    -fx-background-color: #ffffff;
+    -fx-border-color: #000000;
+    -fx-border-width: 1px;
+}

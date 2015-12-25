@@ -10,6 +10,8 @@ import org.ongawa.peru.chlorination.logic.SystemElement;
  */
 public class Pipe implements SystemElement{
     
+    public static final int REQUIRED_CL_QUANTITY = 50;
+    
     /**
      * A human readable name
      */
@@ -31,6 +33,11 @@ public class Pipe implements SystemElement{
     private double diameter;
     
     /**
+     * The required chlorine concentration
+     */
+    private int requiredConcentration;
+    
+    /**
      * Creates a single pipe
      * 
      * @param name - A human readable name
@@ -44,6 +51,7 @@ public class Pipe implements SystemElement{
         
         // Default count 1
         this.count = 1;
+        this.requiredConcentration = REQUIRED_CL_QUANTITY;
     }
     
     /**
@@ -59,6 +67,8 @@ public class Pipe implements SystemElement{
         this.length = length;
         this.diameter = diameter;
         this.count = count;
+        
+        this.requiredConcentration = REQUIRED_CL_QUANTITY;
     }
     
     /**
@@ -119,6 +129,15 @@ public class Pipe implements SystemElement{
     @Override
     public double getCombinedVolume() {
         return getVolume()*this.count;
+    }
+    
+    @Override
+    public int getConcentration(){
+        return this.requiredConcentration;
+    }
+    
+    public void setRequiredConcentration(int concentration){
+        this.requiredConcentration = concentration;
     }
 
 }

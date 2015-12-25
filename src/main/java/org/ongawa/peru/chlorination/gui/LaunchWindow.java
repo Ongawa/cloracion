@@ -44,6 +44,12 @@ public class LaunchWindow {
     
     public void triggerDessinfect() throws Exception {
         Stage stage = MainApp.getStage();
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/desinfectProvince.fxml"));
+
+        Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
+        scene.getStylesheets().add("/styles/styles.css");
+        stage.setScene(scene);
     }
     
     /**

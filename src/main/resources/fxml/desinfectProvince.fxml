@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.collections.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
+    prefWidth="1000"
+    fx:controller="org.ongawa.peru.chlorination.gui.desinfect.DesinfectionProvince"
+    xmlns:fx="http://javafx.com/fxml">
+
+    <GridPane id="basinSelector" hgap="10" vgap="10" layoutX="20"
+        layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
+        <Label text="Elige Cuenca" GridPane.columnIndex="0"
+            GridPane.rowIndex="0" layoutX="20" layoutY="20" />
+        <ComboBox id="basinCombo" fx:id="basinCombo" layoutX="50"
+            layoutY="40" prefHeight="27.0" prefWidth="200" promptText="Elija Cuenca"
+            onAction="#basinSelected" GridPane.columnIndex="1"
+            GridPane.rowIndex="0" GridPane.columnSpan="2">
+        </ComboBox>
+        <Label text="Localidad" GridPane.columnIndex="0"
+            GridPane.rowIndex="1" />
+        <ComboBox id="townCombo" fx:id="townCombo" layoutX="50"
+            layoutY="70" prefHeight="27.0" prefWidth="200" promptText="Elija Localidad"
+            onAction="#townSelected" GridPane.columnIndex="1"
+            GridPane.rowIndex="1" GridPane.columnSpan="2">
+        </ComboBox>
+        <Label text="Sistema de Agua" GridPane.columnIndex="0"
+            GridPane.rowIndex="2" />
+        <ComboBox id="systemCombo" fx:id="systemCombo" layoutX="50"
+            layoutY="100" prefHeight="27.0" prefWidth="200" promptText="Elija Sistema"
+            onAction="#systemSelected" GridPane.columnIndex="2"
+            GridPane.rowIndex="2" GridPane.columnSpan="2">
+        </ComboBox>
+
+        <Button text="Atrás" fx:id="backButton" onAction="#triggerBack"
+            id="triggerBack" GridPane.columnIndex="8" GridPane.rowIndex="6" />
+        <Button text="Siguiente" fx:id="nextButton" onAction="#triggerNext"
+            id="triggerNext" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+    </GridPane>
+</ScrollPane>
