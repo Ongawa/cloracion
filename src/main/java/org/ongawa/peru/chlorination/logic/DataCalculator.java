@@ -155,8 +155,8 @@ public class DataCalculator {
         
         double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
         res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
-        res[1] = String.valueOf(cucharasDesin);//  
-        res[2] = String.valueOf(cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
+        res[2] = String.valueOf(cucharasDesin);//  
+        res[1] = String.valueOf(cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
         
         return res; 
