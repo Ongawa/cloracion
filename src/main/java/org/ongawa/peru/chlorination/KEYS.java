@@ -1,4 +1,7 @@
 package org.ongawa.peru.chlorination;
+/**
+ * @author Kiko
+ **/
 
 public class KEYS {
 	public static final String PROPERTIES_FILENAME = "application.properties";
