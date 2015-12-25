@@ -5,6 +5,9 @@ import java.io.InputStream;
 import java.util.Properties;
 
 public class ApplicationProperties {
+	/**
+	 * @author Kiko
+	 */
 	private static ApplicationProperties appProperties;
 	static{
 		appProperties = null;
