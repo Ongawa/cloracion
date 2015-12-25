@@ -31,4 +31,8 @@ public class SubBasin {
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public String toString(){
+		return this.getSubBasinId()+" "+this.getName();
+	}
 }

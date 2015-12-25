@@ -28,6 +28,10 @@ public class MainApp extends Application {
     }
 
     public void start(Stage stage) throws Exception {
+    	
+    	//Forcing to load properties
+    	ApplicationProperties.getInstance();
+    	log.info("Loaded properties");
 
         log.info("Starting Hello JavaFX and Maven demonstration application");
         

@@ -54,3 +54,5 @@ local.properties
 # STS (Spring Tool Suite)
 .springBeans
 
+# Mac hidden files
+.DS_Store
