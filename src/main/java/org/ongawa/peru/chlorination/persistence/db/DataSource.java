@@ -16,6 +16,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class DataSource {
+	/**
+	 * @author Kiko
+	 */
 
 	private static DataSource datasource;
 	private static Logger log;
