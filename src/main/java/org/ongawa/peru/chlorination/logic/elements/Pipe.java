@@ -2,6 +2,9 @@ package org.ongawa.peru.chlorination.logic.elements;
 
 import org.ongawa.peru.chlorination.logic.SystemElement;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 /**
  * Regular conduction Pipe
  * 
@@ -11,12 +14,20 @@ import org.ongawa.peru.chlorination.logic.SystemElement;
 public class Pipe implements SystemElement{
     
     public static final int REQUIRED_CL_QUANTITY = 50;
+    public static final int RETENTION_TIME = 2;
     public static final String TYPE_NAME = "TUBERIA";
     
     /**
      * A human readable name
      */
-    private String name;
+    private StringProperty name;
+    
+    /**
+     * The type name human readable.
+     * 
+     */
+    private StringProperty typeName;
+    
     
     /**
      * The number of similar elements
@@ -46,13 +57,14 @@ public class Pipe implements SystemElement{
      * @param diameter - The diameter of the pipe
      */
     public Pipe (String name, double length, double diameter) {
-        this.name  = name;
+        this.name  = new SimpleStringProperty(name);
         this.length = length;
         this.diameter = diameter;
         
         // Default count 1
         this.count = 1;
         this.requiredConcentration = REQUIRED_CL_QUANTITY;
+        this.typeName = new SimpleStringProperty(TYPE_NAME);
     }
     
     /**
@@ -64,12 +76,13 @@ public class Pipe implements SystemElement{
      * @param count - The number of similar pipes
      */
     public Pipe (String name, double length, double diameter, int count) {
-        this.name  = name;
+        this.name  = new SimpleStringProperty(name);
         this.length = length;
         this.diameter = diameter;
         this.count = count;
         
         this.requiredConcentration = REQUIRED_CL_QUANTITY;
+        this.typeName = new SimpleStringProperty(TYPE_NAME);
     }
     
     /**
@@ -87,7 +100,7 @@ public class Pipe implements SystemElement{
      * @param name
      */
     public void setName(String name){
-        this.name = name;
+        this.name.set(name);
     }
     
     /**
@@ -108,8 +121,13 @@ public class Pipe implements SystemElement{
      * @return string - the name
      */
     @Override
-    public String getName() {
+    public StringProperty getName() {
         return this.name;
+    }
+    
+    @Override
+    public StringProperty getTypeName(){
+        return this.typeName;
     }
 
     /**
@@ -139,6 +157,14 @@ public class Pipe implements SystemElement{
     
     public void setRequiredConcentration(int concentration){
         this.requiredConcentration = concentration;
+    }
+    
+    public double getDiameter(){
+        return this.diameter;
+    }
+    
+    public double getLength(){
+        return this.length;
     }
 
 }

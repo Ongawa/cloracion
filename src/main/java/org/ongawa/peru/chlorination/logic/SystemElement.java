@@ -1,5 +1,7 @@
 package org.ongawa.peru.chlorination.logic;
 
+import javafx.beans.property.StringProperty;
+
 public interface SystemElement {
 
     
@@ -13,9 +15,16 @@ public interface SystemElement {
     /**
      * Gives a human readable name for this element
      * 
-     * @return String - A human readable name
+     * @return StringProperty - A human readable name
      */
-    public String getName(); 
+    public StringProperty getName();
+    
+    /**
+     * Returns a human readable name for the type of this element
+     * 
+     * @return 
+     */
+    public StringProperty getTypeName();
 
     /**
      * Returns the number of elements like this in the system
