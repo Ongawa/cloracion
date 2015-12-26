@@ -11,6 +11,7 @@ import org.ongawa.peru.chlorination.logic.SystemElement;
 public class Pipe implements SystemElement{
     
     public static final int REQUIRED_CL_QUANTITY = 50;
+    public static final String TYPE_NAME = "TUBERIA";
     
     /**
      * A human readable name

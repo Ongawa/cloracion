@@ -2,6 +2,7 @@
 
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.collections.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
@@ -27,7 +28,8 @@
                                     text="Tipo" textAlignment="CENTER" />
                                 <Button layoutY="440.0"
                                     mnemonicParsing="false" prefHeight="30.0"
-                                    prefWidth="150.0" text="Añadir" />
+                                    prefWidth="150.0" text="Añadir" 
+                                    onAction="#showAddElement"/>
                                 <Button layoutX="147.0" layoutY="440.0"
                                     mnemonicParsing="false" prefHeight="30.0"
                                     prefWidth="150.0" text="Elimininar" />
@@ -60,21 +62,20 @@
                                 </GridPane>
                             </children>
                         </AnchorPane>
-                        <AnchorPane minHeight="0.0" minWidth="0.0"
-                            prefHeight="160.0" prefWidth="690.0"
-                            layoutY="0" layoutX="305">
-                            <Label alignment="CENTER" layoutX="350"
-                                layoutY="200" prefHeight="30.0"
-                                prefWidth="200.0" text="(Content here - TODO)"
-                                textAlignment="CENTER" />
+                        <AnchorPane fx:id="editPane" layoutX="305"
+                            layoutY="0" minHeight="0.0" minWidth="0.0"
+                            prefHeight="160.0" prefWidth="690.0">
+                            <children>
+                                
+                            </children>
                         </AnchorPane>
                     </items>
                 </SplitPane>
                 <AnchorPane layoutY="500" prefHeight="100"
                     prefWidth="990">
                     <children>
-                        <Label alignment="CENTER" layoutX="400"
-                            layoutY="30" prefHeight="30.0" prefWidth="200.0"
+                        <Label alignment="CENTER" layoutX="57.0"
+                            layoutY="37.0" prefHeight="30.0" prefWidth="200.0"
                             text="(Results) here - TODO)" textAlignment="CENTER" />
 
                         <Button id="triggerBack" fx:id="backButton"

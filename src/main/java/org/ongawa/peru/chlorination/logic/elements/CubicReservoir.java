@@ -12,6 +12,7 @@ import org.ongawa.peru.chlorination.logic.SystemElement;
 public class CubicReservoir implements SystemElement{
 
     public static final int REQUIRED_CL_QUANTITY = 200;
+    public static final String TYPE_NAME = "Reservorio";
     
     /**
      * A human readable name
