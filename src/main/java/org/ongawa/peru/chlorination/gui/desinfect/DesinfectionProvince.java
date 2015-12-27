@@ -41,13 +41,12 @@ public class DesinfectionProvince implements Initializable{
      */
     @FXML
     private ComboBox systemCombo;
-    
+   
     @FXML
     private Button backButton;
 
     @FXML
     private Button nextButton;
-    
     
     public void basinSelected() {
         String basinSelected = this.basinCombo.valueProperty().getValue().toString();

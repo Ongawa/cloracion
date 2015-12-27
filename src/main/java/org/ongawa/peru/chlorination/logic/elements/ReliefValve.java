@@ -2,14 +2,24 @@ package org.ongawa.peru.chlorination.logic.elements;
 
 import org.ongawa.peru.chlorination.logic.SystemElement;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
 public class ReliefValve implements SystemElement{
     
     public static final int REQUIRED_CL_QUANTITY = 200;
+    public static final String TYPE_NAME = "CPR";
 
     /**
      * A human readable name
      */
-    private String name;
+    private StringProperty name;
+    
+    /**
+     * The type name human readable.
+     * 
+     */
+    private StringProperty typeName;
     
     /**
      * The number of similar elements
@@ -38,12 +48,13 @@ public class ReliefValve implements SystemElement{
      * @param height
      */
     public ReliefValve(String name, double lehgth, double width, double height){
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.count = 1;
         this.length = lehgth;
         this.width = width;
         this.heigtht = height;
         this.requiredConcentration = REQUIRED_CL_QUANTITY;
+        this.typeName = new SimpleStringProperty(TYPE_NAME);
     }
     
     /**
@@ -55,12 +66,13 @@ public class ReliefValve implements SystemElement{
      * @param height
      */
     public ReliefValve(String name, double lehgth, double width, double height, int count){
-        this.name = name;
+        this.name = new SimpleStringProperty(name);
         this.count = 1;
         this.length = lehgth;
         this.width = width;
         this.heigtht = height;
         this.requiredConcentration = REQUIRED_CL_QUANTITY;
+        this.typeName = new SimpleStringProperty(TYPE_NAME);
     }
     
     @Override
@@ -69,8 +81,13 @@ public class ReliefValve implements SystemElement{
     }
 
     @Override
-    public String getName() {
+    public StringProperty getName() {
         return this.name;
+    }
+    
+    @Override
+    public StringProperty getTypeName() {
+        return this.typeName;
     }
 
     @Override

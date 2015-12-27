@@ -49,9 +49,12 @@ public class MainApp extends Application {
         Scene scene = new Scene(rootNode, 700, 1000);
         scene.getStylesheets().add("/styles/styles.css");
         
+        stage.setHeight(700);
+        stage.setWidth(1000);
+        
         // Set max size
-        stage.setMaxHeight(700);
-        stage.setMaxWidth(1000);
+        stage.setMaxHeight(710);
+        stage.setMaxWidth(1010);
         
         stage.setTitle("Cloración");
         stage.setScene(scene);
