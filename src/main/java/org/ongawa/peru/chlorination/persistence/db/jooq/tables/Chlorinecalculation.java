@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Chlorinec
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 
-	private static final long serialVersionUID = 1230679752;
+	private static final long serialVersionUID = 1054335131;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CHLORINECALCULATION</code>
@@ -72,32 +72,32 @@ public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.POPULATION</code>.
 	 */
-	public final TableField<ChlorinecalculationRecord, String> POPULATION = createField("POPULATION", org.jooq.impl.SQLDataType.VARCHAR.length(45), this, "");
+	public final TableField<ChlorinecalculationRecord, Integer> POPULATION = createField("POPULATION", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.TANKVOLUME</code>.
 	 */
-	public final TableField<ChlorinecalculationRecord, Short> TANKVOLUME = createField("TANKVOLUME", org.jooq.impl.SQLDataType.SMALLINT, this, "");
+	public final TableField<ChlorinecalculationRecord, Double> TANKVOLUME = createField("TANKVOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.TANKUSEFULVOLUME</code>.
 	 */
-	public final TableField<ChlorinecalculationRecord, Short> TANKUSEFULVOLUME = createField("TANKUSEFULVOLUME", org.jooq.impl.SQLDataType.SMALLINT, this, "");
+	public final TableField<ChlorinecalculationRecord, Double> TANKUSEFULVOLUME = createField("TANKUSEFULVOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.ENDOWMENT</code>. m^3/persona x dia
 	 */
-	public final TableField<ChlorinecalculationRecord, Short> ENDOWMENT = createField("ENDOWMENT", org.jooq.impl.SQLDataType.SMALLINT, this, "m^3/persona x dia");
+	public final TableField<ChlorinecalculationRecord, Double> ENDOWMENT = createField("ENDOWMENT", org.jooq.impl.SQLDataType.DOUBLE, this, "m^3/persona x dia");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en tanto por 1
 	 */
-	public final TableField<ChlorinecalculationRecord, Byte> CHLORINEPURENESS = createField("CHLORINEPURENESS", org.jooq.impl.SQLDataType.TINYINT, this, "Expresado en tanto por 1");
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEPURENESS = createField("CHLORINEPURENESS", org.jooq.impl.SQLDataType.DOUBLE, this, "Expresado en tanto por 1");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.INPUTFLOW</code>. Medido en litros/segundo
 	 */
-	public final TableField<ChlorinecalculationRecord, Byte> INPUTFLOW = createField("INPUTFLOW", org.jooq.impl.SQLDataType.TINYINT, this, "Medido en litros/segundo");
+	public final TableField<ChlorinecalculationRecord, Double> INPUTFLOW = createField("INPUTFLOW", org.jooq.impl.SQLDataType.DOUBLE, this, "Medido en litros/segundo");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.RELOADTIME</code>. Medido en días
@@ -107,17 +107,17 @@ public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDCLR</code>. Medido en mg/litro
 	 */
-	public final TableField<ChlorinecalculationRecord, Byte> DEMANDCLR = createField("DEMANDCLR", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "Medido en mg/litro");
+	public final TableField<ChlorinecalculationRecord, Double> DEMANDCLR = createField("DEMANDCLR", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "Medido en mg/litro");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDACTIVECHLORINE</code>. Medido en mg/litro
 	 */
-	public final TableField<ChlorinecalculationRecord, Byte> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "Medido en mg/litro");
+	public final TableField<ChlorinecalculationRecord, Double> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "Medido en mg/litro");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDCOMMONPRODUCT</code>. Medido en mg/litro
 	 */
-	public final TableField<ChlorinecalculationRecord, Byte> DEMANDCOMMONPRODUCT = createField("DEMANDCOMMONPRODUCT", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "Medido en mg/litro");
+	public final TableField<ChlorinecalculationRecord, Double> DEMANDCOMMONPRODUCT = createField("DEMANDCOMMONPRODUCT", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "Medido en mg/litro");
 
 	/**
 	 * Create a <code>PUBLIC.CHLORINECALCULATION</code> table reference

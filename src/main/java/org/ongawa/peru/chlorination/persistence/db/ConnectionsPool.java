@@ -51,7 +51,7 @@ public class ConnectionsPool {
 		String password = properties.containsKey(KEYS.DATABASE_PASSWORD)?properties.getProperty(KEYS.DATABASE_PASSWORD):"";
 		
 		Connection connection = DriverManager.getConnection(url, username, password);
-		log.debug("Connection created: "+connection);
+		log.debug("Connection created: "+connection+" and valid: "+connection.isValid(0));
 		
 		return connection;
 	}

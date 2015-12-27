@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Watersyst
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Watersystem extends TableImpl<WatersystemRecord> {
 
-	private static final long serialVersionUID = 1058038015;
+	private static final long serialVersionUID = -689471576;
 
 	/**
 	 * The reference instance of <code>PUBLIC.WATERSYSTEM</code>
@@ -87,7 +87,7 @@ public class Watersystem extends TableImpl<WatersystemRecord> {
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.GROWINGINDEX</code>. Expresado en %
 	 */
-	public final TableField<WatersystemRecord, Byte> GROWINGINDEX = createField("GROWINGINDEX", org.jooq.impl.SQLDataType.TINYINT, this, "Expresado en %");
+	public final TableField<WatersystemRecord, Double> GROWINGINDEX = createField("GROWINGINDEX", org.jooq.impl.SQLDataType.DOUBLE, this, "Expresado en %");
 
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.JASSNUM</code>.
@@ -97,42 +97,17 @@ public class Watersystem extends TableImpl<WatersystemRecord> {
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.FUTURENEEDEDFLOW</code>.
 	 */
-	public final TableField<WatersystemRecord, Byte> FUTURENEEDEDFLOW = createField("FUTURENEEDEDFLOW", org.jooq.impl.SQLDataType.TINYINT, this, "");
+	public final TableField<WatersystemRecord, Double> FUTURENEEDEDFLOW = createField("FUTURENEEDEDFLOW", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.RESERVOIRVOLUME</code>. Unidad en metros cúbicos
 	 */
-	public final TableField<WatersystemRecord, Short> RESERVOIRVOLUME = createField("RESERVOIRVOLUME", org.jooq.impl.SQLDataType.SMALLINT, this, "Unidad en metros cúbicos");
-
-	/**
-	 * The column <code>PUBLIC.WATERSYSTEM.TANKSIDEA</code>. Unidad en metros
-	 */
-	public final TableField<WatersystemRecord, Byte> TANKSIDEA = createField("TANKSIDEA", org.jooq.impl.SQLDataType.TINYINT, this, "Unidad en metros");
-
-	/**
-	 * The column <code>PUBLIC.WATERSYSTEM.TANKSIDEB</code>. Unidad en metros
-	 */
-	public final TableField<WatersystemRecord, Byte> TANKSIDEB = createField("TANKSIDEB", org.jooq.impl.SQLDataType.TINYINT, this, "Unidad en metros");
-
-	/**
-	 * The column <code>PUBLIC.WATERSYSTEM.TANKHEIGHT</code>. Unidad en metros
-	 */
-	public final TableField<WatersystemRecord, Byte> TANKHEIGHT = createField("TANKHEIGHT", org.jooq.impl.SQLDataType.TINYINT, this, "Unidad en metros");
-
-	/**
-	 * The column <code>PUBLIC.WATERSYSTEM.TANKVOLUME</code>. Unidad en metros cúbicos
-	 */
-	public final TableField<WatersystemRecord, Short> TANKVOLUME = createField("TANKVOLUME", org.jooq.impl.SQLDataType.SMALLINT, this, "Unidad en metros cúbicos");
-
-	/**
-	 * The column <code>PUBLIC.WATERSYSTEM.TANKUSEFULVOLUME</code>. Unidad en metros cúbicos
-	 */
-	public final TableField<WatersystemRecord, Short> TANKUSEFULVOLUME = createField("TANKUSEFULVOLUME", org.jooq.impl.SQLDataType.SMALLINT, this, "Unidad en metros cúbicos");
+	public final TableField<WatersystemRecord, Double> RESERVOIRVOLUME = createField("RESERVOIRVOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "Unidad en metros cúbicos");
 
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.SYSTEMELEVATION</code>. Altura msnm
 	 */
-	public final TableField<WatersystemRecord, Byte> SYSTEMELEVATION = createField("SYSTEMELEVATION", org.jooq.impl.SQLDataType.TINYINT, this, "Altura msnm");
+	public final TableField<WatersystemRecord, Integer> SYSTEMELEVATION = createField("SYSTEMELEVATION", org.jooq.impl.SQLDataType.INTEGER, this, "Altura msnm");
 
 	/**
 	 * Create a <code>PUBLIC.WATERSYSTEM</code> table reference

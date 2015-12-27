@@ -1,39 +1,29 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class MeasuredFlow {
 	/**
 	 * @author Kiko
 	 */
 	
-	private int measuredFlowId;
-	private LocalDateTime date;
+	private Timestamp date;
 	private double flow;
 	private MeasuringPoint measuringPoint;
 	private String comments;
 	
-	public MeasuredFlow(int measuredFlowId, LocalDateTime date, double flow, MeasuringPoint measuringPoint){
+	public MeasuredFlow(Timestamp date, double flow, MeasuringPoint measuringPoint){
 		super();
-		this.measuredFlowId = measuredFlowId;
-		this.date = date;
-		this.flow = flow;
-		this.measuringPoint = measuringPoint;
-	}
-	
-	public MeasuredFlow(LocalDateTime date, double flow, MeasuringPoint measuringPoint){
-		super();
-		this.measuredFlowId = -1;
 		this.date = date;
 		this.flow = flow;
 		this.measuringPoint = measuringPoint;
 	}
 
-	public LocalDateTime getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 
@@ -60,8 +50,8 @@ public class MeasuredFlow {
 	public void setComments(String comments) {
 		this.comments = comments;
 	}
-
-	public int getMeasuredFlowId() {
-		return measuredFlowId;
+	
+	public String toString(){
+		return "Measured flow: "+this.getFlow()+"lps on "+this.getDate()+" in Measuring point "+this.measuringPoint+" (Comments: "+this.getComments()+")";
 	}
 }

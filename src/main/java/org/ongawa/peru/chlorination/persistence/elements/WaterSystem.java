@@ -15,12 +15,7 @@ public class WaterSystem {
 	private int JASSNum;
 	private double futureNeededFlow;
 	private double reservoirVolume;
-	private double tankASide;
-	private double tankBSide;
-	private double tankHeight;
-	private double tankVolume;
-	private double tankUsefulVolume;
-	private double systemElevation;
+	private int systemElevation;
 	private Community community;
 	
 	public WaterSystem(int waterSystemId, String name, Community community) {
@@ -109,51 +104,11 @@ public class WaterSystem {
 		this.reservoirVolume = reservoirVolume;
 	}
 	
-	public double getTankASide() {
-		return tankASide;
-	}
-	
-	public void setTankASide(double tankASide) {
-		this.tankASide = tankASide;
-	}
-	
-	public double getTankBSide() {
-		return tankBSide;
-	}
-	
-	public void setTankBSide(double tankBSide) {
-		this.tankBSide = tankBSide;
-	}
-	
-	public double getTankHeight() {
-		return tankHeight;
-	}
-	
-	public void setTankHeight(double tankHeight) {
-		this.tankHeight = tankHeight;
-	}
-	
-	public double getTankVolume() {
-		return tankVolume;
-	}
-	
-	public void setTankVolume(double tankVolume) {
-		this.tankVolume = tankVolume;
-	}
-	
-	public double getTankUsefulVolume() {
-		return tankUsefulVolume;
-	}
-	
-	public void setTankUsefulVolume(double tankUsefulVolume) {
-		this.tankUsefulVolume = tankUsefulVolume;
-	}
-	
-	public double getSystemElevation() {
+	public int getSystemElevation() {
 		return systemElevation;
 	}
 	
-	public void setSystemElevation(double systemElevation) {
+	public void setSystemElevation(int systemElevation) {
 		this.systemElevation = systemElevation;
 	}
 	
@@ -163,5 +118,9 @@ public class WaterSystem {
 	
 	public void setCommunity(Community community) {
 		this.community = community;
+	}
+	
+	public String toString(){
+		return this.getWaterSystemId()+" "+this.getName()+" from community "+this.getCommunity().getName();
 	}
 }

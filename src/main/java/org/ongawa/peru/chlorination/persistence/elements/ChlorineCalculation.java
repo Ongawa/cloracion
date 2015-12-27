@@ -1,13 +1,13 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
-import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 public class ChlorineCalculation {
 	/**
 	 * @author Kiko
 	 */
 	
-	private LocalDateTime date;
+	private Timestamp date;
 	private int population;
 	private double tankVolume;
 	private double tankUsefulVolume;
@@ -20,7 +20,16 @@ public class ChlorineCalculation {
 	private double demandCommonProduct;
 	private WaterSystem waterSystem;
 	
-	public ChlorineCalculation(LocalDateTime date, int population, double tankVolume, double tankUsefulVolume,
+	public ChlorineCalculation(Timestamp date, double demandCLR, double demandActiveChlorine, double demandCommonProduct, WaterSystem waterSystem){
+		super();
+		this.date = date;
+		this.demandCLR = demandCLR;
+		this.demandActiveChlorine = demandActiveChlorine;
+		this.demandCommonProduct = demandCommonProduct;
+		this.waterSystem = waterSystem;
+	}
+	
+	public ChlorineCalculation(Timestamp date, int population, double tankVolume, double tankUsefulVolume,
 			double endowment, double chlorinePureness, double inputFlow, int reloadTime, double demandCLR,
 			double demandActiveChlorine, double demandCommonProduct, WaterSystem waterSystem) {
 		super();
@@ -38,11 +47,11 @@ public class ChlorineCalculation {
 		this.waterSystem = waterSystem;
 	}
 
-	public LocalDateTime getDate() {
+	public Timestamp getDate() {
 		return date;
 	}
 
-	public void setDate(LocalDateTime date) {
+	public void setDate(Timestamp date) {
 		this.date = date;
 	}
 
@@ -132,5 +141,9 @@ public class ChlorineCalculation {
 
 	public void setWaterSystem(WaterSystem waterSystem) {
 		this.waterSystem = waterSystem;
+	}
+	
+	public String toString(){
+		return "WaterSystem: "+this.getWaterSystem().getName()+" Date: "+this.getDate()+" CLR: "+this.getDemandCLR()+" Active: "+this.getDemandActiveChlorine()+" Common: "+this.getDemandCommonProduct();
 	}
 }

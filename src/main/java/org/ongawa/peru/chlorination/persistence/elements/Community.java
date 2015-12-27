@@ -43,4 +43,8 @@ public class Community {
 	public int getCommunityId() {
 		return communityId;
 	}
+	
+	public String toString(){
+		return this.communityId+" "+this.name+" from subbasin "+this.subBasin.getName();
+	}
 }

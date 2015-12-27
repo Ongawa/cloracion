@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Measuredf
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Measuredflow extends TableImpl<MeasuredflowRecord> {
 
-	private static final long serialVersionUID = -1625448184;
+	private static final long serialVersionUID = 1526637843;
 
 	/**
 	 * The reference instance of <code>PUBLIC.MEASUREDFLOW</code>
@@ -82,12 +82,12 @@ public class Measuredflow extends TableImpl<MeasuredflowRecord> {
 	/**
 	 * The column <code>PUBLIC.MEASUREDFLOW.FLOW</code>.
 	 */
-	public final TableField<MeasuredflowRecord, Byte> FLOW = createField("FLOW", org.jooq.impl.SQLDataType.TINYINT.nullable(false), this, "");
+	public final TableField<MeasuredflowRecord, Double> FLOW = createField("FLOW", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.MEASUREDFLOW.COMMENTS</code>.
 	 */
-	public final TableField<MeasuredflowRecord, String> COMMENTS = createField("COMMENTS", org.jooq.impl.SQLDataType.VARCHAR.length(255), this, "");
+	public final TableField<MeasuredflowRecord, String> COMMENTS = createField("COMMENTS", org.jooq.impl.SQLDataType.CLOB, this, "");
 
 	/**
 	 * Create a <code>PUBLIC.MEASUREDFLOW</code> table reference
