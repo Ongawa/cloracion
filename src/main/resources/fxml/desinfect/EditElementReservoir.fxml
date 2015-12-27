@@ -43,7 +43,7 @@
                     prefWidth="135.0" text="Tipo" textAlignment="CENTER"
                     GridPane.columnIndex="1" />
                 <Label alignment="CENTER" prefHeight="43.0"
-                    prefWidth="135.0" text="Tuberia" textAlignment="CENTER"
+                    prefWidth="135.0" text="Reservorio" textAlignment="CENTER"
                     GridPane.columnIndex="2" fx:id="elementType"/>
                 
                 <Label alignment="CENTER" prefHeight="43.0"
@@ -62,17 +62,25 @@
                    
                     
                 <Label alignment="CENTER" prefHeight="50.0"
-                    prefWidth="135.0" text="Longitud (metros)"
+                    prefWidth="135.0" text="Altura (metros)"
                     GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField GridPane.columnIndex="2"
-                    GridPane.rowIndex="2" fx:id="elementLength"      prefWidth="135.0" />
+                    GridPane.rowIndex="2" fx:id="elementHeight"      prefWidth="135.0" />
                     
                 <Label alignment="CENTER" prefHeight="50.0"
-                    prefWidth="135.0" text="Diametro (Centimetros)"
+                    prefWidth="135.0" text="Anchura (metros)"
                     GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField GridPane.columnIndex="2"
-                    GridPane.rowIndex="3" fx:id="elementDiameter" 
+                    GridPane.rowIndex="3" fx:id="elementWidth" 
                     prefWidth="135.0" />
+                    
+                <Label alignment="CENTER" prefHeight="50.0"
+                    prefWidth="135.0" text="Longitud (metros)"
+                    GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                <TextField GridPane.columnIndex="2"
+                    GridPane.rowIndex="4" fx:id="elementLength" 
+                    prefWidth="135.0" />    
+                    
                 
                 <Label alignment="CENTER" prefHeight="42.0"
                     prefWidth="141.0" text="Tiempo Retencion (horas)"

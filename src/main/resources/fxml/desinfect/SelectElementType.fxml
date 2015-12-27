@@ -6,29 +6,24 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1">
-    <SplitPane dividerPositions="0.11290322580645161"
-        orientation="VERTICAL" prefHeight="498.0" prefWidth="690.0">
-        <items>
-            <AnchorPane minHeight="0.0" minWidth="0.0"
-                prefHeight="100.0" prefWidth="160.0">
-                <children>
-                    <ComboBox fx:id="elementCombo" layoutX="141.0"
-                        layoutY="14.0" prefWidth="150.0" promptText="Elegir elemento">
-                        <items>
-                            <FXCollections fx:factory="observableArrayList">
-                                <String fx:value="Tuberia" />
-                                <String fx:value="Reservorio" />
-                                <String fx:value="CPR" />
-                            </FXCollections>
-                        </items>
-                    </ComboBox>
-                    <Label layoutX="14.0" layoutY="19.0"
-                        text="Tipo de elemento" />
-                </children>
-            </AnchorPane>
-            <AnchorPane fx:id="elemetPane" minHeight="0.0"
-                minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-        </items>
-    </SplitPane>
+<AnchorPane prefHeight="500.0" prefWidth="690.0"
+    xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="50.0"
+        prefWidth="160.0">
+        <children>
+            <ComboBox fx:id="newElementCombo" layoutX="141.0"
+                layoutY="14.0" prefWidth="150.0" promptText="Elegir elemento">
+                <items>
+                    <FXCollections fx:factory="observableArrayList">
+                        <String fx:value="Tuberia" />
+                        <String fx:value="Reservorio" />
+                        <String fx:value="CPR" />
+                    </FXCollections>
+                </items>
+            </ComboBox>
+            <Label layoutX="14.0" layoutY="19.0" text="Tipo de elemento" />
+        </children>
+    </AnchorPane>
+    <AnchorPane fx:id="newElementPane" minHeight="0.0"
+        minWidth="0.0" prefHeight="450.0" prefWidth="160.0" />
 </AnchorPane>
