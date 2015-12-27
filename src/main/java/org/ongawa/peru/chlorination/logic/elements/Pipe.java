@@ -15,7 +15,7 @@ public class Pipe implements SystemElement{
     
     public static final int REQUIRED_CL_QUANTITY = 50;
     public static final int RETENTION_TIME = 2;
-    public static final String TYPE_NAME = "TUBERIA";
+    public static final String TYPE_NAME = "Tuberia";
     
     /**
      * A human readable name

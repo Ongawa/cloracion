@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.logic.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.logic.elements.ReliefValve;
@@ -208,7 +209,9 @@ public class SystemDetails implements Initializable {
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
 
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/waterProperties.fxml"));
+        // Set the data to pass ***before*** calling the class loader
+        DataLoader.getDataLoader().setDesinfectResults(this.elements);
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionResults.fxml"));
 
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");

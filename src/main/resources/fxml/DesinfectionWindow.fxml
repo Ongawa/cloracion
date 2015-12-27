@@ -6,37 +6,62 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1000" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ongawa.peru.chlorination.gui.desinfect.SystemDetails">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
+    prefWidth="1000" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="org.ongawa.peru.chlorination.gui.desinfect.SystemDetails">
     <content>
         <AnchorPane>
             <children>
-                <SplitPane dividerPositions="0.29797979797979796" prefHeight="500" prefWidth="990.0">
+                <SplitPane dividerPositions="0.29797979797979796"
+                    prefHeight="500" prefWidth="990.0">
                     <items>
-                        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="300.0">
+                        <AnchorPane minHeight="0.0" minWidth="0.0"
+                            prefHeight="160.0" prefWidth="300.0">
                             <children>
-                                <Button layoutY="469.0" mnemonicParsing="false" onAction="#showAddElement" prefHeight="30.0" prefWidth="150.0" text="Añadir" />
-                                <Button layoutX="150.0" layoutY="469.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="140.0" text="Elimininar" />
-                                <TableView fx:id="elementsTable" prefHeight="470.0" prefWidth="285.0">
+                                <Button layoutY="469.0"
+                                    mnemonicParsing="false" onAction="#showAddElement"
+                                    prefHeight="30.0" prefWidth="150.0"
+                                    text="Añadir" />
+                                <Button layoutX="150.0" layoutY="469.0"
+                                    mnemonicParsing="false" prefHeight="30.0"
+                                    prefWidth="140.0" text="Elimininar" />
+                                <TableView fx:id="elementsTable"
+                                    prefHeight="470.0" prefWidth="285.0">
                                     <columns>
-                                        <TableColumn fx:id="nameColumn" prefWidth="171.0" text="Nombre" />
-                                        <TableColumn fx:id="typeColumn" minWidth="0.0" prefWidth="119.0" text="Tipo" />
+                                        <TableColumn fx:id="nameColumn"
+                                            prefWidth="171.0" text="Nombre" />
+                                        <TableColumn fx:id="typeColumn"
+                                            minWidth="0.0" prefWidth="119.0"
+                                            text="Tipo" />
                                     </columns>
                                 </TableView>
                             </children>
                         </AnchorPane>
-                        <AnchorPane fx:id="editPane" layoutX="305" layoutY="0" minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="690.0">
+                        <AnchorPane fx:id="editPane" layoutX="305"
+                            layoutY="0" minHeight="0.0" minWidth="0.0"
+                            prefHeight="160.0" prefWidth="690.0">
                             <children>
 
                             </children>
                         </AnchorPane>
                     </items>
                 </SplitPane>
-                <AnchorPane layoutY="500" prefHeight="100" prefWidth="990">
+                <AnchorPane layoutY="500" prefHeight="100"
+                    prefWidth="990">
                     <children>
-                        <Label alignment="CENTER" layoutX="57.0" layoutY="37.0" prefHeight="30.0" prefWidth="200.0" text="(Errores here - TODO)" textAlignment="CENTER" />
+                        <Label alignment="CENTER" layoutX="57.0"
+                            layoutY="37.0" prefHeight="30.0" prefWidth="200.0"
+                            text="(Errores here - TODO)" textAlignment="CENTER" />
 
-                        <Button id="triggerBack" fx:id="backButton" layoutX="817.0" layoutY="52.0" onAction="#triggerBack" text="Atrás" GridPane.columnIndex="8" GridPane.rowIndex="6" />
-                        <Button id="triggerNext" fx:id="nextButton" layoutX="893.0" layoutY="52.0" onAction="#triggerNext" text="Calcular" GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                        <Button id="triggerBack" fx:id="backButton"
+                            layoutX="817.0" layoutY="52.0" onAction="#triggerBack"
+                            text="Atrás" GridPane.columnIndex="8"
+                            GridPane.rowIndex="6" />
+                        <Button id="triggerNext" fx:id="nextButton"
+                            layoutX="893.0" layoutY="52.0" onAction="#triggerNext"
+                            text="Calcular" GridPane.columnIndex="9"
+                            GridPane.rowIndex="6" />
                     </children>
                 </AnchorPane>
             </children>

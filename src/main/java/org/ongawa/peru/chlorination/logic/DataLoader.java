@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ListResourceBundle;
 
+import javafx.collections.ObservableList;
+
 /**
  * 
  * Singleton class to handle the data model.
@@ -14,6 +16,8 @@ import java.util.ListResourceBundle;
 public class DataLoader {
     
     private static DataLoader dataLoaderInstance = null;
+    
+    private ObservableList<SystemElement> desinfectResults;
     
     protected DataLoader() {
         // Empty constructor for the moment 
@@ -70,5 +74,14 @@ public class DataLoader {
         }
         return systemsList;
     }
+
+    public ObservableList<SystemElement> getDesinfectResults() {
+        return desinfectResults;
+    }
+
+    public void setDesinfectResults(ObservableList<SystemElement> desinfectResults) {
+        this.desinfectResults = desinfectResults;
+    }
+    
     
 }
