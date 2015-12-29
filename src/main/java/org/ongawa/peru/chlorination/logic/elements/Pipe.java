@@ -111,8 +111,7 @@ public class Pipe implements SystemElement{
      */
     @Override
     public double getVolume() {
-        double surface = this.diameter * Math.pow(Math.PI, 2) /2;
-        return surface*this.length;
+        return this.length*Math.pow(this.diameter/2, 2)*Math.PI;
     }
 
     /**

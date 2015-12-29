@@ -11,10 +11,10 @@ import org.ongawa.peru.chlorination.KEYS;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * @author Kiko
+ */
 public class ConnectionsPool {
-	/**
-	 * @author Kiko
-	 */
 	
 	//Not a real connections pool. Refactor this!
 	

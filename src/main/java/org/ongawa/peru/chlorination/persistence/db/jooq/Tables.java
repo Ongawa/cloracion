@@ -8,8 +8,11 @@ import javax.annotation.Generated;
 
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
@@ -55,6 +58,11 @@ public class Tables {
 	public static final WatersystemHasWaterspring WATERSYSTEM_HAS_WATERSPRING = org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING;
 
 	/**
+	 * The table PUBLIC.CHLORINECALCULATION
+	 */
+	public static final Chlorinecalculation CHLORINECALCULATION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation.CHLORINECALCULATION;
+
+	/**
 	 * The table PUBLIC.MEASURINGPOINT
 	 */
 	public static final Measuringpoint MEASURINGPOINT = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint.MEASURINGPOINT;
@@ -65,7 +73,17 @@ public class Tables {
 	public static final Measuredflow MEASUREDFLOW = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow.MEASUREDFLOW;
 
 	/**
-	 * The table PUBLIC.CHLORINECALCULATION
+	 * The table PUBLIC.CUBICRESERVOIR
 	 */
-	public static final Chlorinecalculation CHLORINECALCULATION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation.CHLORINECALCULATION;
+	public static final Cubicreservoir CUBICRESERVOIR = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir.CUBICRESERVOIR;
+
+	/**
+	 * The table PUBLIC.PIPE
+	 */
+	public static final Pipe PIPE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE;
+
+	/**
+	 * The table PUBLIC.RELIEFVALVE
+	 */
+	public static final Reliefvalve RELIEFVALVE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve.RELIEFVALVE;
 }

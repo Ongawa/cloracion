@@ -2,10 +2,10 @@ package org.ongawa.peru.chlorination.persistence.elements;
 
 import java.sql.Timestamp;
 
+/**
+ * @author Kiko
+ */
 public class MeasuredFlow {
-	/**
-	 * @author Kiko
-	 */
 	
 	private Timestamp date;
 	private double flow;

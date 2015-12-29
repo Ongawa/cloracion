@@ -1,10 +1,9 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+/**
+ * @author Kiko
+ */
 public class WaterSystem {
-	
-	/**
-	 * @author Kiko
-	 */
 
 	private int waterSystemId;
 	private String name;

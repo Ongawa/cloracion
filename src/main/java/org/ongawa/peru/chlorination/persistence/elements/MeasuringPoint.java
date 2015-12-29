@@ -1,9 +1,9 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+/**
+ * @author Kiko
+ */
 public class MeasuringPoint {
-	/**
-	 * @author Kiko
-	 */
 
 	private int measuringPointId;
 	private String name;

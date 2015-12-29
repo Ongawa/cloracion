@@ -1,10 +1,9 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+/**
+ * @author Kiko
+ */
 public class Community {
-	
-	/**
-	 * @author Kiko
-	 */
 	
 	private int communityId;
 	private String name;

@@ -1,9 +1,9 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+/**
+ * @author Kiko
+ */
 public class WaterSpring {
-	/**
-	 * @author Kiko
-	 */
 	
 	private int waterSpringId;
 	private String name;

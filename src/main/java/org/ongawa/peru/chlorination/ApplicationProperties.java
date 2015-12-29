@@ -4,10 +4,10 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Properties;
 
+/**
+ * @author Kiko
+ */
 public class ApplicationProperties {
-	/**
-	 * @author Kiko
-	 */
 	private static ApplicationProperties appProperties;
 	static{
 		appProperties = null;

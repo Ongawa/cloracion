@@ -12,16 +12,22 @@ import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.ChlorinecalculationRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CommunityRecord;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CubicreservoirRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.MeasuredflowRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.MeasuringpointRecord;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.PipeRecord;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.ReliefvalveRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.SubbasinRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.WaterspringRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.WatersystemHasWaterspringRecord;
@@ -51,6 +57,9 @@ public class Keys {
 	public static final Identity<WatersystemRecord, Integer> IDENTITY_WATERSYSTEM = Identities0.IDENTITY_WATERSYSTEM;
 	public static final Identity<WaterspringRecord, Integer> IDENTITY_WATERSPRING = Identities0.IDENTITY_WATERSPRING;
 	public static final Identity<MeasuringpointRecord, Integer> IDENTITY_MEASURINGPOINT = Identities0.IDENTITY_MEASURINGPOINT;
+	public static final Identity<CubicreservoirRecord, Integer> IDENTITY_CUBICRESERVOIR = Identities0.IDENTITY_CUBICRESERVOIR;
+	public static final Identity<PipeRecord, Integer> IDENTITY_PIPE = Identities0.IDENTITY_PIPE;
+	public static final Identity<ReliefvalveRecord, Integer> IDENTITY_RELIEFVALVE = Identities0.IDENTITY_RELIEFVALVE;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
@@ -61,9 +70,12 @@ public class Keys {
 	public static final UniqueKey<WatersystemRecord> CONSTRAINT_C = UniqueKeys0.CONSTRAINT_C;
 	public static final UniqueKey<WaterspringRecord> CONSTRAINT_CA = UniqueKeys0.CONSTRAINT_CA;
 	public static final UniqueKey<WatersystemHasWaterspringRecord> CONSTRAINT_2 = UniqueKeys0.CONSTRAINT_2;
+	public static final UniqueKey<ChlorinecalculationRecord> CONSTRAINT_E = UniqueKeys0.CONSTRAINT_E;
 	public static final UniqueKey<MeasuringpointRecord> CONSTRAINT_48 = UniqueKeys0.CONSTRAINT_48;
 	public static final UniqueKey<MeasuredflowRecord> CONSTRAINT_7 = UniqueKeys0.CONSTRAINT_7;
-	public static final UniqueKey<ChlorinecalculationRecord> CONSTRAINT_E = UniqueKeys0.CONSTRAINT_E;
+	public static final UniqueKey<CubicreservoirRecord> CONSTRAINT_CD = UniqueKeys0.CONSTRAINT_CD;
+	public static final UniqueKey<PipeRecord> CONSTRAINT_25 = UniqueKeys0.CONSTRAINT_25;
+	public static final UniqueKey<ReliefvalveRecord> CONSTRAINT_EA = UniqueKeys0.CONSTRAINT_EA;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
@@ -73,9 +85,12 @@ public class Keys {
 	public static final ForeignKey<WatersystemRecord, CommunityRecord> FK_WATERSYSTEM_COMMUNITY1 = ForeignKeys0.FK_WATERSYSTEM_COMMUNITY1;
 	public static final ForeignKey<WatersystemHasWaterspringRecord, WatersystemRecord> FK_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM1 = ForeignKeys0.FK_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM1;
 	public static final ForeignKey<WatersystemHasWaterspringRecord, WaterspringRecord> FK_WATERSYSTEM_HAS_WATERSPRING_WATERSPRING1 = ForeignKeys0.FK_WATERSYSTEM_HAS_WATERSPRING_WATERSPRING1;
+	public static final ForeignKey<ChlorinecalculationRecord, WatersystemRecord> FK_CHLORINECALCULATION_WATERSYSTEM1 = ForeignKeys0.FK_CHLORINECALCULATION_WATERSYSTEM1;
 	public static final ForeignKey<MeasuringpointRecord, WatersystemHasWaterspringRecord> FK_MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING1 = ForeignKeys0.FK_MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING1;
 	public static final ForeignKey<MeasuredflowRecord, MeasuringpointRecord> FK_MEASUREDFLOW_MEASURINGPOINT1 = ForeignKeys0.FK_MEASUREDFLOW_MEASURINGPOINT1;
-	public static final ForeignKey<ChlorinecalculationRecord, WatersystemRecord> FK_CHLORINECALCULATION_WATERSYSTEM1 = ForeignKeys0.FK_CHLORINECALCULATION_WATERSYSTEM1;
+	public static final ForeignKey<CubicreservoirRecord, WatersystemRecord> FK_CUBICRESERVOIR_WATERSYSTEM1 = ForeignKeys0.FK_CUBICRESERVOIR_WATERSYSTEM1;
+	public static final ForeignKey<PipeRecord, WatersystemRecord> FK_PIPE_WATERSYSTEM1 = ForeignKeys0.FK_PIPE_WATERSYSTEM1;
+	public static final ForeignKey<ReliefvalveRecord, WatersystemRecord> FK_RELIEFVALVE_WATERSYSTEM1 = ForeignKeys0.FK_RELIEFVALVE_WATERSYSTEM1;
 
 	// -------------------------------------------------------------------------
 	// [#1459] distribute members to avoid static initialisers > 64kb
@@ -87,6 +102,9 @@ public class Keys {
 		public static Identity<WatersystemRecord, Integer> IDENTITY_WATERSYSTEM = createIdentity(Watersystem.WATERSYSTEM, Watersystem.WATERSYSTEM.IDWATERSYSTEM);
 		public static Identity<WaterspringRecord, Integer> IDENTITY_WATERSPRING = createIdentity(Waterspring.WATERSPRING, Waterspring.WATERSPRING.IDWATERSPRING);
 		public static Identity<MeasuringpointRecord, Integer> IDENTITY_MEASURINGPOINT = createIdentity(Measuringpoint.MEASURINGPOINT, Measuringpoint.MEASURINGPOINT.IDMEASURINGPOINT);
+		public static Identity<CubicreservoirRecord, Integer> IDENTITY_CUBICRESERVOIR = createIdentity(Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR);
+		public static Identity<PipeRecord, Integer> IDENTITY_PIPE = createIdentity(Pipe.PIPE, Pipe.PIPE.IDPIPE);
+		public static Identity<ReliefvalveRecord, Integer> IDENTITY_RELIEFVALVE = createIdentity(Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.IDRELIEFVALVE);
 	}
 
 	private static class UniqueKeys0 extends AbstractKeys {
@@ -95,9 +113,12 @@ public class Keys {
 		public static final UniqueKey<WatersystemRecord> CONSTRAINT_C = createUniqueKey(Watersystem.WATERSYSTEM, Watersystem.WATERSYSTEM.IDWATERSYSTEM, Watersystem.WATERSYSTEM.COMMUNITY_IDCOMMUNITY, Watersystem.WATERSYSTEM.COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<WaterspringRecord> CONSTRAINT_CA = createUniqueKey(Waterspring.WATERSPRING, Waterspring.WATERSPRING.IDWATERSPRING);
 		public static final UniqueKey<WatersystemHasWaterspringRecord> CONSTRAINT_2 = createUniqueKey(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_IDWATERSYSTEM, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSPRING_IDWATERSPRING);
+		public static final UniqueKey<ChlorinecalculationRecord> CONSTRAINT_E = createUniqueKey(Chlorinecalculation.CHLORINECALCULATION, Chlorinecalculation.CHLORINECALCULATION.DATE, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<MeasuringpointRecord> CONSTRAINT_48 = createUniqueKey(Measuringpoint.MEASURINGPOINT, Measuringpoint.MEASURINGPOINT.IDMEASURINGPOINT, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_IDWATERSYSTEM, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSPRING_IDWATERSPRING);
 		public static final UniqueKey<MeasuredflowRecord> CONSTRAINT_7 = createUniqueKey(Measuredflow.MEASUREDFLOW, Measuredflow.MEASUREDFLOW.DATE, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_IDMEASURINGPOINT, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_IDWATERSYSTEM, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSPRING_IDWATERSPRING);
-		public static final UniqueKey<ChlorinecalculationRecord> CONSTRAINT_E = createUniqueKey(Chlorinecalculation.CHLORINECALCULATION, Chlorinecalculation.CHLORINECALCULATION.DATE, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final UniqueKey<CubicreservoirRecord> CONSTRAINT_CD = createUniqueKey(Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final UniqueKey<PipeRecord> CONSTRAINT_25 = createUniqueKey(Pipe.PIPE, Pipe.PIPE.IDPIPE, Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM, Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final UniqueKey<ReliefvalveRecord> CONSTRAINT_EA = createUniqueKey(Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.IDRELIEFVALVE, Reliefvalve.RELIEFVALVE.WATERSYSTEM_IDWATERSYSTEM, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 	}
 
 	private static class ForeignKeys0 extends AbstractKeys {
@@ -105,8 +126,11 @@ public class Keys {
 		public static final ForeignKey<WatersystemRecord, CommunityRecord> FK_WATERSYSTEM_COMMUNITY1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_4, Watersystem.WATERSYSTEM, Watersystem.WATERSYSTEM.COMMUNITY_IDCOMMUNITY, Watersystem.WATERSYSTEM.COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<WatersystemHasWaterspringRecord, WatersystemRecord> FK_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_IDWATERSYSTEM, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<WatersystemHasWaterspringRecord, WaterspringRecord> FK_WATERSYSTEM_HAS_WATERSPRING_WATERSPRING1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_CA, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSPRING_IDWATERSPRING);
+		public static final ForeignKey<ChlorinecalculationRecord, WatersystemRecord> FK_CHLORINECALCULATION_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Chlorinecalculation.CHLORINECALCULATION, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<MeasuringpointRecord, WatersystemHasWaterspringRecord> FK_MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_2, Measuringpoint.MEASURINGPOINT, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_IDWATERSYSTEM, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN, Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSPRING_IDWATERSPRING);
 		public static final ForeignKey<MeasuredflowRecord, MeasuringpointRecord> FK_MEASUREDFLOW_MEASURINGPOINT1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_48, Measuredflow.MEASUREDFLOW, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_IDMEASURINGPOINT, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_IDWATERSYSTEM, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN, Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSPRING_IDWATERSPRING);
-		public static final ForeignKey<ChlorinecalculationRecord, WatersystemRecord> FK_CHLORINECALCULATION_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Chlorinecalculation.CHLORINECALCULATION, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final ForeignKey<CubicreservoirRecord, WatersystemRecord> FK_CUBICRESERVOIR_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final ForeignKey<PipeRecord, WatersystemRecord> FK_PIPE_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Pipe.PIPE, Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM, Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final ForeignKey<ReliefvalveRecord, WatersystemRecord> FK_RELIEFVALVE_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.WATERSYSTEM_IDWATERSYSTEM, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 	}
 }
