@@ -27,6 +27,8 @@ public interface IDataSource {
 
 	SubBasin getSubBasin(String name);
 	
+	boolean editSubBasin(SubBasin subBasin);
+	
 	boolean removeSubBasin(SubBasin subBasin);
 	
 	Community addCommunity(Community community);
@@ -37,6 +39,8 @@ public interface IDataSource {
 
 	Community getCommunity(SubBasin subBasin, String name);
 	
+	boolean editCommunity(Community community);
+	
 	boolean removeCommunity(Community community);
 	
 	WaterSystem addWaterSystem(WaterSystem waterSystem);
@@ -46,6 +50,8 @@ public interface IDataSource {
 	WaterSystem getWaterSystem(Community community, int idWaterSystem);
 
 	WaterSystem getWaterSystem(Community community, String name);
+	
+	boolean editWaterSystem(WaterSystem waterSystem);
 	
 	boolean removeWaterSystem(WaterSystem waterSystem);
 	
@@ -59,6 +65,8 @@ public interface IDataSource {
 
 	List<WaterSpring> getWaterSprings(WaterSystem waterSystem);
 	
+	boolean editWaterSpring(WaterSpring waterSpring);
+	
 	boolean removeWaterSpring(WaterSpring waterSpring);
 	
 	MeasuringPoint addMeasuringPoint(MeasuringPoint measuringPoint);
@@ -68,6 +76,8 @@ public interface IDataSource {
 	MeasuringPoint getMeasuringPoint(WaterSystem waterSystem, WaterSpring waterSpring, int idMeasuringPoint);
 	
 	MeasuringPoint getMeasuringPoint(WaterSystem waterSystem, WaterSpring waterSpring, String name);
+	
+	boolean editMeasuringPoint(MeasuringPoint measuringPoint);
 	
 	boolean removeMeasuringPoint(MeasuringPoint measuringPoint);
 	
@@ -79,6 +89,8 @@ public interface IDataSource {
 
 	MeasuredFlow getMeasuredFlow(Timestamp date, MeasuringPoint measuringPoint);
 	
+	boolean editMeasuredFlow(Timestamp oldMeasuredFlowDate, MeasuredFlow newMeasuredFlow);
+	
 	boolean removeMeasuredFlow(MeasuredFlow measuredFlow);
 	
 	ChlorineCalculation addChlorineCalculation(ChlorineCalculation chlorineCalculation);
@@ -89,6 +101,8 @@ public interface IDataSource {
 
 	ChlorineCalculation getChlorineCalculation(Timestamp date, WaterSystem waterSystem);
 	
+	boolean editChlorineCalcuilation(Timestamp oldChlorineCalculationDate, ChlorineCalculation newChlorineCalculation);
+	
 	boolean removeChlorineCalculation(ChlorineCalculation chlorineCalculation);
 	
 	CubicReservoir addCubicReservoir(CubicReservoir cubicReservoir);
@@ -96,6 +110,8 @@ public interface IDataSource {
 	List<CubicReservoir> getCubicReservoirs(WaterSystem waterSystem);
 	
 	CubicReservoir getCubicReservoir(WaterSystem waterSystem, int cubicReservoirId);
+	
+	boolean editCubicReservoir(CubicReservoir cubicReservoir);
 	
 	boolean removeCubicReservoir(CubicReservoir cubicReservoir);
 	
@@ -105,6 +121,8 @@ public interface IDataSource {
 	
 	Pipe getPipe(WaterSystem waterSystem, int pipeId);
 	
+	boolean editPipe(Pipe pipe);
+	
 	boolean removePipe(Pipe pipe);
 	
 	ReliefValve addReliefValve(ReliefValve reliefValve);
@@ -112,6 +130,8 @@ public interface IDataSource {
 	List<ReliefValve> getReliefValves(WaterSystem waterSystem);
 	
 	ReliefValve getReliefValve(WaterSystem waterSystem, int reliefValveId);
+	
+	boolean editReliefValve(ReliefValve reliefValve);
 	
 	boolean removeReliefValve(ReliefValve reliefValve);
 }
