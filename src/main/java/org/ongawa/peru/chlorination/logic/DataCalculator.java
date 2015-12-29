@@ -11,6 +11,7 @@ public class DataCalculator {
     public static final int VOL_BALDE_L =10;
     public static final int CONC_COMP_MADRE = 10; // g/L =  1%
     public static final int FAMILIES_TO_INHABITANTS = 5;
+    public static final double K1 = 1.3;//variation coef.
     
     public static String getInhabitantsFromFamilies(String familiesCount) {
         int nFamilies = Integer.parseInt(familiesCount);
@@ -69,22 +70,8 @@ public class DataCalculator {
         res[5] = String.valueOf(caudalGoteo*1000*ML2GOTAS/60); //1000 stands for ml and 60 for sec (gotas/s)
         return res; 
     }
-    /**
-     * Function popFlow to compute the flow to chlorinate as a function of the population, default value
-     * input: number of inhabitants
-     *        daily variation coefficient
-     *        number of litres per day per person
-     *        percentage of loss
-     */
-    public static double popFlow (String numHab, String coefVar, String dotacion, String perdidas){
-    	double nHab = Double.parseDouble(numHab);
-    	double k1 = Double.parseDouble(coefVar); 
-        double dot= Double.parseDouble(dotacion); 
-        double perL = Double.parseDouble(perdidas);
-        double res = nHab*k1*dot/(1-perL/100);
-        return res;
-    	
-    }
+
+    
     
     /**
      * Function volTanCaD to compute the minimum volume of the tank to keep the concentration of Cl in an accurate range
@@ -93,16 +80,15 @@ public class DataCalculator {
      *        climate concentration ppm: warm zones 10000 ppm cold zones 5000ppm
      * output vol in litres        
      */
-    public static double volTanCaD (String climate, String cloroAdosificar){
+    public static double volTanCaD (int climate, String cloroAdosificar){
     	
-    	double tempConc;
-    	if (climate.equals("Calido")||climate.equals("Templado"))
+    	/*double tempConc;
+    	//if (climate.equals("Calido")||climate.equals("Templado"))
     	tempConc = 5000; // ppm mg/L
-    	else 
-    		tempConc = 10000;//ppm mg/L
+    	//else 
+    		tempConc = 10000;//ppm mg/L*/
     	double cAd = Double.parseDouble(cloroAdosificar);  //g/Trecarga
-        
-        double vt = cAd/tempConc*1000;//1000 stands for mg 
+        double vt = cAd/climate*1000;//1000 stands for mg 
         return vt;// L
     	
     }
@@ -160,6 +146,22 @@ public class DataCalculator {
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
         
         return res; 
+    }
+    /*
+     * Function popFlow to compute the flow to chlorinate as a function of the population, default value
+     * input: number of inhabitants
+     *        daily variation coefficient
+     *        number of litres per day per person
+     *        percentage of loss
+     */
+    public static double caudalMin (String pop, String dota, String losses){
+    	
+    	int pob = Double.parseDouble(pop);  // #pax
+    	double dot = Double.parseDouble(dota); // litros*persona*dia
+    	double l = Double.parseDouble(losses); // % of losses
+        double c_min = K1*pob*dot/(1-l/100);//1000 stands for m3 to liters 
+        return vt;// L*día
+    	
     }
     
 }
