@@ -184,7 +184,7 @@ public class DataCalculator {
     *        consumption of Cl per desinfection
     *  output: cuota de soles al mes
     */
-   public static double gastosCl (String price, String consumptionCl ,String desinfectionPerYear, String consumptionDesin, String familias){
+   public static double [] gastosCl (String price, String consumptionCl ,String desinfectionPerYear, String consumptionDesin, String familias){
 	   double [] c_min = new double[2];
    	double solesCl = Double.parseDouble(price);  // soles/kg
    	double c_cl = Double.parseDouble(consumptionCl); // Consumo de cloro por operacion kg/mes
