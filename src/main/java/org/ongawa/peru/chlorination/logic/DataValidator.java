@@ -116,7 +116,12 @@ public class DataValidator {
         else 
         	return "";
     }
-	
+	public static String checkDemaClor(double num) {
+        if(num > 20.00 || num<0.01) //mg/l
+        return "[ERROR] Demanda de cloro."; 
+        else 
+        	return "";
+    }
 	
 	
 	
