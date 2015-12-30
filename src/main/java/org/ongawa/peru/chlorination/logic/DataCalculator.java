@@ -12,13 +12,27 @@ public class DataCalculator {
     public static final int CONC_COMP_MADRE = 10; // g/L =  1%
     public static final int FAMILIES_TO_INHABITANTS = 5;
     public static final double K1 = 1.3;//variation coef.
+    public static final int YEARS_PROJECTION = 20; 
     
     public static String getInhabitantsFromFamilies(String familiesCount) {
         int nFamilies = Integer.parseInt(familiesCount);
         int nInhabitants = nFamilies*FAMILIES_TO_INHABITANTS;
         return String.valueOf(nInhabitants);
     }
-    /**
+    /* 
+     * Funtion getFutPopulation to compute future number of inhabintants
+     * input (String growth Rate 
+     * String inhabitants at the date )
+     *  output String estimation of the future population
+     * */
+    public static String getFutPopulation(String growthRate, String inhabitants){
+    	double crec =  Integer.parseInt(growthRate)/100; // % to 0.0
+    	int inh0 = Integer.parseInt(inhabitants);
+    	double inh1 = inh0 * Math.pow((1+crec), YEARS_PROJECTION);
+    	return String.valueOf(inh1);
+    	
+    }
+    /*
      *  Function getSolucionMadre to compute the weight (gr) of Cl
      *  compound to prepare the mother compound to measure CL demand by the Baldes method 
      *  input: % of the free Cl of the comercial Cl compound
@@ -63,7 +77,7 @@ public class DataCalculator {
         double cloroAdosificar=  dC * flNat * DIA2S * hGoteo * dRecarga / (perCl * 1000000 * 24) ; // kg en el tiempo de recarga
         res[0] = String.valueOf(cloroAdosificar*1000/dRecarga);// 1000 stands for g and dRecargar for day (g/day)
         res[1] = String.valueOf(cloroAdosificar);//  (kg/periodoRecarga)
-        res[2] = String.valueOf(cloroAdosificar*30/dRecarga);// 30 stands for days in month and dRecargar for day (kg/month)
+        res[2] = String.valueOf(cloroAdosificar*30.5/dRecarga);// 30 stands for days in month and dRecargar for day (kg/month)
         double caudalGoteo = vTank/(dRecarga*hGoteo*60); // 60 stands for min (l/min)
         res[3] = String.valueOf(caudalGoteo);//l/min
         res[4] = String.valueOf(caudalGoteo*1000/60);//1000 stands for ml and 60 for sec (ml/s)
@@ -140,7 +154,7 @@ public class DataCalculator {
         int numEle = Integer.parseInt(units);
         
         double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
-        res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
+        //res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
         res[2] = String.valueOf(cucharasDesin);//  
         res[1] = String.valueOf(cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
@@ -156,12 +170,30 @@ public class DataCalculator {
      */
     public static double caudalMin (String pop, String dota, String losses){
     	
-    	int pob = Double.parseDouble(pop);  // #pax
+    	double pob = Double.parseDouble(pop);  // #pax
     	double dot = Double.parseDouble(dota); // litros*persona*dia
     	double l = Double.parseDouble(losses); // % of losses
         double c_min = K1*pob*dot/(1-l/100);//1000 stands for m3 to liters 
-        return vt;// L*día
+        return c_min;// L*día
     	
     }
+    /* Function gastosCl to compute the cost of Cl for chlorination and desinfection
+    * input: price of the kg of Cl
+    *        consumption of Cl per month for cholorination
+    *        anual rate of desinfection
+    *        consumption of Cl per desinfection
+    *  output: cuota de soles al mes
+    */
+   public static double gastosCl (String price, String consumptionCl ,String desinfectionPerYear, String consumptionDesin){
+   	
+   	double solesCl = Double.parseDouble(price);  // soles/kg
+   	double c_cl = Double.parseDouble(consumptionCl); // Consumo de cloro por operacion kg/mes
+   	double c_ds = Double.parseDouble(consumptionDesin); // Consumo de cloro por desinfeccion kg/operacion
+   	int n_ds = Integer.parseInt(desinfectionPerYear); // Numero de desinfecciones anuales
+       double c_min = solesCl*(c_cl + n_ds*c_ds/12);//12 stands for months on a year
+    		   
+       return c_min;// soles al mes
+   	
+   }
     
 }
