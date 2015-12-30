@@ -192,7 +192,7 @@ public class DataCalculator {
    	int n_ds = Integer.parseInt(desinfectionPerYear); // Numero de desinfecciones anuales
    	double n_fam = Double.parseDouble(familias);
    	c_min[0] = solesCl*(c_cl + n_ds*c_ds/12);//12 stands for months on a year
-     c_min[0] = solesCl*(c_cl + n_ds*c_ds/12)/n_fam;//12 stands for months on a year. Family fee 		   
+     c_min[1] = solesCl*(c_cl + n_ds*c_ds/12)/n_fam;//12 stands for months on a year. Family fee 		   
        return c_min;// soles al mes
    	
    }
