@@ -79,6 +79,13 @@ public class DataValidator {
         else 
         	return "";
     }
+	public static String checkPure(double num) {
+        if(num > 100.00 || num<0.001)
+        return "[ERROR] Pureza del cloro esperada en porcentaje";
+        else 
+        	return "";
+    }
+	
 	public static String checkTiemRecar(double num) {
         if(num > 60.00 || num<0.01)
         return "[ERROR] Tiempo de recarga esperado entre 1 día y 60 días.";
