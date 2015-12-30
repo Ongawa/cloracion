@@ -202,14 +202,14 @@ public class DataCalculator {
    *        gastos en operario ANUAL
    *  output: cuota en soles al mes por familia
    */
-  public static double cuotaFam (Double gastoCl, String reparacionAnual ,String gestionAnual , String operarioAnual, String familias){
-  	
+  public static double[] cuotaFam (Double gastoCl, String reparacionAnual ,String gestionAnual , String operarioAnual, String familias){
+  	double [] c_min = new double[2];
   	double rep = Double.parseDouble(reparacionAnual)/12;  // soles
   	double gest = Double.parseDouble(gestionAnual)/12; // 
   	double oper = Double.parseDouble(operarioAnual)/12; // 
   	double n_fam = Double.parseDouble(familias); //
-    double c_min = (rep+gest+oper+gastoCl)/n_fam;//12 stands for months on a year
-   		   
+    c_min[0] = (rep+gest+oper+gastoCl)/n_fam;//12 stands for months on a year
+    c_min[1] = rep+gest+oper+gastoCl; //monthly expenses
       return c_min;// soles al mes
   	
   }
