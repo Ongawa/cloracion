@@ -195,5 +195,23 @@ public class DataCalculator {
        return c_min;// soles al mes
    	
    }
+   /* Function cuotaFam to compute the fee per family of the system
+   * input: gastos en cloro MENSUALES
+   *        gastos en reparición MENSUALES
+   *        gastos de gestión MENSUALES
+   *        gastos en operario MENSUALES 
+   *  output: cuota en soles al mes por familia
+   */
+  public static double cuotaFam (Double gastoCl, String reparacionMensual ,String gestionMensual , String operarioMensual, String familias){
+  	
+  	double rep = Double.parseDouble(reparacionMensual);  // soles
+  	double gest = Double.parseDouble(gestionMensual); // 
+  	double oper = Double.parseDouble(operarioMensual); // 
+  	double n_fam = Double.parseDouble(familias); //
+    double c_min = (rep+gest+oper+gastoCl)/n_fam;//12 stands for months on a year
+   		   
+      return c_min;// soles al mes
+  	
+  }
     
 }

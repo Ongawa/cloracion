@@ -43,5 +43,74 @@ public class DataValidator {
 	        else
 	        	return "";
 	}
+	public static String checkNumeElem(int num) {
+        if(num > 500 || num<0)
+        return "[ERROR] Numero de elementos";
+        else 
+        	return "";
+    }
+	public static String checkLado(double num) {
+        if(num > 50.00 || num<0.01)
+        return "[ERROR] Lado esperado entre 0 metros y 30 metros";
+        else 
+        	return "";
+    }
+	public static String checkAltura(double num) {
+        if(num > 50.00 || num<0.01)
+        return "[ERROR] Altura esperada entre 0 metros y 30 metros";
+        else 
+        	return "";
+    }
+	public static String checkDiametro(double num) {
+        if(num > 20.00 || num<0.01)
+        return "[ERROR] Diametro esperado entre 0\" y 10\"";
+        else 
+        	return "";
+    }
+	public static String checkLong(double num) {
+        if(num > 25000.00 || num<0.01)
+        return "[ERROR] Longitud esperada entre 0 metros y 20000 metros";
+        else 
+        	return "";
+    }
+	public static String checkConcSolu(double num) {
+        if(num > 1500.00 || num<0.001)
+        return "[ERROR] Concentracion de la solucion esperada entre 0 mg/L y 1000 mg/L";
+        else 
+        	return "";
+    }
+	public static String checkTiemRecar(double num) {
+        if(num > 60.00 || num<0.01)
+        return "[ERROR] Tiempo de recarga esperado entre 1 día y 60 días.";
+        else 
+        	return "";
+    }
+	public static String checkPrecUnit(double num) {
+        if(num > 5000.00 || num<0.01)
+        return "[ERROR] Precio en soles por unidad.";
+        else 
+        	return "";
+    }
+	public static String checkReem(double num) {
+        if(num > 100.00 || num<0.01)
+        return "[ERROR] Número de reemplazos anuales.";
+        else 
+        	return "";
+    }
+	public static String checkHono(double num) {
+        if(num > 10000.00 || num<0.01)
+        return "[ERROR] Honorarios de operador.";
+        else 
+        	return "";
+    }
+	public static String checkHoraGote(double num) {
+        if(num > 24.00 || num<0.01)
+        return "[ERROR] Horas de goteo diario menor de 14 horas.";
+        else 
+        	return "";
+    }
+	
+	
+	
 	
 }
