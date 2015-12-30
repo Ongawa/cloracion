@@ -154,7 +154,7 @@ public class DataCalculator {
         int numEle = Integer.parseInt(units);
         
         double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
-        //res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
+        res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
         res[2] = String.valueOf(cucharasDesin);//  
         res[1] = String.valueOf(cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
@@ -196,17 +196,17 @@ public class DataCalculator {
    	
    }
    /* Function cuotaFam to compute the fee per family of the system
-   * input: gastos en cloro MENSUALES
-   *        gastos en reparición MENSUALES
-   *        gastos de gestión MENSUALES
-   *        gastos en operario MENSUALES 
+   * input: gastos en cloro ANUAL
+   *        gastos en reparición ANUAL
+   *        gastos de gestión ANUAL
+   *        gastos en operario ANUAL
    *  output: cuota en soles al mes por familia
    */
-  public static double cuotaFam (Double gastoCl, String reparacionMensual ,String gestionMensual , String operarioMensual, String familias){
+  public static double cuotaFam (Double gastoCl, String reparacionAnual ,String gestionAnual , String operarioAnual, String familias){
   	
-  	double rep = Double.parseDouble(reparacionMensual);  // soles
-  	double gest = Double.parseDouble(gestionMensual); // 
-  	double oper = Double.parseDouble(operarioMensual); // 
+  	double rep = Double.parseDouble(reparacionAnual)/12;  // soles
+  	double gest = Double.parseDouble(gestionAnual)/12; // 
+  	double oper = Double.parseDouble(operarioAnual)/12; // 
   	double n_fam = Double.parseDouble(familias); //
     double c_min = (rep+gest+oper+gastoCl)/n_fam;//12 stands for months on a year
    		   
