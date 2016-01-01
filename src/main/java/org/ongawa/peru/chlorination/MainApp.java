@@ -5,6 +5,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+
+import java.util.ArrayList;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 /**
@@ -16,6 +19,8 @@ import org.slf4j.LoggerFactory;
 public class MainApp extends Application {
     
     private static Stage mainStage;
+    
+    private static ArrayList<Scene> history;
 
     private static final Logger log = LoggerFactory.getLogger(MainApp.class);
 
@@ -26,9 +31,25 @@ public class MainApp extends Application {
     public static Stage getStage() {
         return mainStage;
     }
+    
+    public static void pushHistory(Scene sceneToPush) {
+        if (history != null ) {
+            history.add(sceneToPush);
+        }
+    }
+    
+    public static Scene popHistory() {
+        if (history != null) {
+            System.out.println("Geting from history with size--- " + String.valueOf(history.size()));
+            return history.remove(history.size() -1);
+        }
+        return null;
+    }
 
     public void start(Stage stage) throws Exception {
     	
+        history = new ArrayList<Scene>();
+        
     	//Forcing to load properties
     	ApplicationProperties.getInstance();
     	log.info("Loaded properties");
@@ -57,6 +78,8 @@ public class MainApp extends Application {
         stage.setMaxWidth(1010);
         
         stage.setTitle("Cloración");
+        // Add to history
+        pushHistory(scene);
         stage.setScene(scene);
         stage.show();
         mainStage = stage;

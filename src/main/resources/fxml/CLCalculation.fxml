@@ -73,10 +73,14 @@
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Calido" />
                     <String fx:value="Templado" />
-                    <String fx:value="Arma" />
                 </FXCollections>
             </items>
         </ComboBox>
+        <Label text="Desinfecciones al año:" GridPane.columnIndex="5"
+            GridPane.rowIndex="3" GridPane.columnSpan="1" />
+        <TextField fx:id="yearlyDesinfects" id="yearlyDesinfects"  GridPane.columnIndex="6"
+            GridPane.rowIndex="3" GridPane.columnSpan="1" />
+       
 
         <Button text="Calcular" fx:id="backButton" onAction="#triggerBack" id="triggerCalculation" 
             GridPane.columnIndex="7" GridPane.rowIndex="5"/>

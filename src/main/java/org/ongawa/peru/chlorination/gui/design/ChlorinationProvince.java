@@ -62,7 +62,7 @@ public class ChlorinationProvince implements Initializable{
      * 
      */
     @FXML
-    private TextField growthRate;
+    private ComboBox<String> growthRate;
     
     /**
      * Water consumption by person and day
@@ -100,11 +100,16 @@ public class ChlorinationProvince implements Initializable{
     }
     
     public void triggerBack() {
+        
+        Scene scene = MainApp.popHistory();
+        if (scene != null)
+            MainApp.getStage().setScene(scene);
 
     }
 
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
+        MainApp.pushHistory(stage.getScene());
 
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/waterProperties.fxml"));

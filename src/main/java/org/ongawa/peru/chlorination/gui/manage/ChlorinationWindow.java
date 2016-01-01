@@ -4,6 +4,7 @@ import java.net.URL;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.HelpStage;
+import org.ongawa.peru.chlorination.MainApp;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -159,8 +160,12 @@ public class ChlorinationWindow  implements Initializable{
     public void triggerPrint() {
         // TODO: Print the results
     }
-    
-    /* Validation methods */
-    
-    
+   
+    public void triggerBack() {
+        
+        Scene scene = MainApp.popHistory();
+        if (scene != null)
+            MainApp.getStage().setScene(scene);
+
+    }
 }

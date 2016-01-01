@@ -3,6 +3,7 @@ package org.ongawa.peru.chlorination.gui.desinfect;
 import java.net.URL;
 import java.util.ResourceBundle;
 
+import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 
@@ -10,6 +11,7 @@ import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 
@@ -52,5 +54,12 @@ public class DesinfectionResults implements Initializable {
         this.elementCountColumn.setCellValueFactory(cellData -> new ReadOnlyStringWrapper(String.valueOf(cellData.getValue().getCount())));
     }
     
+    public void triggerBack() {
+        
+        Scene scene = MainApp.popHistory();
+        if (scene != null)
+            MainApp.getStage().setScene(scene);
+
+    }
 
 }

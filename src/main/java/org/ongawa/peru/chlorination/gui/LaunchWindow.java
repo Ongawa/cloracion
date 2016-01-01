@@ -32,7 +32,8 @@ public class LaunchWindow {
      */
     public void triggerManage() throws Exception {
         Stage stage = MainApp.getStage();
-        
+        MainApp.pushHistory(stage.getScene());
+
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/manageProvince.fxml"));
 
@@ -44,6 +45,8 @@ public class LaunchWindow {
     
     public void triggerDessinfect() throws Exception {
         Stage stage = MainApp.getStage();
+        MainApp.pushHistory(stage.getScene());
+
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/desinfectProvince.fxml"));
 
@@ -60,6 +63,8 @@ public class LaunchWindow {
      */
     public void triggerDesign() throws Exception{
         Stage stage = MainApp.getStage();
+        MainApp.pushHistory(stage.getScene());
+
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/designProvince.fxml"));
 

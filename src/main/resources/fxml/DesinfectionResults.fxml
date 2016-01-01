@@ -10,7 +10,7 @@
     fx:controller="org.ongawa.peru.chlorination.gui.desinfect.DesinfectionResults">
     <children>
         <Button layoutX="700.0" layoutY="600.0" mnemonicParsing="false"
-            prefHeight="25.0" prefWidth="79.0" text="Atras" />
+            prefHeight="25.0" prefWidth="79.0" text="Atras"  onAction="#triggerBack"/>
         <Button layoutX="800.0" layoutY="600.0" mnemonicParsing="false"
             prefHeight="25.0" prefWidth="106.0" text="Guardar" />
         <TableView fx:id="resultsTable" layoutX="33.0"

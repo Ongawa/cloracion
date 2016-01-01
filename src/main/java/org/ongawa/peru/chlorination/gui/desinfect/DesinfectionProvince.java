@@ -70,14 +70,17 @@ public class DesinfectionProvince implements Initializable{
         // TODO: Get default families and inhabitants from the DAtaLoader 
     }
     
-
     public void triggerBack() {
+        
+        Scene scene = MainApp.popHistory();
+        if (scene != null)
+            MainApp.getStage().setScene(scene);
 
     }
 
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
-
+        MainApp.pushHistory(stage.getScene());
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionWindow.fxml"));
 

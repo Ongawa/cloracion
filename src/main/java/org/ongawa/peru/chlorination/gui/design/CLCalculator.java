@@ -56,12 +56,15 @@ public class CLCalculator {
     @FXML
     private ComboBox climateCombo;
     
-    public void triggerBack(){
-        
+    public void triggerBack() {
+        Scene scene = MainApp.popHistory();
+        if (scene != null)
+            MainApp.getStage().setScene(scene);
+
     }
-    
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
+        MainApp.pushHistory(stage.getScene());
 
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ResultPrices.fxml"));

@@ -62,6 +62,10 @@ public class SystemDetails implements Initializable {
     private AnchorPane editPane;
 
     public void triggerBack() {
+        
+        Scene scene = MainApp.popHistory();
+        if (scene != null)
+            MainApp.getStage().setScene(scene);
 
     }
 
@@ -208,6 +212,7 @@ public class SystemDetails implements Initializable {
 
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
+        MainApp.pushHistory(stage.getScene());
 
         // Set the data to pass ***before*** calling the class loader
         DataLoader.getDataLoader().setDesinfectResults(this.elements);

@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-
 <?import java.lang.*?>
 <?import javafx.geometry.*?>
 <?import javafx.collections.*?>
@@ -11,60 +10,100 @@
 
 <ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
     minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
-    prefWidth="1000"
-    fx:controller="org.ongawa.peru.chlorination.gui.design.ChlorinationProvince"
-    xmlns:fx="http://javafx.com/fxml">
+    prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+    fx:controller="org.ongawa.peru.chlorination.gui.design.ChlorinationProvince">
+    <content>
 
-    <GridPane id="basinSelector" hgap="10" vgap="10" layoutX="20"
-        layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
-        <Label text="Elige Cuenca" GridPane.columnIndex="0"
-            GridPane.rowIndex="0" layoutX="20" layoutY="20" />
-        <ComboBox id="basinCombo" fx:id="basinCombo" layoutX="50"
-            layoutY="40" prefHeight="27.0" prefWidth="200" promptText="Elija Cuenca"
-            onAction="#basinSelected" GridPane.columnIndex="1"
-            GridPane.rowIndex="0" GridPane.columnSpan="2">
-        </ComboBox>
-        <Label text="Localidad" GridPane.columnIndex="0"
-            GridPane.rowIndex="1" />
-        <ComboBox id="townCombo" fx:id="townCombo" layoutX="50"
-            layoutY="70" prefHeight="27.0" prefWidth="200" promptText="Elija Localidad"
-            onAction="#townSelected" GridPane.columnIndex="1"
-            GridPane.rowIndex="1" GridPane.columnSpan="2">
-        </ComboBox>
-        <Label text="Sistema de Agua" GridPane.columnIndex="0"
-            GridPane.rowIndex="2" />
-        <ComboBox id="systemCombo" fx:id="systemCombo" layoutX="50"
-            layoutY="100" prefHeight="27.0" prefWidth="200" promptText="Elija Sistema"
-            onAction="#systemSelected" GridPane.columnIndex="2"
-            GridPane.rowIndex="2" GridPane.columnSpan="2">
-        </ComboBox>
-        <Label text="Número Familias:" GridPane.columnIndex="0"
-            GridPane.rowIndex="3" GridPane.columnSpan="1" />
-        <TextField fx:id="familiesCount" id="familiesCount"
-            GridPane.columnIndex="2" GridPane.rowIndex="3"
-            GridPane.columnSpan="2" />
-        <Label text="Número Habitantes:" GridPane.columnIndex="0"
-            GridPane.rowIndex="4" GridPane.columnSpan="1" />
-        <TextField fx:id="inhabintantsCount" id="inhabintantsCount"
-            GridPane.columnIndex="1" GridPane.rowIndex="4"
-            GridPane.columnSpan="2" />
+        <GridPane id="basinSelector" hgap="10" layoutX="20"
+            layoutY="20" styleClass="main-panel" vgap="10"
+            xmlns:fx="http://javafx.com/fxml">
+            <children>
+                <Label layoutX="20" layoutY="20" text="Elige Cuenca"
+                    GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <ComboBox id="basinCombo" fx:id="basinCombo"
+                    layoutX="50" layoutY="40" onAction="#basinSelected"
+                    prefHeight="27.0" prefWidth="200" promptText="Elija Cuenca"
+                    GridPane.columnIndex="1" GridPane.columnSpan="2"
+                    GridPane.rowIndex="0">
+                </ComboBox>
+                <Label text="Localidad" GridPane.columnIndex="0"
+                    GridPane.rowIndex="1" />
+                <ComboBox id="townCombo" fx:id="townCombo"
+                    layoutX="50" layoutY="70" onAction="#townSelected"
+                    prefHeight="27.0" prefWidth="200" promptText="Elija Localidad"
+                    GridPane.columnIndex="1" GridPane.columnSpan="2"
+                    GridPane.rowIndex="1">
+                </ComboBox>
+                <Label text="Sistema de Agua"
+                    GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                <ComboBox id="systemCombo" fx:id="systemCombo"
+                    layoutX="50" layoutY="100" onAction="#systemSelected"
+                    prefHeight="27.0" prefWidth="200" promptText="Elija Sistema"
+                    GridPane.columnIndex="2" GridPane.columnSpan="2"
+                    GridPane.rowIndex="2">
+                </ComboBox>
+                <Label text="Número Familias:"
+                    GridPane.columnIndex="0" GridPane.columnSpan="1"
+                    GridPane.rowIndex="3" />
+                <TextField id="familiesCount" fx:id="familiesCount"
+                    GridPane.columnIndex="2" GridPane.columnSpan="2"
+                    GridPane.rowIndex="3" />
+                <Label text="Número Habitantes:"
+                    GridPane.columnIndex="0" GridPane.columnSpan="1"
+                    GridPane.rowIndex="4" />
+                <TextField id="inhabintantsCount" fx:id="inhabintantsCount"
+                    GridPane.columnIndex="1" GridPane.columnSpan="2"
+                    GridPane.rowIndex="4" />
 
-        <Label text="Tasa de Crecimento:" GridPane.columnIndex="0"
-            GridPane.rowIndex="5" GridPane.columnSpan="1" />
-        <TextField fx:id="growthRate" id="growthRate"
-            GridPane.columnIndex="2" GridPane.rowIndex="5"
-            GridPane.columnSpan="2" />
-        <Label text="Dotación:" GridPane.columnIndex="0"
-            GridPane.rowIndex="6" GridPane.columnSpan="1" />
-        <TextField fx:id="consumption" id="consumption"
-            GridPane.columnIndex="1" GridPane.rowIndex="6"
-            GridPane.columnSpan="2" />
-        <Label text="litros/persona/dia" GridPane.columnIndex="3"
-            GridPane.rowIndex="6" GridPane.columnSpan="1" />
+                <Label text="Tasa de Crecimento:"
+                    GridPane.columnIndex="0" GridPane.columnSpan="1"
+                    GridPane.rowIndex="5" />
+                <Label text="Dotación:" GridPane.columnIndex="0"
+                    GridPane.columnSpan="1" GridPane.rowIndex="6" />
+                <TextField id="consumption" fx:id="consumption"
+                    GridPane.columnIndex="1" GridPane.columnSpan="2"
+                    GridPane.rowIndex="6" />
+                <Label text="litros/persona/dia"
+                    GridPane.columnIndex="3" GridPane.columnSpan="1"
+                    GridPane.rowIndex="6" />
 
-        <Button text="Atrás" fx:id="backButton" onAction="#triggerBack"
-            id="triggerBack" GridPane.columnIndex="8" GridPane.rowIndex="6" />
-        <Button text="Siguiente" fx:id="nextButton" onAction="#triggerNext"
-            id="triggerNext" GridPane.columnIndex="9" GridPane.rowIndex="6" />
-    </GridPane>
+                <Button id="triggerBack" fx:id="backButton"
+                    onAction="#triggerBack" text="Atrás"
+                    GridPane.columnIndex="8" GridPane.rowIndex="6" />
+                <Button id="triggerNext" fx:id="nextButton"
+                    onAction="#triggerNext" text="Siguiente"
+                    GridPane.columnIndex="9" GridPane.rowIndex="6" />
+                <ComboBox fx:id="growthRate" prefWidth="150.0"
+                    GridPane.columnIndex="2" GridPane.rowIndex="5">
+                    <items>
+                        <FXCollections fx:factory="observableArrayList">
+                            <String fx:value="1 %" />
+                            <String fx:value="2 %" />
+                        </FXCollections>
+                    </items>
+                </ComboBox>
+            </children>
+            <columnConstraints>
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
+        </GridPane>
+    </content>
 </ScrollPane>
