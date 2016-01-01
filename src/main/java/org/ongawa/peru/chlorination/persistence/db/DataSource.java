@@ -1,12 +1,18 @@
 package org.ongawa.peru.chlorination.persistence.db;
 
+import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Properties;
 
 import org.apache.commons.lang.NullArgumentException;
+import org.apache.commons.lang.StringUtils;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
@@ -15,6 +21,8 @@ import org.jooq.Result;
 import org.jooq.SQLDialect;
 import org.jooq.Table;
 import org.jooq.impl.DSL;
+import org.ongawa.peru.chlorination.ApplicationProperties;
+import org.ongawa.peru.chlorination.KEYS;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
@@ -1907,5 +1915,25 @@ public class DataSource implements IDataSource {
 		}
 		
 		return result>0;
+	}
+
+	@Override
+	public boolean createInitialEnvironment() {
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			Properties properties = ApplicationProperties.getInstance().getProperties();
+			Path path  = FileSystems.getDefault().getPath(properties.getProperty(KEYS.RESOURCES_PATH), properties.getProperty(KEYS.DATABASE_CREATION_SCRIPT));
+			String script = StringUtils.join(Files.readAllLines(path), "\n");
+			insert.execute(script);
+			log.info("Database created");
+			properties.setProperty(KEYS.APP_FIRST_RUN, "false");
+			ApplicationProperties.getInstance().storeProperties();
+			properties = ApplicationProperties.getInstance().getProperties();
+		} catch (SQLException | IOException e) {
+			log.warn(e.toString());
+		}
+		
+		return true;
 	}
 }

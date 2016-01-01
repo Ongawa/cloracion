@@ -134,4 +134,6 @@ public interface IDataSource {
 	boolean editReliefValve(ReliefValve reliefValve);
 	
 	boolean removeReliefValve(ReliefValve reliefValve);
+	
+	boolean createInitialEnvironment();
 }

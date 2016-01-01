@@ -1,15 +1,18 @@
 package org.ongawa.peru.chlorination;
 
+import java.util.ArrayList;
+import java.util.Properties;
+
+import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
+import org.ongawa.peru.chlorination.persistence.IDataSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-
-import java.util.ArrayList;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 /**
  * Main 
  * 
@@ -50,11 +53,17 @@ public class MainApp extends Application {
     	
         history = new ArrayList<Scene>();
         
-    	//Forcing to load properties
-    	ApplicationProperties.getInstance();
-    	log.info("Loaded properties");
-
         log.info("Starting Hello JavaFX and Maven demonstration application");
+        
+    	//Forcing to load properties
+    	Properties properties = ApplicationProperties.getInstance().getProperties();
+    	log.info("Loaded properties");
+    	
+    	//Checking application first run
+    	if(Boolean.parseBoolean(properties.getProperty(KEYS.APP_FIRST_RUN, "true"))){
+    		IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
+    		ds.createInitialEnvironment();
+    	}
         
         String fxmlFile = "/fxml/selectorWindow.fxml";
         log.debug("Loading FXML for main view from: {}", fxmlFile);
