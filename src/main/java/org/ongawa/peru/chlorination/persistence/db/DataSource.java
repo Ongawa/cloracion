@@ -1916,6 +1916,21 @@ public class DataSource implements IDataSource {
 		
 		return result>0;
 	}
+	
+	private void insertData(){
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			Properties properties = ApplicationProperties.getInstance().getProperties();
+			Path path  = FileSystems.getDefault().getPath(properties.getProperty(KEYS.RESOURCES_PATH), "Cloracion_INSERT_real_data.sql");
+			String script = StringUtils.join(Files.readAllLines(path), "\n");
+			insert.execute(script);
+			this.closeConnection();
+			log.debug("Loaded TEST DATA");
+		} catch (SQLException | IOException e) {
+			e.toString();
+		}
+	}
 
 	@Override
 	public boolean createInitialEnvironment() {
@@ -1930,6 +1945,9 @@ public class DataSource implements IDataSource {
 			properties.setProperty(KEYS.APP_FIRST_RUN, "false");
 			ApplicationProperties.getInstance().storeProperties();
 			properties = ApplicationProperties.getInstance().getProperties();
+			
+			//TEMPORARY
+			this.insertData();
 		} catch (SQLException | IOException e) {
 			log.warn(e.toString());
 		}

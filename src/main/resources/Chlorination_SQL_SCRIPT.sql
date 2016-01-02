@@ -25,8 +25,8 @@ CREATE TABLE IF NOT EXISTS Community (
   CONSTRAINT fk_Community_SubBasin1
     FOREIGN KEY (SubBasin_idSubBasin)
     REFERENCES SubBasin (idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_Community_SubBasin1_idx ON Community (SubBasin_idSubBasin ASC);
@@ -49,15 +49,14 @@ CREATE TABLE IF NOT EXISTS WaterSystem (
   populationForecast INT NULL COMMENT 'Proyección de habitantes en 20 años',
   growingIndex DOUBLE NULL COMMENT 'Expresado en %',
   JASSNum INT NULL,
-  futureNeededFlow DOUBLE NULL,
   reservoirVolume DOUBLE NULL COMMENT 'Unidad en metros cúbicos',
   systemElevation INT NULL COMMENT 'Altura msnm',
   PRIMARY KEY (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin),
   CONSTRAINT fk_WaterSystem_Community1
     FOREIGN KEY (Community_idCommunity , Community_SubBasin_idSubBasin)
     REFERENCES Community (idCommunity , SubBasin_idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_WaterSystem_Community1_idx ON WaterSystem (Community_idCommunity ASC, Community_SubBasin_idSubBasin ASC);
@@ -89,17 +88,18 @@ CREATE TABLE IF NOT EXISTS WaterSystem_has_WaterSpring (
   WaterSystem_Community_idCommunity INT NOT NULL,
   WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
   WaterSpring_idWaterSpring INT NOT NULL,
+  futureNeededFlow DOUBLE NULL,
   PRIMARY KEY (WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin, WaterSpring_idWaterSpring),
   CONSTRAINT fk_WaterSystem_has_WaterSpring_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
+    ON DELETE CASCADE
+    ON UPDATE CASCADE,
   CONSTRAINT fk_WaterSystem_has_WaterSpring_WaterSpring1
     FOREIGN KEY (WaterSpring_idWaterSpring)
     REFERENCES WaterSpring (idWaterSpring)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_WaterSystem_has_WaterSpring_WaterSpring1_idx ON WaterSystem_has_WaterSpring (WaterSpring_idWaterSpring ASC);
@@ -123,13 +123,13 @@ CREATE TABLE IF NOT EXISTS MeasuringPoint (
   CONSTRAINT fk_MeasuringPoint_WaterSystem_has_WaterSpring1
     FOREIGN KEY (WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem , WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity , WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin , WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring)
     REFERENCES WaterSystem_has_WaterSpring (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin , WaterSpring_idWaterSpring)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_MeasuringPoint_WaterSystem_has_WaterSpring1_idx ON MeasuringPoint (WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem ASC, WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity ASC, WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin ASC, WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring ASC);
 
-CREATE UNIQUE INDEX measuringpoint_name_UNIQUE ON MeasuringPoint (name ASC);
+CREATE UNIQUE INDEX measuringpoint_name_UNIQUE ON MeasuringPoint (idMeasuringPoint, WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem,  WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity,  WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin,  WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring, name ASC);
 
 
 -- -----------------------------------------------------
@@ -150,8 +150,8 @@ CREATE TABLE IF NOT EXISTS MeasuredFlow (
   CONSTRAINT fk_MeasuredFlow_MeasuringPoint1
     FOREIGN KEY (MeasuringPoint_idMeasuringPoint , MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem , MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity , MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin , MeasuringPoint_WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring)
     REFERENCES MeasuringPoint (idMeasuringPoint , WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem , WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity , WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin , WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_MeasuredFlow_MeasuringPoint1_idx ON MeasuredFlow (MeasuringPoint_idMeasuringPoint ASC, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem ASC, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity ASC, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin ASC, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring ASC);
@@ -181,8 +181,8 @@ CREATE TABLE IF NOT EXISTS ChlorineCalculation (
   CONSTRAINT fk_ChlorineCalculation_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 
 COMMENT = 'Los campos referentes a numero de habitantes, capacidad del tanque y capacidad útil se ponen duplicados en esta tabla para poder llevar un histórico de todas las mediciones y las características de cada medición.';
 
@@ -209,8 +209,8 @@ CREATE TABLE IF NOT EXISTS CubicReservoir (
   CONSTRAINT fk_CubicReservoir_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_CubicReservoir_WaterSystem1_idx ON CubicReservoir (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
@@ -235,8 +235,8 @@ CREATE TABLE IF NOT EXISTS Pipe (
   CONSTRAINT fk_Pipe_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_Pipe_WaterSystem1_idx ON Pipe (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
@@ -262,8 +262,8 @@ CREATE TABLE IF NOT EXISTS ReliefValve (
   CONSTRAINT fk_ReliefValve_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
+    ON DELETE CASCADE
+    ON UPDATE CASCADE)
 ;
 
 CREATE INDEX fk_ReliefValve_WaterSystem1_idx ON ReliefValve (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
