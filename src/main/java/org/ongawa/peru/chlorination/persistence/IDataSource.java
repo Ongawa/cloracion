@@ -69,6 +69,12 @@ public interface IDataSource {
 	
 	boolean removeWaterSpring(WaterSpring waterSpring);
 	
+	boolean addWaterSpringToWaterSystem(WaterSystem waterSystem, WaterSpring waterSpring);
+	
+	List<WaterSpring> getWaterSpringsInWaterSystem(WaterSystem waterSystem);
+	
+	boolean removeWaterSpringOfWaterSystem(WaterSystem waterSystem, WaterSpring waterSpring);
+	
 	MeasuringPoint addMeasuringPoint(MeasuringPoint measuringPoint);
 
 	List<MeasuringPoint> getMeasuringPoints(WaterSystem waterSystem, WaterSpring waterSpring);

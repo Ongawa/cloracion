@@ -13,19 +13,19 @@ INSERT INTO COMMUNITY VALUES (8, 1, 'Chaupiyacu');
 INSERT INTO COMMUNITY VALUES (9, 1, 'Rudio - Uchucancha');
 
 --WATERSYSTEM
-INSERT INTO WATERSYSTEM VALUES (1, 1, 1, 'Nueva Esperanza', 38, 190, 282, 2, 1, 10, 2536);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, SystemElevation, futureNeededFlow) VALUES (1, 1, 1, 'Nueva Esperanza', 38, 190, 282, 2, 1, 10, 2536, 0.26);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum) VALUES (2, 2, 1, 'Manzanayocc Loma', 37, 185, 275, 2, 1);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum) VALUES (3, 2, 1, 'Manzanayocc', 54, 270, 401, 2, 1);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (4, 3, 1, 'Sector alto', 47, 235, 349, 2, 1, 10);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (5, 3, 1, 'Sector central', 82, 410, 609, 2, 1, 15);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (6, 4, 1, 'Huaracco', 62, 310, 461, 2, 1, 10);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (7, 5, 1, 'Mamachapampa', 82, 410, 609, 2, 1, 10);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (8, 6, 1, 'Unión La Victoria', 50, 250, 371, 2, 1, 10);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (9, 7, 1, 'Jatumpampa - Suso', 35, 175, 260, 2, 1, 5);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (10, 8, 1, 'Sector Secceccocha', 19, 95, 141, 2, 1, 5);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (11, 8, 1, 'Sector Central', 42, 210, 312, 2, 1, 20);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (12, 9, 1, 'Rudio', 22, 110, 163, 2, 1, 3);
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume) VALUES (13, 9, 1, 'Uchucancha', 14, 70, 104, 2, 1, 3);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, futureNeededFlow) VALUES (3, 2, 1, 'Manzanayocc', 54, 270, 401, 2, 1, 3.47);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (4, 3, 1, 'Sector alto', 47, 235, 349, 2, 1, 10, 0.32);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (5, 3, 1, 'Sector central', 82, 410, 609, 2, 1, 15, 0.56);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (6, 4, 1, 'Huaracco', 62, 310, 461, 2, 1, 10, 0.43);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (7, 5, 1, 'Mamachapampa', 82, 410, 609, 2, 1, 10, 0.56);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (8, 6, 1, 'Unión La Victoria', 50, 250, 371, 2, 1, 10, 0.34);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (9, 7, 1, 'Jatumpampa - Suso', 35, 175, 260, 2, 1, 5, 0.24);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (10, 8, 1, 'Sector Secceccocha', 19, 95, 141, 2, 1, 5, 0.13);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (11, 8, 1, 'Sector Central', 42, 210, 312, 2, 1, 20, 0.29);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (12, 9, 1, 'Rudio', 22, 110, 163, 2, 1, 3, 0.15);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (13, 9, 1, 'Uchucancha', 14, 70, 104, 2, 1, 3, 0.10);
 
 --WATERSPTRING
 INSERT INTO WATERSPRING VALUES (1, 'Paccaypata');
@@ -44,20 +44,20 @@ INSERT INTO WATERSPRING VALUES (13, 'Uchuhuaycco');
 INSERT INTO WATERSPRING VALUES (14, 'Alalahuaicco');
 
 --WATERSYSTEM_HAS_WATERSPRING
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (1, 1, 1, 1, 0.26);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING (WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin, WaterSpring_idWaterSpring) VALUES (2, 2, 1, 2);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (3, 2, 1, 3, 3.47);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (4, 3, 1, 4, 0.32);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (5, 3, 1, 5, 0.56);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (6, 4, 1, 6, 0.43);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (7, 5, 1, 7, 0.56);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (8, 6, 1, 8, 0.34);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (9, 7, 1, 9, 0.24);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (10, 8, 1, 10, 0.13);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (11, 8, 1, 11, 0.29);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (12, 9, 1, 12, 0.15);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (13, 9, 1, 13, 0.10);
-INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (4, 3, 1, 14, 0.32);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (1, 1, 1, 1);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (2, 2, 1, 2);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (3, 2, 1, 3);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (4, 3, 1, 4);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (5, 3, 1, 5);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (6, 4, 1, 6);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (7, 5, 1, 7);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (8, 6, 1, 8);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (9, 7, 1, 9);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (10, 8, 1, 10);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (11, 8, 1, 11);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (12, 9, 1, 12);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (13, 9, 1, 13);
+INSERT INTO WATERSYSTEM_HAS_WATERSPRING VALUES (4, 3, 1, 14);
 
 --MEASURINGPOINT
 INSERT INTO MEASURINGPOINT VALUES (1, 7, 5, 1, 7, 'Manantial 1');

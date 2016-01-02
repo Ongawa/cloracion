@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS WaterSystem (
   populationForecast INT NULL COMMENT 'Proyección de habitantes en 20 años',
   growingIndex DOUBLE NULL COMMENT 'Expresado en %',
   JASSNum INT NULL,
+  futureNeededFlow DOUBLE NULL,
   reservoirVolume DOUBLE NULL COMMENT 'Unidad en metros cúbicos',
   systemElevation INT NULL COMMENT 'Altura msnm',
   PRIMARY KEY (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin),
@@ -88,7 +89,6 @@ CREATE TABLE IF NOT EXISTS WaterSystem_has_WaterSpring (
   WaterSystem_Community_idCommunity INT NOT NULL,
   WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
   WaterSpring_idWaterSpring INT NOT NULL,
-  futureNeededFlow DOUBLE NULL,
   PRIMARY KEY (WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin, WaterSpring_idWaterSpring),
   CONSTRAINT fk_WaterSystem_has_WaterSpring_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)

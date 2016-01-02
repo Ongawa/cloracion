@@ -878,6 +878,90 @@ public class DataSource implements IDataSource {
 	}
 	
 	@Override
+	public boolean addWaterSpringToWaterSystem(WaterSystem waterSystem, WaterSpring waterSpring) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		if(waterSpring == null)
+			throw new NullArgumentException("waterSpring");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			result = insert.insertInto(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING,
+					WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_IDWATERSYSTEM,
+					WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
+					WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN,
+					WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSPRING_IDWATERSPRING)
+					.values(waterSystem.getWaterSystemId(),
+							waterSystem.getCommunity().getCommunityId(),
+							waterSystem.getCommunity().getSubBasin().getSubBasinId(),
+							waterSpring.getWaterSpringId())
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return result>0;
+	}
+
+	@Override
+	public List<WaterSpring> getWaterSpringsInWaterSystem(WaterSystem waterSystem) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		List<WaterSpring> waterSprings = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			waterSprings = new ArrayList<WaterSpring>();
+			List<Record2<Integer, String>> result = select.select(Waterspring.WATERSPRING.IDWATERSPRING, Waterspring.WATERSPRING.NAME)
+					.from(Waterspring.WATERSPRING, WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING)
+					.where(Waterspring.WATERSPRING.IDWATERSPRING.eq(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSPRING_IDWATERSPRING))
+					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.fetch();
+			WaterSpring waterSpring = null;
+			for(Record record : result){
+				waterSpring = this.readWaterSpring(record);
+				waterSprings.add(waterSpring);
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return waterSprings;
+	}
+
+	@Override
+	public boolean removeWaterSpringOfWaterSystem(WaterSystem waterSystem, WaterSpring waterSpring) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		if(waterSpring == null)
+			throw new NullArgumentException("waterSpring");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext delete = this.prepareDSLContext(this.connection);
+			result = delete.delete(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING)
+					.where(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSPRING_IDWATERSPRING.eq(waterSpring.getWaterSpringId()))
+					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getCommunityId()))
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return result>0;
+	}
+	
+	@Override
 	public MeasuringPoint addMeasuringPoint(MeasuringPoint measuringPoint) {
 		if(measuringPoint == null)
 			throw new NullArgumentException("measuringPoint");
