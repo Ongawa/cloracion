@@ -156,7 +156,14 @@ public class ChlorinationProvince implements Initializable{
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
-
+        DataLoader dataloader = DataLoader.getDataLoader();
+        dataloader.setSelectedSubBasin(this.selectedSubBasin);
+        dataloader.setSelectedCommunity(this.selectedCommunity);
+        dataloader.setSelectedWaterSystem(this.selectedWaterSystem);
+        
+        // Update the info in the systems
+        this.ds.editWaterSystem(selectedWaterSystem);
+        
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/waterProperties.fxml"));
 
@@ -179,5 +186,15 @@ public class ChlorinationProvince implements Initializable{
 		} catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
 			log.warn(e.toString());
 		}
+    	
+    	// Add listener to auto-calculate the value for the inhabitants from the families.
+    	this.familiesCount.textProperty().addListener((observable, oldValue, newValue) -> this.inhabintantsCount.setText(String.valueOf(5*Integer.valueOf(newValue))));
+    	
+    	//Add listener so whenever a value is changed, the new value is stored. 
+    	this.consumption.textProperty().addListener((observable, oldValue, newValue) -> this.selectedWaterSystem.setEndowment(Double.parseDouble(newValue)));
+    	this.familiesCount.textProperty().addListener((observable, oldValue, newValue) -> this.selectedWaterSystem.setFamiliesNum(Integer.parseInt(newValue)));
+    	this.inhabintantsCount.textProperty().addListener((observable, oldValue, newValue) -> this.selectedWaterSystem.setPopulation(Integer.parseInt(newValue)));
+    	this.growthRate.valueProperty().addListener((observable, oldValue, newValue) -> this.selectedWaterSystem.setGrowingIndex(Double.parseDouble(newValue)));
+    	
     }
 }

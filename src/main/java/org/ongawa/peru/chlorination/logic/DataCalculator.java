@@ -168,10 +168,9 @@ public class DataCalculator {
      *        number of litres per day per person
      *        percentage of loss
      */
-    public static double caudalMin (String pop, String dota, String losses){
-    	
-    	double pob = Double.parseDouble(pop);  // #pax
-    	double dot = Double.parseDouble(dota); // litros*persona*dia
+    public static double caudalMin (double pob, double dot, String losses){
+        // pob -> #pax
+    	// dot -> litros*persona*dia
     	double l = Double.parseDouble(losses); // % of losses
         double c_min = K1*pob*dot/(1-l/100);//1000 stands for m3 to liters 
         return c_min;// L*día
