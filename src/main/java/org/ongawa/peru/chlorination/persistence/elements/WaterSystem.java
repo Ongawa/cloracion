@@ -11,6 +11,7 @@ public class WaterSystem {
 	private int population; //familiesNum * 5
 	private int populationForecast;
 	private double growingIndex;
+	private double endowment;
 	private int JASSNum;
 	private double futureNeededFlow;
 	private double reservoirVolume;
@@ -77,6 +78,14 @@ public class WaterSystem {
 	
 	public void setGrowingIndex(double growingIndex) {
 		this.growingIndex = growingIndex;
+	}
+	
+	public double getEndowment(){
+		return this.endowment;
+	}
+	
+	public void setEndowment(double endowment){
+		this.endowment = endowment;
 	}
 	
 	public int getJASSNum() {

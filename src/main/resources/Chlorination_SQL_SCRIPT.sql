@@ -48,6 +48,7 @@ CREATE TABLE IF NOT EXISTS WaterSystem (
   population INT NULL COMMENT 'Estimado a 5 miembros por familia',
   populationForecast INT NULL COMMENT 'Proyección de habitantes en 20 años',
   growingIndex DOUBLE NULL COMMENT 'Expresado en %',
+  endowment DOUBLE NULL,
   JASSNum INT NULL,
   futureNeededFlow DOUBLE NULL,
   reservoirVolume DOUBLE NULL COMMENT 'Unidad en metros cúbicos',

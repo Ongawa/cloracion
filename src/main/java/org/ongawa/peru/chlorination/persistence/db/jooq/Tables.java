@@ -58,11 +58,6 @@ public class Tables {
 	public static final WatersystemHasWaterspring WATERSYSTEM_HAS_WATERSPRING = org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING;
 
 	/**
-	 * The table PUBLIC.CHLORINECALCULATION
-	 */
-	public static final Chlorinecalculation CHLORINECALCULATION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation.CHLORINECALCULATION;
-
-	/**
 	 * The table PUBLIC.MEASURINGPOINT
 	 */
 	public static final Measuringpoint MEASURINGPOINT = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint.MEASURINGPOINT;
@@ -71,6 +66,11 @@ public class Tables {
 	 * The table PUBLIC.MEASUREDFLOW
 	 */
 	public static final Measuredflow MEASUREDFLOW = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow.MEASUREDFLOW;
+
+	/**
+	 * The table PUBLIC.CHLORINECALCULATION
+	 */
+	public static final Chlorinecalculation CHLORINECALCULATION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation.CHLORINECALCULATION;
 
 	/**
 	 * The table PUBLIC.CUBICRESERVOIR

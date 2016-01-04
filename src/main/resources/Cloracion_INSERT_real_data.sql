@@ -13,7 +13,7 @@ INSERT INTO COMMUNITY VALUES (8, 1, 'Chaupiyacu');
 INSERT INTO COMMUNITY VALUES (9, 1, 'Rudio - Uchucancha');
 
 --WATERSYSTEM
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, SystemElevation, futureNeededFlow) VALUES (1, 1, 1, 'Nueva Esperanza', 38, 190, 282, 2, 1, 10, 2536, 0.26);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, endowment, JASSNum, reservoirVolume, SystemElevation, futureNeededFlow) VALUES (1, 1, 1, 'Nueva Esperanza', 38, 190, 282, 2, 80, 1, 10, 2536, 0.26);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum) VALUES (2, 2, 1, 'Manzanayocc Loma', 37, 185, 275, 2, 1);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, futureNeededFlow) VALUES (3, 2, 1, 'Manzanayocc', 54, 270, 401, 2, 1, 3.47);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (4, 3, 1, 'Sector alto', 47, 235, 349, 2, 1, 10, 0.32);
