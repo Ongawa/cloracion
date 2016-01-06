@@ -39,7 +39,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWat
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = 939959803;
+	private static final long serialVersionUID = 2117186811;
 
 	/**
 	 * The reference instance of <code>PUBLIC</code>
@@ -62,14 +62,14 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_1BC00EBE_2282_4082_92EC_0F4966C3FE45,
-			Sequences.SYSTEM_SEQUENCE_2EE34411_6E17_4CCE_86F4_463A17435FF3,
-			Sequences.SYSTEM_SEQUENCE_35FF4A37_4EE4_4C9C_A3A5_C790097BDEF1,
-			Sequences.SYSTEM_SEQUENCE_398F4447_9E45_4D24_9555_9D46148EFF70,
-			Sequences.SYSTEM_SEQUENCE_3E5CAD45_8F90_4E21_B210_A28E46B05BF1,
-			Sequences.SYSTEM_SEQUENCE_6941A1D1_6594_44C2_8595_03222C4CD061,
-			Sequences.SYSTEM_SEQUENCE_E0AD7B0E_5187_47AC_BF8A_C373F03C9EC4,
-			Sequences.SYSTEM_SEQUENCE_FCB1C4CF_B302_4717_96C1_A2454F482B3E);
+			Sequences.SYSTEM_SEQUENCE_0DCBAB1F_4B5A_41B1_9A54_41B5BAAD3477,
+			Sequences.SYSTEM_SEQUENCE_2E144B2F_C509_44D4_AF51_12FD446444EF,
+			Sequences.SYSTEM_SEQUENCE_4DB32937_93F1_4362_8A5F_C4F95EBD8CAD,
+			Sequences.SYSTEM_SEQUENCE_715FB6FF_7F5C_4126_8F64_8B8D39A7BCEE,
+			Sequences.SYSTEM_SEQUENCE_8F8999BA_7242_461E_A2F0_82D268F6E5AA,
+			Sequences.SYSTEM_SEQUENCE_AB7EC66E_31A4_4398_9FA4_DF2EFC601005,
+			Sequences.SYSTEM_SEQUENCE_EE51FDD7_606F_47EA_BB94_E4EE53EBD082,
+			Sequences.SYSTEM_SEQUENCE_F7EF39F7_73F4_4A2E_88DC_E706C6A48CDD);
 	}
 
 	@Override
@@ -86,9 +86,9 @@ public class Public extends SchemaImpl {
 			Watersystem.WATERSYSTEM,
 			Waterspring.WATERSPRING,
 			WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING,
-			Chlorinecalculation.CHLORINECALCULATION,
 			Measuringpoint.MEASURINGPOINT,
 			Measuredflow.MEASUREDFLOW,
+			Chlorinecalculation.CHLORINECALCULATION,
 			Cubicreservoir.CUBICRESERVOIR,
 			Pipe.PIPE,
 			Reliefvalve.RELIEFVALVE);

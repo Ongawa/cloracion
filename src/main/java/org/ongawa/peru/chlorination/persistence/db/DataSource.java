@@ -1415,6 +1415,7 @@ public class DataSource implements IDataSource {
 					.where(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.orderBy(Chlorinecalculation.CHLORINECALCULATION.DATE)
 					.fetch();
 			
 			ChlorineCalculation chlorineCalculation = null;
@@ -1452,6 +1453,7 @@ public class DataSource implements IDataSource {
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.orderBy(Chlorinecalculation.CHLORINECALCULATION.DATE)
 					.fetch();
 			
 			ChlorineCalculation chlorineCalculation = null;

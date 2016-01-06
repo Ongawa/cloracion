@@ -13,7 +13,7 @@ INSERT INTO COMMUNITY VALUES (8, 1, 'Chaupiyacu');
 INSERT INTO COMMUNITY VALUES (9, 1, 'Rudio - Uchucancha');
 
 --WATERSYSTEM
-INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, SystemElevation, futureNeededFlow) VALUES (1, 1, 1, 'Nueva Esperanza', 38, 190, 282, 2, 1, 10, 2536, 0.26);
+INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, endowment, JASSNum, reservoirVolume, SystemElevation, futureNeededFlow) VALUES (1, 1, 1, 'Nueva Esperanza', 38, 190, 282, 2, 80, 1, 10, 2536, 0.26);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum) VALUES (2, 2, 1, 'Manzanayocc Loma', 37, 185, 275, 2, 1);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, futureNeededFlow) VALUES (3, 2, 1, 'Manzanayocc', 54, 270, 401, 2, 1, 3.47);
 INSERT INTO WATERSYSTEM (idWaterSystem, Community_idCommunity, Community_SubBasin_idSubBasin, name, familiesNum, population, populationForecast, growingIndex, JASSNum, reservoirVolume, futureNeededFlow) VALUES (4, 3, 1, 'Sector alto', 47, 235, 349, 2, 1, 10, 0.32);
@@ -87,3 +87,26 @@ INSERT INTO MEASUREDFLOW VALUES ('2015-06-19 00:00:00', 10, 2, 2, 1, 2, 0.31, 'H
 INSERT INTO MEASUREDFLOW (date, MeasuringPoint_idMeasuringPoint, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring, flow) VALUES ('2015-06-19 00:00:00', 11, 2, 2, 1, 2, 0.25);
 INSERT INTO MEASUREDFLOW (date, MeasuringPoint_idMeasuringPoint, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring, flow) VALUES ('2015-06-19 00:00:00', 12, 2, 2, 1, 2, 0.25);
 
+--CHLORINECALCULATION
+INSERT INTO CHLORINECALCULATION VALUES ('2015-01-23 15:50:20', 7, 5, 1, 185, 250, 225, 80, 70, 1.40, 15, 2.0, 2.0, 2.9);
+INSERT INTO CHLORINECALCULATION VALUES ('2015-07-21 10:30:10', 7, 5, 1, 195, 250, 225, 110, 70, 1.30, 17, 2.3, 2.3, 3.4);
+INSERT INTO CHLORINECALCULATION VALUES ('2015-06-23 15:50:20', 4, 3, 1, 185, 250, 225, 80, 70, 1.40, 15, 2.0, 2.0, 2.9);
+INSERT INTO CHLORINECALCULATION VALUES ('2015-07-21 10:30:10', 4, 3, 1, 195, 250, 225, 110, 70, 1.30, 17, 2.3, 2.3, 3.4);
+
+--CUBICRESERVOIR
+INSERT INTO CUBICRESERVOIR VALUES (1, 7, 5, 1, 'Reservorio grande', 3, 2, 4, 2, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (2, 7, 5, 1, 'Reservorio pequeño', 1, 1, 2, 3, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (3, 7, 5, 1, 'Reservorio reserva', 1, 1, 1, 1, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (4, 7, 5, 1, 'Reservorio recogida', 3, 2, 4, 2, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (5, 4, 3, 1, 'Reservorio grande', 3, 2, 4, 2, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (6, 4, 3, 1, 'Reservorio pequeño', 1, 1, 2, 3, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (7, 4, 3, 1, 'Reservorio reserva', 1, 1, 1, 1, 2.0);
+
+--PIPE
+INSERT INTO PIPE VALUES (1, 7, 5, 1, 'Tubiería admisión', 0.15, 4, 1, 2.0);
+INSERT INTO PIPE VALUES (2, 7, 5, 1, 'Tubiería distribución', 0.05, 10, 3, 2.0);
+INSERT INTO PIPE VALUES (3, 7, 5, 1, 'Tubieria llenado', 0.3, 2, 2, 2.0);
+
+--RELIEFVALVE
+INSERT INTO RELIEFVALVE VALUES (1, 7, 5, 1, 'CRP 1', 0.5, 0.5, 0.5, 2, 2.0);
+INSERT INTO RELIEFVALVE VALUES (2, 7, 5, 1, 'CRP 2', 0.25, 0.25, 0.25, 2, 2.0);
