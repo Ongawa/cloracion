@@ -79,7 +79,20 @@ public class CLCalculator implements Initializable {
     private TextField clDemmand;
 
     @FXML
-    private ComboBox climateCombo;
+    private ComboBox<String> climateCombo;
+    
+    @FXML
+    private Label gdia;
+    
+    @FXML
+    private Label kgquin;
+    
+    @FXML
+    private Label kgmes;
+    
+    @FXML
+    private Label minTankVol;
+    
 
     public void triggerBack() {
         Scene scene = MainApp.popHistory();
@@ -99,9 +112,28 @@ public class CLCalculator implements Initializable {
             String ph = dataloader.getValue("ph");
             String turbidity = dataloader.getValue("turbidity");
             double population = this.selectedWaterSystem.getPopulation();
+            double futPopulation = this.selectedWaterSystem.getPopulationForecast();
             double dota = this.selectedWaterSystem.getEndowment();
-            String minCaudal = String.valueOf(DataCalculator.caudalMin(population, dota, "20"));
-            this.currentFlowRate.setText(minCaudal);
+            double minCaudal = DataCalculator.caudalMin(population, dota, "20");
+            double futCaudal = DataCalculator.caudalMin(futPopulation, dota, "20");
+            this.currentFlowRate.setText(String.format("%1$,.2f",minCaudal));
+            this.futureFlowRate.setText(String.format("%1$,.2f",futCaudal));
+            double reservoirVolume = this.selectedWaterSystem.getReservoirVolume();
+            double[] clResults = DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
+                                        String.valueOf(reservoirVolume), this.rechargePeriod.getText(),
+                                        this.dailyDripRate.getText(), this.clDemmand.getText());
+            this.gdia.setText(String.format("%1$,.2f",clResults[0]) + " g/dia");
+            this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/quincena");
+            this.kgmes.setText(String.format("%1$,.2f",clResults[2]) + " kg/mes");
+            DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));
+            this.selectedWaterSystem.setFutureNeededFlow(Double.valueOf(futCaudal));
+            String calculatedTankVolume;
+            if (this.climateCombo.getValue().equalsIgnoreCase("Calido")) {
+                calculatedTankVolume = String.format("%1$,.2f",DataCalculator.volTanCaD(DataCalculator.WARN_CLIMATE_PPM, clResults[1]));
+            } else {
+                calculatedTankVolume = String.format("%1$,.2f",DataCalculator.volTanCaD(DataCalculator.COLD_CLIMATE_PPM, clResults[1]));
+            }
+            this.minTankVol.setText(calculatedTankVolume + " litros"); 
         }
     }
 
@@ -111,7 +143,7 @@ public class CLCalculator implements Initializable {
 
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ResultPrices.fxml"));
-
+        
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");
         stage.setScene(scene);

@@ -17,7 +17,7 @@
     <GridPane id="ClCalculator" hgap="10" vgap="10" layoutX="20"
         layoutY="20" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml">
         <!-- 'Left' column -->
-        <Label text="Caudal Nautral:" GridPane.columnIndex="0"
+        <Label text="Caudal Natural:" GridPane.columnIndex="0"
             GridPane.rowIndex="0" GridPane.columnSpan="1" />
         <TextField fx:id="naturalFlowRate" id="naturalFlowRate" GridPane.columnIndex="1"
             GridPane.rowIndex="0" GridPane.columnSpan="1"/>
@@ -28,14 +28,14 @@
             GridPane.rowIndex="1" GridPane.columnSpan="1" />
         <Label text="N" fx:id="currentFlowRate" id="currentFlowRate" GridPane.columnIndex="1"
             GridPane.rowIndex="1" GridPane.columnSpan="1"/>
-        <Label text="Listros/seg"  GridPane.columnIndex="3"
+        <Label text="Litros/seg"  GridPane.columnIndex="3"
             GridPane.rowIndex="1" GridPane.columnSpan="1" />
             
         <Label text="Caudal requerido población futura:" GridPane.columnIndex="0"
             GridPane.rowIndex="2" GridPane.columnSpan="1" />
-        <Label text="N" fx:id="currentFlowRate" id="currentFlowRate" GridPane.columnIndex="1" 
+        <Label text="N" fx:id="futureFlowRate" id="futureFlowRate" GridPane.columnIndex="1" 
             GridPane.rowIndex="2" GridPane.columnSpan="1"/>
-        <Label text="Listros/seg"  GridPane.columnIndex="3"
+        <Label text="Litros/seg"  GridPane.columnIndex="3"
             GridPane.rowIndex="2" GridPane.columnSpan="1" />
             
         
@@ -72,7 +72,7 @@
             <items>
                 <FXCollections fx:factory="observableArrayList">
                     <String fx:value="Calido" />
-                    <String fx:value="Templado" />
+                    <String fx:value="Frio" />
                 </FXCollections>
             </items>
         </ComboBox>
@@ -87,16 +87,16 @@
         <!-- results --> 
         <Label text="Cantidad de cloro necesario:" GridPane.columnIndex="0"
             GridPane.rowIndex="6" GridPane.columnSpan="2" />
-        <Label text="g/dia:" GridPane.columnIndex="2"
+        <Label text="g/dia:" GridPane.columnIndex="2" fx:id="gdia"
             GridPane.rowIndex="6" GridPane.columnSpan="1" />
-        <Label text="kg/quincena:" GridPane.columnIndex="3"
+        <Label text="kg/quincena:" GridPane.columnIndex="3" fx:id="kgquin"
             GridPane.rowIndex="6" GridPane.columnSpan="1" />
-        <Label text="kg/mes" GridPane.columnIndex="4"
+        <Label text="kg/mes" GridPane.columnIndex="4" fx:id="kgmes"
             GridPane.rowIndex="6" GridPane.columnSpan="1" />
         
         <Label text="Tamaño mínimo del tanque:" GridPane.columnIndex="0"
             GridPane.rowIndex="7" GridPane.columnSpan="2" />
-        <Label text="litros:" GridPane.columnIndex="2"
+        <Label text="litros:" GridPane.columnIndex="2" fx:id="minTankVol"
             GridPane.rowIndex="7" GridPane.columnSpan="1" />
         
         <!-- Navigation -->  
