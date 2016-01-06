@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Chlorinec
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 
-	private static final long serialVersionUID = 1054335131;
+	private static final long serialVersionUID = -613580969;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CHLORINECALCULATION</code>
@@ -102,7 +102,7 @@ public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.RELOADTIME</code>. Medido en días
 	 */
-	public final TableField<ChlorinecalculationRecord, Integer> RELOADTIME = createField("RELOADTIME", org.jooq.impl.SQLDataType.INTEGER, this, "Medido en días");
+	public final TableField<ChlorinecalculationRecord, Double> RELOADTIME = createField("RELOADTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "Medido en días");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDCLR</code>. Medido en mg/litro

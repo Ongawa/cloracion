@@ -14,7 +14,7 @@ public class ChlorineCalculation {
 	private double endowment;
 	private double chlorinePureness;
 	private double inputFlow;
-	private int reloadTime;
+	private double reloadTime;
 	private double demandCLR;
 	private double demandActiveChlorine;
 	private double demandCommonProduct;
@@ -103,11 +103,11 @@ public class ChlorineCalculation {
 		this.inputFlow = inputFlow;
 	}
 
-	public int getReloadTime() {
+	public double getReloadTime() {
 		return reloadTime;
 	}
 
-	public void setReloadTime(int reloadTime) {
+	public void setReloadTime(double reloadTime) {
 		this.reloadTime = reloadTime;
 	}
 

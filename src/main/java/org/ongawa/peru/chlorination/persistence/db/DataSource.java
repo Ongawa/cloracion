@@ -110,7 +110,7 @@ public class DataSource implements IDataSource {
 		Integer integer; Double dodo;
 		if((integer=record.getValue(Watersystem.WATERSYSTEM.POPULATION))!=null) waterSystem.setPopulation(integer);
 		else waterSystem.setPopulation(waterSystem.getFamiliesNum()*5);
-		if((integer=record.getValue(Watersystem.WATERSYSTEM.POPULATIONFORECAST))!=null) waterSystem.setPopulationForecast(integer);
+		if((dodo=record.getValue(Watersystem.WATERSYSTEM.POPULATIONFORECAST))!=null) waterSystem.setPopulationForecast(integer);
 		if((dodo=record.getValue(Watersystem.WATERSYSTEM.GROWINGINDEX))!=null) waterSystem.setGrowingIndex(dodo);
 		if((dodo=record.getValue(Watersystem.WATERSYSTEM.ENDOWMENT))!=null) waterSystem.setEndowment(dodo);
 		if((integer=record.getValue(Watersystem.WATERSYSTEM.JASSNUM))!=null) waterSystem.setJASSNum(integer);
@@ -152,7 +152,7 @@ public class DataSource implements IDataSource {
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT))!=null) chlorineCalculation.setEndowment(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS))!=null) chlorineCalculation.setChlorinePureness(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW))!=null) chlorineCalculation.setInputFlow(dodo);
-		if((integer=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(integer);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(integer);
 		
 		return chlorineCalculation;
 	}

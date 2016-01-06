@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Watersyst
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Watersystem extends TableImpl<WatersystemRecord> {
 
-	private static final long serialVersionUID = 1498398998;
+	private static final long serialVersionUID = -578077486;
 
 	/**
 	 * The reference instance of <code>PUBLIC.WATERSYSTEM</code>
@@ -82,7 +82,7 @@ public class Watersystem extends TableImpl<WatersystemRecord> {
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.POPULATIONFORECAST</code>. Proyección de habitantes en 20 años
 	 */
-	public final TableField<WatersystemRecord, Integer> POPULATIONFORECAST = createField("POPULATIONFORECAST", org.jooq.impl.SQLDataType.INTEGER, this, "Proyección de habitantes en 20 años");
+	public final TableField<WatersystemRecord, Double> POPULATIONFORECAST = createField("POPULATIONFORECAST", org.jooq.impl.SQLDataType.DOUBLE, this, "Proyección de habitantes en 20 años");
 
 	/**
 	 * The column <code>PUBLIC.WATERSYSTEM.GROWINGINDEX</code>. Expresado en %
