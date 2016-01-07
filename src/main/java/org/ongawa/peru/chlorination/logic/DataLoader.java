@@ -1,8 +1,13 @@
 package org.ongawa.peru.chlorination.logic;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.ListResourceBundle;
+
+import org.ongawa.peru.chlorination.persistence.elements.Community;
+import org.ongawa.peru.chlorination.persistence.elements.SubBasin;
+import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 
 import javafx.collections.ObservableList;
 
@@ -16,11 +21,18 @@ import javafx.collections.ObservableList;
 public class DataLoader {
     
     private static DataLoader dataLoaderInstance = null;
+
+    private SubBasin selectedSubBasin;
+    private Community selectedCommunity;
+    private WaterSystem selectedWaterSystem;
+    
     
     private ObservableList<SystemElement> desinfectResults;
     
+    private HashMap<String, String> persistentValues;
+    
     protected DataLoader() {
-        // Empty constructor for the moment 
+         this.persistentValues = new HashMap<String, String>();
     }
     
     public static synchronized DataLoader getDataLoader(){
@@ -28,51 +40,6 @@ public class DataLoader {
             dataLoaderInstance = new DataLoader();
         }
         return dataLoaderInstance;
-    }
-    
-    // TODO: Change all this for some sort of datasource. XML file?
-    
-    public List<String> getBasins() {
-        List<String> basinList = new ArrayList<String>();
-        basinList.add("Manzanayocc");
-        return basinList;
-    }
-    
-    /**
-     * 
-     * 
-     * 
-     * @param basin - The name of the basin we want the cities from.
-     * @return
-     */
-    public List<String> getTowns(String basin) {
-        List<String> listToReturn = new ArrayList<String>();
-        if (basin.equals("Manzanayocc")){
-            listToReturn.add("Nueva Esperanza");
-            listToReturn.add("Manzanayocc");
-            listToReturn.add("Pampaspata");
-            //TODO: fill the others
-        }
-        
-        return listToReturn;
-    }
-    
-    
-    public List<String> getSystems(String basin, String town){
-        List<String> systemsList = new ArrayList<String>();
-        if (basin.equals("Manzanayocc")){
-            if (town.equals("Nueva Esperanza")){
-                systemsList.add("Nueva Esperanza");
-            } else if (town.equals("Manzanayocc")) {
-                systemsList.add("Loma");
-                systemsList.add("base");
-            } else {
-                systemsList.add("Sector alto");
-                systemsList.add("Sector central");
-            }
-                
-        }
-        return systemsList;
     }
 
     public ObservableList<SystemElement> getDesinfectResults() {
@@ -83,5 +50,37 @@ public class DataLoader {
         this.desinfectResults = desinfectResults;
     }
     
+    public String getValue(String name) {
+        if (this.persistentValues.containsKey(name))
+            return this.persistentValues.get(name);
+        return null;
+    }
     
+    public void setValue(String keyName, String value){
+        this.persistentValues.put(keyName, value);
+    }
+    
+    public SubBasin getSelectedSubBasin() {
+        return selectedSubBasin;
+    }
+
+    public void setSelectedSubBasin(SubBasin selectedSubBasin) {
+        this.selectedSubBasin = selectedSubBasin;
+    }
+
+    public Community getSelectedCommunity() {
+        return selectedCommunity;
+    }
+
+    public void setSelectedCommunity(Community selectedCommunity) {
+        this.selectedCommunity = selectedCommunity;
+    }
+
+    public WaterSystem getSelectedWaterSystem() {
+        return selectedWaterSystem;
+    }
+
+    public void setSelectedWaterSystem(WaterSystem selectedWaterSystem) {
+        this.selectedWaterSystem = selectedWaterSystem;
+    }
 }

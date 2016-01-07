@@ -54,16 +54,20 @@
             
         <Label text="Total de gastos Anual:" GridPane.columnIndex="0"
             GridPane.rowIndex="9" GridPane.columnSpan="1" />
+        <Label text="" GridPane.columnIndex="1" fx:id="yearTotal"
+            GridPane.rowIndex="9" GridPane.columnSpan="1" />
         <Label text="Total de gastos mensual:" GridPane.columnIndex="0"
+            GridPane.rowIndex="10" GridPane.columnSpan="1" />
+        <Label text="N soles/mes" GridPane.columnIndex="1" fx:id="monthTotal"
             GridPane.rowIndex="10" GridPane.columnSpan="1" />
         <Label text="Cutoa familar:" GridPane.columnIndex="3"
             GridPane.rowIndex="11" GridPane.columnSpan="1" />
-        <Label text="N soles/año" GridPane.columnIndex="4"
+        <Label text="N soles/mes" GridPane.columnIndex="4" fx:id="monthlyFamilyPay"
             GridPane.rowIndex="11" GridPane.columnSpan="1" />
         
          <Label text="Cutoa familar solo cloro:" GridPane.columnIndex="0"
             GridPane.rowIndex="13" GridPane.columnSpan="1" />
-        <Label text="N soles/año" GridPane.columnIndex="1"
+        <Label text="N soles/mes" GridPane.columnIndex="1" fx:id="monthlyFamilyPayNoCl"
             GridPane.rowIndex="13" GridPane.columnSpan="1" />    
     </GridPane>
 </ScrollPane>

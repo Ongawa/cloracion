@@ -14,6 +14,9 @@ public class DataCalculator {
     public static final double K1 = 1.3;//variation coef.
     public static final int YEARS_PROJECTION = 20; 
     
+    public static final int COLD_CLIMATE_PPM=5000;
+    public static final int WARN_CLIMATE_PPM=10000; 
+    
     public static String getInhabitantsFromFamilies(String familiesCount) {
         int nFamilies = Integer.parseInt(familiesCount);
         int nInhabitants = nFamilies*FAMILIES_TO_INHABITANTS;
@@ -66,8 +69,8 @@ public class DataCalculator {
      *  output: mgr/l of Cl 
      *  		drops per sec
     */
-    public static String[] chlorination(String caudal,String concentracionCl, String volTanque, String tRegarga, String hGoteoDia, String demCl) {
-    	String[] res = new String [6];
+    public static double[] chlorination(String caudal,String concentracionCl, String volTanque, String tRegarga, String hGoteoDia, String demCl) {
+    	double[] res = new double[6];
     	double vTank = Double.parseDouble(volTanque);
     	double dC = Double.parseDouble(demCl); 
         double flNat= Double.parseDouble(caudal); 
@@ -75,13 +78,13 @@ public class DataCalculator {
         double dRecarga = Double.parseDouble(tRegarga); 
         int perCl = Integer.parseInt(concentracionCl);
         double cloroAdosificar=  dC * flNat * DIA2S * hGoteo * dRecarga / (perCl * 1000000 * 24) ; // kg en el tiempo de recarga
-        res[0] = String.valueOf(cloroAdosificar*1000/dRecarga);// 1000 stands for g and dRecargar for day (g/day)
-        res[1] = String.valueOf(cloroAdosificar);//  (kg/periodoRecarga)
-        res[2] = String.valueOf(cloroAdosificar*30.5/dRecarga);// 30 stands for days in month and dRecargar for day (kg/month)
+        res[0] = cloroAdosificar*1000/dRecarga;// 1000 stands for g and dRecargar for day (g/day)
+        res[1] = cloroAdosificar;//  (kg/periodoRecarga)
+        res[2] = cloroAdosificar*30.5/dRecarga;// 30 stands for days in month and dRecargar for day (kg/month)
         double caudalGoteo = vTank/(dRecarga*hGoteo*60); // 60 stands for min (l/min)
-        res[3] = String.valueOf(caudalGoteo);//l/min
-        res[4] = String.valueOf(caudalGoteo*1000/60);//1000 stands for ml and 60 for sec (ml/s)
-        res[5] = String.valueOf(caudalGoteo*1000*ML2GOTAS/60); //1000 stands for ml and 60 for sec (gotas/s)
+        res[3] = caudalGoteo;//l/min
+        res[4] = caudalGoteo*1000/60;//1000 stands for ml and 60 for sec (ml/s)
+        res[5] = caudalGoteo*1000*ML2GOTAS/60; //1000 stands for ml and 60 for sec (gotas/s)
         return res; 
     }
 
@@ -94,15 +97,15 @@ public class DataCalculator {
      *        climate concentration ppm: warm zones 10000 ppm cold zones 5000ppm
      * output vol in litres        
      */
-    public static double volTanCaD (int climate, String cloroAdosificar){
+    public static double volTanCaD (int climate, double cloroAdosificar){
     	
     	/*double tempConc;
     	//if (climate.equals("Calido")||climate.equals("Templado"))
     	tempConc = 5000; // ppm mg/L
     	//else 
     		tempConc = 10000;//ppm mg/L*/
-    	double cAd = Double.parseDouble(cloroAdosificar);  //g/Trecarga
-        double vt = cAd/climate*1000;//1000 stands for mg 
+    	//double cAd = Double.parseDouble(cloroAdosificar);  //g/Trecarga
+        double vt = cloroAdosificar/climate*1000;//1000 stands for mg 
         return vt;// L
     	
     }
@@ -154,9 +157,9 @@ public class DataCalculator {
         int numEle = Integer.parseInt(units);
         
         double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
-        res[0] = String.valueOf(cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
-        res[2] = String.valueOf(cucharasDesin);//  
-        res[1] = String.valueOf(cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
+        res[0] = String.format("%1$,.2f",cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
+        res[2] = String.format("%1$,.2f",cucharasDesin);//  
+        res[1] = String.format("%1$,.2f",cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
         
         return res; 
@@ -168,10 +171,9 @@ public class DataCalculator {
      *        number of litres per day per person
      *        percentage of loss
      */
-    public static double caudalMin (String pop, String dota, String losses){
-    	
-    	double pob = Double.parseDouble(pop);  // #pax
-    	double dot = Double.parseDouble(dota); // litros*persona*dia
+    public static double caudalMin (double pob, double dot, String losses){
+        // pob -> #pax
+    	// dot -> litros*persona*dia
     	double l = Double.parseDouble(losses); // % of losses
         double c_min = K1*pob*dot/(1-l/100);//1000 stands for m3 to liters 
         return c_min;// L*día
