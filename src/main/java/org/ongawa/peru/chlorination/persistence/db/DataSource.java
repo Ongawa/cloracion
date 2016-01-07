@@ -110,8 +110,9 @@ public class DataSource implements IDataSource {
 		Integer integer; Double dodo;
 		if((integer=record.getValue(Watersystem.WATERSYSTEM.POPULATION))!=null) waterSystem.setPopulation(integer);
 		else waterSystem.setPopulation(waterSystem.getFamiliesNum()*5);
-		if((integer=record.getValue(Watersystem.WATERSYSTEM.POPULATIONFORECAST))!=null) waterSystem.setPopulationForecast(integer);
+		if((dodo=record.getValue(Watersystem.WATERSYSTEM.POPULATIONFORECAST))!=null) waterSystem.setPopulationForecast(integer);
 		if((dodo=record.getValue(Watersystem.WATERSYSTEM.GROWINGINDEX))!=null) waterSystem.setGrowingIndex(dodo);
+		if((dodo=record.getValue(Watersystem.WATERSYSTEM.ENDOWMENT))!=null) waterSystem.setEndowment(dodo);
 		if((integer=record.getValue(Watersystem.WATERSYSTEM.JASSNUM))!=null) waterSystem.setJASSNum(integer);
 		if((dodo=record.getValue(Watersystem.WATERSYSTEM.FUTURENEEDEDFLOW))!=null) waterSystem.setFutureNeededFlow(dodo);
 		if((dodo=record.getValue(Watersystem.WATERSYSTEM.RESERVOIRVOLUME))!=null) waterSystem.setReservoirVolume(dodo);
@@ -151,7 +152,7 @@ public class DataSource implements IDataSource {
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT))!=null) chlorineCalculation.setEndowment(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS))!=null) chlorineCalculation.setChlorinePureness(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW))!=null) chlorineCalculation.setInputFlow(dodo);
-		if((integer=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(integer);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(integer);
 		
 		return chlorineCalculation;
 	}
@@ -523,6 +524,7 @@ public class DataSource implements IDataSource {
 							Watersystem.WATERSYSTEM.POPULATION,
 							Watersystem.WATERSYSTEM.POPULATIONFORECAST,
 							Watersystem.WATERSYSTEM.GROWINGINDEX,
+							Watersystem.WATERSYSTEM.ENDOWMENT,
 							Watersystem.WATERSYSTEM.JASSNUM,
 							Watersystem.WATERSYSTEM.FUTURENEEDEDFLOW,
 							Watersystem.WATERSYSTEM.RESERVOIRVOLUME,
@@ -534,6 +536,7 @@ public class DataSource implements IDataSource {
 							waterSystem.getPopulation(),
 							waterSystem.getPopulationForecast(),
 							waterSystem.getGrowingIndex(),
+							waterSystem.getEndowment(),
 							waterSystem.getJASSNum(),
 							waterSystem.getFutureNeededFlow(),
 							waterSystem.getReservoirVolume(),
@@ -1415,7 +1418,6 @@ public class DataSource implements IDataSource {
 					.where(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
-					.orderBy(Chlorinecalculation.CHLORINECALCULATION.DATE)
 					.fetch();
 			
 			ChlorineCalculation chlorineCalculation = null;
@@ -1453,7 +1455,6 @@ public class DataSource implements IDataSource {
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
-					.orderBy(Chlorinecalculation.CHLORINECALCULATION.DATE)
 					.fetch();
 			
 			ChlorineCalculation chlorineCalculation = null;

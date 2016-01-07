@@ -9,7 +9,7 @@ public class WaterSystem {
 	private String name;
 	private int familiesNum;
 	private int population; //familiesNum * 5
-	private int populationForecast;
+	private double populationForecast;
 	private double growingIndex;
 	private double endowment;
 	private int JASSNum;
@@ -64,11 +64,11 @@ public class WaterSystem {
 		this.population = population;
 	}
 	
-	public int getPopulationForecast() {
+	public double getPopulationForecast() {
 		return populationForecast;
 	}
 	
-	public void setPopulationForecast(int populationForecast) {
+	public void setPopulationForecast(double populationForecast) {
 		this.populationForecast = populationForecast;
 	}
 	
