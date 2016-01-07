@@ -78,7 +78,7 @@ public class ReportTools {
 	}
 
 	public void addFrontpage(Document document) throws DocumentException, MalformedURLException, IOException{
-		Image imageHeader = Image.getInstance(this.properties.getProperty(KEYS.RESOURCES_PATH)+File.separator+"ongawa.png");
+		Image imageHeader = Image.getInstance(this.properties.getProperty(KEYS.RESOURCES_PATH)+File.separator+"img"+File.separator+"ongawa.png");
         imageHeader.scalePercent(25);
         imageHeader.setAlignment(Image.ALIGN_CENTER);
         imageHeader.setSpacingBefore((document.getPageSize().getHeight()-document.getPageSize().getBorderWidthTop())/2);
