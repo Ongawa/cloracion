@@ -165,14 +165,14 @@ DROP TABLE IF EXISTS ChlorineCalculation ;
 
 CREATE TABLE IF NOT EXISTS ChlorineCalculation (
   date DATETIME NOT NULL,
-  WaterSystem_Community_idCommunity INT NOT NULL,
   WaterSystem_idWaterSystem INT NOT NULL,
+  WaterSystem_Community_idCommunity INT NOT NULL,
   WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
   population INT NULL,
   tankVolume DOUBLE NULL,
   tankUsefulVolume DOUBLE NULL,
   endowment DOUBLE NULL COMMENT 'm^3/persona x dia',
-  chlorinePureness DOUBLE NULL COMMENT 'Expresado en tanto por 1',
+  chlorinePureness DOUBLE NULL COMMENT 'Expresado en %',
   inputFlow DOUBLE NULL COMMENT 'Medido en litros/segundo',
   reloadTime DOUBLE NULL COMMENT 'Medido en días',
   demandCLR DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
