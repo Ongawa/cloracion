@@ -6,10 +6,13 @@ import java.util.List;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
+import org.ongawa.peru.chlorination.persistence.elements.CubicReservoirDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuredFlow;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuringPoint;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
+import org.ongawa.peru.chlorination.persistence.elements.PipeDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ReliefValve;
+import org.ongawa.peru.chlorination.persistence.elements.ReliefValveDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.SubBasin;
 import org.ongawa.peru.chlorination.persistence.elements.WaterSpring;
 import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
@@ -140,6 +143,42 @@ public interface IDataSource {
 	boolean editReliefValve(ReliefValve reliefValve);
 	
 	boolean removeReliefValve(ReliefValve reliefValve);
+	
+	CubicReservoirDesinfection addCubicReservoirDesinfection(CubicReservoirDesinfection cubicReservoirDesinfection);
+	
+	List<CubicReservoirDesinfection> getCubicReservoirDesinfections(CubicReservoir cubicReservoir);
+	
+	List<CubicReservoirDesinfection> getCubicReservoirDesinfections(Timestamp beginDate, Timestamp endDate, CubicReservoir cubicReservoir);
+	
+	CubicReservoirDesinfection getCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
+	
+	boolean editCubicReservoirDesinfection(Timestamp oldCubicReservoirDesinfection, CubicReservoirDesinfection newCubicReservoirDesinfection);
+	
+	boolean removeCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
+	
+	PipeDesinfection addPipeDesinfection(PipeDesinfection pipeDesinfection);
+	
+	List<PipeDesinfection> getPipeDesinfections(Pipe pipe);
+	
+	List<PipeDesinfection> getPipeDesinfections(Timestamp beginDate, Timestamp endDate, Pipe pipe);
+	
+	PipeDesinfection getPipeDesinfection(Timestamp date, Pipe pipe);
+	
+	boolean editPipeDesinfection(Timestamp oldPipeDesinfection, PipeDesinfection newPipeDesinfection);
+	
+	boolean removePipeDesinfection(Timestamp date, Pipe pipe);
+	
+	ReliefValveDesinfection addReliefValveDesinfection(ReliefValveDesinfection reliefValveDesinfection);
+	
+	List<ReliefValveDesinfection> getReliefValveDesinfections(ReliefValve reliefValve);
+	
+	List<ReliefValveDesinfection> getReliefValveDesinfections(Timestamp beginDate, Timestamp endDate, ReliefValve reliefValve);
+	
+	ReliefValveDesinfection getReliefValveDesinfection(Timestamp date, ReliefValve reliefValve);
+	
+	boolean editReliefValveDesinfection(Timestamp oldReliefValveDesinfection, ReliefValveDesinfection newReliefValveDesinfection);
+	
+	boolean removeReliefValveDesinfection(Timestamp date, ReliefValveDesinfection reliefValveDesinfection);
 	
 	boolean createInitialEnvironment();
 }

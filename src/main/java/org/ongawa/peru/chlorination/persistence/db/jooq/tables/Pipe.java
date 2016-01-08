@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.PipeRecor
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Pipe extends TableImpl<PipeRecord> {
 
-	private static final long serialVersionUID = 1117427018;
+	private static final long serialVersionUID = 1440694500;
 
 	/**
 	 * The reference instance of <code>PUBLIC.PIPE</code>
@@ -87,12 +87,7 @@ public class Pipe extends TableImpl<PipeRecord> {
 	/**
 	 * The column <code>PUBLIC.PIPE.COUNT</code>.
 	 */
-	public final TableField<PipeRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.defaulted(true), this, "");
-
-	/**
-	 * The column <code>PUBLIC.PIPE.REQUIREDCONCENTRATION</code>.
-	 */
-	public final TableField<PipeRecord, Double> REQUIREDCONCENTRATION = createField("REQUIREDCONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<PipeRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER, this, "");
 
 	/**
 	 * Create a <code>PUBLIC.PIPE</code> table reference

@@ -456,8 +456,7 @@ public class ReportTools {
 					this.df.format(cubicReservoir.getHeight())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
 					this.df.format(cubicReservoir.getVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_CUBICMETERS),
 					String.valueOf(cubicReservoir.getCount()),
-					this.df.format(cubicReservoir.getCombinedVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_CUBICMETERS),
-					this.df.format(cubicReservoir.getRequiredConcentration())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_GRL),
+					this.df.format(cubicReservoir.getCombinedVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_CUBICMETERS)
 			};
 			BaseColor backgroundColor = (cellIndex%2==0)?this.row1Color:this.row2Color;
 			for(int i=0;i<fields.length;i++){
@@ -484,8 +483,7 @@ public class ReportTools {
 					this.df.format(pipe.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_METERS),
 					this.df.format(pipe.getVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_CUBICMETERS),
 					String.valueOf(pipe.getCount()),
-					this.df.format(pipe.getCombinedVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_CUBICMETERS),
-					this.df.format(pipe.getRequiredConcentration())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_GRL),
+					this.df.format(pipe.getCombinedVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_CUBICMETERS)
 			};
 			BaseColor backgroundColor = (cellIndex%2==0)?this.row1Color:this.row2Color;
 			for(int i=0;i<fields.length;i++){
@@ -515,8 +513,7 @@ public class ReportTools {
 					this.df.format(reliefValve.getHeight())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),
 					this.df.format(reliefValve.getVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_CUBICMETERS),
 					String.valueOf(reliefValve.getCount()),
-					this.df.format(reliefValve.getCombinedVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_CUBICMETERS),
-					this.df.format(reliefValve.getRequiredConcentration())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_GRL),
+					this.df.format(reliefValve.getCombinedVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_CUBICMETERS)
 			};
 			BaseColor backgroundColor = (cellIndex%2==0)?this.row1Color:this.row2Color;
 			for(int i=0;i<fields.length;i++){

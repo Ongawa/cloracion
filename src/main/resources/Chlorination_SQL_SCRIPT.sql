@@ -205,13 +205,12 @@ CREATE TABLE IF NOT EXISTS CubicReservoir (
   length DOUBLE NOT NULL,
   height DOUBLE NOT NULL,
   count INT NULL DEFAULT 1,
-  requiredConcentration DOUBLE NULL,
   PRIMARY KEY (idCubicReservoir, WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin),
   CONSTRAINT fk_CubicReservoir_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ;
 
 CREATE INDEX fk_CubicReservoir_WaterSystem1_idx ON CubicReservoir (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
@@ -230,14 +229,13 @@ CREATE TABLE IF NOT EXISTS Pipe (
   name VARCHAR(100) NULL,
   diameter DOUBLE NOT NULL,
   length DOUBLE NOT NULL,
-  count INT NULL DEFAULT 1,
-  requiredConcentration DOUBLE NULL,
+  count INT NULL,
   PRIMARY KEY (idPipe, WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin),
   CONSTRAINT fk_Pipe_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ;
 
 CREATE INDEX fk_Pipe_WaterSystem1_idx ON Pipe (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
@@ -258,13 +256,101 @@ CREATE TABLE IF NOT EXISTS ReliefValve (
   length DOUBLE NOT NULL,
   height DOUBLE NOT NULL,
   count INT NULL DEFAULT 1,
-  requiredConcentration DOUBLE NULL,
   PRIMARY KEY (idReliefValve, WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin),
   CONSTRAINT fk_ReliefValve_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ;
 
 CREATE INDEX fk_ReliefValve_WaterSystem1_idx ON ReliefValve (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
+
+
+-- -----------------------------------------------------
+-- Table CubicReservoirDesinfection
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS CubicReservoirDesinfection ;
+
+CREATE TABLE IF NOT EXISTS CubicReservoirDesinfection (
+  date DATETIME NOT NULL,
+  CubicReservoir_idCubicReservoir INT NOT NULL,
+  CubicReservoir_WaterSystem_idWaterSystem INT NOT NULL,
+  CubicReservoir_WaterSystem_Community_idCommunity INT NOT NULL,
+  CubicReservoir_WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
+  count INT NOT NULL DEFAULT 1,
+  waterHeight DOUBLE NULL,
+  volume DOUBLE NULL,
+  chlorineConcentration DOUBLE NULL,
+  demandActiveChlorine DOUBLE NULL,
+  demand70Chlorine DOUBLE NULL,
+  demandSpoons DOUBLE NULL,
+  retentionTime DOUBLE NULL,
+  PRIMARY KEY (date, CubicReservoir_idCubicReservoir, CubicReservoir_WaterSystem_idWaterSystem, CubicReservoir_WaterSystem_Community_idCommunity, CubicReservoir_WaterSystem_Community_SubBasin_idSubBasin),
+  CONSTRAINT fk_CubicReservoirDesinfection_CubicReservoir1
+    FOREIGN KEY (CubicReservoir_idCubicReservoir , CubicReservoir_WaterSystem_idWaterSystem , CubicReservoir_WaterSystem_Community_idCommunity , CubicReservoir_WaterSystem_Community_SubBasin_idSubBasin)
+    REFERENCES CubicReservoir (idCubicReservoir , WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE INDEX fk_CubicReservoirDesinfection_CubicReservoir1_idx ON CubicReservoirDesinfection (CubicReservoir_idCubicReservoir ASC, CubicReservoir_WaterSystem_idWaterSystem ASC, CubicReservoir_WaterSystem_Community_idCommunity ASC, CubicReservoir_WaterSystem_Community_SubBasin_idSubBasin ASC);
+
+
+-- -----------------------------------------------------
+-- Table PipeDesinfection
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS PipeDesinfection ;
+
+CREATE TABLE IF NOT EXISTS PipeDesinfection (
+  date DATETIME NOT NULL,
+  Pipe_idPipe INT NOT NULL,
+  Pipe_WaterSystem_idWaterSystem INT NOT NULL,
+  Pipe_WaterSystem_Community_idCommunity INT NOT NULL,
+  Pipe_WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
+  count INT NOT NULL DEFAULT 1,
+  volume DOUBLE NULL,
+  chlorineConcentration DOUBLE NULL,
+  demandActiveChlorine DOUBLE NULL,
+  demand70Chlorine DOUBLE NULL,
+  demandSpoons DOUBLE NULL,
+  retentionTime DOUBLE NULL,
+  PRIMARY KEY (date, Pipe_idPipe, Pipe_WaterSystem_idWaterSystem, Pipe_WaterSystem_Community_idCommunity, Pipe_WaterSystem_Community_SubBasin_idSubBasin),
+  CONSTRAINT fk_PipeDesinfection_Pipe1
+    FOREIGN KEY (Pipe_idPipe , Pipe_WaterSystem_idWaterSystem , Pipe_WaterSystem_Community_idCommunity , Pipe_WaterSystem_Community_SubBasin_idSubBasin)
+    REFERENCES Pipe (idPipe , WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE INDEX fk_PipeDesinfection_Pipe1_idx ON PipeDesinfection (Pipe_idPipe ASC, Pipe_WaterSystem_idWaterSystem ASC, Pipe_WaterSystem_Community_idCommunity ASC, Pipe_WaterSystem_Community_SubBasin_idSubBasin ASC);
+
+
+-- -----------------------------------------------------
+-- Table ReliefValveDesinfection
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS ReliefValveDesinfection ;
+
+CREATE TABLE IF NOT EXISTS ReliefValveDesinfection (
+  date DATETIME NOT NULL,
+  ReliefValve_idReliefValve INT NOT NULL,
+  ReliefValve_WaterSystem_idWaterSystem INT NOT NULL,
+  ReliefValve_WaterSystem_Community_idCommunity INT NOT NULL,
+  ReliefValve_WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
+  count INT NOT NULL DEFAULT 1,
+  waterHeight DOUBLE NULL,
+  volume DOUBLE NULL,
+  chlorineConcentration DOUBLE NULL,
+  demandActiveChlorine DOUBLE NULL,
+  demand70Chlorine DOUBLE NULL,
+  demandSpoons DOUBLE NULL,
+  retentionTime DOUBLE NULL,
+  PRIMARY KEY (date, ReliefValve_idReliefValve, ReliefValve_WaterSystem_idWaterSystem, ReliefValve_WaterSystem_Community_idCommunity, ReliefValve_WaterSystem_Community_SubBasin_idSubBasin),
+  CONSTRAINT fk_ReliefValveDesinfection_ReliefValve1
+    FOREIGN KEY (ReliefValve_idReliefValve , ReliefValve_WaterSystem_idWaterSystem , ReliefValve_WaterSystem_Community_idCommunity , ReliefValve_WaterSystem_Community_SubBasin_idSubBasin)
+    REFERENCES ReliefValve (idReliefValve , WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE INDEX fk_ReliefValveDesinfection_ReliefValve1_idx ON ReliefValveDesinfection (ReliefValve_idReliefValve ASC, ReliefValve_WaterSystem_idWaterSystem ASC, ReliefValve_WaterSystem_Community_idCommunity ASC, ReliefValve_WaterSystem_Community_SubBasin_idSubBasin ASC);

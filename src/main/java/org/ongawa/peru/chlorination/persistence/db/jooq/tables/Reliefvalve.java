@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Reliefval
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Reliefvalve extends TableImpl<ReliefvalveRecord> {
 
-	private static final long serialVersionUID = 175463820;
+	private static final long serialVersionUID = -68893995;
 
 	/**
 	 * The reference instance of <code>PUBLIC.RELIEFVALVE</code>
@@ -93,11 +93,6 @@ public class Reliefvalve extends TableImpl<ReliefvalveRecord> {
 	 * The column <code>PUBLIC.RELIEFVALVE.COUNT</code>.
 	 */
 	public final TableField<ReliefvalveRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.defaulted(true), this, "");
-
-	/**
-	 * The column <code>PUBLIC.RELIEFVALVE.REQUIREDCONCENTRATION</code>.
-	 */
-	public final TableField<ReliefvalveRecord, Double> REQUIREDCONCENTRATION = createField("REQUIREDCONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
 	/**
 	 * Create a <code>PUBLIC.RELIEFVALVE</code> table reference

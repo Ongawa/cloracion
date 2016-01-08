@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Cubicrese
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Cubicreservoir extends TableImpl<CubicreservoirRecord> {
 
-	private static final long serialVersionUID = -1724452090;
+	private static final long serialVersionUID = 883921013;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CUBICRESERVOIR</code>
@@ -93,11 +93,6 @@ public class Cubicreservoir extends TableImpl<CubicreservoirRecord> {
 	 * The column <code>PUBLIC.CUBICRESERVOIR.COUNT</code>.
 	 */
 	public final TableField<CubicreservoirRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.defaulted(true), this, "");
-
-	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIR.REQUIREDCONCENTRATION</code>.
-	 */
-	public final TableField<CubicreservoirRecord, Double> REQUIREDCONCENTRATION = createField("REQUIREDCONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
 
 	/**
 	 * Create a <code>PUBLIC.CUBICRESERVOIR</code> table reference
