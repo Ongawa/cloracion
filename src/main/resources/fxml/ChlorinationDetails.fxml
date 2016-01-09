@@ -12,38 +12,22 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.GridPane?>
 
-<ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
-    minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
-    prefWidth="1000" styleClass="main-panel" xmlns:fx="http://javafx.com/fxml/1"
-    xmlns="http://javafx.com/javafx/8" fx:controller="org.ongawa.peru.chlorination.gui.manage.ChlorinationWindow">
+<ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700" prefWidth="1000" styleClass="main-panel" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ongawa.peru.chlorination.gui.manage.ChlorinationWindow">
     <content>
-        <GridPane id="mainPane" hgap="10" layoutX="20" layoutY="20"
-            styleClass="main-panel" vgap="10" xmlns:fx="http://javafx.com/fxml">
+        <GridPane id="mainPane" hgap="10" layoutX="20" layoutY="20" prefWidth="1000.0" styleClass="main-panel" vgap="10" xmlns:fx="http://javafx.com/fxml">
             <children>
 
                 <!-- Input values (some of them can be prefilled) -->
-                <Label text="Parametros de Diseño"
-                    GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                <GridPane id="Parameters" hgap="10" layoutX="20"
-                    layoutY="20" styleClass="main-panel" vgap="10"
-                    GridPane.columnIndex="0" GridPane.columnSpan="8"
-                    GridPane.rowIndex="1" GridPane.rowSpan="5"
-                    xmlns:fx="http://javafx.com/fxml">
+                <Label text="Parametros de Diseño" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                <GridPane id="Parameters" hgap="10" layoutX="20" layoutY="20" maxWidth="1000.0" prefWidth="1000.0" styleClass="main-panel" vgap="10" GridPane.columnIndex="0" GridPane.columnSpan="8" GridPane.rowIndex="1" GridPane.rowSpan="5" xmlns:fx="http://javafx.com/fxml">
                     <children>
                         <!-- Left 'column' -->
-                        <Label text="Caudal Natural"
-                            GridPane.columnIndex="0" GridPane.rowIndex="0" />
-                        <TextField id="naturalCaudal" fx:id="naturalCaudal"
-                            GridPane.columnIndex="1"
-                            GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                        <Label text="Litros / seg"
-                            GridPane.columnIndex="3" GridPane.rowIndex="0" />
-                        <Button id="naturalCaudalInfo" onAction="#triggerInfo"
-                            GridPane.columnIndex="4" GridPane.rowIndex="0">
+                        <Label text="Caudal Natural" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                        <TextField id="naturalCaudal" fx:id="naturalCaudal" maxWidth="100.0" prefHeight="25.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="0" />
+                        <Label text="Litros / seg" GridPane.columnIndex="2" />
+                        <Button id="naturalCaudalInfo" onAction="#triggerInfo" GridPane.columnIndex="4" GridPane.rowIndex="0">
                             <graphic>
-                                <ImageView fitHeight="20.0"
-                                    fitWidth="20.0" pickOnBounds="true"
-                                    preserveRatio="true">
+                                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                                     <image>
                                         <Image url="img/info.png" />
                                     </image>
@@ -51,102 +35,112 @@
                             </graphic>
                         </Button>
 
-                        <Label text="Caudal a clorar"
-                            GridPane.columnIndex="0" GridPane.rowIndex="1" />
-                        <TextField id="chlorableCaudal" fx:id="chlorableCaudal"
-                            GridPane.columnIndex="1"
-                            GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <Label text="Litros / seg"
-                            GridPane.columnIndex="3" GridPane.rowIndex="1" />
+                        <Label text="Caudal a clorar" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                        <TextField id="chlorableCaudal" fx:id="chlorableCaudal" maxWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                        <Label text="Litros / seg" GridPane.columnIndex="2" GridPane.rowIndex="1" />
 
-                        <Label text="Pureza del cloro"
-                            GridPane.columnIndex="0" GridPane.rowIndex="2" />
-                        <TextField id="clPurity" fx:id="clPurity"
-                            GridPane.columnIndex="1"
-                            GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                        <Label text="" GridPane.columnIndex="3"
-                            GridPane.rowIndex="2" />
+                        <Label text="Pureza del cloro" GridPane.columnIndex="0" GridPane.rowIndex="2" />
+                        <TextField id="clPurity" fx:id="clPurity" maxWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                        <Label text="" GridPane.columnIndex="3" GridPane.rowIndex="2" />
 
-                        <Label text="Volumen del tanque"
-                            GridPane.columnIndex="0" GridPane.rowIndex="3" />
-                        <TextField id="tankVolume" fx:id="tankVolume"
-                            GridPane.columnIndex="1"
-                            GridPane.columnSpan="2" GridPane.rowIndex="3" />
-                        <Label text="Litros" GridPane.columnIndex="3"
-                            GridPane.rowIndex="3" />
+                        <Label text="Volumen del tanque" GridPane.columnIndex="0" GridPane.rowIndex="3" />
+                        <TextField id="tankVolume" fx:id="tankVolume" maxWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                        <Label text="Litros" GridPane.columnIndex="2" GridPane.rowIndex="3" />
 
-                        <Label text="Tiempo de recarga"
-                            GridPane.columnIndex="0" GridPane.rowIndex="4" />
-                        <TextField id="rechargeTime" fx:id="rechargeTime"
-                            GridPane.columnIndex="1"
-                            GridPane.columnSpan="2" GridPane.rowIndex="4" />
-                        <Label text="Días" GridPane.columnIndex="3"
-                            GridPane.rowIndex="4" />
+                        <Label text="Tiempo de recarga" GridPane.columnIndex="0" GridPane.rowIndex="4" />
+                        <TextField id="rechargeTime" fx:id="rechargeTime" maxWidth="100.0" prefWidth="100.0" GridPane.columnIndex="1" GridPane.rowIndex="4" />
+                        <Label text="Días" GridPane.columnIndex="2" GridPane.rowIndex="4" />
 
                         <!-- Rigth 'column' -->
-                        <Label text="Horas de goteo diario"
-                            GridPane.columnIndex="5"
-                            GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                        <TextField id="dripRate" fx:id="dripRate"
-                            GridPane.columnIndex="7" GridPane.rowIndex="0" />
-                        <Label text="Gotas" GridPane.columnIndex="8"
-                            GridPane.rowIndex="0" />
+                        <Label text="Horas de goteo diario" GridPane.columnIndex="6" GridPane.columnSpan="2" />
+                        <TextField id="dripTime" fx:id="dripTime" GridPane.columnIndex="7" GridPane.rowIndex="0" />
+                        <Label text="Gotas" GridPane.columnIndex="8" />
 
-                        <Label text="Demanda de cloro"
-                            GridPane.columnIndex="5"
-                            GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <TextField id="clDemand" fx:id="clDemand"
-                            GridPane.columnIndex="7" GridPane.rowIndex="1" />
-                        <Label text="mg/l" GridPane.columnIndex="8"
-                            GridPane.rowIndex="1" />
+                        <Label text="Demanda de cloro" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <TextField id="clDemand" fx:id="clDemand" GridPane.columnIndex="7" GridPane.rowIndex="1" />
+                        <Label text="mg/l" GridPane.columnIndex="8" GridPane.rowIndex="1" />
+                  <Label text="\%" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     </children>
+                    <columnConstraints>
+                        <ColumnConstraints maxWidth="132.0" minWidth="132.0" prefWidth="132.0" />
+                        <ColumnConstraints maxWidth="116.0" minWidth="0.0" prefWidth="104.0" />
+                        <ColumnConstraints maxWidth="155.0" minWidth="66.0" prefWidth="78.0" />
+                        <ColumnConstraints maxWidth="60.0" minWidth="0.0" prefWidth="23.0" />
+                        <ColumnConstraints maxWidth="87.0" minWidth="0.0" prefWidth="37.0" />
+                        <ColumnConstraints maxWidth="84.0" minWidth="0.0" prefWidth="12.0" />
+                        <ColumnConstraints maxWidth="205.0" minWidth="119.0" prefWidth="145.0" />
+                        <ColumnConstraints maxWidth="163.0" minWidth="71.0" prefWidth="85.0" />
+                        <ColumnConstraints maxWidth="66.0" minWidth="44.0" prefWidth="52.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
                 </GridPane>
-                <Button id="triggerCalculation" onAction="#triggerCalculation"
-                    text="Calcular" GridPane.columnIndex="7"
-                    GridPane.rowIndex="6" />
+                <Button id="triggerCalculation" onAction="#triggerCalculation" text="Calcular" GridPane.columnIndex="7" GridPane.rowIndex="6" />
 
                 <!-- Results -->
-                <Label text="Resultados" GridPane.columnIndex="0"
-                    GridPane.rowIndex="7" />
-                <GridPane id="resultsGrid" hgap="10" layoutX="20"
-                    layoutY="20" styleClass="main-panel" vgap="10"
-                    GridPane.columnIndex="0" GridPane.columnSpan="8"
-                    GridPane.rowIndex="8" GridPane.rowSpan="3"
-                    xmlns:fx="http://javafx.com/fxml">
+                <Label text="Resultados" GridPane.columnIndex="0" GridPane.rowIndex="7" />
+                <GridPane id="resultsGrid" hgap="10" layoutX="20" layoutY="20" prefHeight="65.0" prefWidth="502.0" styleClass="main-panel" vgap="10" GridPane.columnIndex="0" GridPane.columnSpan="8" GridPane.rowIndex="8" GridPane.rowSpan="3" xmlns:fx="http://javafx.com/fxml">
                     <children>
                         <!-- Chlorine Content -->
-                        <Label text="Contenido de cloro"
-                            GridPane.columnIndex="0"
-                            GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                        <Label text="gr/día" GridPane.columnIndex="2"
-                            GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                        <Label text="kg/quincena"
-                            GridPane.columnIndex="4"
-                            GridPane.columnSpan="2" GridPane.rowIndex="0" />
-                        <Label text="kg/mes" GridPane.columnIndex="6"
-                            GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                        <Label text="Contenido de cloro" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                        <Label id="clGrDay" fx:id="clGrDay" text="gr/día" GridPane.columnIndex="2" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                        <Label id="clKgQuin" fx:id="clKgQuin" prefHeight="15.0" prefWidth="85.0" text="kg/quincena" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="0" />
+                        <Label if="clKgMonth" fx:id="clKgMonth" text="kg/mes" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="0" />
 
                         <!-- Drip rate -->
-                        <Label text="Caudal de goteo"
-                            GridPane.columnIndex="0"
-                            GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <Label text="gotas/seg"
-                            GridPane.columnIndex="2"
-                            GridPane.columnSpan="2" GridPane.rowIndex="2" />
-                        <Label text="ml/seg" GridPane.columnIndex="4"
-                            GridPane.columnSpan="2" GridPane.rowIndex="1" />
-                        <Label text="litros/min"
-                            GridPane.columnIndex="6"
-                            GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <Label text="Caudal de goteo" GridPane.columnIndex="0" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <Label id="dripSec" fx:id="dripSec" text="gotas/seg" GridPane.columnIndex="3" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <Label id="dripMlSec" fx:id="dripMlSec" text="ml/seg" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" />
+                        <Label id="dripLMin" fx:id="dripLMin" text="litros/min" GridPane.columnIndex="6" GridPane.columnSpan="2" GridPane.rowIndex="1" />
                     </children>
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints maxWidth="75.0" minWidth="54.0" prefWidth="75.0" />
+                        <ColumnConstraints maxWidth="98.0" minWidth="0.0" prefWidth="98.0" />
+                        <ColumnConstraints maxWidth="180.0" minWidth="58.0" prefWidth="58.0" />
+                        <ColumnConstraints maxWidth="224.0" minWidth="7.0" prefWidth="146.0" />
+                        <ColumnConstraints maxWidth="300.0" minWidth="0.0" prefWidth="72.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
                 </GridPane>
-                <Button id="triggerPrint" onAction="#triggerSave"
-                    text="Imprimir" GridPane.columnIndex="6"
-                    GridPane.rowIndex="11" />
-                <Button id="triggerSave" onAction="#triggerSave"
-                    text="Guardar" GridPane.columnIndex="7"
-                    GridPane.rowIndex="11" />
+                <Button id="triggerPrint" onAction="#triggerSave" text="Imprimir" GridPane.columnIndex="6" GridPane.rowIndex="11" />
+                <Button id="triggerSave" onAction="#triggerSave" text="Guardar" GridPane.columnIndex="7" GridPane.rowIndex="11" />
             </children>
+            <columnConstraints>
+                <ColumnConstraints maxWidth="145.0" minWidth="145.0" prefWidth="145.0" />
+                <ColumnConstraints maxWidth="97.0" minWidth="0.0" prefWidth="90.0" />
+                <ColumnConstraints maxWidth="172.0" minWidth="0.0" prefWidth="86.0" />
+                <ColumnConstraints maxWidth="232.0" minWidth="0.0" prefWidth="89.0" />
+                <ColumnConstraints maxWidth="298.0" minWidth="6.0" prefWidth="60.0" />
+                <ColumnConstraints maxWidth="381.0" minWidth="7.0" prefWidth="98.0" />
+                <ColumnConstraints maxWidth="339.0" minWidth="0.0" prefWidth="160.0" />
+                <ColumnConstraints maxWidth="705.0" minWidth="170.0" prefWidth="202.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+                <RowConstraints />
+            </rowConstraints>
         </GridPane>
     </content>
 </ScrollPane>

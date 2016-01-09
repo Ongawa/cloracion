@@ -1,5 +1,7 @@
 package org.ongawa.peru.chlorination.logic;
 
+import java.util.List;
+
 public class DataValidator {
     
     
@@ -141,5 +143,25 @@ public class DataValidator {
         else 
         	return "";
     }
+	
+	public static String checkChlorinationData(List<String> fieldData){
+	    for (String value : fieldData) {
+	        // Check if its not empty
+	        if (value.length() < 1)
+                return "Por favor, rellena todos los campos";
+	        
+	        // Chec if it is numeric
+	        if (! value.matches("^\\s*\\d+[,.]\\d+\\s*$"))
+	            return "Todos los campos deben ser numeros";
+	        
+	        // Actually try to parse it
+	        try {
+	            String.valueOf(value);
+	        } catch(NumberFormatException e) {
+	            return "El formato de los numeros no es valido <br/> Por favor, no uses separadores de mil";
+	        }
+	    }
+	    return "";
+	}
 	
 }
