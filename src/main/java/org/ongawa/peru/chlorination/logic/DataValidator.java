@@ -35,11 +35,31 @@ public class DataValidator {
 	 * El pH está fuera del rango: 6,5 < pH < 8,5. Este rango es el establecido por la OMS para aguas para consumo humano, pero tiene relación también con la eficacia de la cloración, tal y como se explica en el siguiente apartado.
 
 	 */
-	public static String checkWaterQ(double turbidez, double pH){
+	public static String checkWaterQ(String turbidezStr, String pHStr){
+	    
+	    double turbidez = Double.MAX_VALUE;
+	    double ph = 0;
+	    if (turbidezStr.length() > 0) {
+	        try {
+	            turbidez = Double.valueOf(turbidezStr);
+	            if (pHStr.length() > 0) {
+	                ph = Double.valueOf(pHStr);
+	            } else {
+	                return "Introduce el valor del ph";
+	            }
+	            
+	        } catch (NumberFormatException e) {
+	            return "Introduce números en turbidez y ph, por favor";
+	        }
+	    } else {
+	        return "Introduce el valor de la turbidez";
+	    }
+	    
 		if(turbidez > 5.00 )
 	        return "[AVISO] El agua NO debe ser clorada: Turbidez mayor a 5 NTU ";
-	        else if(pH<6.5 || pH> 8.5)
-	        	return "[AVISO] El pH está fuera del rango: 6,5 < pH < 8,5. Este rango es el establecido por la OMS para aguas para consumo humano.\n A partir de pH=8 la cloración es mucho menos efectiva y necesita más tiempo de reacción o más cloro";
+	        else if(ph<6.5 || ph> 8.5)
+	        	return "[AVISO] El pH está fuera del rango: 6,5 < pH < 8,5. Este rango es el establecido por la OMS para aguas para consumo humano.<br/>"
+	        	        + " A partir de pH=8 la cloración es mucho menos efectiva y necesita más tiempo de reacción o más cloro";
 	        else
 	        	return "";
 	}

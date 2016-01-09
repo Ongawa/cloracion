@@ -1,17 +1,22 @@
 package org.ongawa.peru.chlorination.gui.design;
 
+import java.net.URL;
+import java.util.ResourceBundle;
+
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.gui.ClAlert;
 import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.DataValidator;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-public class WaterProperties {
+public class WaterProperties implements Initializable{
 
     @FXML
     private TextField waterTurbidity;
@@ -28,8 +33,7 @@ public class WaterProperties {
     }
 
     public void triggerNext() throws Exception {
-        String validationResult = DataValidator.checkWaterQ(Double.parseDouble(waterTurbidity.getText()),
-                Double.parseDouble(waterPH.getText()));
+        String validationResult = DataValidator.checkWaterQ(waterTurbidity.getText(),waterPH.getText());
 
         if (validationResult.length() < 1) {
             Stage stage = MainApp.getStage();
@@ -48,7 +52,17 @@ public class WaterProperties {
             stage.setScene(scene);
         } else {
             // TODO: proper alert
+            ClAlert alert = new ClAlert(validationResult);
+            alert.show();
             System.out.println(validationResult);
         }
+        
     }
+
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
+        // TODO Auto-generated method stub
+    }
+    
+    
 }

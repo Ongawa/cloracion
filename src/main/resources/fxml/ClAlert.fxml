@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="14.0" layoutY="14.0" text="Datos invalidos:" />
+      <Label id="errorMessage" fx:id="errorMessage" alignment="TOP_LEFT" layoutX="13.0" layoutY="35.0" prefHeight="121.0" prefWidth="379.0" text="{{error}}" />
+      <Button id="closeButton" fx:id="closeButton" layoutX="169.0" layoutY="161.0" mnemonicParsing="false" text="Cerrar" />
+   </children>
+</AnchorPane>
