@@ -113,11 +113,17 @@ public class DesinfectionProvince implements Initializable{
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
+        
+        DataLoader dloader = DataLoader.getDataLoader();
+        
+        dloader.setSelectedCommunity(selectedCommunity);
+        dloader.setSelectedSubBasin(selectedSubBasin);
+        dloader.setSelectedWaterSystem(selectedWaterSystem);
+        
         FXMLLoader loader = new FXMLLoader();
+        
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionWindow.fxml"));
-        SystemDetails desinfectController = loader.<SystemDetails>getController();
-        desinfectController.setWaterSystem(selectedWaterSystem);
-
+        
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");
         stage.setScene(scene);

@@ -1,11 +1,14 @@
 package org.ongawa.peru.chlorination.gui.desinfect;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.gui.ClAlert;
 import org.ongawa.peru.chlorination.logic.DataLoader;
+import org.ongawa.peru.chlorination.logic.DataValidator;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.logic.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.logic.elements.ReliefValve;
@@ -67,13 +70,15 @@ public class SystemDetails implements Initializable {
     private AnchorPane editPane;
 
     private WaterSystem waterSystem;
-    
+
+    private SystemElement currentEditableElement;
+
     public void setWaterSystem(WaterSystem waterSystem) {
         this.waterSystem = waterSystem;
     }
-    
+
     public void triggerBack() {
-        
+
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);
@@ -90,10 +95,10 @@ public class SystemDetails implements Initializable {
 
         Node childNode = FXMLLoader.load(getClass().getResource("/fxml/desinfect/SelectElementType.fxml"));
         children.add(childNode);
-        ((ComboBox<String>) childNode.lookup("#newElementCombo")).valueProperty().addListener((observable, oldValue, newValue) -> showAddForElement(newValue));
+        ((ComboBox<String>) childNode.lookup("#newElementCombo")).valueProperty()
+                .addListener((observable, oldValue, newValue) -> showAddForElement(newValue));
     }
 
-    
     /**
      * Add the New item menu
      */
@@ -101,13 +106,14 @@ public class SystemDetails implements Initializable {
         AnchorPane elementPane = ((AnchorPane) this.editPane.lookup("#newElementPane"));
         ObservableList<Node> children = elementPane.getChildren();
         children.clear();
-        
+
         // Show the appropriate view
         try {
             // Use the appropriate view for the type.
-            
+
             if (elementType.equals(Pipe.TYPE_NAME)) {
-                // I have to use the static loader instead of the loader object, to prevent loading the same file twice
+                // I have to use the static loader instead of the loader object,
+                // to prevent loading the same file twice
                 Node childNode = FXMLLoader.load(getClass().getResource("/fxml/desinfect/EditElementPipe.fxml"));
                 children.add(childNode);
 
@@ -134,7 +140,7 @@ public class SystemDetails implements Initializable {
             e.printStackTrace();
         }
     }
-    
+
     /**
      * Edit an existing element
      */
@@ -144,6 +150,7 @@ public class SystemDetails implements Initializable {
         children.clear();
         // Get the selected item
         SystemElement selected = this.elementsTable.getSelectionModel().getSelectedItem();
+
         if (selected != null) {
             // Clear the editPane and set with the new person.
             children.clear();
@@ -163,12 +170,14 @@ public class SystemDetails implements Initializable {
                     ((TextField) this.editPane.lookup("#retentionTime")).setText(String.valueOf(Pipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((Pipe) element).getConcentration()));
+                    ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
                     // Add listener for click on the button.
                     ((Button) this.editPane.lookup("#saveData")).addEventFilter(MouseEvent.MOUSE_CLICKED,
                             (event) -> saveCurrentData(Pipe.TYPE_NAME));
                     ;
                 } else if (selectedType.equals(CubicReservoir.TYPE_NAME)) {
-                    Node childNode = FXMLLoader.load(getClass().getResource("/fxml/desinfect/EditElementReservoir.fxml"));
+                    Node childNode = FXMLLoader
+                            .load(getClass().getResource("/fxml/desinfect/EditElementReservoir.fxml"));
                     children.add(childNode);
                     // Get the fields by ID and set the values
                     ((TextField) this.editPane.lookup("#elementName")).setText(element.getName().getValue());
@@ -181,6 +190,7 @@ public class SystemDetails implements Initializable {
                     ((TextField) this.editPane.lookup("#retentionTime")).setText(String.valueOf(Pipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((CubicReservoir) element).getConcentration()));
+                    ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
                     // Add listener for click on the button.
                     ((Button) this.editPane.lookup("#saveData")).addEventFilter(MouseEvent.MOUSE_CLICKED,
                             (event) -> saveCurrentData(CubicReservoir.TYPE_NAME));
@@ -199,6 +209,7 @@ public class SystemDetails implements Initializable {
                     ((TextField) this.editPane.lookup("#retentionTime")).setText(String.valueOf(Pipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((ReliefValve) element).getConcentration()));
+                    ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
                     // Add listener for click on the button.
                     ((Button) this.editPane.lookup("#saveData")).addEventFilter(MouseEvent.MOUSE_CLICKED,
                             (event) -> saveCurrentData(CubicReservoir.TYPE_NAME));
@@ -211,13 +222,135 @@ public class SystemDetails implements Initializable {
 
     }
 
+    private void showError(String message) {
+        ClAlert alert = new ClAlert(message);
+        try {
+            alert.show();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+    }
+
     /**
      * Save the current displayed data
      */
     public void saveCurrentData(String elementType) {
         // TODO: save the displayed data and clear the pane.
+        if (currentEditableElement != null) {
+            // If we are editing and element, just save it.
+            this.currentEditableElement.save();
+            this.editPane.getChildren().clear();
+            return;
+        }
+        // Create a new element.
+        if (elementType.equals(Pipe.TYPE_NAME)) {
+            // Save a pipe.
+            // Get the fields by ID and set the values
+            String name = ((TextField) this.editPane.lookup("#elementName")).getText();
+            String diameterString = ((TextField) this.editPane.lookup("#elementDiameter")).getText();
 
-        // clear
+            if (!DataValidator.isNumber(diameterString)) {
+                // Show and error and finish
+                showError("El diametro debe ser un numero");
+                return;
+            }
+            double diameter = Double.valueOf(diameterString);
+
+            String lengthString = ((TextField) this.editPane.lookup("#elementLength")).getText();
+            if (!DataValidator.isNumber(lengthString)) {
+                // Show and error and finish
+                showError("La longitud debe ser un número");
+                return;
+            }
+            double length = Double.valueOf(lengthString);
+            String countString = ((TextField) this.editPane.lookup("#cuantity")).getText();
+            if (!DataValidator.isNumber(countString)) {
+                // Show and error and finish
+                showError("La cantidad debe ser un número");
+                return;
+            }
+            int count = Double.valueOf(countString).intValue();
+
+            // Create the pipe and save it.
+            Pipe newPipe = new Pipe(name, length, diameter, this.waterSystem, count);
+            newPipe.save();
+            this.elements.add(newPipe);
+        } else if (elementType.equals(CubicReservoir.TYPE_NAME)) {
+            String name = ((TextField) this.editPane.lookup("#elementName")).getText();
+
+            String widthString = ((TextField) this.editPane.lookup("#elementWidth")).getText();
+            if (!DataValidator.isNumber(widthString)) {
+                // Show and error and finish
+                showError("El ancho debe ser un número");
+                return;
+            }
+            double width = Double.valueOf(widthString);
+            String lengthString = ((TextField) this.editPane.lookup("#elementLength")).getText();
+            if (!DataValidator.isNumber(lengthString)) {
+                // Show and error and finish
+                showError("La longitud debe ser un número");
+                return;
+            }
+            double length = Double.valueOf(lengthString);
+            String heightString = ((TextField) this.editPane.lookup("#elementHeight")).getText();
+            if (!DataValidator.isNumber(heightString)) {
+                // Show and error and finish
+                showError("La altura debe ser un número");
+                return;
+            }
+            double height = Double.valueOf(heightString);
+            String countString = ((TextField) this.editPane.lookup("#cuantity")).getText();
+            if (!DataValidator.isNumber(countString)) {
+                // Show and error and finish
+                showError("La cantidad debe ser un número");
+                return;
+            }
+            int count = Double.valueOf(countString).intValue();
+            
+            CubicReservoir newReservoir = new CubicReservoir(name, length, width, height, waterSystem, count);
+            newReservoir.save();
+            this.elements.add(newReservoir);
+
+        } else {
+            // Relief Valve
+            String name = ((TextField) this.editPane.lookup("#elementName")).getText();
+
+            String widthString = ((TextField) this.editPane.lookup("#elementWidth")).getText();
+            if (!DataValidator.isNumber(widthString)) {
+                // Show and error and finish
+                showError("El ancho debe ser un número");
+                return;
+            }
+            double width = Double.valueOf(widthString);
+            String lengthString = ((TextField) this.editPane.lookup("#elementLength")).getText();
+            if (!DataValidator.isNumber(lengthString)) {
+                // Show and error and finish
+                showError("La longitud debe ser un número");
+                return;
+            }
+            double length = Double.valueOf(lengthString);
+            String heightString = ((TextField) this.editPane.lookup("#elementHeight")).getText();
+            if (!DataValidator.isNumber(heightString)) {
+                // Show and error and finish
+                showError("La altura debe ser un número");
+                return;
+            }
+            double height = Double.valueOf(heightString);
+            
+            String countString = ((TextField) this.editPane.lookup("#cuantity")).getText();
+            if (!DataValidator.isNumber(countString)) {
+                // Show and error and finish
+                showError("La cantidad debe ser un número");
+                return;
+            }
+            int count = Double.valueOf(countString).intValue();
+            
+            ReliefValve newValve = new ReliefValve(name, length, width, height, waterSystem, count);
+            newValve.save();
+            this.elements.add(newValve);
+        }
+        // Clear the panel
         this.editPane.getChildren().clear();
     }
 
@@ -235,25 +368,29 @@ public class SystemDetails implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources)  {
+    public void initialize(URL location, ResourceBundle resources) {
         this.loader = new FXMLLoader();
         // TODO Get system info from DataLoader
         this.elements = FXCollections.observableArrayList();
-        
+
+        DataLoader dataloader = DataLoader.getDataLoader();
+        this.waterSystem = dataloader.getSelectedWaterSystem();
+
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
-            for (org.ongawa.peru.chlorination.persistence.elements.Pipe dbPipe : ds.getPipes(waterSystem)) {
+            for (org.ongawa.peru.chlorination.persistence.elements.Pipe dbPipe : ds.getPipes(this.waterSystem)) {
                 this.elements.add(new Pipe(dbPipe));
-                
+
             }
-            for (org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir : ds.getCubicReservoirs(waterSystem)) {
+            for (org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir : ds
+                    .getCubicReservoirs(this.waterSystem)) {
                 this.elements.add(new CubicReservoir(dbReservoir));
             }
-            for (org.ongawa.peru.chlorination.persistence.elements.ReliefValve dbValve : ds.getReliefValves(waterSystem)) {
+            for (org.ongawa.peru.chlorination.persistence.elements.ReliefValve dbValve : ds
+                    .getReliefValves(this.waterSystem)) {
                 this.elements.add(new ReliefValve(dbValve));
             }
-            
-            
+
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

@@ -144,6 +144,10 @@ public class DataValidator {
         	return "";
     }
 	
+	public static boolean isNumber(String number) {
+	    return number.matches("^\\s*\\d+[,.]\\d+\\s*$");
+	}
+	
 	public static String checkChlorinationData(List<String> fieldData){
 	    for (String value : fieldData) {
 	        // Check if its not empty
@@ -151,7 +155,7 @@ public class DataValidator {
                 return "Por favor, rellena todos los campos";
 	        
 	        // Chec if it is numeric
-	        if (! value.matches("^\\s*\\d+[,.]\\d+\\s*$"))
+	        if (!isNumber(value))
 	            return "Todos los campos deben ser numeros";
 	        
 	        // Actually try to parse it

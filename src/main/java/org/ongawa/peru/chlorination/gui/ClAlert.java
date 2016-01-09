@@ -51,6 +51,7 @@ public class ClAlert {
         // Add to history
         stage.setScene(scene);
         stage.show();
+        stage.requestFocus();
     }
 
 }

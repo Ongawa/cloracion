@@ -89,6 +89,8 @@
                 <TextField GridPane.columnIndex="5"
                     GridPane.rowIndex="1" fx:id="retentionTime" 
                     prefWidth="135.0" />
+                    <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Cantidad" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                <TextField fx:id="cuantity" prefWidth="135.0" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
                     
                 <Button alignment="CENTER" contentDisplay="CENTER"
                     mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0"
