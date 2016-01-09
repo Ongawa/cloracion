@@ -23,6 +23,9 @@ public class Pipe implements SystemElement{
     
     private org.ongawa.peru.chlorination.persistence.elements.Pipe dbPipe;
     
+    private double[] desinfectionResults;
+
+    
     /**
      * Creates a Pipe from a db pipe
      * 
@@ -148,6 +151,22 @@ public class Pipe implements SystemElement{
         this.dbPipe.setLength(length);
     }
 
+
+    @Override
+    public void setDesinfectionResults(double[] desinfectionResults){
+        this.desinfectionResults = desinfectionResults;
+    }
+    
+    @Override
+    public double[] getDesinfectionResults() {
+        return this.desinfectionResults;
+    }
+    
+    public org.ongawa.peru.chlorination.persistence.elements.Pipe getDbPipe() {
+        return this.dbPipe;
+    }
+    
+    
     public void save() {
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();

@@ -21,6 +21,8 @@ public class CubicReservoir implements SystemElement{
     public static final String TYPE_NAME = "Reservorio";
     
     private org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir;
+    
+    private double[] desinfectionResults;
 
     
     /**
@@ -122,6 +124,20 @@ public class CubicReservoir implements SystemElement{
         this.dbReservoir.setLength(length);
     }
     
+    @Override
+    public void setDesinfectionResults(double[] desinfectionResults){
+        this.desinfectionResults = desinfectionResults;
+    }
+    
+    @Override
+    public double[] getDesinfectionResults() {
+        return this.desinfectionResults;
+    }
+    
+    
+    public org.ongawa.peru.chlorination.persistence.elements.CubicReservoir getDbReservoir() {
+        return this.dbReservoir;
+    }
 
     @Override
     public void save() {

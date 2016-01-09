@@ -15,7 +15,11 @@ public class ReliefValve implements SystemElement {
 
     private org.ongawa.peru.chlorination.persistence.elements.ReliefValve dbValve;
     
+    private double[] desinfectionResults;
+
+    
     /***
+     * 
      * Creates a valve from the db
      * 
      * @param the db connection
@@ -112,6 +116,21 @@ public class ReliefValve implements SystemElement {
 
     public void setHeigtht(double height) {
         this.dbValve.setHeight(height);
+    }
+    
+
+    @Override
+    public void setDesinfectionResults(double[] desinfectionResults){
+        this.desinfectionResults = desinfectionResults;
+    }
+    
+    @Override
+    public double[] getDesinfectionResults() {
+        return this.desinfectionResults;
+    }
+    
+    public org.ongawa.peru.chlorination.persistence.elements.ReliefValve getDbValve() {
+        return this.dbValve;
     }
 
     @Override

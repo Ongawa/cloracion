@@ -237,14 +237,7 @@ public class SystemDetails implements Initializable {
      * Save the current displayed data
      */
     public void saveCurrentData(String elementType) {
-        // TODO: save the displayed data and clear the pane.
-        if (currentEditableElement != null) {
-            // If we are editing and element, just save it.
-            this.currentEditableElement.save();
-            this.editPane.getChildren().clear();
-            return;
-        }
-        // Create a new element.
+        // Edit the appropriate element
         if (elementType.equals(Pipe.TYPE_NAME)) {
             // Save a pipe.
             // Get the fields by ID and set the values
