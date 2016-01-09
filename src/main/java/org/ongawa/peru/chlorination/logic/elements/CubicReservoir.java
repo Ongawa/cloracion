@@ -81,6 +81,10 @@ public class CubicReservoir implements SystemElement{
     public int getCount() {
         return this.dbReservoir.getCount();
     }
+    
+    public void setCount( int count) {
+        this.dbReservoir.setCount(count);
+    }
 
     @Override
     public double getCombinedVolume() {

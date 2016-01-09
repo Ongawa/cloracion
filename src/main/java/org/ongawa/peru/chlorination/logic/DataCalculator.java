@@ -176,7 +176,7 @@ public class DataCalculator {
     	// dot -> litros*persona*dia
     	double l = Double.parseDouble(losses); // % of losses
         double c_min = K1*pob*dot/(1-l/100);//1000 stands for m3 to liters 
-        return c_min;// L*día
+        return c_min/(24*60*60);// L/segundo
     	
     }
     /* Function gastosCl to compute the cost of Cl for chlorination and desinfection

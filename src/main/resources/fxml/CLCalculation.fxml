@@ -21,30 +21,30 @@
             GridPane.rowIndex="0" GridPane.columnSpan="1" />
         <TextField fx:id="naturalFlowRate" id="naturalFlowRate" GridPane.columnIndex="1"
             GridPane.rowIndex="0" GridPane.columnSpan="1"/>
-        <Label text="Litros/seg"  GridPane.columnIndex="3"
+        <Label text="litros/seg"  GridPane.columnIndex="3"
             GridPane.rowIndex="0" GridPane.columnSpan="1" />
             
         <Label text="Caudal requerido población actual:" GridPane.columnIndex="0"
             GridPane.rowIndex="1" GridPane.columnSpan="1" />
         <Label text="N" fx:id="currentFlowRate" id="currentFlowRate" GridPane.columnIndex="1"
             GridPane.rowIndex="1" GridPane.columnSpan="1"/>
-        <Label text="Litros/seg"  GridPane.columnIndex="3"
+        <Label text="litros/seg"  GridPane.columnIndex="3"
             GridPane.rowIndex="1" GridPane.columnSpan="1" />
             
         <Label text="Caudal requerido población futura:" GridPane.columnIndex="0"
             GridPane.rowIndex="2" GridPane.columnSpan="1" />
         <Label text="N" fx:id="futureFlowRate" id="futureFlowRate" GridPane.columnIndex="1" 
             GridPane.rowIndex="2" GridPane.columnSpan="1"/>
-        <Label text="Litros/seg"  GridPane.columnIndex="3"
+        <Label text="litros/seg"  GridPane.columnIndex="3"
             GridPane.rowIndex="2" GridPane.columnSpan="1" />
             
         
-        <Label text="Pureza del cloro:" GridPane.columnIndex="0"
+        <Label text="Pureza del cloro (%):" GridPane.columnIndex="0"
             GridPane.rowIndex="3" GridPane.columnSpan="1" />
         <TextField fx:id="clPurity" id="clPurity"  GridPane.columnIndex="1" 
             GridPane.rowIndex="3" GridPane.columnSpan="1" />
         
-        <Label text="Tiempo de recarga:" GridPane.columnIndex="0"
+        <Label text="Tiempo de recarga (dias):" GridPane.columnIndex="0"
             GridPane.rowIndex="4" GridPane.columnSpan="1" />
         <TextField fx:id="rechargePeriod" id="rechargePeriod"  GridPane.columnIndex="1"
             GridPane.rowIndex="4" GridPane.columnSpan="1" />

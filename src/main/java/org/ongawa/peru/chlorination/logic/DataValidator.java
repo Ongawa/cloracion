@@ -60,7 +60,7 @@ public class DataValidator {
 		if(turbidez > 5.00 )
 	        return "[AVISO] El agua NO debe ser clorada: Turbidez mayor a 5 NTU ";
 	        else if(ph<6.5 || ph> 8.5)
-	        	return "[AVISO] El pH está fuera del rango: 6,5 < pH < 8,5. Este rango es el establecido por la OMS para aguas para consumo humano.<br/>"
+	        	return "[AVISO] El pH está fuera del rango: 6,5 < pH < 8,5. Este rango es el establecido por la OMS para aguas para consumo humano.\n"
 	        	        + " A partir de pH=8 la cloración es mucho menos efectiva y necesita más tiempo de reacción o más cloro";
 	        else
 	        	return "";
@@ -162,7 +162,7 @@ public class DataValidator {
 	        try {
 	            String.valueOf(value);
 	        } catch(NumberFormatException e) {
-	            return "El formato de los numeros no es valido <br/> Por favor, no uses separadores de mil";
+	            return "El formato de los numeros no es valido. \n Por favor, no uses separadores de mil";
 	        }
 	    }
 	    return "";

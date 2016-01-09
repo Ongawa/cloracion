@@ -271,6 +271,7 @@ public class SystemDetails implements Initializable {
                 ((Pipe)this.currentEditableElement).setName(name);
                 ((Pipe)this.currentEditableElement).setLength(length);
                 ((Pipe)this.currentEditableElement).setDiameter(diameter);
+                ((Pipe)this.currentEditableElement).setCount(count);
             } else {
                 // Create the pipe and save it.
                 this.currentEditableElement = new Pipe(name, length, diameter, this.waterSystem, count);
@@ -309,12 +310,12 @@ public class SystemDetails implements Initializable {
             }
             int count = Double.valueOf(countString).intValue();
             
-            
             if (this.currentEditableElement != null){
                 ((CubicReservoir)this.currentEditableElement).setName(name);
                 ((CubicReservoir)this.currentEditableElement).setLength(length);
                 ((CubicReservoir)this.currentEditableElement).setHeigtht(height);
                 ((CubicReservoir)this.currentEditableElement).setWidth(width);
+                ((CubicReservoir)this.currentEditableElement).setCount(count);
             } else {
                 // Create the pipe and save it.
                 this.currentEditableElement = new CubicReservoir(name, length, width,height, this.waterSystem, count);
@@ -361,6 +362,7 @@ public class SystemDetails implements Initializable {
                 ((ReliefValve)this.currentEditableElement).setLength(length);
                 ((ReliefValve)this.currentEditableElement).setHeigtht(height);
                 ((ReliefValve)this.currentEditableElement).setWidth(width);
+                ((ReliefValve)this.currentEditableElement).setCount(count);
             } else {
                 // Create the pipe and save it.
                 this.currentEditableElement = new ReliefValve(name, length, width,height, this.waterSystem, count);

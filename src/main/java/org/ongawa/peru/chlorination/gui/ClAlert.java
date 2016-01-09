@@ -35,6 +35,7 @@ public class ClAlert {
         
         // Set the error text
         ((Label)rootNode.lookup("#errorMessage")).setText(this.alertMessage);
+        ((Label)rootNode.lookup("#errorMessage")).setWrapText(true);
         
         // Set the close button
         Button closeButton = (Button) rootNode.lookup("#closeButton");

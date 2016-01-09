@@ -83,6 +83,10 @@ public class ReliefValve implements SystemElement {
     public int getCount() {
         return this.dbValve.getCount();
     }
+    
+    public void setCount( int count) {
+        this.dbValve.setCount(count);
+    }
 
     @Override
     public double getCombinedVolume() {
