@@ -128,7 +128,7 @@ public class CubicReservoir implements SystemElement{
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
             if (this.dbReservoir.getCubbicReservoirId() < 0) {
-                ds.addCubicReservoir(this.dbReservoir);
+                this.dbReservoir = ds.addCubicReservoir(this.dbReservoir);
             } else {
                 ds.editCubicReservoir(this.dbReservoir);
             }

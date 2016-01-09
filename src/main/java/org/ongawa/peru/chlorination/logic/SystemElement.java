@@ -19,6 +19,7 @@ public interface SystemElement {
      */
     public StringProperty getName();
     
+    
     /**
      * Returns a human readable name for the type of this element
      * 

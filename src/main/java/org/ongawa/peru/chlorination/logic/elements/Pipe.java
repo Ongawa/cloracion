@@ -95,7 +95,7 @@ public class Pipe implements SystemElement{
      */
     @Override
     public StringProperty getName() {
-        return new SimpleStringProperty(dbPipe.getName());
+        return new SimpleStringProperty(this.dbPipe.getName());
     }
     
     @Override
@@ -139,12 +139,20 @@ public class Pipe implements SystemElement{
     public double getLength(){
         return this.dbPipe.getLength();
     }
+    
+    public void setDiameter(double diameter) {
+        this.dbPipe.setDiameter(diameter);
+    }
+    
+    public void setLength(double length) {
+        this.dbPipe.setLength(length);
+    }
 
     public void save() {
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
-            if (this.dbPipe.getPipeId() <0) {
-                ds.addPipe(this.dbPipe);
+            if (this.dbPipe.getPipeId() == -1) {
+                this.dbPipe = ds.addPipe(this.dbPipe);
             } else {
                 ds.editPipe(this.dbPipe);
             }

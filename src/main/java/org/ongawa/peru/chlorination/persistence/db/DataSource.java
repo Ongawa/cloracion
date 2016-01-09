@@ -1633,12 +1633,18 @@ public class DataSource implements IDataSource {
 					Cubicreservoir.CUBICRESERVOIR.WIDTH,
 					Cubicreservoir.CUBICRESERVOIR.LENGTH,
 					Cubicreservoir.CUBICRESERVOIR.HEIGHT,
-					Cubicreservoir.CUBICRESERVOIR.COUNT)
+					Cubicreservoir.CUBICRESERVOIR.COUNT,
+		            Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM,
+		            Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
+		            Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
 					.values(cubicReservoir.getName(),
 							cubicReservoir.getWidth(),
 							cubicReservoir.getLength(),
 							cubicReservoir.getHeight(),
-							cubicReservoir.getCount())
+							cubicReservoir.getCount(),
+							cubicReservoir.getWaterSystem().getWaterSystemId(),
+							cubicReservoir.getWaterSystem().getCommunity().getCommunityId(),
+							cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
 					.execute();
 			this.closeConnection();
 			
@@ -1784,8 +1790,8 @@ public class DataSource implements IDataSource {
 							pipe.getLength(),
 							pipe.getCount(),
 							pipe.getWaterSystem().getWaterSystemId(),
-							pipe.getWaterSystem().getCommunity().getCommunityId(),
-							pipe.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
+                            pipe.getWaterSystem().getCommunity().getCommunityId(),
+                            pipe.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
 					.execute();
 			this.closeConnection();
 			if(result>0)

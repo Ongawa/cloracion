@@ -150,6 +150,7 @@ public class SystemDetails implements Initializable {
         children.clear();
         // Get the selected item
         SystemElement selected = this.elementsTable.getSelectionModel().getSelectedItem();
+        this.currentEditableElement = selected;
 
         if (selected != null) {
             // Clear the editPane and set with the new person.
@@ -271,11 +272,18 @@ public class SystemDetails implements Initializable {
                 return;
             }
             int count = Double.valueOf(countString).intValue();
-
-            // Create the pipe and save it.
-            Pipe newPipe = new Pipe(name, length, diameter, this.waterSystem, count);
-            newPipe.save();
-            this.elements.add(newPipe);
+            
+            
+            if (this.currentEditableElement != null){
+                ((Pipe)this.currentEditableElement).setName(name);
+                ((Pipe)this.currentEditableElement).setLength(length);
+                ((Pipe)this.currentEditableElement).setDiameter(diameter);
+            } else {
+                // Create the pipe and save it.
+                this.currentEditableElement = new Pipe(name, length, diameter, this.waterSystem, count);
+                this.elements.add(this.currentEditableElement);
+            }
+            this.currentEditableElement.save();
         } else if (elementType.equals(CubicReservoir.TYPE_NAME)) {
             String name = ((TextField) this.editPane.lookup("#elementName")).getText();
 
@@ -308,9 +316,18 @@ public class SystemDetails implements Initializable {
             }
             int count = Double.valueOf(countString).intValue();
             
-            CubicReservoir newReservoir = new CubicReservoir(name, length, width, height, waterSystem, count);
-            newReservoir.save();
-            this.elements.add(newReservoir);
+            
+            if (this.currentEditableElement != null){
+                ((CubicReservoir)this.currentEditableElement).setName(name);
+                ((CubicReservoir)this.currentEditableElement).setLength(length);
+                ((CubicReservoir)this.currentEditableElement).setHeigtht(height);
+                ((CubicReservoir)this.currentEditableElement).setWidth(width);
+            } else {
+                // Create the pipe and save it.
+                this.currentEditableElement = new CubicReservoir(name, length, width,height, this.waterSystem, count);
+                this.elements.add(this.currentEditableElement);
+            }
+            this.currentEditableElement.save();
 
         } else {
             // Relief Valve
@@ -346,11 +363,20 @@ public class SystemDetails implements Initializable {
             }
             int count = Double.valueOf(countString).intValue();
             
-            ReliefValve newValve = new ReliefValve(name, length, width, height, waterSystem, count);
-            newValve.save();
-            this.elements.add(newValve);
+            if (this.currentEditableElement != null){
+                ((ReliefValve)this.currentEditableElement).setName(name);
+                ((ReliefValve)this.currentEditableElement).setLength(length);
+                ((ReliefValve)this.currentEditableElement).setHeigtht(height);
+                ((ReliefValve)this.currentEditableElement).setWidth(width);
+            } else {
+                // Create the pipe and save it.
+                this.currentEditableElement = new ReliefValve(name, length, width,height, this.waterSystem, count);
+                this.elements.add(this.currentEditableElement);
+            }
+            this.currentEditableElement.save();
         }
         // Clear the panel
+        this.currentEditableElement = null;
         this.editPane.getChildren().clear();
     }
 
@@ -372,6 +398,7 @@ public class SystemDetails implements Initializable {
         this.loader = new FXMLLoader();
         // TODO Get system info from DataLoader
         this.elements = FXCollections.observableArrayList();
+        this.elementsTable.setItems(elements);
 
         DataLoader dataloader = DataLoader.getDataLoader();
         this.waterSystem = dataloader.getSelectedWaterSystem();
@@ -395,7 +422,7 @@ public class SystemDetails implements Initializable {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
+        
         // Add data sources
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeName());

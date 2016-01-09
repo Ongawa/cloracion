@@ -64,6 +64,11 @@ public class ReliefValve implements SystemElement {
     public StringProperty getName() {
         return new SimpleStringProperty(this.dbValve.getName());
     }
+    
+    public void setName(String name) {
+        this.dbValve.setName(name);
+    }
+    
 
     @Override
     public StringProperty getTypeName() {
@@ -115,7 +120,7 @@ public class ReliefValve implements SystemElement {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
             if (this.dbValve.getReliefValveId() < 0) {
                 // the valve did not exist in the db
-                ds.addReliefValve(this.dbValve);
+                this.dbValve = ds.addReliefValve(this.dbValve);
             } else{
                 // update
                 ds.editReliefValve(this.dbValve);
