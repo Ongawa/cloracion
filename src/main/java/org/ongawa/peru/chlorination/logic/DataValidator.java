@@ -145,7 +145,7 @@ public class DataValidator {
     }
 	
 	public static boolean isNumber(String number) {
-	    return number.matches("^\\s*\\d+[,.]\\d+\\s*$");
+	    return number.matches("^\\s*\\d+([,.]\\d+)?\\s*$");
 	}
 	
 	public static String checkChlorinationData(List<String> fieldData){
