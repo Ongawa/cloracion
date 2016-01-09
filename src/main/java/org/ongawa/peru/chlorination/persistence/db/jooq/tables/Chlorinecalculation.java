@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Chlorinec
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 
-	private static final long serialVersionUID = -613580969;
+	private static final long serialVersionUID = 1942670547;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CHLORINECALCULATION</code>
@@ -55,14 +55,14 @@ public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 	public final TableField<ChlorinecalculationRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
-	 */
-	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
-
-	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
 	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 */
+	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
@@ -90,9 +90,9 @@ public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 	public final TableField<ChlorinecalculationRecord, Double> ENDOWMENT = createField("ENDOWMENT", org.jooq.impl.SQLDataType.DOUBLE, this, "m^3/persona x dia");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en tanto por 1
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en %
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> CHLORINEPURENESS = createField("CHLORINEPURENESS", org.jooq.impl.SQLDataType.DOUBLE, this, "Expresado en tanto por 1");
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEPURENESS = createField("CHLORINEPURENESS", org.jooq.impl.SQLDataType.DOUBLE, this, "Expresado en %");
 
 	/**
 	 * The column <code>PUBLIC.CHLORINECALCULATION.INPUTFLOW</code>. Medido en litros/segundo

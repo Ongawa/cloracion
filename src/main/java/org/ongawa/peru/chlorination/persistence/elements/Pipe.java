@@ -10,7 +10,6 @@ public class Pipe {
 	private double diameter;
 	private double length;
 	private int count;
-	private double requiredConcentration;
 	private WaterSystem waterSystem;
 	
 	public Pipe(int pipeId, double diameter, double length, WaterSystem waterSystem) {
@@ -70,14 +69,6 @@ public class Pipe {
 		this.count = count;
 	}
 
-	public double getRequiredConcentration() {
-		return requiredConcentration;
-	}
-
-	public void setRequiredConcentration(double requiredConcentration) {
-		this.requiredConcentration = requiredConcentration;
-	}
-
 	public double getVolume() {
 		return this.getLength()*Math.pow(this.getDiameter()/2, 2)*Math.PI;
 	}
@@ -85,7 +76,7 @@ public class Pipe {
 	public double getCombinedVolume() {
 		return this.getVolume()*this.getCount();
 	}
-
+	
 	public WaterSystem getWaterSystem() {
 		return waterSystem;
 	}

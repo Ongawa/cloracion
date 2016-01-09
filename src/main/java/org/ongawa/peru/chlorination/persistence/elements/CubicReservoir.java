@@ -11,7 +11,6 @@ public class CubicReservoir {
 	private double length;
 	private double height;
 	private int count;
-	private double requiredConcentration;
 	private WaterSystem waterSystem;
 	
 	public CubicReservoir(int cubbicReservoirId, double width, double length, double height, WaterSystem waterSystem) {
@@ -65,21 +64,13 @@ public class CubicReservoir {
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
+	
 	public int getCount() {
 		return count;
 	}
 
 	public void setCount(int count) {
 		this.count = count;
-	}
-
-	public double getRequiredConcentration() {
-		return requiredConcentration;
-	}
-
-	public void setRequiredConcentration(double requiredConcentration) {
-		this.requiredConcentration = requiredConcentration;
 	}
 
 	public int getCubbicReservoirId() {

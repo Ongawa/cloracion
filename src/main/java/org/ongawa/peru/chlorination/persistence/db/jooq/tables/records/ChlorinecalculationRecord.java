@@ -29,7 +29,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculati
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class ChlorinecalculationRecord extends UpdatableRecordImpl<ChlorinecalculationRecord> implements Record14<Timestamp, Integer, Integer, Integer, Integer, Double, Double, Double, Double, Double, Double, Double, Double, Double> {
 
-	private static final long serialVersionUID = -795048916;
+	private static final long serialVersionUID = -1987793296;
 
 	/**
 	 * Setter for <code>PUBLIC.CHLORINECALCULATION.DATE</code>.
@@ -46,30 +46,30 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	}
 
 	/**
-	 * Setter for <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
-	 */
-	public void setWatersystemCommunityIdcommunity(Integer value) {
-		setValue(1, value);
-	}
-
-	/**
-	 * Getter for <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
-	 */
-	public Integer getWatersystemCommunityIdcommunity() {
-		return (Integer) getValue(1);
-	}
-
-	/**
 	 * Setter for <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
 	public void setWatersystemIdwatersystem(Integer value) {
-		setValue(2, value);
+		setValue(1, value);
 	}
 
 	/**
 	 * Getter for <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
 	public Integer getWatersystemIdwatersystem() {
+		return (Integer) getValue(1);
+	}
+
+	/**
+	 * Setter for <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 */
+	public void setWatersystemCommunityIdcommunity(Integer value) {
+		setValue(2, value);
+	}
+
+	/**
+	 * Getter for <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 */
+	public Integer getWatersystemCommunityIdcommunity() {
 		return (Integer) getValue(2);
 	}
 
@@ -144,14 +144,14 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	}
 
 	/**
-	 * Setter for <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en tanto por 1
+	 * Setter for <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en %
 	 */
 	public void setChlorinepureness(Double value) {
 		setValue(8, value);
 	}
 
 	/**
-	 * Getter for <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en tanto por 1
+	 * Getter for <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en %
 	 */
 	public Double getChlorinepureness() {
 		return (Double) getValue(8);
@@ -272,7 +272,7 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	 */
 	@Override
 	public Field<Integer> field2() {
-		return Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY;
+		return Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM;
 	}
 
 	/**
@@ -280,7 +280,7 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	 */
 	@Override
 	public Field<Integer> field3() {
-		return Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM;
+		return Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY;
 	}
 
 	/**
@@ -384,7 +384,7 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	 */
 	@Override
 	public Integer value2() {
-		return getWatersystemCommunityIdcommunity();
+		return getWatersystemIdwatersystem();
 	}
 
 	/**
@@ -392,7 +392,7 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	 */
 	@Override
 	public Integer value3() {
-		return getWatersystemIdwatersystem();
+		return getWatersystemCommunityIdcommunity();
 	}
 
 	/**
@@ -497,7 +497,7 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	 */
 	@Override
 	public ChlorinecalculationRecord value2(Integer value) {
-		setWatersystemCommunityIdcommunity(value);
+		setWatersystemIdwatersystem(value);
 		return this;
 	}
 
@@ -506,7 +506,7 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	 */
 	@Override
 	public ChlorinecalculationRecord value3(Integer value) {
-		setWatersystemIdwatersystem(value);
+		setWatersystemCommunityIdcommunity(value);
 		return this;
 	}
 
@@ -645,12 +645,12 @@ public class ChlorinecalculationRecord extends UpdatableRecordImpl<Chlorinecalcu
 	/**
 	 * Create a detached, initialised ChlorinecalculationRecord
 	 */
-	public ChlorinecalculationRecord(Timestamp date, Integer watersystemCommunityIdcommunity, Integer watersystemIdwatersystem, Integer watersystemCommunitySubbasinIdsubbasin, Integer population, Double tankvolume, Double tankusefulvolume, Double endowment, Double chlorinepureness, Double inputflow, Double reloadtime, Double demandclr, Double demandactivechlorine, Double demandcommonproduct) {
+	public ChlorinecalculationRecord(Timestamp date, Integer watersystemIdwatersystem, Integer watersystemCommunityIdcommunity, Integer watersystemCommunitySubbasinIdsubbasin, Integer population, Double tankvolume, Double tankusefulvolume, Double endowment, Double chlorinepureness, Double inputflow, Double reloadtime, Double demandclr, Double demandactivechlorine, Double demandcommonproduct) {
 		super(Chlorinecalculation.CHLORINECALCULATION);
 
 		setValue(0, date);
-		setValue(1, watersystemCommunityIdcommunity);
-		setValue(2, watersystemIdwatersystem);
+		setValue(1, watersystemIdwatersystem);
+		setValue(2, watersystemCommunityIdcommunity);
 		setValue(3, watersystemCommunitySubbasinIdsubbasin);
 		setValue(4, population);
 		setValue(5, tankvolume);

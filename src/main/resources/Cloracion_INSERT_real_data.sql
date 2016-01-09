@@ -94,19 +94,19 @@ INSERT INTO CHLORINECALCULATION VALUES ('2015-06-23 15:50:20', 4, 3, 1, 185, 250
 INSERT INTO CHLORINECALCULATION VALUES ('2015-07-21 10:30:10', 4, 3, 1, 195, 250, 225, 110, 70, 1.30, 17, 2.3, 2.3, 3.4);
 
 --CUBICRESERVOIR
-INSERT INTO CUBICRESERVOIR VALUES (1, 7, 5, 1, 'Reservorio grande', 3, 2, 4, 2, 2.0);
-INSERT INTO CUBICRESERVOIR VALUES (2, 7, 5, 1, 'Reservorio pequeño', 1, 1, 2, 3, 2.0);
-INSERT INTO CUBICRESERVOIR VALUES (3, 7, 5, 1, 'Reservorio reserva', 1, 1, 1, 1, 2.0);
-INSERT INTO CUBICRESERVOIR VALUES (4, 7, 5, 1, 'Reservorio recogida', 3, 2, 4, 2, 2.0);
-INSERT INTO CUBICRESERVOIR VALUES (5, 4, 3, 1, 'Reservorio grande', 3, 2, 4, 2, 2.0);
-INSERT INTO CUBICRESERVOIR VALUES (6, 4, 3, 1, 'Reservorio pequeño', 1, 1, 2, 3, 2.0);
-INSERT INTO CUBICRESERVOIR VALUES (7, 4, 3, 1, 'Reservorio reserva', 1, 1, 1, 1, 2.0);
+INSERT INTO CUBICRESERVOIR VALUES (1, 7, 5, 1, 'Reservorio grande', 3, 2, 4, 2);
+INSERT INTO CUBICRESERVOIR VALUES (2, 7, 5, 1, 'Reservorio pequeño', 1, 1, 2, 3);
+INSERT INTO CUBICRESERVOIR VALUES (3, 7, 5, 1, 'Reservorio reserva', 1, 1, 1, 1);
+INSERT INTO CUBICRESERVOIR VALUES (4, 7, 5, 1, 'Reservorio recogida', 3, 2, 4, 2);
+INSERT INTO CUBICRESERVOIR VALUES (5, 4, 3, 1, 'Reservorio grande', 3, 2, 4, 2);
+INSERT INTO CUBICRESERVOIR VALUES (6, 4, 3, 1, 'Reservorio pequeño', 1, 1, 2, 3);
+INSERT INTO CUBICRESERVOIR VALUES (7, 4, 3, 1, 'Reservorio reserva', 1, 1, 1, 1);
 
 --PIPE
-INSERT INTO PIPE VALUES (1, 7, 5, 1, 'Tubiería admisión', 0.15, 4, 1, 2.0);
-INSERT INTO PIPE VALUES (2, 7, 5, 1, 'Tubiería distribución', 0.05, 10, 3, 2.0);
-INSERT INTO PIPE VALUES (3, 7, 5, 1, 'Tubieria llenado', 0.3, 2, 2, 2.0);
+INSERT INTO PIPE VALUES (1, 7, 5, 1, 'Tubiería admisión', 0.15, 4, 1);
+INSERT INTO PIPE VALUES (2, 7, 5, 1, 'Tubiería distribución', 0.05, 10, 3);
+INSERT INTO PIPE VALUES (3, 7, 5, 1, 'Tubieria llenado', 0.3, 2, 2);
 
 --RELIEFVALVE
-INSERT INTO RELIEFVALVE VALUES (1, 7, 5, 1, 'CRP 1', 0.5, 0.5, 0.5, 2, 2.0);
-INSERT INTO RELIEFVALVE VALUES (2, 7, 5, 1, 'CRP 2', 0.25, 0.25, 0.25, 2, 2.0);
+INSERT INTO RELIEFVALVE VALUES (1, 7, 5, 1, 'CRP 1', 0.5, 0.5, 0.5, 2);
+INSERT INTO RELIEFVALVE VALUES (2, 7, 5, 1, 'CRP 2', 0.25, 0.25, 0.25, 2);

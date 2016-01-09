@@ -9,10 +9,13 @@ import javax.annotation.Generated;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoirdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipedesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalvedesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
@@ -86,4 +89,19 @@ public class Tables {
 	 * The table PUBLIC.RELIEFVALVE
 	 */
 	public static final Reliefvalve RELIEFVALVE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve.RELIEFVALVE;
+
+	/**
+	 * The table PUBLIC.CUBICRESERVOIRDESINFECTION
+	 */
+	public static final Cubicreservoirdesinfection CUBICRESERVOIRDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION;
+
+	/**
+	 * The table PUBLIC.PIPEDESINFECTION
+	 */
+	public static final Pipedesinfection PIPEDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipedesinfection.PIPEDESINFECTION;
+
+	/**
+	 * The table PUBLIC.RELIEFVALVEDESINFECTION
+	 */
+	public static final Reliefvalvedesinfection RELIEFVALVEDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalvedesinfection.RELIEFVALVEDESINFECTION;
 }

@@ -10,7 +10,6 @@ public class ReliefValve {
 	private double length;
 	private double height;
 	private int count;
-	private double requiredConcentration;
 	private WaterSystem waterSystem;
 	
 	public ReliefValve(int reliefValveId, double width, double length, double height, WaterSystem waterSystem) {
@@ -64,21 +63,13 @@ public class ReliefValve {
 	public void setHeight(double height) {
 		this.height = height;
 	}
-
+	
 	public int getCount() {
 		return count;
 	}
 
 	public void setCount(int count) {
 		this.count = count;
-	}
-
-	public double getRequiredConcentration() {
-		return requiredConcentration;
-	}
-
-	public void setRequiredConcentration(double requiredConcentration) {
-		this.requiredConcentration = requiredConcentration;
 	}
 
 	public int getReliefValveId() {
