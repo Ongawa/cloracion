@@ -1,6 +1,7 @@
 package org.ongawa.peru.chlorination.gui.desinfect;
 
 import java.net.URL;
+import java.util.List;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
@@ -8,6 +9,10 @@ import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.logic.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.logic.elements.ReliefValve;
+import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
+import org.ongawa.peru.chlorination.persistence.IDataSource;
+import org.ongawa.peru.chlorination.persistence.db.DataSource;
+import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 import org.ongawa.peru.chlorination.logic.elements.Pipe;
 
 import javafx.collections.FXCollections;
@@ -61,6 +66,12 @@ public class SystemDetails implements Initializable {
     @FXML
     private AnchorPane editPane;
 
+    private WaterSystem waterSystem;
+    
+    public void setWaterSystem(WaterSystem waterSystem) {
+        this.waterSystem = waterSystem;
+    }
+    
     public void triggerBack() {
         
         Scene scene = MainApp.popHistory();
@@ -224,14 +235,29 @@ public class SystemDetails implements Initializable {
     }
 
     @Override
-    public void initialize(URL location, ResourceBundle resources) {
+    public void initialize(URL location, ResourceBundle resources)  {
         this.loader = new FXMLLoader();
         // TODO Get system info from DataLoader
         this.elements = FXCollections.observableArrayList();
-        this.elementsTable.setItems(elements);
-        elements.add(new Pipe("Tubería de prueba", 200, 13.5));
-        elements.add(new ReliefValve("CPR de prueba", 100, 200, 300));
-        elements.add(new CubicReservoir("Reservorio de prueba", 100, 200, 300));
+        
+        try {
+            IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
+            for (org.ongawa.peru.chlorination.persistence.elements.Pipe dbPipe : ds.getPipes(waterSystem)) {
+                this.elements.add(new Pipe(dbPipe));
+                
+            }
+            for (org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir : ds.getCubicReservoirs(waterSystem)) {
+                this.elements.add(new CubicReservoir(dbReservoir));
+            }
+            for (org.ongawa.peru.chlorination.persistence.elements.ReliefValve dbValve : ds.getReliefValves(waterSystem)) {
+                this.elements.add(new ReliefValve(dbValve));
+            }
+            
+            
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
 
         // Add data sources
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());

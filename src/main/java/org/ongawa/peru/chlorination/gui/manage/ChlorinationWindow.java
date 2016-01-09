@@ -217,7 +217,7 @@ public class ChlorinationWindow  implements Initializable{
         if (errorString.length() < 1)
             return errorString;
         
-        errorString = DataValidator.checkConcSolu(Double.valueOf(this.clPurity.getText()));
+        errorString = DataValidator.checkPure(Double.valueOf(this.clPurity.getText()));
         if (errorString.length() < 1)
             return errorString;
         return "";

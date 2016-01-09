@@ -48,4 +48,10 @@ public interface SystemElement {
      * @return
      */
     public int getConcentration();
+    
+    /**
+     * Saves the element into the database
+     * 
+     */
+    public void save();
 }

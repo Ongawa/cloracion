@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.gui.manage.ChlorinationWindow;
 import org.ongawa.peru.chlorination.gui.manage.ProvinceSelector;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
 import org.ongawa.peru.chlorination.logic.DataLoader;
@@ -114,6 +115,8 @@ public class DesinfectionProvince implements Initializable{
         MainApp.pushHistory(stage.getScene());
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionWindow.fxml"));
+        SystemDetails desinfectController = loader.<SystemDetails>getController();
+        desinfectController.setWaterSystem(selectedWaterSystem);
 
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");
