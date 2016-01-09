@@ -12,6 +12,7 @@ import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
+import org.ongawa.peru.chlorination.persistence.elements.CubicReservoirDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuredFlow;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuringPoint;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
@@ -48,6 +49,8 @@ public class ReportFactory {
 		return instance;
 	}
 	
+	private ReportTools tools;
+	
 	private ReportFactory(){
 
 	}
@@ -64,8 +67,16 @@ public class ReportFactory {
 		return measuredFlows;
 	}
 	
+	private void addDesinfectionInfo(Document document, WaterSystem waterSystem, IDataSource ds){
+		List<String> values = new ArrayList<String>();
+		List<CubicReservoir> cubicReservoirs = ds.getCubicReservoirs(waterSystem);
+		for(CubicReservoir cubicReservoir : cubicReservoirs){
+			
+		}
+	}
+	
 	public void createFullReport(File destFile, Locale locale) throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException, DocumentException{
-		ReportTools tools = new ReportTools(locale);
+		tools = new ReportTools(locale);
 		IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
 		
         Document document = new Document();
@@ -97,9 +108,12 @@ public class ReportFactory {
         			List<CubicReservoir> cubicReservoirs = ds.getCubicReservoirs(waterSystem);
         			List<Pipe> pipes = ds.getPipes(waterSystem);
         			List<ReliefValve> reliefValves = ds.getReliefValves(waterSystem);
-        			boolean infoAvailable = !(cubicReservoirs.isEmpty() && pipes.isEmpty() && reliefValves.isEmpty());
-        			tools.addWaterSystemDesign(document, infoAvailable);
-        			if(infoAvailable) tools.addWaterSystemDesignTable(document, cubicReservoirs, pipes, reliefValves);
+        			boolean designInfoAvailable = !(cubicReservoirs.isEmpty() && pipes.isEmpty() && reliefValves.isEmpty());
+        			tools.addWaterSystemDesign(document, designInfoAvailable);
+        			if(designInfoAvailable){
+        				tools.addWaterSystemDesignTable(document, cubicReservoirs, pipes, reliefValves);
+        				tools.addDesinfectionInformation(document, waterSystem);
+        			}
         		}
         		document.newPage();
         	}
