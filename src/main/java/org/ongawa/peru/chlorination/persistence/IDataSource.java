@@ -98,6 +98,8 @@ public interface IDataSource {
 
 	MeasuredFlow getMeasuredFlow(Timestamp date, MeasuringPoint measuringPoint);
 	
+	MeasuredFlow getLastMeasuredFlow(MeasuringPoint measuringPoint);
+	
 	boolean editMeasuredFlow(Timestamp oldMeasuredFlowDate, MeasuredFlow newMeasuredFlow);
 	
 	boolean removeMeasuredFlow(MeasuredFlow measuredFlow);
@@ -109,6 +111,8 @@ public interface IDataSource {
 	List<ChlorineCalculation> getChlorineCalculations(Timestamp beginDate, Timestamp endDate, WaterSystem waterSystem);
 
 	ChlorineCalculation getChlorineCalculation(Timestamp date, WaterSystem waterSystem);
+	
+	ChlorineCalculation getLastChlorineCalculation(WaterSystem waterSystem); 
 	
 	boolean editChlorineCalcuilation(Timestamp oldChlorineCalculationDate, ChlorineCalculation newChlorineCalculation);
 	
@@ -152,6 +156,8 @@ public interface IDataSource {
 	
 	CubicReservoirDesinfection getCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
 	
+	CubicReservoirDesinfection getLastCubicReservoirDesinfection(CubicReservoir cubicReservoir);
+	
 	boolean editCubicReservoirDesinfection(Timestamp oldCubicReservoirDesinfection, CubicReservoirDesinfection newCubicReservoirDesinfection);
 	
 	boolean removeCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
@@ -164,6 +170,8 @@ public interface IDataSource {
 	
 	PipeDesinfection getPipeDesinfection(Timestamp date, Pipe pipe);
 	
+	PipeDesinfection getLastPipeDesinfection(Pipe pipe);
+	
 	boolean editPipeDesinfection(Timestamp oldPipeDesinfection, PipeDesinfection newPipeDesinfection);
 	
 	boolean removePipeDesinfection(Timestamp date, Pipe pipe);
@@ -175,6 +183,8 @@ public interface IDataSource {
 	List<ReliefValveDesinfection> getReliefValveDesinfections(Timestamp beginDate, Timestamp endDate, ReliefValve reliefValve);
 	
 	ReliefValveDesinfection getReliefValveDesinfection(Timestamp date, ReliefValve reliefValve);
+	
+	ReliefValveDesinfection getLastReliefValveDesinfection(ReliefValve reliefValve);
 	
 	boolean editReliefValveDesinfection(Timestamp oldReliefValveDesinfection, ReliefValveDesinfection newReliefValveDesinfection);
 	
