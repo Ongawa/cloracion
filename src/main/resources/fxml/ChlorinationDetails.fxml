@@ -137,7 +137,7 @@
                 <TextField id="dripTime" fx:id="dripTime"
                     layoutX="685.0" layoutY="44.0"
                     prefWidth="90" minWidth="90"/>
-                <Label layoutX="800.0" layoutY="40.0" text="Gotas" prefHeight="40.0"/>
+                <Label layoutX="800.0" layoutY="40.0" text="Horas" prefHeight="40.0"/>
                 
                 <Button id="naturalCaudalInfo" layoutX="489.0"
                     layoutY="87.0" onAction="#triggerInfo">

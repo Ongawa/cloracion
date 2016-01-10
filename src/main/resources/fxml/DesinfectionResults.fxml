@@ -15,9 +15,9 @@
                 <TableColumn fx:id="nameColumn" prefWidth="171.0" text="Nombre" />
                 <TableColumn fx:id="typeColumn" prefWidth="137.0" text="Tipo" />
                 <TableColumn fx:id="elementCountColumn" prefWidth="119.0" text="Numero total" />
-                <TableColumn fx:id="clRequiredColumn" prefWidth="153.0" text="Cloro total (kg)" />
+                <TableColumn fx:id="clRequiredColumn" prefWidth="153.0" text="Cloro por elemento (gr)" />
                 <TableColumn fx:id="spoonsRequiredColumn" prefWidth="184.0" text="Cucharadas/elemento" />
-                <TableColumn fx:id="timeRequiredColumn" prefWidth="174.0" text="Tiempo de Retencion" />
+                <TableColumn fx:id="timeRequiredColumn" prefWidth="174.0" text="Tiempo de retencion" />
             </columns>
         </TableView>
       <Label layoutX="81.0" layoutY="552.0" text="Cantidad total de cloro (kg):">

@@ -222,15 +222,15 @@ public class ChlorinationWindow  implements Initializable{
     public void triggerCalculation(){
         String errorMessage = isDataValid(); 
         if (errorMessage.length() < 1) {
-            double[] clResults = DataCalculator.chlorination(this.naturalCaudal.getText(),
+            double[] clResults = DataCalculator.chlorination(this.chlorableCaudal.getText(),
                                 this.clPurity.getText(), this.tankVolume.getText(),
                                 this.rechargeTime.getText(), this.dripTime.getText(), this.clDemand.getText());
             
-            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/quincena");
-            this.clKgMonth.setText(String.format("%1$,.2f", clResults[2]) + " kg/quincena");
+            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/quincena"); //TODO: Change the string to trecarga
+            this.clKgMonth.setText(String.format("%1$,.2f", clResults[2]) + " kg/mes");
             
-            this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/seg");
-            this.dripMlMin.setText(String.format("%1$,.2f", clResults[4]) + " gotas/seg");
+            this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/min");
+            this.dripMlMin.setText(String.format("%1$,.2f", clResults[4]) + " ml/min");
         } else {
             ClAlert alert = new ClAlert(errorMessage);
             try {
