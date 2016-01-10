@@ -1,10 +1,17 @@
 package org.ongawa.peru.chlorination.gui.manage;
 
+import java.io.IOException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.HelpStage;
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.gui.ClAlert;
+import org.ongawa.peru.chlorination.logic.DataCalculator;
+import org.ongawa.peru.chlorination.logic.DataValidator;
+
+import com.sun.javafx.image.impl.ByteIndexed.Getter;
 
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
@@ -13,16 +20,39 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ChlorinationWindow  implements Initializable{
-
+    
+    
+    /* User inputs*/
     @FXML
     private TextField naturalCaudal;
-    
     @FXML
     private TextField chlorableCaudal;
+    @FXML
+    private TextField clPurity;
+    @FXML
+    private TextField tankVolume;
+    @FXML
+    private TextField rechargeTime;
+    @FXML
+    private TextField dripTime;
+    @FXML
+    private TextField clDemand;
+
+    /* Results */
+    @FXML
+    private Label clKgQuin;
+    @FXML
+    private Label clKgMonth;
+    @FXML
+    private Label dripMin;
+    @FXML
+    private Label dripMlMin;
+
     
     private String basin;
     
@@ -148,9 +178,68 @@ public class ChlorinationWindow  implements Initializable{
     
     
     /* General methods */
+
+    /**
+     * Checks the values, and shows a popup is the
+     * data in the fields is not valid.
+     * 
+     * @return
+     */
+    public String isDataValid() {
+        ArrayList<String> fieldValues = new ArrayList<String>();
+        fieldValues.add(this.naturalCaudal.getText());
+        fieldValues.add(this.chlorableCaudal.getText());
+        fieldValues.add(this.clPurity.getText());
+        fieldValues.add(this.tankVolume.getText());
+        fieldValues.add(this.rechargeTime.getText());
+        fieldValues.add(this.dripTime.getText());
+        fieldValues.add(this.clDemand.getText());
+        String formatError =  DataValidator.checkChlorinationData(fieldValues);
+        if(formatError.length() < 1 )
+            return formatError;
+        
+        String errorString= DataValidator.checkCaud(Double.valueOf(this.naturalCaudal.getText()));
+        if (errorString.length() < 1)
+            return errorString;
+        errorString = DataValidator.checkCaud(Double.valueOf(this.chlorableCaudal.getText()));
+        if (errorString.length() < 1)
+            return errorString;
+        
+        errorString = DataValidator.checkHoraGote(Double.valueOf(this.dripTime.getText()));
+        if (errorString.length() < 1)
+            return errorString;
+        
+        errorString = DataValidator.checkTiemRecar(Double.valueOf(this.rechargeTime.getText()));
+        if (errorString.length() < 1)
+            return errorString;
+        
+        errorString = DataValidator.checkPure(Double.valueOf(this.clPurity.getText()));
+        if (errorString.length() < 1)
+            return errorString;
+        return "";
+    }
     
     public void triggerCalculation(){
-        // TODO: Do the calculations
+        String errorMessage = isDataValid(); 
+        if (errorMessage.length() < 1) {
+            double[] clResults = DataCalculator.chlorination(this.naturalCaudal.getText(),
+                                this.clPurity.getText(), this.tankVolume.getText(),
+                                this.rechargeTime.getText(), this.dripTime.getText(), this.clDemand.getText());
+            
+            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/quincena");
+            this.clKgMonth.setText(String.format("%1$,.2f", clResults[2]) + " kg/quincena");
+            
+            this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/seg");
+            this.dripMlMin.setText(String.format("%1$,.2f", clResults[4]) + " gotas/seg");
+        } else {
+            ClAlert alert = new ClAlert(errorMessage);
+            try {
+                alert.show();
+            } catch (IOException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
     }
     
     public void triggerSave() {

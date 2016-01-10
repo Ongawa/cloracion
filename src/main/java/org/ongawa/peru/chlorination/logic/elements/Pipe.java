@@ -1,6 +1,9 @@
 package org.ongawa.peru.chlorination.logic.elements;
 
 import org.ongawa.peru.chlorination.logic.SystemElement;
+import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
+import org.ongawa.peru.chlorination.persistence.IDataSource;
+import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -17,54 +20,32 @@ public class Pipe implements SystemElement{
     public static final int RETENTION_TIME = 2;
     public static final String TYPE_NAME = "Tuberia";
     
-    /**
-     * A human readable name
-     */
-    private StringProperty name;
+    
+    private org.ongawa.peru.chlorination.persistence.elements.Pipe dbPipe;
+    
+    private double[] desinfectionResults;
+
     
     /**
-     * The type name human readable.
+     * Creates a Pipe from a db pipe
      * 
+     * @param dbPipe a db connected pipe
      */
-    private StringProperty typeName;
-    
-    
-    /**
-     * The number of similar elements
-     */
-    private int count;
-    
-    /**
-     * The length of this pipe
-     */
-    private double length;
-    
-    /**
-     * The diameter of the pipe
-     */
-    private double diameter;
-    
-    /**
-     * The required chlorine concentration
-     */
-    private int requiredConcentration;
-    
+    public Pipe (org.ongawa.peru.chlorination.persistence.elements.Pipe dbPipe) {
+        this.dbPipe = dbPipe;
+    }
+
     /**
      * Creates a single pipe
      * 
      * @param name - A human readable name
      * @param length - The length of the pipe
      * @param diameter - The diameter of the pipe
+     * @param waterSystem - The associated waterSystem
      */
-    public Pipe (String name, double length, double diameter) {
-        this.name  = new SimpleStringProperty(name);
-        this.length = length;
-        this.diameter = diameter;
-        
-        // Default count 1
-        this.count = 1;
-        this.requiredConcentration = REQUIRED_CL_QUANTITY;
-        this.typeName = new SimpleStringProperty(TYPE_NAME);
+    public Pipe (String name, double length, double diameter, WaterSystem waterSystem) {
+        this.dbPipe = new org.ongawa.peru.chlorination.persistence.elements.Pipe(diameter, length, waterSystem);
+        this.dbPipe.setCount(1);
     }
     
     /**
@@ -73,16 +54,12 @@ public class Pipe implements SystemElement{
      * @param name - A human readable name
      * @param length - The length of the pipe
      * @param diameter - The diameter of the pipe
+     * @param waterSystem - The associated waterSystem
      * @param count - The number of similar pipes
      */
-    public Pipe (String name, double length, double diameter, int count) {
-        this.name  = new SimpleStringProperty(name);
-        this.length = length;
-        this.diameter = diameter;
-        this.count = count;
-        
-        this.requiredConcentration = REQUIRED_CL_QUANTITY;
-        this.typeName = new SimpleStringProperty(TYPE_NAME);
+    public Pipe (String name, double length, double diameter, WaterSystem waterSystem, int count) {
+        this.dbPipe = new org.ongawa.peru.chlorination.persistence.elements.Pipe(diameter, length, waterSystem);
+        this.dbPipe.setCount(count);
     }
     
     /**
@@ -91,7 +68,7 @@ public class Pipe implements SystemElement{
      * @param count
      */
     public void setCount(int count){
-        this.count = count;
+        this.dbPipe.setCount(count);
     }
     
     /**
@@ -100,7 +77,7 @@ public class Pipe implements SystemElement{
      * @param name
      */
     public void setName(String name){
-        this.name.set(name);
+        this.dbPipe.setName(name);
     }
     
     /**
@@ -111,7 +88,7 @@ public class Pipe implements SystemElement{
      */
     @Override
     public double getVolume() {
-        return this.length*Math.pow(this.diameter/2, 2)*Math.PI;
+        return this.dbPipe.getVolume();
     }
 
     /**
@@ -121,12 +98,12 @@ public class Pipe implements SystemElement{
      */
     @Override
     public StringProperty getName() {
-        return this.name;
+        return new SimpleStringProperty(this.dbPipe.getName());
     }
     
     @Override
     public StringProperty getTypeName(){
-        return this.typeName;
+        return new SimpleStringProperty(TYPE_NAME);
     }
 
     /**
@@ -136,7 +113,7 @@ public class Pipe implements SystemElement{
      */
     @Override
     public int getCount() {
-        return this.count;
+        return this.dbPipe.getCount();
     }
 
     /**
@@ -146,24 +123,62 @@ public class Pipe implements SystemElement{
      */
     @Override
     public double getCombinedVolume() {
-        return getVolume()*this.count;
+        return this.dbPipe.getCombinedVolume();
     }
     
     @Override
     public int getConcentration(){
-        return this.requiredConcentration;
+        return REQUIRED_CL_QUANTITY;
     }
     
-    public void setRequiredConcentration(int concentration){
+    /*public void setRequiredConcentration(int concentration){
         this.requiredConcentration = concentration;
-    }
+    }*/
     
     public double getDiameter(){
-        return this.diameter;
+        return this.dbPipe.getDiameter();
     }
     
     public double getLength(){
-        return this.length;
+        return this.dbPipe.getLength();
+    }
+    
+    public void setDiameter(double diameter) {
+        this.dbPipe.setDiameter(diameter);
+    }
+    
+    public void setLength(double length) {
+        this.dbPipe.setLength(length);
     }
 
+
+    @Override
+    public void setDesinfectionResults(double[] desinfectionResults){
+        this.desinfectionResults = desinfectionResults;
+    }
+    
+    @Override
+    public double[] getDesinfectionResults() {
+        return this.desinfectionResults;
+    }
+    
+    public org.ongawa.peru.chlorination.persistence.elements.Pipe getDbPipe() {
+        return this.dbPipe;
+    }
+    
+    
+    public void save() {
+        try {
+            IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
+            if (this.dbPipe.getPipeId() == -1) {
+                this.dbPipe = ds.addPipe(this.dbPipe);
+            } else {
+                ds.editPipe(this.dbPipe);
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
+    }
 }

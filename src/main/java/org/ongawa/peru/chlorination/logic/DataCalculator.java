@@ -149,17 +149,17 @@ public class DataCalculator {
      *         concentration of the desinfectant compound  mg/L
      *  output: mgr/l of Cl 
     */
-    public static String[] desinfection(String units, String vol,String concentracion, String concentracionCl) {
-    	String[] res = new String [3];
-    	double vTank = Double.parseDouble(vol);
-    	double concDes = Double.parseDouble(concentracion); 
-    	double concCl = Double.parseDouble(concentracionCl);
-        int numEle = Integer.parseInt(units);
+    public static double[] desinfection(int numEle, double vTank, double concDes, double concCl) {
+    	double[] res = new double[3];
+    	//double vTank = Double.parseDouble(vol);
+    	//double concDes = Double.parseDouble(concentracion); 
+    	//double concCl = Double.parseDouble(concentracionCl);
+        //int numEle = Integer.parseInt(units);
         
         double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
-        res[0] = String.format("%1$,.2f",cucharasDesin* CUCHARA2GR/1000);// 1000 stands for kg 
-        res[2] = String.format("%1$,.2f",cucharasDesin);//  
-        res[1] = String.format("%1$,.2f",cucharasDesin* CUCHARA2GR/1000*numEle);// 1000 stands for kg. Total kg of desinf for all elem
+        res[0] = cucharasDesin* CUCHARA2GR/1000;// 1000 stands for kg 
+        res[2] = cucharasDesin;//  
+        res[1] = cucharasDesin* CUCHARA2GR/1000*numEle;// 1000 stands for kg. Total kg of desinf for all elem
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
         
         return res; 
@@ -176,7 +176,7 @@ public class DataCalculator {
     	// dot -> litros*persona*dia
     	double l = Double.parseDouble(losses); // % of losses
         double c_min = K1*pob*dot/(1-l/100);//1000 stands for m3 to liters 
-        return c_min;// L*día
+        return c_min/(24*60*60);// L/segundo
     	
     }
     /* Function gastosCl to compute the cost of Cl for chlorination and desinfection

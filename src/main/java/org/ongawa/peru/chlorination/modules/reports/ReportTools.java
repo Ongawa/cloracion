@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Locale;
@@ -17,8 +18,10 @@ import org.ongawa.peru.chlorination.KEYS;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
+import org.ongawa.peru.chlorination.persistence.elements.CubicReservoirDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuredFlow;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
+import org.ongawa.peru.chlorination.persistence.elements.PipeDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ReliefValve;
 import org.ongawa.peru.chlorination.persistence.elements.SubBasin;
 import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
@@ -530,7 +533,7 @@ public class ReportTools {
 	
 	public void addWaterSystemDesignTable(Document document, List<CubicReservoir> cubicReservoirs, List<Pipe> pipes, List<ReliefValve> reliefValves) throws DocumentException{
 		Font headerFont = new Font(this.bodyFont.getFamily(), 10);
-		int tableColumns = 8;
+		int tableColumns = 7;
 		PdfPTable wsDSTable = new PdfPTable(tableColumns);
 		wsDSTable.setWidthPercentage(100);
 		wsDSTable.getDefaultCell().setUseAscender(true);
@@ -556,8 +559,7 @@ public class ReportTools {
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_ROW_HEIGHT),
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_ROW_VOLUME),
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_ROW_COUNT),
-					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_ROW_COMBINEDVOLUME),
-					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_ROW_REQUIREDCONCENTRATION)
+					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_ROW_COMBINEDVOLUME)
 			};
 			for(int i=0;i<titles.length;i++){
 				ch = new Chunk(titles[i], headerFont);
@@ -597,8 +599,7 @@ public class ReportTools {
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_ROW_LENGTH),
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_ROW_VOLUME),
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_ROW_COUNT),
-					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_ROW_COMBINEDVOLUME),
-					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_ROW_REQUIREDCONCENTRATION)
+					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_ROW_COMBINEDVOLUME)
 			};
 			for(int i=0;i<titles.length;i++){
 				ch = new Chunk(titles[i], headerFont);
@@ -641,8 +642,7 @@ public class ReportTools {
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_ROW_HEIGHT),
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_ROW_VOLUME),
 					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_ROW_COUNT),
-					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_ROW_COMBINEDVOLUME),
-					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_ROW_REQUIREDCONCENTRATION)
+					this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_ROW_COMBINEDVOLUME)
 			};
 			for(int i=0;i<titles.length;i++){
 				ch = new Chunk(titles[i], headerFont);
@@ -668,5 +668,46 @@ public class ReportTools {
 		
 		wsDSTable.setSpacingAfter(10);
 		document.add(wsDSTable);
+	}
+	
+	public void addDesinfectionInformation(Document document, WaterSystem waterSystem){
+		Font headerFont = new Font(this.bodyFont.getFamily(), 10);
+		int tableColumns = 9;
+		PdfPTable dfTable = new PdfPTable(tableColumns);
+		dfTable.setWidthPercentage(100);
+		dfTable.getDefaultCell().setUseAscender(true);
+		dfTable.getDefaultCell().setUseDescender(true);
+		
+		double partialAmount = 0, totalAmount = 0;
+		Chunk ch; PdfPCell cell;
+		ch = new Chunk(this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_TABLE_NAME), headerFont);
+		cell = new PdfPCell(new Phrase(ch));
+		cell.setColspan(tableColumns);
+		cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+		cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+		cell.setBackgroundColor(this.headerColor);
+		dfTable.addCell(cell);
+		List<String> values = new ArrayList<String>();
+		
+		
+		String[] titles = new String[]{
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_NAME),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_COUNT),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_WATERHEIGHT),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_VOLUME),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_CHLORINECONCENTRATION),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_DEMANDACTIVECHLORINE),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_DEMAND70CHLORINE),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_DEMANDSPOONS),
+				this.messages.getString(KEYS.REPORT_DESINFECTION_CUBICRESERVOIR_ROW_RETENTIONTIME)
+		};
+		for(int i=0;i<titles.length;i++){
+			ch = new Chunk(titles[i], headerFont);
+			cell = new PdfPCell(new Phrase(ch));
+			cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+			cell.setVerticalAlignment(Element.ALIGN_MIDDLE);
+			cell.setBackgroundColor(this.headerColor);
+			dfTable.addCell(cell);
+		}
 	}
 }

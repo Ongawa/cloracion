@@ -19,6 +19,7 @@ public interface SystemElement {
      */
     public StringProperty getName();
     
+    
     /**
      * Returns a human readable name for the type of this element
      * 
@@ -48,4 +49,19 @@ public interface SystemElement {
      * @return
      */
     public int getConcentration();
+
+    
+    /**
+     * Saves the element into the database
+     * 
+     */
+    public void save();
+    
+    /**
+     * Temporarily saves the desinfections requirements results
+     * 
+     */
+    public void setDesinfectionResults(double[] results);
+    public double[] getDesinfectionResults();
+    
 }
