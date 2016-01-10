@@ -82,9 +82,6 @@ public class CLCalculator implements Initializable {
     private ComboBox<String> climateCombo;
     
     @FXML
-    private Label gdia;
-    
-    @FXML
     private Label kgquin;
     
     @FXML
@@ -122,7 +119,6 @@ public class CLCalculator implements Initializable {
             double[] clResults = DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
                                         String.valueOf(reservoirVolume), this.rechargePeriod.getText(),
                                         this.dailyDripRate.getText(), this.clDemmand.getText());
-            this.gdia.setText(String.format("%1$,.2f",clResults[0]) + " g/dia");
             this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/quincena");
             this.kgmes.setText(String.format("%1$,.2f",clResults[2]) + " kg/mes");
             DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));
