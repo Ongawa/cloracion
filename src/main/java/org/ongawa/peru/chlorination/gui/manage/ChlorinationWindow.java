@@ -45,18 +45,14 @@ public class ChlorinationWindow  implements Initializable{
 
     /* Results */
     @FXML
-    private Label clGrDay;
-    @FXML
     private Label clKgQuin;
     @FXML
     private Label clKgMonth;
     @FXML
-    private Label dripSec;
+    private Label dripMin;
     @FXML
-    private Label dripMlSec;
-    @FXML
-    private Label dripLMin;
-    
+    private Label dripMlMin;
+
     
     private String basin;
     
@@ -230,13 +226,11 @@ public class ChlorinationWindow  implements Initializable{
                                 this.clPurity.getText(), this.tankVolume.getText(),
                                 this.rechargeTime.getText(), this.dripTime.getText(), this.clDemand.getText());
             
-            this.clGrDay.setText(String.format("%1$,.2f", clResults[0]) + " gr/dia");
             this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/quincena");
             this.clKgMonth.setText(String.format("%1$,.2f", clResults[2]) + " kg/quincena");
             
-            this.dripSec.setText(String.format("%1$,.2f", clResults[5]) + " gotas/seg");
-            this.dripMlSec.setText(String.format("%1$,.2f", clResults[4]) + " gotas/seg");
-            this.dripLMin.setText(String.format("%1$,.2f", clResults[3]) + " gotas/seg");
+            this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/seg");
+            this.dripMlMin.setText(String.format("%1$,.2f", clResults[4]) + " gotas/seg");
         } else {
             ClAlert alert = new ClAlert(errorMessage);
             try {
