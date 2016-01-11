@@ -109,10 +109,13 @@ public class CLCalculator implements Initializable {
             String ph = dataloader.getValue("ph");
             String turbidity = dataloader.getValue("turbidity");
             double population = this.selectedWaterSystem.getPopulation();
-            double futPopulation = this.selectedWaterSystem.getPopulationForecast();
+            String futPopulation = DataCalculator.getFutPopulation(this.selectedWaterSystem.getGrowingIndex(), 
+                                                                    this.selectedWaterSystem.getPopulation());
+            // TODO: save the futPopulation in the database
+            //double futPopulationdb = this.selectedWaterSystem.getPopulationForecast();
             double dota = this.selectedWaterSystem.getEndowment();
             double minCaudal = DataCalculator.caudalMin(population, dota, "20");
-            double futCaudal = DataCalculator.caudalMin(futPopulation, dota, "20");
+            double futCaudal = DataCalculator.caudalMin(Double.valueOf(futPopulation), dota, "20");
             this.currentFlowRate.setText(String.format("%1$,.2f",minCaudal));
             this.futureFlowRate.setText(String.format("%1$,.2f",futCaudal));
             double reservoirVolume = this.selectedWaterSystem.getReservoirVolume();
@@ -123,6 +126,13 @@ public class CLCalculator implements Initializable {
             this.kgmes.setText(String.format("%1$,.2f",clResults[2]) + " kg/mes");
             DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));
             this.selectedWaterSystem.setFutureNeededFlow(Double.valueOf(futCaudal));
+            
+            /*
+             * TODO:
+             * Add a selector after the "calculate" button, so onChange it will
+             * toggle between the future and the current caudal for the calculations.
+             * 
+             */
             String calculatedTankVolume;
             if (this.climateCombo.getValue().equalsIgnoreCase("Calido")) {
                 calculatedTankVolume = String.format("%1$,.2f",DataCalculator.volTanCaD(DataCalculator.WARN_CLIMATE_PPM, clResults[1]));

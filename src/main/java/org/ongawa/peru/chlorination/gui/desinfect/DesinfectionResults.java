@@ -72,8 +72,11 @@ public class DesinfectionResults implements Initializable {
         for (SystemElement elem : resultElements) {
             double[] elemResults = DataCalculator.desinfection(elem.getCount(), elem.getVolume(),
                     elem.getConcentration(), 70);
+            double vol = elem.getVolume();
             elem.setDesinfectionResults(elemResults);
-            totalRequired += elemResults[1];
+            
+            // gr to kg
+            totalRequired += elemResults[1]/1000;
         }
 
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
@@ -81,13 +84,13 @@ public class DesinfectionResults implements Initializable {
         this.elementCountColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getCount())));
         this.clRequiredColumn.setCellValueFactory(
-                cellData -> new SimpleStringProperty(String.format("%1$,.2f",cellData.getValue().getDesinfectionResults()[1])));
+                cellData -> new SimpleStringProperty(String.format("%1$,.2f",cellData.getValue().getDesinfectionResults()[0])));
         this.spoonsRequiredColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(String.format("%1$,.2f",cellData.getValue().getDesinfectionResults()[2])));
         this.timeRequiredColumn.setCellValueFactory(cellData -> new SimpleStringProperty("Por calcular"));
         this.elementCountColumn.setCellValueFactory(
                 cellData -> new ReadOnlyStringWrapper(String.valueOf(cellData.getValue().getCount())));
-
+        
         this.clTotal.setText(String.format("%1$,.2f", totalRequired));
 
     }
