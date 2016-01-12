@@ -38,17 +38,17 @@
         <Label text="N soles /año:" GridPane.columnIndex="1"
             GridPane.rowIndex="3" GridPane.columnSpan="1" />
         <Label text="Repuestos SAP:" GridPane.columnIndex="0"
-            GridPane.rowIndex="4" GridPane.columnSpan="1" />
+            GridPane.rowIndex="4" GridPane.columnSpan="1"/>
         <TextField fx:id="repairPay" GridPane.columnIndex="1"
-            GridPane.rowIndex="4" GridPane.columnSpan="1" />
+            GridPane.rowIndex="4" GridPane.columnSpan="1" value="0"/>
         <Label text="Gestion JASS:" GridPane.columnIndex="0"
             GridPane.rowIndex="5" GridPane.columnSpan="1" />
         <TextField fx:id="jassPay" GridPane.columnIndex="1"
-            GridPane.rowIndex="5" GridPane.columnSpan="1" />
+            GridPane.rowIndex="5" GridPane.columnSpan="1" value="0"/>
         <Label text="Pago al operador:" GridPane.columnIndex="0"
             GridPane.rowIndex="6" GridPane.columnSpan="1" />
         <TextField fx:id="workerPay" GridPane.columnIndex="1"
-            GridPane.rowIndex="6" GridPane.columnSpan="1" />
+            GridPane.rowIndex="6" GridPane.columnSpan="1" value="0"/>
         <Button text="Calcular Cuota Familiar" fx:id="calcFamPay" id="calcFamPay" 
             onAction="#calculateFamilPay"  GridPane.columnIndex="5" GridPane.rowIndex="8"/>
             
