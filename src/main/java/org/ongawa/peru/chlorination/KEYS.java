@@ -139,4 +139,33 @@ public class KEYS {
 	public static final String REPORT_DESINFECTION_PIPE_TABLE_NAME = "desinfection_pipe_table_name";
 	public static final String REPORT_DESINFECTION_RELIEFVALVE_NAME = "desinfection_reliefvalve_table_name";
 	public static final String REPORT_DESINFECTION_TABLE_GENERICFIELD_TYPE = "desinfection_table_genericfield_type";
+	
+	public static final String REPORT_GENERIC_TITLE_FIRST_CHUNK = "report_generic_title_first_chunk";
+	public static final String REPORT_MANAGEMENT_TITLE_CHUNK = "report_management_title_chunk";
+	public static final String REPORT_DESIGN_TITLE_CHUNK = "report_design_title_chunk";
+	public static final String REPORT_DESINFECTION_TITLE_CHUNK = "report_desinfection_title_chunk";
+	public static final String REPORT_GENERIC_TITLE_LAST_CHUNK = "report_generic_title_last_chunk";
+	public static final String REPORT_GENERIC_GENERATIONDATE = "report_generic_generationdate";
+	public static final String REPORT_GENERIC_AUTHOR = "report_generic_auhtor";
+	public static final String REPORT_GENERIC_SYSTEMDATA = "report_generic_systemdata";
+	public static final String REPORT_GENERIC_SUBBASIN = "report_generic_subbasin";
+	public static final String REPORT_GENERIC_COMMUNITY = "report_generic_community";
+	public static final String REPORT_GENERIC_WATERSYSTEM = "report_generic_watersystem";
+	public static final String REPORT_GENERIC_FAMILIESNUM = "report_generic_familiesnum";
+	public static final String REPORT_GENERIC_POPULATION = "report_generic_population";
+	public static final String REPORT_GENERIC_NATURALFLOW = "report_generic_naturalflow";
+	public static final String REPORT_GENERIC_FLOWTOCHLORINE = "report_generic_flowtochlorine";
+	public static final String REPORT_GENERIC_CHLORINETYPE = "report_generic_chlorinetype";
+	public static final String REPORT_GENERIC_CHLORINEPURENESS = "report_generic_chlorinepureness";
+	public static final String REPORT_GENERIC_TANKVOLUME = "report_generic_tankvolume";
+	public static final String REPORT_GENERIC_RELOADTIME = "report_generic_reloadtime";
+	public static final String REPORT_GENERIC_DRIPPINGPERDAY = "report_generic_drippingperday";
+	public static final String REPORT_GENERIC_CHLORINEDEMAND = "report_generic_chlorinedemand";
+	public static final String REPORT_GENERIC_CHLORINEPRICE = "report_generic_chlorineprice";
+	public static final String REPORT_GENERIC_RESULTS = "report_generic_results";
+	public static final String REPORT_RESULTS_MANAGEMENT_DOSE = "report_results_management_dose";
+	public static final String REPORT_RESULTS_MANAGEMENT_DRIPPINGFLOW = "report_results_management_drippingflow";
+	public static final String REPORT_RESULTS_MANAGEMENT_CHLORINATIONCOST = "report_results_management_chlorinationcost";
+	public static final String REPORT_RESULTS_GENERIC_WARNINGS_TITLE = "report_results_generic_warnings_title";
+	public static final String REPORT_RESULTS_MANAGEMENT_WARNINGS = "report_results_management_warnings";
 }

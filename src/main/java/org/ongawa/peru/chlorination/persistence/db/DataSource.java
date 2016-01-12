@@ -145,21 +145,27 @@ public class DataSource implements IDataSource {
 	
 	private ChlorineCalculation readChlorineCalculation(Record record, WaterSystem waterSystem){
 		ChlorineCalculation chlorineCalculation = new ChlorineCalculation(
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DATE),
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DEMANDCLR),
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DEMANDACTIVECHLORINE),
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DEMANDCOMMONPRODUCT),
-				waterSystem);
+				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DATE), waterSystem);
 		
-		Integer integer; Double dodo;
+		Integer integer; Double dodo; String string;
+		if((integer=record.getValue(Chlorinecalculation.CHLORINECALCULATION.FAMILIESNUM))!=null) chlorineCalculation.setFamiliesNum(integer);
 		if((integer=record.getValue(Chlorinecalculation.CHLORINECALCULATION.POPULATION))!=null) chlorineCalculation.setPopulation(integer);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.TANKVOLUME))!=null) chlorineCalculation.setTankVolume(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.TANKUSEFULVOLUME))!=null) chlorineCalculation.setTankUsefulVolume(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT))!=null) chlorineCalculation.setEndowment(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS))!=null) chlorineCalculation.setChlorinePureness(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW))!=null) chlorineCalculation.setInputFlow(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(integer);
-		
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.NATURALFLOW))!=null) chlorineCalculation.setNaturalFlow(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINATEDFLOW))!=null) chlorineCalculation.setChlorinatedFlow(dodo);
+		if((string=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINETYPE))!=null) chlorineCalculation.setChlorineType(string);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGHOURSPERDAY))!=null) chlorineCalculation.setDrippingHoursPerDay(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDEMAND))!=null) chlorineCalculation.setChlorineDemand(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPRICE))!=null) chlorineCalculation.setChlorinePrice(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT))!=null) chlorineCalculation.setChlorineDosePerFortnight(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH))!=null) chlorineCalculation.setChlorineDosePerMonth(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML))!=null) chlorineCalculation.setDrippingFlowInMl(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS))!=null) chlorineCalculation.setDrippingFlowInDrops(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST))!=null) chlorineCalculation.setChlorinationCost(dodo);
+				
 		return chlorineCalculation;
 	}
 	
@@ -1455,30 +1461,45 @@ public class DataSource implements IDataSource {
 			DSLContext insert = this.prepareDSLContext(this.connection);
 			int result = insert.insertInto(Chlorinecalculation.CHLORINECALCULATION,
 					Chlorinecalculation.CHLORINECALCULATION.DATE,
+					Chlorinecalculation.CHLORINECALCULATION.FAMILIESNUM,
 					Chlorinecalculation.CHLORINECALCULATION.POPULATION,
 					Chlorinecalculation.CHLORINECALCULATION.TANKVOLUME,
-					Chlorinecalculation.CHLORINECALCULATION.TANKUSEFULVOLUME,
 					Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT,
 					Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS,
-					Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW,
+					Chlorinecalculation.CHLORINECALCULATION.NATURALFLOW,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINATEDFLOW,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINETYPE,
+					Chlorinecalculation.CHLORINECALCULATION.DRIPPINGHOURSPERDAY,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEDEMAND,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEPRICE,
 					Chlorinecalculation.CHLORINECALCULATION.RELOADTIME,
-					Chlorinecalculation.CHLORINECALCULATION.DEMANDCLR,
-					Chlorinecalculation.CHLORINECALCULATION.DEMANDACTIVECHLORINE,
-					Chlorinecalculation.CHLORINECALCULATION.DEMANDCOMMONPRODUCT,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH,
+					Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML,
+					Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST,
 					Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM,
 					Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
 					Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
-					.values(chlorineCalculation.getDate(),
+					.values(
+							chlorineCalculation.getDate(),
+							chlorineCalculation.getFamiliesNum(),
 							chlorineCalculation.getPopulation(),
 							chlorineCalculation.getTankVolume(),
-							chlorineCalculation.getTankUsefulVolume(),
 							chlorineCalculation.getEndowment(),
 							chlorineCalculation.getChlorinePureness(),
-							chlorineCalculation.getInputFlow(),
+							chlorineCalculation.getNaturalFlow(),
+							chlorineCalculation.getChlorinatedFlow(),
+							chlorineCalculation.getChlorineType(),
+							chlorineCalculation.getDrippingHoursPerDay(),
+							chlorineCalculation.getChlorineDemand(),
+							chlorineCalculation.getChlorinePrice(),
 							chlorineCalculation.getReloadTime(),
-							chlorineCalculation.getDemandCLR(),
-							chlorineCalculation.getDemandActiveChlorine(),
-							chlorineCalculation.getDemandCommonProduct(),
+							chlorineCalculation.getChlorineDosePerFortnight(),
+							chlorineCalculation.getChlorineDosePerMonth(),
+							chlorineCalculation.getDrippingFlowInMl(),
+							chlorineCalculation.getDrippingFlowInDrops(),
+							chlorineCalculation.getChlorinationCost(),
 							chlorineCalculation.getWaterSystem().getWaterSystemId(),
 							chlorineCalculation.getWaterSystem().getCommunity().getCommunityId(),
 							chlorineCalculation.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
@@ -1644,16 +1665,23 @@ public class DataSource implements IDataSource {
 			DSLContext update = this.prepareDSLContext(this.connection);
 			result = update.update(Chlorinecalculation.CHLORINECALCULATION)
 					.set(Chlorinecalculation.CHLORINECALCULATION.DATE, newChlorineCalculation.getDate())
+					.set(Chlorinecalculation.CHLORINECALCULATION.FAMILIESNUM, newChlorineCalculation.getFamiliesNum())
 					.set(Chlorinecalculation.CHLORINECALCULATION.POPULATION, newChlorineCalculation.getPopulation())
 					.set(Chlorinecalculation.CHLORINECALCULATION.TANKVOLUME, newChlorineCalculation.getTankVolume())
-					.set(Chlorinecalculation.CHLORINECALCULATION.TANKUSEFULVOLUME, newChlorineCalculation.getTankUsefulVolume())
 					.set(Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT, newChlorineCalculation.getEndowment())
 					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS, newChlorineCalculation.getChlorinePureness())
-					.set(Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW, newChlorineCalculation.getInputFlow())
+					.set(Chlorinecalculation.CHLORINECALCULATION.NATURALFLOW, newChlorineCalculation.getNaturalFlow())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINATEDFLOW, newChlorineCalculation.getChlorinatedFlow())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINETYPE, newChlorineCalculation.getChlorineType())
+					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGHOURSPERDAY, newChlorineCalculation.getDrippingHoursPerDay())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDEMAND, newChlorineCalculation.getChlorineDemand())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPRICE, newChlorineCalculation.getChlorinePrice())
 					.set(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME, newChlorineCalculation.getReloadTime())
-					.set(Chlorinecalculation.CHLORINECALCULATION.DEMANDCLR, newChlorineCalculation.getDemandCLR())
-					.set(Chlorinecalculation.CHLORINECALCULATION.DEMANDACTIVECHLORINE, newChlorineCalculation.getDemandActiveChlorine())
-					.set(Chlorinecalculation.CHLORINECALCULATION.DEMANDCOMMONPRODUCT, newChlorineCalculation.getDemandCommonProduct())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT, newChlorineCalculation.getChlorineDosePerFortnight())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH, newChlorineCalculation.getChlorineDosePerMonth())
+					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML, newChlorineCalculation.getDrippingFlowInMl())
+					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS, newChlorineCalculation.getDrippingFlowInDrops())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST, newChlorineCalculation.getChlorinationCost())
 					.where(Chlorinecalculation.CHLORINECALCULATION.DATE.eq(oldChlorineCalculationDate))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(newChlorineCalculation.getWaterSystem().getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(newChlorineCalculation.getWaterSystem().getCommunity().getCommunityId()))

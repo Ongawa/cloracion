@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Chlorinec
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 
-	private static final long serialVersionUID = 1942670547;
+	private static final long serialVersionUID = -1938786347;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CHLORINECALCULATION</code>
@@ -50,74 +50,109 @@ public class Chlorinecalculation extends TableImpl<ChlorinecalculationRecord> {
 	}
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.DATE</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.DATE</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<ChlorinecalculationRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ChlorinecalculationRecord, Integer> WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.POPULATION</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.FAMILIESNUM</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Integer> POPULATION = createField("POPULATION", org.jooq.impl.SQLDataType.INTEGER, this, "");
+	public final TableField<ChlorinecalculationRecord, Integer> FAMILIESNUM = createField("FAMILIESNUM", org.jooq.impl.SQLDataType.INTEGER, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.TANKVOLUME</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.POPULATION</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> TANKVOLUME = createField("TANKVOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<ChlorinecalculationRecord, Integer> POPULATION = createField("POPULATION", org.jooq.impl.SQLDataType.INTEGER, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.TANKUSEFULVOLUME</code>.
+	 * The column <code>PUBLIC.CHLORINECALCULATION.TANKVOLUME</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> TANKUSEFULVOLUME = createField("TANKUSEFULVOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<ChlorinecalculationRecord, Double> TANKVOLUME = createField("TANKVOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.ENDOWMENT</code>. m^3/persona x dia
+	 * The column <code>PUBLIC.CHLORINECALCULATION.ENDOWMENT</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> ENDOWMENT = createField("ENDOWMENT", org.jooq.impl.SQLDataType.DOUBLE, this, "m^3/persona x dia");
+	public final TableField<ChlorinecalculationRecord, Double> ENDOWMENT = createField("ENDOWMENT", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. Expresado en %
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEPURENESS</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> CHLORINEPURENESS = createField("CHLORINEPURENESS", org.jooq.impl.SQLDataType.DOUBLE, this, "Expresado en %");
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEPURENESS = createField("CHLORINEPURENESS", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.INPUTFLOW</code>. Medido en litros/segundo
+	 * The column <code>PUBLIC.CHLORINECALCULATION.NATURALFLOW</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> INPUTFLOW = createField("INPUTFLOW", org.jooq.impl.SQLDataType.DOUBLE, this, "Medido en litros/segundo");
+	public final TableField<ChlorinecalculationRecord, Double> NATURALFLOW = createField("NATURALFLOW", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.RELOADTIME</code>. Medido en días
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINATEDFLOW</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> RELOADTIME = createField("RELOADTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "Medido en días");
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINATEDFLOW = createField("CHLORINATEDFLOW", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDCLR</code>. Medido en mg/litro
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINETYPE</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> DEMANDCLR = createField("DEMANDCLR", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "Medido en mg/litro");
+	public final TableField<ChlorinecalculationRecord, String> CHLORINETYPE = createField("CHLORINETYPE", org.jooq.impl.SQLDataType.VARCHAR.length(45), this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDACTIVECHLORINE</code>. Medido en mg/litro
+	 * The column <code>PUBLIC.CHLORINECALCULATION.DRIPPINGHOURSPERDAY</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "Medido en mg/litro");
+	public final TableField<ChlorinecalculationRecord, Double> DRIPPINGHOURSPERDAY = createField("DRIPPINGHOURSPERDAY", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
 
 	/**
-	 * The column <code>PUBLIC.CHLORINECALCULATION.DEMANDCOMMONPRODUCT</code>. Medido en mg/litro
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEDEMAND</code>. INPUT
 	 */
-	public final TableField<ChlorinecalculationRecord, Double> DEMANDCOMMONPRODUCT = createField("DEMANDCOMMONPRODUCT", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "Medido en mg/litro");
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEDEMAND = createField("CHLORINEDEMAND", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEPRICE</code>. INPUT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEPRICE = createField("CHLORINEPRICE", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.RELOADTIME</code>. INPUT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> RELOADTIME = createField("RELOADTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "INPUT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT</code>. RESULT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEDOSEPERFORTNIGHT = createField("CHLORINEDOSEPERFORTNIGHT", org.jooq.impl.SQLDataType.DOUBLE, this, "RESULT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINEDOSEPERMONTH</code>. RESULT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINEDOSEPERMONTH = createField("CHLORINEDOSEPERMONTH", org.jooq.impl.SQLDataType.DOUBLE, this, "RESULT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.DRIPPINGFLOWINML</code>. RESULT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> DRIPPINGFLOWINML = createField("DRIPPINGFLOWINML", org.jooq.impl.SQLDataType.DOUBLE, this, "RESULT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.DRIPPINGFLOWINDROPS</code>. RESULT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> DRIPPINGFLOWINDROPS = createField("DRIPPINGFLOWINDROPS", org.jooq.impl.SQLDataType.DOUBLE, this, "RESULT");
+
+	/**
+	 * The column <code>PUBLIC.CHLORINECALCULATION.CHLORINATIONCOST</code>. RESULT
+	 */
+	public final TableField<ChlorinecalculationRecord, Double> CHLORINATIONCOST = createField("CHLORINATIONCOST", org.jooq.impl.SQLDataType.DOUBLE, this, "RESULT");
 
 	/**
 	 * Create a <code>PUBLIC.CHLORINECALCULATION</code> table reference

@@ -164,30 +164,36 @@ CREATE INDEX fk_MeasuredFlow_MeasuringPoint1_idx ON MeasuredFlow (MeasuringPoint
 DROP TABLE IF EXISTS ChlorineCalculation ;
 
 CREATE TABLE IF NOT EXISTS ChlorineCalculation (
-  date DATETIME NOT NULL,
-  WaterSystem_idWaterSystem INT NOT NULL,
-  WaterSystem_Community_idCommunity INT NOT NULL,
-  WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
-  population INT NULL,
-  tankVolume DOUBLE NULL,
-  tankUsefulVolume DOUBLE NULL,
-  endowment DOUBLE NULL COMMENT 'm^3/persona x dia',
-  chlorinePureness DOUBLE NULL COMMENT 'Expresado en %',
-  inputFlow DOUBLE NULL COMMENT 'Medido en litros/segundo',
-  reloadTime DOUBLE NULL COMMENT 'Medido en días',
-  demandCLR DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
-  demandActiveChlorine DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
-  demandCommonProduct DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
+  date DATETIME NOT NULL COMMENT 'INPUT',
+  WaterSystem_idWaterSystem INT NOT NULL COMMENT 'INPUT',
+  WaterSystem_Community_idCommunity INT NOT NULL COMMENT 'INPUT',
+  WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL COMMENT 'INPUT',
+  familiesNum INT NULL COMMENT 'INPUT',
+  population INT NULL COMMENT 'INPUT',
+  tankVolume DOUBLE NULL COMMENT 'INPUT',
+  endowment DOUBLE NULL COMMENT 'INPUT',
+  chlorinePureness DOUBLE NULL COMMENT 'INPUT',
+  naturalFlow DOUBLE NULL COMMENT 'INPUT',
+  chlorinatedFlow DOUBLE NULL COMMENT 'INPUT',
+  chlorineType VARCHAR(45) NULL COMMENT 'INPUT',
+  drippingHoursPerDay DOUBLE NULL COMMENT 'INPUT',
+  chlorineDemand DOUBLE NULL COMMENT 'INPUT',
+  chlorinePrice DOUBLE NULL COMMENT 'INPUT',
+  reloadTime DOUBLE NULL COMMENT 'INPUT',
+  chlorineDosePerFortnight DOUBLE NULL COMMENT 'RESULT',
+  chlorineDosePerMonth DOUBLE NULL COMMENT 'RESULT',
+  drippingFlowInMl DOUBLE NULL COMMENT 'RESULT',
+  drippingFlowInDrops DOUBLE NULL COMMENT 'RESULT',
+  chlorinationCost DOUBLE NULL COMMENT 'RESULT',
   PRIMARY KEY (date, WaterSystem_Community_idCommunity, WaterSystem_idWaterSystem, WaterSystem_Community_SubBasin_idSubBasin),
   CONSTRAINT fk_ChlorineCalculation_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-
-COMMENT = 'Los campos referentes a numero de habitantes, capacidad del tanque y capacidad útil se ponen duplicados en esta tabla para poder llevar un histórico de todas las mediciones y las características de cada medición.';
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 CREATE INDEX fk_ChlorineCalculation_WaterSystem1_idx ON ChlorineCalculation (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
+
 
 
 -- -----------------------------------------------------

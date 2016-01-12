@@ -88,10 +88,7 @@ INSERT INTO MEASUREDFLOW (date, MeasuringPoint_idMeasuringPoint, MeasuringPoint_
 INSERT INTO MEASUREDFLOW (date, MeasuringPoint_idMeasuringPoint, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_idWaterSystem, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_idCommunity, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSystem_Community_SubBasin_idSubBasin, MeasuringPoint_WaterSystem_has_WaterSpring_WaterSpring_idWaterSpring, flow) VALUES ('2015-06-19 00:00:00', 12, 2, 2, 1, 2, 0.25);
 
 --CHLORINECALCULATION
-INSERT INTO CHLORINECALCULATION VALUES ('2015-01-23 15:50:20', 7, 5, 1, 185, 250, 225, 80, 70, 1.40, 15, 2.0, 2.0, 2.9);
-INSERT INTO CHLORINECALCULATION VALUES ('2015-07-21 10:30:10', 7, 5, 1, 195, 250, 225, 110, 70, 1.30, 17, 2.3, 2.3, 3.4);
-INSERT INTO CHLORINECALCULATION VALUES ('2015-06-23 15:50:20', 4, 3, 1, 185, 250, 225, 80, 70, 1.40, 15, 2.0, 2.0, 2.9);
-INSERT INTO CHLORINECALCULATION VALUES ('2015-07-21 10:30:10', 4, 3, 1, 195, 250, 225, 110, 70, 1.30, 17, 2.3, 2.3, 3.4);
+INSERT INTO CHLORINECALCULATION VALUES ('2015-01-23 15:50:20', 7, 5, 1, 37, 185, 250, 80, 70, 1.4, 1.2, 'Polvo', 15, 2.0, 3.5, 15, 0.96, 1.7, 18.6, 8.6, 300);
 
 --CUBICRESERVOIR
 INSERT INTO CUBICRESERVOIR VALUES (1, 7, 5, 1, 'Reservorio grande', 3, 2, 4, 2);
