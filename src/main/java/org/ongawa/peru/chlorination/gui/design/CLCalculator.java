@@ -138,7 +138,7 @@ public class CLCalculator implements Initializable {
         MainApp.pushHistory(stage.getScene());
 
         FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ResultPrices.fxml"));
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesignElements.fxml"));
         
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");

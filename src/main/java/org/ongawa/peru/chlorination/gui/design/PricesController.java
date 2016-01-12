@@ -32,6 +32,16 @@ public class PricesController implements Initializable {
     private TextField nDesinfects;
     
     @FXML
+    private TextField repairPay;
+    
+    @FXML
+    private TextField jassPay;
+    
+    
+    @FXML
+    private TextField workerPay;
+    
+    @FXML
     private Label yearTotal;
     
     @FXML
@@ -52,7 +62,7 @@ public class PricesController implements Initializable {
         // TODO: We need to store the desinfect results.
         double desinfectCL = getDesinfectCL(wsystem);
         double[] calcResults = DataCalculator.gastosCl(this.clPrice.getText(), kgmes, this.nDesinfects.getText(), "0", families);
-        double[] familyTotals = DataCalculator.cuotaFam(calcResults[0], "0", "0", "0", families);
+        double[] familyTotals = DataCalculator.cuotaFam(calcResults[0], this.repairPay.getText(), this.jassPay.getText(), this.workerPay.getText(), families);
         this.yearTotal.setText(String.format("%1$,.2f", familyTotals[1]*12) + " soles/año");
         this.monthTotal.setText(String.format("%1$,.2f", familyTotals[1]) + " soles/mes");
         this.monthlyFamilyPay.setText(String.format("%1$,.2f", familyTotals[0]) + " soles/mes");
