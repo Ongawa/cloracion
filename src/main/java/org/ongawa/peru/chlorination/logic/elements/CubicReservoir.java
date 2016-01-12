@@ -17,7 +17,7 @@ import javafx.beans.property.StringProperty;
  */
 public class CubicReservoir implements SystemElement{
 
-    public static final int REQUIRED_CL_QUANTITY = 200;
+    public static final int REQUIRED_CL_QUANTITY = 50;
     public static final String TYPE_NAME = "Reservorio";
     
     private org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir;
@@ -144,7 +144,7 @@ public class CubicReservoir implements SystemElement{
     }
 
     @Override
-    public void save() {
+    public void save() { 
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
             if (this.dbReservoir.getCubbicReservoirId() < 0) {
@@ -152,6 +152,7 @@ public class CubicReservoir implements SystemElement{
             } else {
                 ds.editCubicReservoir(this.dbReservoir);
             }
+            
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();

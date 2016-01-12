@@ -28,10 +28,10 @@ public class DataCalculator {
      * String inhabitants at the date )
      *  output String estimation of the future population
      * */
-    public static String getFutPopulation(String growthRate, String inhabitants){
-    	double crec =  Integer.parseInt(growthRate)/100; // % to 0.0
-    	int inh0 = Integer.parseInt(inhabitants);
-    	double inh1 = inh0 * Math.pow((1+crec), YEARS_PROJECTION);
+    public static String getFutPopulation(double crec , int inh0){
+//    	double crec =  Integer.parseInt(growthRate)/100; // % to 0.0
+//    	int inh0 = Integer.parseInt(inhabitants);
+    	double inh1 = inh0 * Math.pow((1+crec/100), YEARS_PROJECTION);
     	return String.valueOf(inh1);
     	
     }
@@ -67,7 +67,7 @@ public class DataCalculator {
      *  	   #days of recharging the ration tank
      *         % of the free Cl of the comercial Cl compound 
      *  output: mgr/l of Cl 
-     *  		drops per sec
+     *  		drops per min
     */
     public static double[] chlorination(String caudal,String concentracionCl, String volTanque, String tRegarga, String hGoteoDia, String demCl) {
     	double[] res = new double[6];
@@ -76,15 +76,15 @@ public class DataCalculator {
         double flNat= Double.parseDouble(caudal); 
         double hGoteo = Double.parseDouble(hGoteoDia);
         double dRecarga = Double.parseDouble(tRegarga); 
-        int perCl = Integer.parseInt(concentracionCl);
-        double cloroAdosificar=  dC * flNat * DIA2S * hGoteo * dRecarga / (perCl * 1000000 * 24) ; // kg en el tiempo de recarga
+        double perCl = Double.parseDouble(concentracionCl)/100;
+        double cloroAdosificar=  dC * flNat * DIA2S * hGoteo * dRecarga / (perCl  * 24 * 1000000) ; // kg en el tiempo de recarga
         res[0] = cloroAdosificar*1000/dRecarga;// 1000 stands for g and dRecargar for day (g/day)
         res[1] = cloroAdosificar;//  (kg/periodoRecarga)
         res[2] = cloroAdosificar*30.5/dRecarga;// 30 stands for days in month and dRecargar for day (kg/month)
         double caudalGoteo = vTank/(dRecarga*hGoteo*60); // 60 stands for min (l/min)
         res[3] = caudalGoteo;//l/min
-        res[4] = caudalGoteo*1000/60;//1000 stands for ml and 60 for sec (ml/s)
-        res[5] = caudalGoteo*1000*ML2GOTAS/60; //1000 stands for ml and 60 for sec (gotas/s)
+        res[4] = caudalGoteo*1000;//1000 stands for ml (ml/min)
+        res[5] = caudalGoteo*1000*ML2GOTAS; //1000 stands for ml  (gotas/min)
         return res; 
     }
 
@@ -117,13 +117,13 @@ public class DataCalculator {
      * 		  height (m)
      * output vol in litres        
      */
-    public static double volTanTam (String length, String width, String height){
+    public static double volTanTam (double length, double width, double height){
     	
-    	double l = Double.parseDouble(length);  //m
-    	double w = Double.parseDouble(width); //m
-    	double h = Double.parseDouble(height); //m
+    	//double l = Double.parseDouble(length);  //m
+    	//double w = Double.parseDouble(width); //m
+    	//double h = Double.parseDouble(height); //m
         
-        double vt = l*w*h*1000;//1000 stands for m3 to liters 
+        double vt = length*width*height*1000;//1000 stands for m3 to liters 
         return vt;// L
     	
     }
@@ -133,12 +133,12 @@ public class DataCalculator {
     *        longitud m
     * output vol in litres        
     */
-   public static double volTub (String diametro, String longitud){
+   public static double volTub (double diametro, double longitud){
    	
-   	double r = Double.parseDouble(diametro)/2 * PULGADA2M;  //m
-   	double l = Double.parseDouble(longitud); //m
+   	double r = diametro/2 * PULGADA2M;  //m
+   	//double l = Double.parseDouble(longitud); //m
    	double area = (3.1416*r*r);
-       double vt = l*area*1000;//1000 stands for m3 to liters 
+       double vt = longitud*area*1000;//1000 stands for m3 to liters 
        return vt;// L
    	
    }
@@ -149,17 +149,17 @@ public class DataCalculator {
      *         concentration of the desinfectant compound  mg/L
      *  output: mgr/l of Cl 
     */
-    public static double[] desinfection(int numEle, double vTank, double concDes, double concCl) {
+    public static double[] desinfection(int numEle, double vTank, double concDes, double concentracionCl) {
     	double[] res = new double[3];
     	//double vTank = Double.parseDouble(vol);
     	//double concDes = Double.parseDouble(concentracion); 
-    	//double concCl = Double.parseDouble(concentracionCl);
+    	double concCl = concentracionCl/100;
         //int numEle = Integer.parseInt(units);
         
-        double cucharasDesin=  vTank*concDes/concCl / CUCHARA2GR; // cucharadas por elemento
-        res[0] = cucharasDesin* CUCHARA2GR/1000;// 1000 stands for kg 
+        double cucharasDesin=  vTank*concDes/concCl / (1000 * CUCHARA2GR); // cucharadas por elemento
+        res[0] = cucharasDesin* CUCHARA2GR;// 1000 stands for kg 
         res[2] = cucharasDesin;//  
-        res[1] = cucharasDesin* CUCHARA2GR/1000*numEle;// 1000 stands for kg. Total kg of desinf for all elem
+        res[1] = cucharasDesin* CUCHARA2GR*numEle;// 1000 stands for kg. Total kg of desinf for all elem
         //res[2] = String.valueOf(cucharasDesin*numEle);//  Total cucharas of desinf for all elem
         
         return res; 
@@ -199,7 +199,7 @@ public class DataCalculator {
    	
    }
    /* Function cuotaFam to compute the fee per family of the system
-   * input: gastos en cloro ANUAL
+   * input: gastos en cloro MES
    *        gastos en reparición ANUAL
    *        gastos de gestión ANUAL
    *        gastos en operario ANUAL

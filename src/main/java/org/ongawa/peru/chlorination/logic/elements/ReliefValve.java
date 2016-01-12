@@ -1,5 +1,6 @@
 package org.ongawa.peru.chlorination.logic.elements;
 
+import org.ongawa.peru.chlorination.logic.DataCalculator;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
@@ -61,7 +62,7 @@ public class ReliefValve implements SystemElement {
 
     @Override
     public double getVolume() {
-        return this.dbValve.getVolume();
+        return DataCalculator.volTanTam(this.getLength(), this.getWidth(), this.getHeigtht());
     }
 
     @Override
@@ -90,7 +91,7 @@ public class ReliefValve implements SystemElement {
 
     @Override
     public double getCombinedVolume() {
-        return this.dbValve.getCombinedVolume();
+        return this.getCount()*this.getVolume();
     }
 
     @Override

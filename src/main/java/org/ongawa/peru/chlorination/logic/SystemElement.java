@@ -8,7 +8,7 @@ public interface SystemElement {
     /**
      * Calculates the volume of this element.
      * 
-     * @return the volume in m^3
+     * @return the volume in liters
      */
     public double getVolume();
     
