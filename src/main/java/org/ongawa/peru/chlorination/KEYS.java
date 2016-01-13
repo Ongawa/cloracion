@@ -162,10 +162,18 @@ public class KEYS {
 	public static final String REPORT_GENERIC_DRIPPINGPERDAY = "report_generic_drippingperday";
 	public static final String REPORT_GENERIC_CHLORINEDEMAND = "report_generic_chlorinedemand";
 	public static final String REPORT_GENERIC_CHLORINEPRICE = "report_generic_chlorineprice";
+	public static final String REPORT_GENERIC_ENDOWMENT = "report_generic_endowment";
+	public static final String REPORT_GENERIC_GROWINGINDEX = "report_generic_growingindex";
+	public static final String REPORT_GENERIC_CURRENTPOPULATIONNEEDEDFLOW = "report_generic_currentpopulationneededflow";
+	public static final String REPORT_GENERIC_FUTUREPOPULATIONNEEDEDFLOW = "report_generic_futurepopulationneededflow";
+	public static final String REPORT_GENERIC_CLIMATE = "report_generic_climate";
+	public static final String REPORT_MANAGEMENT_NOCHLORINECALCULATION = "report_management_nochlorinecalculation";
 	public static final String REPORT_GENERIC_RESULTS = "report_generic_results";
 	public static final String REPORT_RESULTS_MANAGEMENT_DOSE = "report_results_management_dose";
 	public static final String REPORT_RESULTS_MANAGEMENT_DRIPPINGFLOW = "report_results_management_drippingflow";
 	public static final String REPORT_RESULTS_MANAGEMENT_CHLORINATIONCOST = "report_results_management_chlorinationcost";
+	public static final String REPORT_RESULTS_DESIGN_CHLORINEAMOUNTNEEDED = "report_results_design_chlorineamountneeded";
+	public static final String REPORT_RESULTS_DESIGN_TANKVOLUME = "report_results_design_tankvolume";
 	public static final String REPORT_RESULTS_GENERIC_WARNINGS_TITLE = "report_results_generic_warnings_title";
 	public static final String REPORT_RESULTS_MANAGEMENT_WARNINGS = "report_results_management_warnings";
 }

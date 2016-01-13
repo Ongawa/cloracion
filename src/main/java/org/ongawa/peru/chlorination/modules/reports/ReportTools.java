@@ -396,16 +396,16 @@ public class ReportTools {
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			String[] fields = new String[]{
 					this.sdf.format(chlorineCalculation.getDate()),
-					String.valueOf(chlorineCalculation.getPopulation()),
-					this.df.format(chlorineCalculation.getTankVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
-					this.df.format(chlorineCalculation.getTankUsefulVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
-					this.df.format(chlorineCalculation.getEndowment())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPPPD),
-					this.df.format(chlorineCalculation.getChlorinePureness())+"%",
-					this.df.format(chlorineCalculation.getInputFlow())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPS),
-					this.df.format(chlorineCalculation.getReloadTime())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_DAYS),
-					this.df.format(chlorineCalculation.getDemandCLR())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
-					this.df.format(chlorineCalculation.getDemandActiveChlorine())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
-					this.df.format(chlorineCalculation.getDemandCommonProduct())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL)
+//					String.valueOf(chlorineCalculation.getPopulation()),
+//					this.df.format(chlorineCalculation.getTankVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
+//					this.df.format(chlorineCalculation.getTankUsefulVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
+//					this.df.format(chlorineCalculation.getEndowment())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPPPD),
+//					this.df.format(chlorineCalculation.getChlorinePureness())+"%",
+//					this.df.format(chlorineCalculation.getInputFlow())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPS),
+//					this.df.format(chlorineCalculation.getReloadTime())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_DAYS),
+//					this.df.format(chlorineCalculation.getDemandCLR())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
+//					this.df.format(chlorineCalculation.getDemandActiveChlorine())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
+//					this.df.format(chlorineCalculation.getDemandCommonProduct())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL)
 			};
 			BaseColor backgroundColor = (cellIndex%2==0)?this.row1Color:this.row2Color;
 			for(int i=0;i<fields.length;i++){
