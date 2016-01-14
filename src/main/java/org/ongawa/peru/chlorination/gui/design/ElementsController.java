@@ -276,7 +276,6 @@ public class ElementsController implements Initializable{
                 this.currentEditableElement = new Pipe(name, length, diameter, this.waterSystem, count);
                 this.elements.add(this.currentEditableElement);
             }
-            this.currentEditableElement.save();
         } else if (elementType.equals(CubicReservoir.TYPE_NAME)) {
             String name = ((TextField) this.editPane.lookup("#elementName")).getText();
 
@@ -320,7 +319,6 @@ public class ElementsController implements Initializable{
                 this.currentEditableElement = new CubicReservoir(name, length, width,height, this.waterSystem, count);
                 this.elements.add(this.currentEditableElement);
             }
-            this.currentEditableElement.save();
 
         } else {
             // Relief Valve
@@ -367,7 +365,6 @@ public class ElementsController implements Initializable{
                 this.currentEditableElement = new ReliefValve(name, length, width,height, this.waterSystem, count);
                 this.elements.add(this.currentEditableElement);
             }
-            this.currentEditableElement.save();
         }
         // Clear the panel
         this.currentEditableElement = null;

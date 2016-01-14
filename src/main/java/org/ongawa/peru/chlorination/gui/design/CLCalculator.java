@@ -122,7 +122,7 @@ public class CLCalculator implements Initializable {
             double[] clResults = DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
                                         String.valueOf(reservoirVolume), this.rechargePeriod.getText(),
                                         this.dailyDripRate.getText(), this.clDemmand.getText());
-            this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/quincena");
+            this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/periodo");
             this.kgmes.setText(String.format("%1$,.2f",clResults[2]) + " kg/mes");
             DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));
             this.selectedWaterSystem.setFutureNeededFlow(Double.valueOf(futCaudal));

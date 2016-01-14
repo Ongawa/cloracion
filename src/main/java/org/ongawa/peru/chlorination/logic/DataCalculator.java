@@ -186,15 +186,15 @@ public class DataCalculator {
     *        consumption of Cl per desinfection
     *  output: cuota de soles al mes
     */
-   public static double [] gastosCl (String price, String consumptionCl ,String desinfectionPerYear, String consumptionDesin, String familias){
+   public static double [] gastosCl (String price, String consumptionCl ,String desinfectionPerYear, double consumptionDesin, String familias){
 	   double [] c_min = new double[2];
    	double solesCl = Double.parseDouble(price);  // soles/kg
    	double c_cl = Double.parseDouble(consumptionCl); // Consumo de cloro por operacion kg/mes
-   	double c_ds = Double.parseDouble(consumptionDesin); // Consumo de cloro por desinfeccion kg/operacion
+   	//double c_ds = Double.parseDouble(consumptionDesin); // Consumo de cloro por desinfeccion kg/operacion
    	int n_ds = Integer.parseInt(desinfectionPerYear); // Numero de desinfecciones anuales
    	double n_fam = Double.parseDouble(familias);
-   	c_min[0] = solesCl*(c_cl + n_ds*c_ds/12);//12 stands for months on a year
-     c_min[1] = solesCl*(c_cl + n_ds*c_ds/12)/n_fam;//12 stands for months on a year. Family fee 		   
+   	c_min[0] = solesCl*(c_cl + n_ds*consumptionDesin/12);//12 stands for months on a year
+     c_min[1] = solesCl*(c_cl + n_ds*consumptionDesin/12)/n_fam;//12 stands for months on a year. Family fee 		   
        return c_min;// soles al mes
    	
    }

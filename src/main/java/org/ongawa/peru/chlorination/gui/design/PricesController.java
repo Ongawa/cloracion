@@ -11,12 +11,14 @@ import org.ongawa.peru.chlorination.persistence.db.DataSource;
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
 import org.ongawa.peru.chlorination.logic.DataLoader;
+import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CubicreservoirRecord;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
 import org.ongawa.peru.chlorination.persistence.elements.ReliefValve;
 import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
@@ -66,8 +68,8 @@ public class PricesController implements Initializable {
         String families = String.valueOf(wsystem.getFamiliesNum());
         String kgmes = dataloader.getValue("kgmes");
         // TODO: We need to store the desinfect results.
-        double desinfectCL = getDesinfectCL(wsystem);
-        double[] calcResults = DataCalculator.gastosCl(this.clPrice.getText(), kgmes, this.nDesinfects.getText(), "0", families);
+        double desinfectCLPrice = getDesinfectCL(Double.valueOf(this.clPrice.getText()));
+        double[] calcResults = DataCalculator.gastosCl(this.clPrice.getText(), kgmes, this.nDesinfects.getText(), desinfectCLPrice, families);
         double[] familyTotals = DataCalculator.cuotaFam(calcResults[0], this.repairPay.getText(), this.jassPay.getText(), this.workerPay.getText(), families);
         
         this.regularCl.setText(String.format("%1$,.2f", Double.valueOf(kgmes)) + " kg/mes");
@@ -87,18 +89,28 @@ public class PricesController implements Initializable {
 
     }
     
-    private double getDesinfectCL(WaterSystem wsystem) {
+    private double getDesinfectCL(double clPrice) {
+        double totalRequired = 0;
         try {
-            IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
-            List<Pipe> pipes = ds.getPipes(wsystem);
-            List<CubicReservoir> creservoirs = ds.getCubicReservoirs(wsystem);
-            List<ReliefValve> valves = ds.getReliefValves(wsystem);
+            ObservableList<SystemElement> elements = DataLoader.getDataLoader().getDesinfectResults();
+
+            // Calculate the desinfection for every element
+            for (SystemElement elem : elements) {
+                double[] elemResults = DataCalculator.desinfection(elem.getCount(), elem.getVolume(),
+                        elem.getConcentration(), 70);
+                double vol = elem.getVolume();
+                elem.setDesinfectionResults(elemResults);
+                
+                // gr to kg
+                totalRequired += elemResults[1]/1000;
+            }
             
-            // TODO: Go over every element and get the grand total of the CL for the desinfection.
+
         } catch(Exception e) {
             //TODO: Handle exception 
         }
-        return 0;
+        
+        return totalRequired*clPrice;
     }
 
     @Override

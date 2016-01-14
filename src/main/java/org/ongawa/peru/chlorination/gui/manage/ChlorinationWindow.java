@@ -78,7 +78,7 @@ public class ChlorinationWindow  implements Initializable{
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
                 //I can only chlorate a caudal smaller than the natural one.
-                if (Integer.parseInt(naturalCaudal.textProperty().get()) < Integer.parseInt(newValue)){
+                if (Double.valueOf(naturalCaudal.textProperty().get()) < Double.valueOf(newValue)){
                     chlorableCaudal.setStyle("-fx-text-fill: red;");
                     // TODO: Add a text alert
                 } else {
@@ -226,7 +226,7 @@ public class ChlorinationWindow  implements Initializable{
                                 this.clPurity.getText(), this.tankVolume.getText(),
                                 this.rechargeTime.getText(), this.dripTime.getText(), this.clDemand.getText());
             
-            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/quincena"); //TODO: Change the string to trecarga
+            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/periodo"); //TODO: Change the string to trecarga
             this.clKgMonth.setText(String.format("%1$,.2f", clResults[2]) + " kg/mes");
             
             this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/min");
