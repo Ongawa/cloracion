@@ -32,11 +32,11 @@
         <Label text="Cloro para operación:" GridPane.columnIndex="0"
             GridPane.rowIndex="2" GridPane.columnSpan="1" />
         <Label text="N soles /año:" GridPane.columnIndex="1"
-            GridPane.rowIndex="2" GridPane.columnSpan="1" />
+            GridPane.rowIndex="2" GridPane.columnSpan="1" fx:id="regularCl"/>
         <Label text="Cloro para desinfección:" GridPane.columnIndex="0"
             GridPane.rowIndex="3" GridPane.columnSpan="1" />
         <Label text="N soles /año:" GridPane.columnIndex="1"
-            GridPane.rowIndex="3" GridPane.columnSpan="1" />
+            GridPane.rowIndex="3" GridPane.columnSpan="1" fx:id="desinfectCl"/>
         <Label text="Repuestos SAP:" GridPane.columnIndex="0"
             GridPane.rowIndex="4" GridPane.columnSpan="1"/>
         <TextField fx:id="repairPay" GridPane.columnIndex="1"

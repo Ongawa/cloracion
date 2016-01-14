@@ -1,5 +1,6 @@
 package org.ongawa.peru.chlorination.logic.elements;
 
+import org.ongawa.peru.chlorination.logic.DataCalculator;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
@@ -88,7 +89,10 @@ public class Pipe implements SystemElement{
      */
     @Override
     public double getVolume() {
-        return this.dbPipe.getVolume();
+        // TODO: check this...
+        // also TODO: check how the data is stored in the db
+        return DataCalculator.volTub(this.dbPipe.getDiameter(), this.dbPipe.getLength());
+        //return this.dbPipe.getVolume();
     }
 
     /**
@@ -123,7 +127,7 @@ public class Pipe implements SystemElement{
      */
     @Override
     public double getCombinedVolume() {
-        return this.dbPipe.getCombinedVolume();
+        return this.getVolume()*this.getCount();
     }
     
     @Override

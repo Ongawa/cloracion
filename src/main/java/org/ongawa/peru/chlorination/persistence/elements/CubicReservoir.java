@@ -1,5 +1,7 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+import org.ongawa.peru.chlorination.logic.DataCalculator;
+
 /**
  * @author Kiko
  */
@@ -78,7 +80,7 @@ public class CubicReservoir {
 	}
 
 	public double getVolume() {
-		return this.getWidth()*this.getLength()*this.getHeight();
+		return DataCalculator.volTanTam(this.getWidth(), this.getLength(), this.getHeight());
 	}
 
 	public double getCombinedVolume() {

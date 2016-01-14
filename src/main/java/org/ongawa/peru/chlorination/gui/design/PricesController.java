@@ -53,6 +53,12 @@ public class PricesController implements Initializable {
     @FXML
     private Label monthlyFamilyPayNoCl;
     
+    @FXML
+    private Label regularCl;
+    
+    @FXML
+    private Label desinfectCl;
+    
     public void calculateFamilPay() {
         
         DataLoader dataloader = DataLoader.getDataLoader();
@@ -63,10 +69,14 @@ public class PricesController implements Initializable {
         double desinfectCL = getDesinfectCL(wsystem);
         double[] calcResults = DataCalculator.gastosCl(this.clPrice.getText(), kgmes, this.nDesinfects.getText(), "0", families);
         double[] familyTotals = DataCalculator.cuotaFam(calcResults[0], this.repairPay.getText(), this.jassPay.getText(), this.workerPay.getText(), families);
+        
+        this.regularCl.setText(String.format("%1$,.2f", Double.valueOf(kgmes)) + " kg/mes");
+        this.desinfectCl.setText("0 kg/desinfección");
+        
         this.yearTotal.setText(String.format("%1$,.2f", familyTotals[1]*12) + " soles/año");
         this.monthTotal.setText(String.format("%1$,.2f", familyTotals[1]) + " soles/mes");
         this.monthlyFamilyPay.setText(String.format("%1$,.2f", familyTotals[0]) + " soles/mes");
-        this.monthlyFamilyPayNoCl.setText(String.format("%1$,.2f", calcResults[0]) + "soles/mes");
+        this.monthlyFamilyPayNoCl.setText(String.format("%1$,.2f", calcResults[1]) + "soles/mes");
     }
     
     public void triggerBack() {

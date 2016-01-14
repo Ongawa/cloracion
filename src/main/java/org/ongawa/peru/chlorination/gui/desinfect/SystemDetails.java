@@ -379,7 +379,11 @@ public class SystemDetails implements Initializable {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
 
+        // TODO: Add cl purity textField
+        
         // Set the data to pass ***before*** calling the class loader
+        
+        // TODO: Add a "look forward" history
         DataLoader.getDataLoader().setDesinfectResults(this.elements);
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionResults.fxml"));
 
