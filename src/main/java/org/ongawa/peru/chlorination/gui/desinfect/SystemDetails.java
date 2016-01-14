@@ -78,6 +78,10 @@ public class SystemDetails implements Initializable {
     }
 
     public void triggerBack() {
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
+        
 
         Scene scene = MainApp.popHistory();
         if (scene != null)
@@ -385,6 +389,12 @@ public class SystemDetails implements Initializable {
         
         // TODO: Add a "look forward" history
         DataLoader.getDataLoader().setDesinfectResults(this.elements);
+        
+        Scene future = MainApp.popFuture(DesinfectionResults.class.getSimpleName());
+        if (future != null) {
+            stage.setScene(future);
+            return;
+        }
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionResults.fxml"));
 
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());

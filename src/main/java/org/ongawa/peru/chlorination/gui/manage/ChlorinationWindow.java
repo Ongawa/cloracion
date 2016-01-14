@@ -251,6 +251,10 @@ public class ChlorinationWindow  implements Initializable{
     }
    
     public void triggerBack() {
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
+        
         
         Scene scene = MainApp.popHistory();
         if (scene != null)

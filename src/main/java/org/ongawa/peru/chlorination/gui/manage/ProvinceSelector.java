@@ -130,6 +130,11 @@ public class ProvinceSelector implements Initializable{
     }
     public void triggerBack() {
         
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
+        
+        
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);
@@ -139,6 +144,11 @@ public class ProvinceSelector implements Initializable{
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
+        Scene future = MainApp.popFuture(ChlorinationWindow.class.getSimpleName());
+        if (future != null) {
+            stage.setScene(future);
+            return;
+        }
 
 
         FXMLLoader loader = new FXMLLoader();

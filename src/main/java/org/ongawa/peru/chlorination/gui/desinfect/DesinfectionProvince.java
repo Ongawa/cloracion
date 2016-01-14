@@ -103,6 +103,9 @@ public class DesinfectionProvince implements Initializable{
     }
     
     public void triggerBack() {
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
         
         Scene scene = MainApp.popHistory();
         if (scene != null)
@@ -113,6 +116,11 @@ public class DesinfectionProvince implements Initializable{
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
+        Scene future = MainApp.popFuture(SystemDetails.class.getSimpleName());
+        if (future != null) {
+            stage.setScene(future);
+            return ;
+        }
         
         DataLoader dloader = DataLoader.getDataLoader();
         

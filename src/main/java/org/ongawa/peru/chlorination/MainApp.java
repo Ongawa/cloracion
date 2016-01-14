@@ -1,6 +1,7 @@
 package org.ongawa.peru.chlorination;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
@@ -24,6 +25,7 @@ public class MainApp extends Application {
     private static Stage mainStage;
     
     private static ArrayList<Scene> history;
+    private static HashMap<String, Scene> future;
 
     private static final Logger log = LoggerFactory.getLogger(MainApp.class);
 
@@ -41,10 +43,24 @@ public class MainApp extends Application {
         }
     }
     
+    public static void pushFuture(String controllerName, Scene sceneToPush) {
+        if (future != null) {
+            future.put(controllerName, sceneToPush);
+        }
+    }
+    
+    
     public static Scene popHistory() {
         if (history != null) {
             System.out.println("Geting from history with size--- " + String.valueOf(history.size()));
             return history.remove(history.size() -1);
+        }
+        return null;
+    }
+    
+    public static Scene popFuture(String controllerName) {
+        if (future != null) {
+            return future.remove(controllerName);
         }
         return null;
     }

@@ -82,7 +82,9 @@ public class PricesController implements Initializable {
     }
     
     public void triggerBack() {
-        
+        //  Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getName(), current);
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);
