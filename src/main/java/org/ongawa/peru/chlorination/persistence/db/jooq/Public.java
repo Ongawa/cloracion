@@ -13,6 +13,8 @@ import javax.annotation.Generated;
 import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
@@ -42,7 +44,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWat
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = 1636665435;
+	private static final long serialVersionUID = -1991237896;
 
 	/**
 	 * The reference instance of <code>PUBLIC</code>
@@ -65,14 +67,15 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_27DE48A8_581E_477A_9A4C_C1F323F9095F,
-			Sequences.SYSTEM_SEQUENCE_463ACE74_87CA_47F7_B704_4C707D957A9C,
-			Sequences.SYSTEM_SEQUENCE_4938D616_1230_4624_9FD2_179E88DA35AA,
-			Sequences.SYSTEM_SEQUENCE_78B67F1B_C11B_4CF1_B903_55F0EE1FA654,
-			Sequences.SYSTEM_SEQUENCE_99A26C95_AFDD_49F6_B20B_8DB3B2FC6A35,
-			Sequences.SYSTEM_SEQUENCE_A3ACA973_ECF6_45DA_AA51_B0BDE61A846D,
-			Sequences.SYSTEM_SEQUENCE_AC6D3869_AA38_4112_843F_49805226873A,
-			Sequences.SYSTEM_SEQUENCE_CF109EE2_758A_47D1_9C1E_6B9AAAF72956);
+			Sequences.SYSTEM_SEQUENCE_066821AA_7B33_4B39_84BA_F89B3E961BAE,
+			Sequences.SYSTEM_SEQUENCE_3165A087_F60B_4711_AD43_8CB771A44873,
+			Sequences.SYSTEM_SEQUENCE_3D892925_C6CA_473C_968F_51FC6EADC9DA,
+			Sequences.SYSTEM_SEQUENCE_8E8CA370_BA75_431F_A5EE_49BB6F2F1172,
+			Sequences.SYSTEM_SEQUENCE_8FFF5F59_E6F2_479C_A21D_F689DC295A01,
+			Sequences.SYSTEM_SEQUENCE_9453486F_98D1_46D3_99B6_CA92E7E85B3B,
+			Sequences.SYSTEM_SEQUENCE_DC91C96A_23C6_4F74_AAA7_F6D13BC5C96E,
+			Sequences.SYSTEM_SEQUENCE_E3B4BA87_609D_428C_8988_3CF2C90789CF,
+			Sequences.SYSTEM_SEQUENCE_FDEDAE24_BF44_43C0_80D2_0AB92E261A49);
 	}
 
 	@Override
@@ -94,9 +97,11 @@ public class Public extends SchemaImpl {
 			Chlorinecalculation.CHLORINECALCULATION,
 			Cubicreservoir.CUBICRESERVOIR,
 			Pipe.PIPE,
+			Catchment.CATCHMENT,
 			Reliefvalve.RELIEFVALVE,
 			Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION,
 			Pipedesinfection.PIPEDESINFECTION,
-			Reliefvalvedesinfection.RELIEFVALVEDESINFECTION);
+			Reliefvalvedesinfection.RELIEFVALVEDESINFECTION,
+			Catchmentdesinfection.CATCHMENTDESINFECTION);
 	}
 }

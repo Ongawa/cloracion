@@ -6,6 +6,8 @@ package org.ongawa.peru.chlorination.persistence.db.jooq;
 
 import javax.annotation.Generated;
 
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
@@ -86,6 +88,11 @@ public class Tables {
 	public static final Pipe PIPE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE;
 
 	/**
+	 * The table PUBLIC.CATCHMENT
+	 */
+	public static final Catchment CATCHMENT = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT;
+
+	/**
 	 * The table PUBLIC.RELIEFVALVE
 	 */
 	public static final Reliefvalve RELIEFVALVE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve.RELIEFVALVE;
@@ -104,4 +111,9 @@ public class Tables {
 	 * The table PUBLIC.RELIEFVALVEDESINFECTION
 	 */
 	public static final Reliefvalvedesinfection RELIEFVALVEDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalvedesinfection.RELIEFVALVEDESINFECTION;
+
+	/**
+	 * The table PUBLIC.CATCHMENTDESINFECTION
+	 */
+	public static final Catchmentdesinfection CATCHMENTDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION;
 }

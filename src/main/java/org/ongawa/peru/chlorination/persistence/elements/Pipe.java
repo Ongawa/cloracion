@@ -3,7 +3,10 @@ package org.ongawa.peru.chlorination.persistence.elements;
 /**
  * @author Kiko
  */
-public class Pipe {
+public abstract class Pipe {
+	
+	public static final int DISTRIBUTION_PIPE_TYPE = 1;
+	public static final int CONDUCTION_PIPE_TYPE = 2;
 
 	private int pipeId;
 	private String name;

@@ -3,10 +3,13 @@ package org.ongawa.peru.chlorination.persistence;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.ongawa.peru.chlorination.persistence.elements.Catchment;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
+import org.ongawa.peru.chlorination.persistence.elements.ConductionPipe;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoirDesinfection;
+import org.ongawa.peru.chlorination.persistence.elements.DistributionPipe;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuredFlow;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuringPoint;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
@@ -128,11 +131,27 @@ public interface IDataSource {
 	
 	boolean removeCubicReservoir(CubicReservoir cubicReservoir);
 	
-	Pipe addPipe(Pipe pipe);
+	Catchment addCatchment(Catchment catchment);
 	
-	List<Pipe> getPipes(WaterSystem waterSystem);
+	List<Catchment> getCatchments(WaterSystem waterSystem);
 	
-	Pipe getPipe(WaterSystem waterSystem, int pipeId);
+	Catchment getCatchment(WaterSystem waterSystem, int catchmentId);
+	
+	boolean editCatchment(Catchment catchment);
+	
+	boolean removeCatchment(Catchment catchment);
+	
+	DistributionPipe addDistributionPipe(DistributionPipe pipe);
+	
+	List<DistributionPipe> getDistributionPipes(WaterSystem waterSystem);
+	
+	DistributionPipe getDistributionPipe(WaterSystem waterSystem, int pipeId);
+	
+	ConductionPipe addConductionPipe(ConductionPipe pipe);
+	
+	List<ConductionPipe> getConductionPipes(WaterSystem waterSystem);
+	
+	ConductionPipe getConductionPipe(WaterSystem waterSystem, int pipeId);
 	
 	boolean editPipe(Pipe pipe);
 	
