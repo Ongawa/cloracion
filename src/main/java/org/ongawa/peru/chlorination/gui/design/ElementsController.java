@@ -1,8 +1,7 @@
-package org.ongawa.peru.chlorination.gui.desinfect;
+package org.ongawa.peru.chlorination.gui.design;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
@@ -11,12 +10,11 @@ import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.DataValidator;
 import org.ongawa.peru.chlorination.logic.SystemElement;
 import org.ongawa.peru.chlorination.logic.elements.CubicReservoir;
+import org.ongawa.peru.chlorination.logic.elements.Pipe;
 import org.ongawa.peru.chlorination.logic.elements.ReliefValve;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
-import org.ongawa.peru.chlorination.persistence.db.DataSource;
 import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
-import org.ongawa.peru.chlorination.logic.elements.Pipe;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -26,17 +24,18 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
-import javafx.scene.control.ComboBox;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
-public class SystemDetails implements Initializable {
+public class ElementsController implements Initializable{
+    
+    
 
     private ObservableList<SystemElement> elements;
 
@@ -81,8 +80,6 @@ public class SystemDetails implements Initializable {
         // Add future
         Scene current =  MainApp.getStage().getScene();
         MainApp.pushFuture(this.getClass().getSimpleName(), current);
-        
-
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);
@@ -281,7 +278,6 @@ public class SystemDetails implements Initializable {
                 this.currentEditableElement = new Pipe(name, length, diameter, this.waterSystem, count);
                 this.elements.add(this.currentEditableElement);
             }
-            this.currentEditableElement.save();
         } else if (elementType.equals(CubicReservoir.TYPE_NAME)) {
             String name = ((TextField) this.editPane.lookup("#elementName")).getText();
 
@@ -325,7 +321,6 @@ public class SystemDetails implements Initializable {
                 this.currentEditableElement = new CubicReservoir(name, length, width,height, this.waterSystem, count);
                 this.elements.add(this.currentEditableElement);
             }
-            this.currentEditableElement.save();
 
         } else {
             // Relief Valve
@@ -372,7 +367,6 @@ public class SystemDetails implements Initializable {
                 this.currentEditableElement = new ReliefValve(name, length, width,height, this.waterSystem, count);
                 this.elements.add(this.currentEditableElement);
             }
-            this.currentEditableElement.save();
         }
         // Clear the panel
         this.currentEditableElement = null;
@@ -382,20 +376,16 @@ public class SystemDetails implements Initializable {
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
-
-        // TODO: Add cl purity textField
-        
-        // Set the data to pass ***before*** calling the class loader
-        
-        // TODO: Add a "look forward" history
-        DataLoader.getDataLoader().setDesinfectResults(this.elements);
-        
-        Scene future = MainApp.popFuture(DesinfectionResults.class.getSimpleName());
-        if (future != null) {
+        Scene future  = MainApp.popFuture(PricesController.class.getSimpleName());
+        if (future != null){
             stage.setScene(future);
             return;
         }
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesinfectionResults.fxml"));
+        
+
+        // Set the data to pass ***before*** calling the class loader
+        DataLoader.getDataLoader().setDesinfectResults(this.elements);
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ResultPrices.fxml"));
 
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");

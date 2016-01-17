@@ -146,6 +146,9 @@ public class ChlorinationProvince implements Initializable{
     }
     
     public void triggerBack() {
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
         
         Scene scene = MainApp.popHistory();
         if (scene != null)
@@ -154,8 +157,15 @@ public class ChlorinationProvince implements Initializable{
     }
 
     public void triggerNext() throws Exception {
+        
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
+        Scene future  = MainApp.popFuture(WaterProperties.class.getSimpleName());
+        if (future != null){
+            stage.setScene(future);
+            return;
+        }
+        
         DataLoader dataloader = DataLoader.getDataLoader();
         dataloader.setSelectedSubBasin(this.selectedSubBasin);
         dataloader.setSelectedCommunity(this.selectedCommunity);

@@ -92,6 +92,10 @@ public class CLCalculator implements Initializable {
     
 
     public void triggerBack() {
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
+        
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);
@@ -122,7 +126,7 @@ public class CLCalculator implements Initializable {
             double[] clResults = DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
                                         String.valueOf(reservoirVolume), this.rechargePeriod.getText(),
                                         this.dailyDripRate.getText(), this.clDemmand.getText());
-            this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/quincena");
+            this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/periodo");
             this.kgmes.setText(String.format("%1$,.2f",clResults[2]) + " kg/mes");
             DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));
             this.selectedWaterSystem.setFutureNeededFlow(Double.valueOf(futCaudal));
@@ -146,9 +150,14 @@ public class CLCalculator implements Initializable {
     public void triggerNext() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
-
+        Scene future  = MainApp.popFuture(ElementsController.class.getSimpleName());
+        if (future != null){
+            stage.setScene(future);
+            return;
+        }
+        
         FXMLLoader loader = new FXMLLoader();
-        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ResultPrices.fxml"));
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/DesignElements.fxml"));
         
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");

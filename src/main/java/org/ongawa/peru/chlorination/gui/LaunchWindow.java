@@ -1,6 +1,9 @@
 package org.ongawa.peru.chlorination.gui;
 
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.gui.design.ChlorinationProvince;
+import org.ongawa.peru.chlorination.gui.desinfect.DesinfectionProvince;
+import org.ongawa.peru.chlorination.gui.manage.ProvinceSelector;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -33,6 +36,12 @@ public class LaunchWindow {
     public void triggerManage() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
+        
+        Scene future = MainApp.popFuture(ProvinceSelector.class.getSimpleName());
+        if (future != null) {
+            stage.setScene(future);
+            return ;
+        }
 
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/manageProvince.fxml"));
@@ -46,7 +55,11 @@ public class LaunchWindow {
     public void triggerDessinfect() throws Exception {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
-
+        Scene future = MainApp.popFuture(DesinfectionProvince.class.getSimpleName());
+        if (future != null) {
+            stage.setScene(future);
+            return ;
+        }
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/desinfectProvince.fxml"));
 
@@ -65,6 +78,12 @@ public class LaunchWindow {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
 
+        Scene future = MainApp.popFuture(ChlorinationProvince.class.getSimpleName());
+        if (future != null) {
+            stage.setScene(future);
+            return ;
+        }
+        
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/designProvince.fxml"));
 

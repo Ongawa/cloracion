@@ -25,7 +25,9 @@ public class WaterProperties implements Initializable{
     private TextField waterPH;
 
     public void triggerBack() {
-
+        // Add future
+        Scene current =  MainApp.getStage().getScene();
+        MainApp.pushFuture(this.getClass().getSimpleName(), current);
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);
@@ -34,10 +36,16 @@ public class WaterProperties implements Initializable{
 
     public void triggerNext() throws Exception {
         String validationResult = DataValidator.checkWaterQ(waterTurbidity.getText(),waterPH.getText());
-
+        
         if (validationResult.length() < 1) {
             Stage stage = MainApp.getStage();
             MainApp.pushHistory(stage.getScene());
+            
+            Scene future  = MainApp.popFuture(CLCalculator.class.getSimpleName());
+            if (future != null){
+                stage.setScene(future);
+                return;
+            }
             
             DataLoader dataloader = DataLoader.getDataLoader();
             // TODO: set as static
