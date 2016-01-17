@@ -24,7 +24,7 @@
                     layoutX="50" layoutY="40" onAction="#basinSelected"
                     prefHeight="27.0" prefWidth="200" promptText="Elija Cuenca"
                     GridPane.columnIndex="1" GridPane.columnSpan="2"
-                    GridPane.rowIndex="0">
+                    GridPane.rowIndex="0" editable="true">
                 </ComboBox>
                 <Label text="Localidad" GridPane.columnIndex="0"
                     GridPane.rowIndex="1" />
@@ -32,7 +32,7 @@
                     layoutX="50" layoutY="70" onAction="#townSelected"
                     prefHeight="27.0" prefWidth="200" promptText="Elija Localidad"
                     GridPane.columnIndex="1" GridPane.columnSpan="2"
-                    GridPane.rowIndex="1">
+                    GridPane.rowIndex="1" editable="true">
                 </ComboBox>
                 <Label text="Sistema de Agua"
                     GridPane.columnIndex="0" GridPane.rowIndex="2" />
@@ -40,7 +40,7 @@
                     layoutX="50" layoutY="100" onAction="#systemSelected"
                     prefHeight="27.0" prefWidth="200" promptText="Elija Sistema"
                     GridPane.columnIndex="2" GridPane.columnSpan="2"
-                    GridPane.rowIndex="2">
+                    GridPane.rowIndex="2" editable="true">
                 </ComboBox>
                 <Label text="Número Familias:"
                     GridPane.columnIndex="0" GridPane.columnSpan="1"

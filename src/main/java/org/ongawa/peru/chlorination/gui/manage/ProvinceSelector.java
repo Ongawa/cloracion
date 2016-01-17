@@ -170,7 +170,6 @@ public class ProvinceSelector implements Initializable{
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // TODO Initialize list of provinces here.
         try {
 			this.ds = DataSourceFactory.getInstance().getDefaultDataSource();
 			List<String> subBasinNames = new ArrayList<String>();
