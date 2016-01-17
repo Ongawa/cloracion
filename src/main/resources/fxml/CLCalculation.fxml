@@ -11,7 +11,7 @@
 
 <ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
     minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
-    prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+    prefWidth="1000" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="org.ongawa.peru.chlorination.gui.design.CLCalculator">
     <content>
         <AnchorPane prefHeight="600" prefWidth="950.0">
@@ -26,8 +26,8 @@
                             text="Caudal Natural:"
                             AnchorPane.leftAnchor="65.0" />
                         <TextField id="naturalFlowRate" fx:id="naturalFlowRate"
-                            layoutX="187.0" layoutY="32.0" prefHeight="25.0"
-                            prefWidth="90" minWidth="90"
+                            layoutX="187.0" layoutY="32.0" minWidth="90"
+                            prefHeight="25.0" prefWidth="90"
                             AnchorPane.leftAnchor="187.0" />
                         <Label layoutX="310.0" layoutY="30.0"
                             prefHeight="30.0" prefWidth="77.0" text="litros/seg" />
@@ -61,8 +61,8 @@
                             prefHeight="30.0" prefWidth="153.0"
                             text="Pureza del cloro (%):" />
                         <TextField id="clPurity" fx:id="clPurity"
-                            layoutX="217.0" layoutY="137.0" prefHeight="25.0"
-                            prefWidth="90" minWidth="90" />
+                            layoutX="217.0" layoutY="137.0" minWidth="90"
+                            prefHeight="25.0" prefWidth="90" />
 
                         <Button layoutX="37.0" layoutY="170.0"
                             mnemonicParsing="false" text="i" />
@@ -70,8 +70,8 @@
                             prefHeight="30.0" prefWidth="184.0"
                             text="Tiempo de recarga (dias):" />
                         <TextField id="rechargePeriod" fx:id="rechargePeriod"
-                            layoutX="251.0" layoutY="172.0" prefHeight="25.0"
-                            prefWidth="90" minWidth="90" />
+                            layoutX="251.0" layoutY="172.0" minWidth="90"
+                            prefHeight="25.0" prefWidth="90" />
 
 
                         <!-- 'Right' column -->
@@ -81,8 +81,8 @@
                             prefHeight="30.0" prefWidth="160.0"
                             text="Horas de goteo diario:" />
                         <TextField id="dailyDripRate" fx:id="dailyDripRate"
-                            layoutX="685.0" layoutY="32.0" prefHeight="25.0"
-                            prefWidth="90" minWidth="90" />
+                            layoutX="685.0" layoutY="32.0" minWidth="90"
+                            prefHeight="25.0" prefWidth="90" />
                         <Label layoutX="800.0" layoutY="30.0"
                             prefHeight="30.0" prefWidth="77.0" text="horas/dia" />
 
@@ -92,8 +92,8 @@
                             prefHeight="25.0" prefWidth="144.0"
                             text="Demanda de cloro:" />
                         <TextField id="clDemmand" fx:id="clDemmand"
-                            layoutX="674.0" layoutY="67.0" prefWidth="90"
-                            minWidth="90" prefHeight="25.0" />
+                            layoutX="674.0" layoutY="67.0" minWidth="90"
+                            prefHeight="25.0" prefWidth="90" />
                         <Label layoutX="775.0" layoutY="65.0"
                             prefHeight="30.0" prefWidth="42.0" text="mg/l" />
 
@@ -112,13 +112,30 @@
                             </items>
                         </ComboBox>
 
-
-
                         <Button id="triggerCalculation" fx:id="calculateButton"
                             layoutX="750" layoutY="200.0" onAction="#calculateResults"
                             text="Calcular" />
 
                         <Line endX="950" layoutY="250" />
+
+
+                        <Label layoutX="22.0" layoutY="268.0"
+                            prefHeight="22.0" prefWidth="133.0" text="Calculos para:">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox layoutX="157.0" layoutY="267.0"
+                            prefWidth="150.0" promptText="Poblacion" fx:id="targetPopulation"
+                            onAction="#calculateResults">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Población futura" />
+                                    <String fx:value="POblación actual" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
 
                         <!-- results -->
                         <Label layoutX="40.0" layoutY="300.0"

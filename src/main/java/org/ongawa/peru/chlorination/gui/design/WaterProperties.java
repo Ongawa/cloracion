@@ -59,7 +59,6 @@ public class WaterProperties implements Initializable{
             scene.getStylesheets().add("/styles/styles.css");
             stage.setScene(scene);
         } else {
-            // TODO: proper alert
             ClAlert alert = new ClAlert(validationResult);
             alert.show();
             System.out.println(validationResult);
