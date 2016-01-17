@@ -395,7 +395,6 @@ public class ElementsController implements Initializable{
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         this.loader = new FXMLLoader();
-        // TODO Get system info from DataLoader
         this.elements = FXCollections.observableArrayList();
         this.elementsTable.setItems(elements);
 

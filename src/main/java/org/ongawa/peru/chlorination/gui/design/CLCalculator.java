@@ -90,6 +90,12 @@ public class CLCalculator implements Initializable {
     @FXML
     private Label minTankVol;
     
+    @FXML
+    private ComboBox<String> targetPopulation;
+    
+    private String[] calculatedCLResuts;
+    private String calculatedTank;
+    
 
     public void triggerBack() {
         // Add future
@@ -113,19 +119,31 @@ public class CLCalculator implements Initializable {
             String ph = dataloader.getValue("ph");
             String turbidity = dataloader.getValue("turbidity");
             double population = this.selectedWaterSystem.getPopulation();
-            String futPopulation = DataCalculator.getFutPopulation(this.selectedWaterSystem.getGrowingIndex(), 
-                                                                    this.selectedWaterSystem.getPopulation());
+            
+            double futPopulation = Double.valueOf(DataCalculator.getFutPopulation(this.selectedWaterSystem.getGrowingIndex(), 
+                        this.selectedWaterSystem.getPopulation()));
+            
             // TODO: save the futPopulation in the database
             //double futPopulationdb = this.selectedWaterSystem.getPopulationForecast();
             double dota = this.selectedWaterSystem.getEndowment();
             double minCaudal = DataCalculator.caudalMin(population, dota, "20");
-            double futCaudal = DataCalculator.caudalMin(Double.valueOf(futPopulation), dota, "20");
+            double futCaudal = DataCalculator.caudalMin(futPopulation, dota, "20");
             this.currentFlowRate.setText(String.format("%1$,.2f",minCaudal));
             this.futureFlowRate.setText(String.format("%1$,.2f",futCaudal));
+            
+            
             double reservoirVolume = this.selectedWaterSystem.getReservoirVolume();
-            double[] clResults = DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
+            double[] clResults;
+            if (this.targetPopulation.getValue().contains("future")) {
+                clResults = DataCalculator.chlorination(String.valueOf(futCaudal), this.clPurity.getText(),
                                         String.valueOf(reservoirVolume), this.rechargePeriod.getText(),
                                         this.dailyDripRate.getText(), this.clDemmand.getText());
+            } else {
+                clResults= DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
+                        String.valueOf(reservoirVolume), this.rechargePeriod.getText(),
+                        this.dailyDripRate.getText(), this.clDemmand.getText());
+            }
+                                        
             this.kgquin.setText(String.format("%1$,.2f",clResults[1]) + " kg/periodo");
             this.kgmes.setText(String.format("%1$,.2f",clResults[2]) + " kg/mes");
             DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));

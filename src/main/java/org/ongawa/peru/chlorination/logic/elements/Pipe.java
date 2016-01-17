@@ -89,10 +89,8 @@ public class Pipe implements SystemElement{
      */
     @Override
     public double getVolume() {
-        // TODO: check this...
         // also TODO: check how the data is stored in the db
         return DataCalculator.volTub(this.dbPipe.getDiameter(), this.dbPipe.getLength());
-        //return this.dbPipe.getVolume();
     }
 
     /**

@@ -158,6 +158,19 @@ public class ChlorinationProvince implements Initializable{
 
     public void triggerNext() throws Exception {
         
+        // Create the system if it does not exists
+        if (this.selectedWaterSystem == null){
+            if (this.selectedCommunity == null) {
+                if(this.selectedSubBasin == null) {
+                    this.selectedSubBasin = this.ds.addSubBasin(new SubBasin(this.basinCombo.valueProperty().getValue().toString()));
+                }
+                this.selectedCommunity = this.ds.addCommunity( new Community(this.townCombo.valueProperty().getValue().toString(),
+                                                        this.selectedSubBasin));
+            }
+            this.selectedWaterSystem = this.ds.addWaterSystem(new WaterSystem(this.systemCombo.valueProperty().getValue().toString(),
+                                                        this.selectedCommunity));
+        }
+        
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
         Scene future  = MainApp.popFuture(WaterProperties.class.getSimpleName());
