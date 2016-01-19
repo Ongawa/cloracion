@@ -43,7 +43,7 @@
                     prefWidth="135.0" text="Tipo" textAlignment="CENTER"
                     GridPane.columnIndex="1" />
                 <Label alignment="CENTER" prefHeight="43.0"
-                    prefWidth="135.0" text="CRP" textAlignment="CENTER"
+                    prefWidth="135.0" text="Captación" textAlignment="CENTER"
                     GridPane.columnIndex="2" fx:id="elementType"/>
                 
                 <Label alignment="CENTER" prefHeight="43.0"
@@ -55,7 +55,7 @@
                 
                     
                 <Label alignment="CENTER" prefHeight="42.0"
-                    prefWidth="113.0" text="Concentracion (%)"
+                    prefWidth="113.0" text="Concentración (%)"
                     textAlignment="CENTER" GridPane.columnIndex="4" />
                 <TextField GridPane.columnIndex="5" fx:id="clConcetration" 
                     prefWidth="135.0" />
@@ -83,13 +83,14 @@
                     
                 
                 <Label alignment="CENTER" prefHeight="42.0"
-                    prefWidth="141.0" text="Tiempo Retencion (horas)"
+                    prefWidth="141.0" text="Tiempo Retención (horas)"
                     textAlignment="CENTER" GridPane.columnIndex="4"
                     GridPane.rowIndex="1" />
                 <TextField GridPane.columnIndex="5"
                     GridPane.rowIndex="1" fx:id="retentionTime" 
                     prefWidth="135.0" />
-                    <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Cantidad" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" />
+                    
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Cantidad" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" />
                 <TextField fx:id="cuantity" prefWidth="135.0" GridPane.columnIndex="5" GridPane.rowIndex="2"/>
                     
                 <Button alignment="CENTER" contentDisplay="CENTER"

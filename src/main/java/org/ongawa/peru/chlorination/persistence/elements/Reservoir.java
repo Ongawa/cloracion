@@ -35,11 +35,11 @@ public abstract class Reservoir {
 		this.waterSystem = waterSystem;
 	}
 
-	public String getName() {
+	public String getElementName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setElementName(String name) {
 		this.name = name;
 	}
 
@@ -77,6 +77,10 @@ public abstract class Reservoir {
 
 	public int getReservoirId() {
 		return reservoirId;
+	}
+	
+	public void setReservoirId(int reservoirId){
+		this.reservoirId = reservoirId;
 	}
 
 	public double getVolume() {

@@ -1,5 +1,10 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+/**
+ * 
+ * @author kiko
+ *
+ */
 public class DistributionPipe extends Pipe {
 
 	public DistributionPipe(double diameter, double length, WaterSystem waterSystem) {

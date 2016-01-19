@@ -1,5 +1,10 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+/**
+ * 
+ * @author kiko
+ *
+ */
 public class Catchment extends Reservoir {
 
 	public Catchment(double width, double length, double height, WaterSystem waterSystem) {

@@ -4,6 +4,7 @@ import java.sql.Timestamp;
 import java.util.List;
 
 import org.ongawa.peru.chlorination.persistence.elements.Catchment;
+import org.ongawa.peru.chlorination.persistence.elements.CatchmentDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
 import org.ongawa.peru.chlorination.persistence.elements.ConductionPipe;
@@ -180,6 +181,20 @@ public interface IDataSource {
 	boolean editCubicReservoirDesinfection(Timestamp oldCubicReservoirDesinfection, CubicReservoirDesinfection newCubicReservoirDesinfection);
 	
 	boolean removeCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
+	
+	CatchmentDesinfection addCatchmentDesinfection(CatchmentDesinfection catchmentDesinfection);
+	
+	List<CatchmentDesinfection> getCatchmentDesinfections(Catchment catchment);
+	
+	List<CatchmentDesinfection> getCatchmentDesinfections(Timestamp beginDate, Timestamp endDate, Catchment catchment);
+	
+	CatchmentDesinfection getCatchmentDesinfection(Timestamp date, Catchment catchment);
+	
+	CatchmentDesinfection getLastCatchmentDesinfection(Catchment catchment);
+	
+	boolean editCatchmentDesinfection(Timestamp oldCatchmentDesinfection, CatchmentDesinfection newCatchmentDesinfection);
+	
+	boolean removeCatchmentDesinfection(Timestamp date, Catchment catchment);
 	
 	PipeDesinfection addPipeDesinfection(PipeDesinfection pipeDesinfection);
 	

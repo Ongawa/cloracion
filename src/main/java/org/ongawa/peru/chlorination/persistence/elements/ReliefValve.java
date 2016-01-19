@@ -32,11 +32,11 @@ public class ReliefValve {
 		this.waterSystem = waterSystem;
 	}
 
-	public String getName() {
+	public String getElementName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setElementName(String name) {
 		this.name = name;
 	}
 
