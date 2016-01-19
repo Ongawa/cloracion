@@ -8,6 +8,7 @@ import java.util.Locale;
 
 import org.apache.commons.lang.NullArgumentException;
 
+import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Font;
 import com.itextpdf.text.Font.FontFamily;
@@ -16,12 +17,15 @@ public abstract class Report {
 	
 	protected static final float LEFT_IDENTATION = 20f;
 	protected static final float DEFAULT_SPACING = 10f;
+	private static final int colorCode = 220;
+	protected static final BaseColor LIGHT_GRAY = new BaseColor(colorCode, colorCode, colorCode);
 	
 	protected File file;
 	protected Locale locale;
 	protected String author;
 	protected Font headerFont;
 	protected Font bodyFont;
+	protected Font bodyBoldFont;
 	protected DecimalFormat df;
 	protected SimpleDateFormat sdf;
 	
@@ -39,6 +43,8 @@ public abstract class Report {
 		
 		this.headerFont = new Font(FontFamily.HELVETICA, 18);
 		this.bodyFont = new Font(FontFamily.HELVETICA, 12);
+		this.bodyBoldFont = new Font(this.bodyFont.getFamily(), this.bodyFont.getSize());
+		this.bodyBoldFont.setStyle(Font.BOLD);
 		this.df = new DecimalFormat("#.####");
 		this.sdf = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	}

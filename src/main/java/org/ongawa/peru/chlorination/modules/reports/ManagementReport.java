@@ -55,6 +55,9 @@ public class ManagementReport extends Report {
 
 	@Override
 	public void createReport() throws FileNotFoundException, DocumentException {
+		if(this.waterSystems.isEmpty())
+			throw new DocumentException("No water systems in this report. Add at least a water system");
+		
 		Document document = new Document();
         PdfWriter.getInstance(document, new FileOutputStream(this.file));
         document.open();

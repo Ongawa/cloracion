@@ -453,7 +453,7 @@ public class ReportTools {
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			
 			String[] fields = new String[]{
-					cubicReservoir.getName(),
+					cubicReservoir.getElementName(),
 					this.df.format(cubicReservoir.getWidth())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
 					this.df.format(cubicReservoir.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
 					this.df.format(cubicReservoir.getHeight())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
@@ -481,7 +481,7 @@ public class ReportTools {
 		for(Pipe pipe : pipes){
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			String[] fields = new String[]{
-					pipe.getName(),
+					pipe.getElementName(),
 					this.df.format(pipe.getDiameter())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_METERS),
 					this.df.format(pipe.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_METERS),
 					this.df.format(pipe.getVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_CUBICMETERS),
@@ -510,7 +510,7 @@ public class ReportTools {
 		for(ReliefValve reliefValve : reliefValves){
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			String[] fields = new String[]{
-					reliefValve.getName(),
+					reliefValve.getElementName(),
 					this.df.format(reliefValve.getWidth())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),
 					this.df.format(reliefValve.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),
 					this.df.format(reliefValve.getHeight())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),
