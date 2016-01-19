@@ -164,30 +164,36 @@ CREATE INDEX fk_MeasuredFlow_MeasuringPoint1_idx ON MeasuredFlow (MeasuringPoint
 DROP TABLE IF EXISTS ChlorineCalculation ;
 
 CREATE TABLE IF NOT EXISTS ChlorineCalculation (
-  date DATETIME NOT NULL,
-  WaterSystem_idWaterSystem INT NOT NULL,
-  WaterSystem_Community_idCommunity INT NOT NULL,
-  WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
-  population INT NULL,
-  tankVolume DOUBLE NULL,
-  tankUsefulVolume DOUBLE NULL,
-  endowment DOUBLE NULL COMMENT 'm^3/persona x dia',
-  chlorinePureness DOUBLE NULL COMMENT 'Expresado en %',
-  inputFlow DOUBLE NULL COMMENT 'Medido en litros/segundo',
-  reloadTime DOUBLE NULL COMMENT 'Medido en días',
-  demandCLR DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
-  demandActiveChlorine DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
-  demandCommonProduct DOUBLE NOT NULL COMMENT 'Medido en mg/litro',
+  date DATETIME NOT NULL COMMENT 'INPUT',
+  WaterSystem_idWaterSystem INT NOT NULL COMMENT 'INPUT',
+  WaterSystem_Community_idCommunity INT NOT NULL COMMENT 'INPUT',
+  WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL COMMENT 'INPUT',
+  familiesNum INT NULL COMMENT 'INPUT',
+  population INT NULL COMMENT 'INPUT',
+  tankVolume DOUBLE NULL COMMENT 'INPUT',
+  endowment DOUBLE NULL COMMENT 'INPUT',
+  chlorinePureness DOUBLE NULL COMMENT 'INPUT',
+  naturalFlow DOUBLE NULL COMMENT 'INPUT',
+  chlorinatedFlow DOUBLE NULL COMMENT 'INPUT',
+  chlorineType VARCHAR(45) NULL COMMENT 'INPUT',
+  drippingHoursPerDay DOUBLE NULL COMMENT 'INPUT',
+  chlorineDemand DOUBLE NULL COMMENT 'INPUT',
+  chlorinePrice DOUBLE NULL COMMENT 'INPUT',
+  reloadTime DOUBLE NULL COMMENT 'INPUT',
+  chlorineDosePerFortnight DOUBLE NULL COMMENT 'RESULT',
+  chlorineDosePerMonth DOUBLE NULL COMMENT 'RESULT',
+  drippingFlowInMl DOUBLE NULL COMMENT 'RESULT',
+  drippingFlowInDrops DOUBLE NULL COMMENT 'RESULT',
+  chlorinationCost DOUBLE NULL COMMENT 'RESULT',
   PRIMARY KEY (date, WaterSystem_Community_idCommunity, WaterSystem_idWaterSystem, WaterSystem_Community_SubBasin_idSubBasin),
   CONSTRAINT fk_ChlorineCalculation_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
     REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
-    ON DELETE CASCADE
-    ON UPDATE CASCADE)
-
-COMMENT = 'Los campos referentes a numero de habitantes, capacidad del tanque y capacidad útil se ponen duplicados en esta tabla para poder llevar un histórico de todas las mediciones y las características de cada medición.';
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION);
 
 CREATE INDEX fk_ChlorineCalculation_WaterSystem1_idx ON ChlorineCalculation (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
+
 
 
 -- -----------------------------------------------------
@@ -217,6 +223,31 @@ CREATE INDEX fk_CubicReservoir_WaterSystem1_idx ON CubicReservoir (WaterSystem_i
 
 
 -- -----------------------------------------------------
+-- Table Catchment
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Catchment ;
+
+CREATE TABLE IF NOT EXISTS Catchment (
+  idCatchment INT NOT NULL AUTO_INCREMENT,
+  WaterSystem_idWaterSystem INT NOT NULL,
+  WaterSystem_Community_idCommunity INT NOT NULL,
+  WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
+  name VARCHAR(100) NULL,
+  width DOUBLE NOT NULL,
+  length DOUBLE NOT NULL,
+  height DOUBLE NOT NULL,
+  count INT NULL DEFAULT 1,
+  PRIMARY KEY (idCatchment, WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin),
+  CONSTRAINT fk_Catchment_WaterSystem1
+    FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
+    REFERENCES WaterSystem (idWaterSystem , Community_idCommunity , Community_SubBasin_idSubBasin)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE INDEX fk_Catchment_WaterSystem1_idx ON Catchment (WaterSystem_idWaterSystem ASC, WaterSystem_Community_idCommunity ASC, WaterSystem_Community_SubBasin_idSubBasin ASC);
+
+-- -----------------------------------------------------
 -- Table Pipe
 -- -----------------------------------------------------
 DROP TABLE IF EXISTS Pipe ;
@@ -230,6 +261,7 @@ CREATE TABLE IF NOT EXISTS Pipe (
   diameter DOUBLE NOT NULL,
   length DOUBLE NOT NULL,
   count INT NULL,
+  type INT NOT NULL COMMENT '1 Distribution pipe, 2 Conduction pipe',
   PRIMARY KEY (idPipe, WaterSystem_idWaterSystem, WaterSystem_Community_idCommunity, WaterSystem_Community_SubBasin_idSubBasin),
   CONSTRAINT fk_Pipe_WaterSystem1
     FOREIGN KEY (WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
@@ -295,6 +327,36 @@ CREATE TABLE IF NOT EXISTS CubicReservoirDesinfection (
 ;
 
 CREATE INDEX fk_CubicReservoirDesinfection_CubicReservoir1_idx ON CubicReservoirDesinfection (CubicReservoir_idCubicReservoir ASC, CubicReservoir_WaterSystem_idWaterSystem ASC, CubicReservoir_WaterSystem_Community_idCommunity ASC, CubicReservoir_WaterSystem_Community_SubBasin_idSubBasin ASC);
+
+
+-- -----------------------------------------------------
+-- Table CatchmentDesinfection
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS CatchmentDesinfection ;
+
+CREATE TABLE IF NOT EXISTS CatchmentDesinfection (
+  date DATETIME NOT NULL,
+  Catchment_idCatchment INT NOT NULL,
+  Catchment_WaterSystem_idWaterSystem INT NOT NULL,
+  Catchment_WaterSystem_Community_idCommunity INT NOT NULL,
+  Catchment_WaterSystem_Community_SubBasin_idSubBasin INT NOT NULL,
+  count INT NOT NULL DEFAULT 1,
+  waterHeight DOUBLE NULL,
+  volume DOUBLE NULL,
+  chlorineConcentration DOUBLE NULL,
+  demandActiveChlorine DOUBLE NULL,
+  demand70Chlorine DOUBLE NULL,
+  demandSpoons DOUBLE NULL,
+  retentionTime DOUBLE NULL,
+  PRIMARY KEY (date, Catchment_idCatchment, Catchment_WaterSystem_idWaterSystem, Catchment_WaterSystem_Community_idCommunity, Catchment_WaterSystem_Community_SubBasin_idSubBasin),
+  CONSTRAINT fk_CatchmentDesinfection_Catchment1
+    FOREIGN KEY (Catchment_idCatchment , Catchment_WaterSystem_idWaterSystem , Catchment_WaterSystem_Community_idCommunity , Catchment_WaterSystem_Community_SubBasin_idSubBasin)
+    REFERENCES Catchment (idCatchment , WaterSystem_idWaterSystem , WaterSystem_Community_idCommunity , WaterSystem_Community_SubBasin_idSubBasin)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
+;
+
+CREATE INDEX fk_CatchmentDesinfection_Catchment1_idx ON CatchmentDesinfection (Catchment_idCatchment ASC, Catchment_WaterSystem_idWaterSystem ASC, Catchment_WaterSystem_Community_idCommunity ASC, Catchment_WaterSystem_Community_SubBasin_idSubBasin ASC);
 
 
 -- -----------------------------------------------------

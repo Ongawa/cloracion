@@ -24,6 +24,7 @@ import org.jooq.impl.DSL;
 import org.ongawa.peru.chlorination.ApplicationProperties;
 import org.ongawa.peru.chlorination.KEYS;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoirdesinfection;
@@ -36,10 +37,14 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring;
+import org.ongawa.peru.chlorination.persistence.elements.Catchment;
+import org.ongawa.peru.chlorination.persistence.elements.CatchmentDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
+import org.ongawa.peru.chlorination.persistence.elements.ConductionPipe;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoirDesinfection;
+import org.ongawa.peru.chlorination.persistence.elements.DistributionPipe;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuredFlow;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuringPoint;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
@@ -145,21 +150,27 @@ public class DataSource implements IDataSource {
 	
 	private ChlorineCalculation readChlorineCalculation(Record record, WaterSystem waterSystem){
 		ChlorineCalculation chlorineCalculation = new ChlorineCalculation(
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DATE),
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DEMANDCLR),
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DEMANDACTIVECHLORINE),
-				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DEMANDCOMMONPRODUCT),
-				waterSystem);
+				record.getValue(Chlorinecalculation.CHLORINECALCULATION.DATE), waterSystem);
 		
-		Integer integer; Double dodo;
+		Integer integer; Double dodo; String string;
+		if((integer=record.getValue(Chlorinecalculation.CHLORINECALCULATION.FAMILIESNUM))!=null) chlorineCalculation.setFamiliesNum(integer);
 		if((integer=record.getValue(Chlorinecalculation.CHLORINECALCULATION.POPULATION))!=null) chlorineCalculation.setPopulation(integer);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.TANKVOLUME))!=null) chlorineCalculation.setTankVolume(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.TANKUSEFULVOLUME))!=null) chlorineCalculation.setTankUsefulVolume(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT))!=null) chlorineCalculation.setEndowment(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS))!=null) chlorineCalculation.setChlorinePureness(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW))!=null) chlorineCalculation.setInputFlow(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(integer);
-		
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.NATURALFLOW))!=null) chlorineCalculation.setNaturalFlow(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINATEDFLOW))!=null) chlorineCalculation.setChlorinatedFlow(dodo);
+		if((string=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINETYPE))!=null) chlorineCalculation.setChlorineType(string);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGHOURSPERDAY))!=null) chlorineCalculation.setDrippingHoursPerDay(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDEMAND))!=null) chlorineCalculation.setChlorineDemand(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPRICE))!=null) chlorineCalculation.setChlorinePrice(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME))!=null) chlorineCalculation.setReloadTime(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT))!=null) chlorineCalculation.setChlorineDosePerFortnight(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH))!=null) chlorineCalculation.setChlorineDosePerMonth(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML))!=null) chlorineCalculation.setDrippingFlowInMl(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS))!=null) chlorineCalculation.setDrippingFlowInDrops(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST))!=null) chlorineCalculation.setChlorinationCost(dodo);
+				
 		return chlorineCalculation;
 	}
 	
@@ -172,21 +183,50 @@ public class DataSource implements IDataSource {
 				waterSystem);
 		
 		String string; Integer integer;
-		if((string=record.getValue(Cubicreservoir.CUBICRESERVOIR.NAME))!=null) cubicReservoir.setName(string);
+		if((string=record.getValue(Cubicreservoir.CUBICRESERVOIR.NAME))!=null) cubicReservoir.setElementName(string);
 		if((integer=record.getValue(Cubicreservoir.CUBICRESERVOIR.COUNT))!=null) cubicReservoir.setCount(integer);
 		
 		return cubicReservoir;
 	}
 	
-	private Pipe readPipe(Record record, WaterSystem waterSystem){
-		Pipe pipe = new Pipe(
+	private Catchment readCatchment(Record record, WaterSystem waterSystem){
+		Catchment catchment = new Catchment(
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.IDCATCHMENT),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WIDTH),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.LENGTH),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.HEIGHT),
+				waterSystem);
+		
+		String string; Integer integer;
+		if((string=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.NAME))!=null) catchment.setElementName(string);
+		if((integer=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.COUNT))!=null) catchment.setCount(integer);
+		
+		return catchment;
+	}
+	
+	private DistributionPipe readDistributionPipe(Record record, WaterSystem waterSystem){
+		DistributionPipe pipe = new DistributionPipe(
 				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE),
 				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.DIAMETER),
 				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.LENGTH),
 				waterSystem);
 		
 		String string; Integer integer;
-		if((string=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.NAME))!=null) pipe.setName(string);
+		if((string=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.NAME))!=null) pipe.setElementName(string);
+		if((integer=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.COUNT))!=null) pipe.setCount(integer);
+		
+		return pipe;
+	}
+	
+	private ConductionPipe readConductionPipe(Record record, WaterSystem waterSystem){
+		ConductionPipe pipe = new ConductionPipe(
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.DIAMETER),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.LENGTH),
+				waterSystem);
+		
+		String string; Integer integer;
+		if((string=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.NAME))!=null) pipe.setElementName(string);
 		if((integer=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.COUNT))!=null) pipe.setCount(integer);
 		
 		return pipe;
@@ -201,7 +241,7 @@ public class DataSource implements IDataSource {
 				waterSystem);
 		
 		Integer integer; String string;
-		if((string=record.getValue(Reliefvalve.RELIEFVALVE.NAME))!=null) reliefValve.setName(string);
+		if((string=record.getValue(Reliefvalve.RELIEFVALVE.NAME))!=null) reliefValve.setElementName(string);
 		if((integer=record.getValue(Reliefvalve.RELIEFVALVE.COUNT))!=null) reliefValve.setCount(integer);
 		
 		return reliefValve;
@@ -223,6 +263,24 @@ public class DataSource implements IDataSource {
 		if((dodo=record.getValue(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.RETENTIONTIME))!=null) cubicReservoirDesinfection.setRetentionTime(dodo);
 		
 		return cubicReservoirDesinfection;
+	}
+	
+	private CatchmentDesinfection readCatchmentDesinfection(Record record, Catchment catchment){
+		CatchmentDesinfection catchmentDesinfection = new CatchmentDesinfection(
+				record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE),
+				catchment);
+		
+		Integer integer; Double dodo;
+		if((integer=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.COUNT))!=null) catchmentDesinfection.setCount(integer);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.WATERHEIGHT))!=null) catchmentDesinfection.setWaterHeight(dodo);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.VOLUME))!=null) catchmentDesinfection.setVolume(dodo);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.CHLORINECONCENTRATION))!=null) catchmentDesinfection.setChlorineConcentration(dodo);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.DEMANDACTIVECHLORINE))!=null) catchmentDesinfection.setDemandActiveChlorine(dodo);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.DEMAND70CHLORINE))!=null) catchmentDesinfection.setDemand70Chlorine(dodo);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.DEMANDSPOONS))!=null) catchmentDesinfection.setDemandSpoons(dodo);
+		if((dodo=record.getValue(Catchmentdesinfection.CATCHMENTDESINFECTION.RETENTIONTIME))!=null) catchmentDesinfection.setRetentionTime(dodo);
+		
+		return catchmentDesinfection;
 	}
 	
 	private PipeDesinfection readPipeDesinfection(Record record, Pipe pipe){
@@ -388,6 +446,7 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext delete = this.prepareDSLContext(this.connection);
 			result = delete.delete(Subbasin.SUBBASIN).where(Subbasin.SUBBASIN.IDSUBBASIN.eq(subBasin.getSubBasinId())).execute();
+			this.closeConnection();
 		} catch (SQLException e) {
 			log.warn(e.getMessage());
 		}
@@ -1455,30 +1514,45 @@ public class DataSource implements IDataSource {
 			DSLContext insert = this.prepareDSLContext(this.connection);
 			int result = insert.insertInto(Chlorinecalculation.CHLORINECALCULATION,
 					Chlorinecalculation.CHLORINECALCULATION.DATE,
+					Chlorinecalculation.CHLORINECALCULATION.FAMILIESNUM,
 					Chlorinecalculation.CHLORINECALCULATION.POPULATION,
 					Chlorinecalculation.CHLORINECALCULATION.TANKVOLUME,
-					Chlorinecalculation.CHLORINECALCULATION.TANKUSEFULVOLUME,
 					Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT,
 					Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS,
-					Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW,
+					Chlorinecalculation.CHLORINECALCULATION.NATURALFLOW,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINATEDFLOW,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINETYPE,
+					Chlorinecalculation.CHLORINECALCULATION.DRIPPINGHOURSPERDAY,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEDEMAND,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEPRICE,
 					Chlorinecalculation.CHLORINECALCULATION.RELOADTIME,
-					Chlorinecalculation.CHLORINECALCULATION.DEMANDCLR,
-					Chlorinecalculation.CHLORINECALCULATION.DEMANDACTIVECHLORINE,
-					Chlorinecalculation.CHLORINECALCULATION.DEMANDCOMMONPRODUCT,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH,
+					Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML,
+					Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS,
+					Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST,
 					Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM,
 					Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
 					Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
-					.values(chlorineCalculation.getDate(),
+					.values(
+							chlorineCalculation.getDate(),
+							chlorineCalculation.getFamiliesNum(),
 							chlorineCalculation.getPopulation(),
 							chlorineCalculation.getTankVolume(),
-							chlorineCalculation.getTankUsefulVolume(),
 							chlorineCalculation.getEndowment(),
 							chlorineCalculation.getChlorinePureness(),
-							chlorineCalculation.getInputFlow(),
+							chlorineCalculation.getNaturalFlow(),
+							chlorineCalculation.getChlorinatedFlow(),
+							chlorineCalculation.getChlorineType(),
+							chlorineCalculation.getDrippingHoursPerDay(),
+							chlorineCalculation.getChlorineDemand(),
+							chlorineCalculation.getChlorinePrice(),
 							chlorineCalculation.getReloadTime(),
-							chlorineCalculation.getDemandCLR(),
-							chlorineCalculation.getDemandActiveChlorine(),
-							chlorineCalculation.getDemandCommonProduct(),
+							chlorineCalculation.getChlorineDosePerFortnight(),
+							chlorineCalculation.getChlorineDosePerMonth(),
+							chlorineCalculation.getDrippingFlowInMl(),
+							chlorineCalculation.getDrippingFlowInDrops(),
+							chlorineCalculation.getChlorinationCost(),
 							chlorineCalculation.getWaterSystem().getWaterSystemId(),
 							chlorineCalculation.getWaterSystem().getCommunity().getCommunityId(),
 							chlorineCalculation.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
@@ -1644,16 +1718,23 @@ public class DataSource implements IDataSource {
 			DSLContext update = this.prepareDSLContext(this.connection);
 			result = update.update(Chlorinecalculation.CHLORINECALCULATION)
 					.set(Chlorinecalculation.CHLORINECALCULATION.DATE, newChlorineCalculation.getDate())
+					.set(Chlorinecalculation.CHLORINECALCULATION.FAMILIESNUM, newChlorineCalculation.getFamiliesNum())
 					.set(Chlorinecalculation.CHLORINECALCULATION.POPULATION, newChlorineCalculation.getPopulation())
 					.set(Chlorinecalculation.CHLORINECALCULATION.TANKVOLUME, newChlorineCalculation.getTankVolume())
-					.set(Chlorinecalculation.CHLORINECALCULATION.TANKUSEFULVOLUME, newChlorineCalculation.getTankUsefulVolume())
 					.set(Chlorinecalculation.CHLORINECALCULATION.ENDOWMENT, newChlorineCalculation.getEndowment())
 					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPURENESS, newChlorineCalculation.getChlorinePureness())
-					.set(Chlorinecalculation.CHLORINECALCULATION.INPUTFLOW, newChlorineCalculation.getInputFlow())
+					.set(Chlorinecalculation.CHLORINECALCULATION.NATURALFLOW, newChlorineCalculation.getNaturalFlow())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINATEDFLOW, newChlorineCalculation.getChlorinatedFlow())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINETYPE, newChlorineCalculation.getChlorineType())
+					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGHOURSPERDAY, newChlorineCalculation.getDrippingHoursPerDay())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDEMAND, newChlorineCalculation.getChlorineDemand())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEPRICE, newChlorineCalculation.getChlorinePrice())
 					.set(Chlorinecalculation.CHLORINECALCULATION.RELOADTIME, newChlorineCalculation.getReloadTime())
-					.set(Chlorinecalculation.CHLORINECALCULATION.DEMANDCLR, newChlorineCalculation.getDemandCLR())
-					.set(Chlorinecalculation.CHLORINECALCULATION.DEMANDACTIVECHLORINE, newChlorineCalculation.getDemandActiveChlorine())
-					.set(Chlorinecalculation.CHLORINECALCULATION.DEMANDCOMMONPRODUCT, newChlorineCalculation.getDemandCommonProduct())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERFORTNIGHT, newChlorineCalculation.getChlorineDosePerFortnight())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH, newChlorineCalculation.getChlorineDosePerMonth())
+					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML, newChlorineCalculation.getDrippingFlowInMl())
+					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS, newChlorineCalculation.getDrippingFlowInDrops())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST, newChlorineCalculation.getChlorinationCost())
 					.where(Chlorinecalculation.CHLORINECALCULATION.DATE.eq(oldChlorineCalculationDate))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(newChlorineCalculation.getWaterSystem().getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(newChlorineCalculation.getWaterSystem().getCommunity().getCommunityId()))
@@ -1708,7 +1789,7 @@ public class DataSource implements IDataSource {
 		            Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM,
 		            Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
 		            Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
-					.values(cubicReservoir.getName(),
+					.values(cubicReservoir.getElementName(),
 							cubicReservoir.getWidth(),
 							cubicReservoir.getLength(),
 							cubicReservoir.getHeight(),
@@ -1798,12 +1879,12 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext update = this.prepareDSLContext(this.connection);
 			result = update.update(Cubicreservoir.CUBICRESERVOIR)
-					.set(Cubicreservoir.CUBICRESERVOIR.NAME, cubicReservoir.getName())
+					.set(Cubicreservoir.CUBICRESERVOIR.NAME, cubicReservoir.getElementName())
 					.set(Cubicreservoir.CUBICRESERVOIR.WIDTH, cubicReservoir.getWidth())
 					.set(Cubicreservoir.CUBICRESERVOIR.LENGTH, cubicReservoir.getLength())
 					.set(Cubicreservoir.CUBICRESERVOIR.HEIGHT, cubicReservoir.getHeight())
 					.set(Cubicreservoir.CUBICRESERVOIR.COUNT, cubicReservoir.getCount())
-					.where(Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.where(Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
@@ -1826,7 +1907,7 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext delete = this.prepareDSLContext(this.connection);
 			result = delete.delete(Cubicreservoir.CUBICRESERVOIR)
-					.where(Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.where(Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
@@ -1840,10 +1921,159 @@ public class DataSource implements IDataSource {
 	}
 
 	@Override
-	public Pipe addPipe(Pipe pipe) {
+	public Catchment addCatchment(Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		Catchment newCatchment = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			int result = insert.insertInto(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.NAME,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WIDTH,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.LENGTH,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.HEIGHT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.COUNT,
+		            org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM,
+		            org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
+		            org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
+					.values(catchment.getElementName(),
+							catchment.getWidth(),
+							catchment.getLength(),
+							catchment.getHeight(),
+							catchment.getCount(),
+							catchment.getWaterSystem().getWaterSystemId(),
+							catchment.getWaterSystem().getCommunity().getCommunityId(),
+							catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
+					.execute();
+			this.closeConnection();
+			
+			if(result>0)
+				newCatchment = this.getCatchment(catchment.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.IDCATCHMENT));
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return newCatchment;
+	}
+
+	@Override
+	public List<Catchment> getCatchments(WaterSystem waterSystem) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		List<Catchment> catchments = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			catchments = new ArrayList<Catchment>();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select()
+					.from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.fetch();
+			
+			Catchment cubicReservoir = null;
+			for(Record record : result){
+				cubicReservoir = this.readCatchment(record, waterSystem);
+				catchments.add(cubicReservoir);
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return catchments;
+	}
+
+	@Override
+	public Catchment getCatchment(WaterSystem waterSystem, int catchmentId) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		Catchment catchment = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select()
+					.from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.IDCATCHMENT.eq(catchmentId))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.limit(1)
+					.fetch();
+			
+			for(Record record : result){
+				catchment = this.readCatchment(record, waterSystem);
+				break;
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return catchment;
+	}
+
+	@Override
+	public boolean editCatchment(Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext update = this.prepareDSLContext(this.connection);
+			result = update.update(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT)
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.NAME, catchment.getElementName())
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WIDTH, catchment.getWidth())
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.LENGTH, catchment.getLength())
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.HEIGHT, catchment.getHeight())
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.COUNT, catchment.getCount())
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return result>0;
+	}
+
+	@Override
+	public boolean removeCatchment(Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext delete = this.prepareDSLContext(this.connection);
+			result = delete.delete(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return result>0;
+	}
+
+	@Override
+	public DistributionPipe addDistributionPipe(DistributionPipe pipe) {
 		if(pipe == null)
 			throw new NullArgumentException("pipe");
-		Pipe newPipe = null;
+		DistributionPipe newPipe = null;
 		
 		try {
 			this.connection = ConnectionsPool.getInstance().getConnection();
@@ -1853,20 +2083,22 @@ public class DataSource implements IDataSource {
 					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.DIAMETER,
 					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.LENGTH,
 					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.COUNT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.TYPE,
 					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM,
 					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
 					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
-					.values(pipe.getName(),
+					.values(pipe.getElementName(),
 							pipe.getDiameter(),
 							pipe.getLength(),
 							pipe.getCount(),
+							Pipe.DISTRIBUTION_PIPE_TYPE,
 							pipe.getWaterSystem().getWaterSystemId(),
                             pipe.getWaterSystem().getCommunity().getCommunityId(),
                             pipe.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
 					.execute();
 			this.closeConnection();
 			if(result>0)
-				newPipe = this.getPipe(pipe.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE));
+				newPipe = this.getDistributionPipe(pipe.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE));
 		} catch (SQLException e) {
 			log.warn(e.getMessage());
 		}
@@ -1875,26 +2107,28 @@ public class DataSource implements IDataSource {
 	}
 
 	@Override
-	public List<Pipe> getPipes(WaterSystem waterSystem) {
+	public List<DistributionPipe> getDistributionPipes(WaterSystem waterSystem) {
 		if(waterSystem == null)
 			throw new NullArgumentException("waterSystem");
-		List<Pipe> pipes = null;
+		List<DistributionPipe> pipes = null;
 		
 		try {
 			this.connection = ConnectionsPool.getInstance().getConnection();
-			pipes = new ArrayList<Pipe>();
+			pipes = new ArrayList<DistributionPipe>();
 			DSLContext select = this.prepareDSLContext(this.connection);
 			Result<Record> result = select.select().from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE)
-					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.TYPE.eq(Pipe.DISTRIBUTION_PIPE_TYPE))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
 					.fetch();
 			
-			Pipe pipe = null;
+			DistributionPipe pipe = null;
 			for(Record record : result){
-				pipe = this.readPipe(record, waterSystem);
+				pipe = this.readDistributionPipe(record, waterSystem);
 				pipes.add(pipe);
 			}
+			this.closeConnection();
 		} catch (SQLException e) {
 			log.warn(e.getMessage());
 		}
@@ -1903,16 +2137,17 @@ public class DataSource implements IDataSource {
 	}
 
 	@Override
-	public Pipe getPipe(WaterSystem waterSystem, int pipeId) {
+	public DistributionPipe getDistributionPipe(WaterSystem waterSystem, int pipeId) {
 		if(waterSystem == null)
 			throw new NullArgumentException("waterSystem");
-		Pipe pipe = null;
+		DistributionPipe pipe = null;
 		
 		try {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext select = this.prepareDSLContext(this.connection);
 			Result<Record> result = select.select().from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE)
-					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE.eq(pipeId))
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.TYPE.eq(Pipe.DISTRIBUTION_PIPE_TYPE))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE.eq(pipeId))
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
@@ -1920,7 +2155,7 @@ public class DataSource implements IDataSource {
 					.fetch();
 			
 			for(Record record : result){
-				pipe = this.readPipe(record, waterSystem);
+				pipe = this.readDistributionPipe(record, waterSystem);
 				break;
 			}
 			this.closeConnection();
@@ -1930,7 +2165,104 @@ public class DataSource implements IDataSource {
 		
 		return pipe;
 	}
-	
+
+	@Override
+	public ConductionPipe addConductionPipe(ConductionPipe pipe) {
+		if(pipe == null)
+			throw new NullArgumentException("pipe");
+		ConductionPipe newPipe = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			int result = insert.insertInto(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.NAME,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.DIAMETER,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.LENGTH,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.COUNT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.TYPE,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
+					.values(pipe.getElementName(),
+							pipe.getDiameter(),
+							pipe.getLength(),
+							pipe.getCount(),
+							Pipe.CONDUCTION_PIPE_TYPE,
+							pipe.getWaterSystem().getWaterSystemId(),
+                            pipe.getWaterSystem().getCommunity().getCommunityId(),
+                            pipe.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
+					.execute();
+			this.closeConnection();
+			if(result>0)
+				newPipe = this.getConductionPipe(pipe.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE));
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return newPipe;
+	}
+
+	@Override
+	public List<ConductionPipe> getConductionPipes(WaterSystem waterSystem) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		List<ConductionPipe> pipes = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			pipes = new ArrayList<ConductionPipe>();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select().from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.TYPE.eq(Pipe.CONDUCTION_PIPE_TYPE))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.fetch();
+			
+			ConductionPipe pipe = null;
+			for(Record record : result){
+				pipe = this.readConductionPipe(record, waterSystem);
+				pipes.add(pipe);
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return pipes;
+	}
+
+	@Override
+	public ConductionPipe getConductionPipe(WaterSystem waterSystem, int pipeId) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		ConductionPipe pipe = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select().from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.TYPE.eq(Pipe.CONDUCTION_PIPE_TYPE))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE.eq(pipeId))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+					.limit(1)
+					.fetch();
+			
+			for(Record record : result){
+				pipe = this.readConductionPipe(record, waterSystem);
+				break;
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.getMessage());
+		}
+		
+		return pipe;
+	}
+
 	@Override
 	public boolean editPipe(Pipe pipe) {
 		if(pipe == null)
@@ -1941,7 +2273,7 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext update = this.prepareDSLContext(this.connection);
 			result = update.update(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE)
-					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.NAME, pipe.getName())
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.NAME, pipe.getElementName())
 					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.DIAMETER, pipe.getDiameter())
 					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.LENGTH, pipe.getLength())
 					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.COUNT, pipe.getCount())
@@ -1999,7 +2331,7 @@ public class DataSource implements IDataSource {
 					Reliefvalve.RELIEFVALVE.WATERSYSTEM_IDWATERSYSTEM,
 					Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
 					Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
-					.values(reliefValve.getName(),
+					.values(reliefValve.getElementName(),
 							reliefValve.getWidth(),
 							reliefValve.getLength(),
 							reliefValve.getHeight(),
@@ -2087,7 +2419,7 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext update = this.prepareDSLContext(this.connection);
 			result = update.update(Reliefvalve.RELIEFVALVE)
-					.set(Reliefvalve.RELIEFVALVE.NAME, reliefValve.getName())
+					.set(Reliefvalve.RELIEFVALVE.NAME, reliefValve.getElementName())
 					.set(Reliefvalve.RELIEFVALVE.WIDTH, reliefValve.getWidth())
 					.set(Reliefvalve.RELIEFVALVE.LENGTH, reliefValve.getLength())
 					.set(Reliefvalve.RELIEFVALVE.HEIGHT, reliefValve.getHeight())
@@ -2158,7 +2490,7 @@ public class DataSource implements IDataSource {
 							cubicReservoirDesinfection.getDemand70Chlorine(),
 							cubicReservoirDesinfection.getDemandSpoons(),
 							cubicReservoirDesinfection.getRetentionTime(),
-							cubicReservoirDesinfection.getCubicReservoir().getCubbicReservoirId(),
+							cubicReservoirDesinfection.getCubicReservoir().getReservoirId(),
 							cubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getWaterSystemId(),
 							cubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getCommunity().getCommunityId(),
 							cubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
@@ -2186,7 +2518,7 @@ public class DataSource implements IDataSource {
 			DSLContext select = this.prepareDSLContext(this.connection);
 			List<Record> result = select.select()
 					.from(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
-					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
@@ -2223,7 +2555,7 @@ public class DataSource implements IDataSource {
 			List<Record> result = select.select()
 					.from(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
 					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE.between(beginDate, endDate))
-					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
@@ -2257,7 +2589,7 @@ public class DataSource implements IDataSource {
 			List<Record> result = select.select()
 					.from(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
 					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE.eq(date))
-					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
@@ -2287,14 +2619,14 @@ public class DataSource implements IDataSource {
 			DSLContext select = this.prepareDSLContext(this.connection);
 			List<Record> result = select.select()
 					.from(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
-					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE.eq(
 							select.select(DSL.max(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE))
 							.from(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
-							.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+							.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 							.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 							.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 							.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))))
@@ -2334,7 +2666,7 @@ public class DataSource implements IDataSource {
 					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DEMANDSPOONS, newCubicReservoirDesinfection.getDemandSpoons())
 					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.RETENTIONTIME, newCubicReservoirDesinfection.getRetentionTime())
 					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE.eq(oldCubicReservoirDesinfection))
-					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(newCubicReservoirDesinfection.getCubicReservoir().getCubbicReservoirId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(newCubicReservoirDesinfection.getCubicReservoir().getReservoirId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(newCubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(newCubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newCubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
@@ -2360,10 +2692,249 @@ public class DataSource implements IDataSource {
 			DSLContext remove = this.prepareDSLContext(this.connection);
 			result = remove.delete(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
 					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE.eq(date))
-					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getCubbicReservoirId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(cubicReservoir.getReservoirId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(cubicReservoir.getWaterSystem().getWaterSystemId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(cubicReservoir.getWaterSystem().getCommunity().getCommunityId()))
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return result>0;
+	}
+
+	@Override
+	public CatchmentDesinfection addCatchmentDesinfection(CatchmentDesinfection catchmentDesinfection) {
+		if(catchmentDesinfection == null)
+			throw new NullArgumentException("catchmentDesinfection");
+		CatchmentDesinfection newCatchmentDesinfection = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			int result = insert.insertInto(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.COUNT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.WATERHEIGHT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.VOLUME,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.CHLORINECONCENTRATION,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.DEMANDACTIVECHLORINE,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.DEMAND70CHLORINE,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.DEMANDSPOONS,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.RETENTIONTIME,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN)
+					.values(catchmentDesinfection.getCount(),
+							catchmentDesinfection.getWaterHeight(),
+							catchmentDesinfection.getVolume(),
+							catchmentDesinfection.getChlorineConcentration(),
+							catchmentDesinfection.getDemandActiveChlorine(),
+							catchmentDesinfection.getDemand70Chlorine(),
+							catchmentDesinfection.getDemandSpoons(),
+							catchmentDesinfection.getRetentionTime(),
+							catchmentDesinfection.getCatchment().getReservoirId(),
+							catchmentDesinfection.getCatchment().getWaterSystem().getWaterSystemId(),
+							catchmentDesinfection.getCatchment().getWaterSystem().getCommunity().getCommunityId(),
+							catchmentDesinfection.getCatchment().getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
+					.execute();
+			this.closeConnection();
+			
+			if(result>0)
+				newCatchmentDesinfection = this.getCatchmentDesinfection(catchmentDesinfection.getDate(), catchmentDesinfection.getCatchment());
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return newCatchmentDesinfection;
+	}
+
+	@Override
+	public List<CatchmentDesinfection> getCatchmentDesinfections(Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		List<CatchmentDesinfection> catchmentDesinfections = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			catchmentDesinfections = new ArrayList<CatchmentDesinfection>();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			List<Record> result = select.select()
+					.from(Catchmentdesinfection.CATCHMENTDESINFECTION)
+					.where(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.orderBy(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE)
+					.fetch();
+			
+			CatchmentDesinfection catchmentDesinfection = null;
+			for(Record record:result){
+				catchmentDesinfection = this.readCatchmentDesinfection(record, catchment);
+				catchmentDesinfections.add(catchmentDesinfection);
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return catchmentDesinfections;
+	}
+
+	@Override
+	public List<CatchmentDesinfection> getCatchmentDesinfections(Timestamp beginDate, Timestamp endDate, Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		List<CatchmentDesinfection> catchmentDesinfections = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			catchmentDesinfections = new ArrayList<CatchmentDesinfection>();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			List<Record> result = select.select()
+					.from(Catchmentdesinfection.CATCHMENTDESINFECTION)
+					.where(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE.between(beginDate, endDate))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.orderBy(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE)
+					.fetch();
+			
+			CatchmentDesinfection catchmentDesinfection = null;
+			for(Record record:result){
+				catchmentDesinfection = this.readCatchmentDesinfection(record, catchment);
+				catchmentDesinfections.add(catchmentDesinfection);
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return catchmentDesinfections;
+	}
+
+	@Override
+	public CatchmentDesinfection getCatchmentDesinfection(Timestamp date, Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		CatchmentDesinfection catchmentDesinfection = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			List<Record> result = select.select()
+					.from(Catchmentdesinfection.CATCHMENTDESINFECTION)
+					.where(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE.eq(date))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.limit(1)
+					.fetch();
+			
+			for(Record record:result){
+				catchmentDesinfection = this.readCatchmentDesinfection(record, catchment);
+				break;
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return catchmentDesinfection;
+	}
+
+	@Override
+	public CatchmentDesinfection getLastCatchmentDesinfection(Catchment catchment) {
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		CatchmentDesinfection catchmentDesinfection = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			List<Record> result = select.select()
+					.from(Catchmentdesinfection.CATCHMENTDESINFECTION)
+					.where(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE.eq(
+							select.select(DSL.max(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE))
+							.from(Catchmentdesinfection.CATCHMENTDESINFECTION)
+							.where(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT.eq(catchment.getReservoirId()))
+							.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+							.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+							.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))))
+					.limit(1)
+					.fetch();
+			
+			for(Record record:result){
+				catchmentDesinfection = this.readCatchmentDesinfection(record, catchment);
+				break;
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return catchmentDesinfection;
+	}
+
+	@Override
+	public boolean editCatchmentDesinfection(Timestamp oldCatchmentDesinfection, CatchmentDesinfection newCatchmentDesinfection) {
+		if(oldCatchmentDesinfection == null)
+			throw new NullArgumentException("oldCatchmentDesinfection");
+		if(newCatchmentDesinfection == null)
+			throw new NullArgumentException("newCatchmentDesinfection");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext update = this.prepareDSLContext(this.connection);
+			result = update.update(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION)
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE, newCatchmentDesinfection.getDate())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.WATERHEIGHT, newCatchmentDesinfection.getWaterHeight())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.VOLUME, newCatchmentDesinfection.getVolume())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CHLORINECONCENTRATION, newCatchmentDesinfection.getChlorineConcentration())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DEMANDACTIVECHLORINE, newCatchmentDesinfection.getDemandActiveChlorine())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DEMAND70CHLORINE, newCatchmentDesinfection.getDemand70Chlorine())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DEMANDSPOONS, newCatchmentDesinfection.getDemandSpoons())
+					.set(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.RETENTIONTIME, newCatchmentDesinfection.getRetentionTime())
+					.where(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE.eq(oldCatchmentDesinfection))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR.eq(newCatchmentDesinfection.getCatchment().getReservoirId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM.eq(newCatchmentDesinfection.getCatchment().getWaterSystem().getWaterSystemId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(newCatchmentDesinfection.getCatchment().getWaterSystem().getCommunity().getCommunityId()))
+					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newCatchmentDesinfection.getCatchment().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return result>0;
+	}
+
+	@Override
+	public boolean removeCatchmentDesinfection(Timestamp date, Catchment catchment) {
+		if(date == null)
+			throw new NullArgumentException("date");
+		if(catchment == null)
+			throw new NullArgumentException("catchment");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext remove = this.prepareDSLContext(this.connection);
+			result = remove.delete(Catchmentdesinfection.CATCHMENTDESINFECTION)
+					.where(Catchmentdesinfection.CATCHMENTDESINFECTION.DATE.eq(date))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT.eq(catchment.getReservoirId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM.eq(catchment.getWaterSystem().getWaterSystemId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(catchment.getWaterSystem().getCommunity().getCommunityId()))
+					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
 		} catch (SQLException e) {

@@ -396,16 +396,16 @@ public class ReportTools {
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			String[] fields = new String[]{
 					this.sdf.format(chlorineCalculation.getDate()),
-					String.valueOf(chlorineCalculation.getPopulation()),
-					this.df.format(chlorineCalculation.getTankVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
-					this.df.format(chlorineCalculation.getTankUsefulVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
-					this.df.format(chlorineCalculation.getEndowment())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPPPD),
-					this.df.format(chlorineCalculation.getChlorinePureness())+"%",
-					this.df.format(chlorineCalculation.getInputFlow())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPS),
-					this.df.format(chlorineCalculation.getReloadTime())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_DAYS),
-					this.df.format(chlorineCalculation.getDemandCLR())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
-					this.df.format(chlorineCalculation.getDemandActiveChlorine())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
-					this.df.format(chlorineCalculation.getDemandCommonProduct())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL)
+//					String.valueOf(chlorineCalculation.getPopulation()),
+//					this.df.format(chlorineCalculation.getTankVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
+//					this.df.format(chlorineCalculation.getTankUsefulVolume())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_L),
+//					this.df.format(chlorineCalculation.getEndowment())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPPPD),
+//					this.df.format(chlorineCalculation.getChlorinePureness())+"%",
+//					this.df.format(chlorineCalculation.getInputFlow())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_LPS),
+//					this.df.format(chlorineCalculation.getReloadTime())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_DAYS),
+//					this.df.format(chlorineCalculation.getDemandCLR())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
+//					this.df.format(chlorineCalculation.getDemandActiveChlorine())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL),
+//					this.df.format(chlorineCalculation.getDemandCommonProduct())+" "+this.messages.getString(KEYS.REPORT_CHLORINECALCULATION_ROW_UOM_MGPL)
 			};
 			BaseColor backgroundColor = (cellIndex%2==0)?this.row1Color:this.row2Color;
 			for(int i=0;i<fields.length;i++){
@@ -453,7 +453,7 @@ public class ReportTools {
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			
 			String[] fields = new String[]{
-					cubicReservoir.getName(),
+					cubicReservoir.getElementName(),
 					this.df.format(cubicReservoir.getWidth())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
 					this.df.format(cubicReservoir.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
 					this.df.format(cubicReservoir.getHeight())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_CUBICRESERVOIR_UOM_METERS),
@@ -481,7 +481,7 @@ public class ReportTools {
 		for(Pipe pipe : pipes){
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			String[] fields = new String[]{
-					pipe.getName(),
+					pipe.getElementName(),
 					this.df.format(pipe.getDiameter())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_METERS),
 					this.df.format(pipe.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_METERS),
 					this.df.format(pipe.getVolume())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_PIPE_UOM_CUBICMETERS),
@@ -510,7 +510,7 @@ public class ReportTools {
 		for(ReliefValve reliefValve : reliefValves){
 			Font cellFont = new Font(this.bodyFont.getFamily(), 10);
 			String[] fields = new String[]{
-					reliefValve.getName(),
+					reliefValve.getElementName(),
 					this.df.format(reliefValve.getWidth())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),
 					this.df.format(reliefValve.getLength())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),
 					this.df.format(reliefValve.getHeight())+" "+this.messages.getString(KEYS.REPORT_WATERSYSTEM_DESIGN_RELIEFVALVE_UOM_METERS),

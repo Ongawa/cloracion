@@ -10,6 +10,8 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
@@ -24,6 +26,8 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CatchmentRecord;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CatchmentdesinfectionRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.ChlorinecalculationRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CommunityRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CubicreservoirRecord;
@@ -65,6 +69,7 @@ public class Keys {
 	public static final Identity<MeasuringpointRecord, Integer> IDENTITY_MEASURINGPOINT = Identities0.IDENTITY_MEASURINGPOINT;
 	public static final Identity<CubicreservoirRecord, Integer> IDENTITY_CUBICRESERVOIR = Identities0.IDENTITY_CUBICRESERVOIR;
 	public static final Identity<PipeRecord, Integer> IDENTITY_PIPE = Identities0.IDENTITY_PIPE;
+	public static final Identity<CatchmentRecord, Integer> IDENTITY_CATCHMENT = Identities0.IDENTITY_CATCHMENT;
 	public static final Identity<ReliefvalveRecord, Integer> IDENTITY_RELIEFVALVE = Identities0.IDENTITY_RELIEFVALVE;
 
 	// -------------------------------------------------------------------------
@@ -81,10 +86,12 @@ public class Keys {
 	public static final UniqueKey<ChlorinecalculationRecord> CONSTRAINT_E = UniqueKeys0.CONSTRAINT_E;
 	public static final UniqueKey<CubicreservoirRecord> CONSTRAINT_CD = UniqueKeys0.CONSTRAINT_CD;
 	public static final UniqueKey<PipeRecord> CONSTRAINT_25 = UniqueKeys0.CONSTRAINT_25;
+	public static final UniqueKey<CatchmentRecord> CONSTRAINT_1 = UniqueKeys0.CONSTRAINT_1;
 	public static final UniqueKey<ReliefvalveRecord> CONSTRAINT_EA = UniqueKeys0.CONSTRAINT_EA;
 	public static final UniqueKey<CubicreservoirdesinfectionRecord> CONSTRAINT_3 = UniqueKeys0.CONSTRAINT_3;
 	public static final UniqueKey<PipedesinfectionRecord> CONSTRAINT_3B = UniqueKeys0.CONSTRAINT_3B;
 	public static final UniqueKey<ReliefvalvedesinfectionRecord> CONSTRAINT_74 = UniqueKeys0.CONSTRAINT_74;
+	public static final UniqueKey<CatchmentdesinfectionRecord> CONSTRAINT_1E = UniqueKeys0.CONSTRAINT_1E;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
@@ -99,10 +106,12 @@ public class Keys {
 	public static final ForeignKey<ChlorinecalculationRecord, WatersystemRecord> FK_CHLORINECALCULATION_WATERSYSTEM1 = ForeignKeys0.FK_CHLORINECALCULATION_WATERSYSTEM1;
 	public static final ForeignKey<CubicreservoirRecord, WatersystemRecord> FK_CUBICRESERVOIR_WATERSYSTEM1 = ForeignKeys0.FK_CUBICRESERVOIR_WATERSYSTEM1;
 	public static final ForeignKey<PipeRecord, WatersystemRecord> FK_PIPE_WATERSYSTEM1 = ForeignKeys0.FK_PIPE_WATERSYSTEM1;
+	public static final ForeignKey<CatchmentRecord, WatersystemRecord> FK_CATCHMENT_WATERSYSTEM1 = ForeignKeys0.FK_CATCHMENT_WATERSYSTEM1;
 	public static final ForeignKey<ReliefvalveRecord, WatersystemRecord> FK_RELIEFVALVE_WATERSYSTEM1 = ForeignKeys0.FK_RELIEFVALVE_WATERSYSTEM1;
 	public static final ForeignKey<CubicreservoirdesinfectionRecord, CubicreservoirRecord> FK_CUBICRESERVOIRDESINFECTION_CUBICRESERVOIR1 = ForeignKeys0.FK_CUBICRESERVOIRDESINFECTION_CUBICRESERVOIR1;
 	public static final ForeignKey<PipedesinfectionRecord, PipeRecord> FK_PIPEDESINFECTION_PIPE1 = ForeignKeys0.FK_PIPEDESINFECTION_PIPE1;
 	public static final ForeignKey<ReliefvalvedesinfectionRecord, ReliefvalveRecord> FK_RELIEFVALVEDESINFECTION_RELIEFVALVE1 = ForeignKeys0.FK_RELIEFVALVEDESINFECTION_RELIEFVALVE1;
+	public static final ForeignKey<CatchmentdesinfectionRecord, CatchmentRecord> FK_CATCHMENTDESINFECTION_CATCHMENT1 = ForeignKeys0.FK_CATCHMENTDESINFECTION_CATCHMENT1;
 
 	// -------------------------------------------------------------------------
 	// [#1459] distribute members to avoid static initialisers > 64kb
@@ -116,6 +125,7 @@ public class Keys {
 		public static Identity<MeasuringpointRecord, Integer> IDENTITY_MEASURINGPOINT = createIdentity(Measuringpoint.MEASURINGPOINT, Measuringpoint.MEASURINGPOINT.IDMEASURINGPOINT);
 		public static Identity<CubicreservoirRecord, Integer> IDENTITY_CUBICRESERVOIR = createIdentity(Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR);
 		public static Identity<PipeRecord, Integer> IDENTITY_PIPE = createIdentity(Pipe.PIPE, Pipe.PIPE.IDPIPE);
+		public static Identity<CatchmentRecord, Integer> IDENTITY_CATCHMENT = createIdentity(Catchment.CATCHMENT, Catchment.CATCHMENT.IDCATCHMENT);
 		public static Identity<ReliefvalveRecord, Integer> IDENTITY_RELIEFVALVE = createIdentity(Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.IDRELIEFVALVE);
 	}
 
@@ -130,10 +140,12 @@ public class Keys {
 		public static final UniqueKey<ChlorinecalculationRecord> CONSTRAINT_E = createUniqueKey(Chlorinecalculation.CHLORINECALCULATION, Chlorinecalculation.CHLORINECALCULATION.DATE, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<CubicreservoirRecord> CONSTRAINT_CD = createUniqueKey(Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<PipeRecord> CONSTRAINT_25 = createUniqueKey(Pipe.PIPE, Pipe.PIPE.IDPIPE, Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM, Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final UniqueKey<CatchmentRecord> CONSTRAINT_1 = createUniqueKey(Catchment.CATCHMENT, Catchment.CATCHMENT.IDCATCHMENT, Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM, Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<ReliefvalveRecord> CONSTRAINT_EA = createUniqueKey(Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.IDRELIEFVALVE, Reliefvalve.RELIEFVALVE.WATERSYSTEM_IDWATERSYSTEM, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<CubicreservoirdesinfectionRecord> CONSTRAINT_3 = createUniqueKey(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.DATE, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<PipedesinfectionRecord> CONSTRAINT_3B = createUniqueKey(Pipedesinfection.PIPEDESINFECTION, Pipedesinfection.PIPEDESINFECTION.DATE, Pipedesinfection.PIPEDESINFECTION.PIPE_IDPIPE, Pipedesinfection.PIPEDESINFECTION.PIPE_WATERSYSTEM_IDWATERSYSTEM, Pipedesinfection.PIPEDESINFECTION.PIPE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Pipedesinfection.PIPEDESINFECTION.PIPE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<ReliefvalvedesinfectionRecord> CONSTRAINT_74 = createUniqueKey(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.DATE, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_IDRELIEFVALVE, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_IDWATERSYSTEM, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final UniqueKey<CatchmentdesinfectionRecord> CONSTRAINT_1E = createUniqueKey(Catchmentdesinfection.CATCHMENTDESINFECTION, Catchmentdesinfection.CATCHMENTDESINFECTION.DATE, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 	}
 
 	private static class ForeignKeys0 extends AbstractKeys {
@@ -146,9 +158,11 @@ public class Keys {
 		public static final ForeignKey<ChlorinecalculationRecord, WatersystemRecord> FK_CHLORINECALCULATION_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Chlorinecalculation.CHLORINECALCULATION, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<CubicreservoirRecord, WatersystemRecord> FK_CUBICRESERVOIR_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_IDWATERSYSTEM, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<PipeRecord, WatersystemRecord> FK_PIPE_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Pipe.PIPE, Pipe.PIPE.WATERSYSTEM_IDWATERSYSTEM, Pipe.PIPE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final ForeignKey<CatchmentRecord, WatersystemRecord> FK_CATCHMENT_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Catchment.CATCHMENT, Catchment.CATCHMENT.WATERSYSTEM_IDWATERSYSTEM, Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<ReliefvalveRecord, WatersystemRecord> FK_RELIEFVALVE_WATERSYSTEM1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_C, Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.WATERSYSTEM_IDWATERSYSTEM, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<CubicreservoirdesinfectionRecord, CubicreservoirRecord> FK_CUBICRESERVOIRDESINFECTION_CUBICRESERVOIR1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_CD, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<PipedesinfectionRecord, PipeRecord> FK_PIPEDESINFECTION_PIPE1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_25, Pipedesinfection.PIPEDESINFECTION, Pipedesinfection.PIPEDESINFECTION.PIPE_IDPIPE, Pipedesinfection.PIPEDESINFECTION.PIPE_WATERSYSTEM_IDWATERSYSTEM, Pipedesinfection.PIPEDESINFECTION.PIPE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Pipedesinfection.PIPEDESINFECTION.PIPE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final ForeignKey<ReliefvalvedesinfectionRecord, ReliefvalveRecord> FK_RELIEFVALVEDESINFECTION_RELIEFVALVE1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_EA, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_IDRELIEFVALVE, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_IDWATERSYSTEM, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final ForeignKey<CatchmentdesinfectionRecord, CatchmentRecord> FK_CATCHMENTDESINFECTION_CATCHMENT1 = createForeignKey(org.ongawa.peru.chlorination.persistence.db.jooq.Keys.CONSTRAINT_1, Catchmentdesinfection.CATCHMENTDESINFECTION, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 	}
 }
