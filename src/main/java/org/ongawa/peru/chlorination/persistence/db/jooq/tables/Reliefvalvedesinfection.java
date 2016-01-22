@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Reliefval
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Reliefvalvedesinfection extends TableImpl<ReliefvalvedesinfectionRecord> {
 
-	private static final long serialVersionUID = -62574490;
+	private static final long serialVersionUID = -1754378973;
 
 	/**
 	 * The reference instance of <code>PUBLIC.RELIEFVALVEDESINFECTION</code>
@@ -50,9 +50,9 @@ public class Reliefvalvedesinfection extends TableImpl<ReliefvalvedesinfectionRe
 	}
 
 	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.DATE</code>.
+	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.DESINFECTION_DATE</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Timestamp> DESINFECTION_DATE = createField("DESINFECTION_DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.RELIEFVALVE_IDRELIEFVALVE</code>.
@@ -60,19 +60,19 @@ public class Reliefvalvedesinfection extends TableImpl<ReliefvalvedesinfectionRe
 	public final TableField<ReliefvalvedesinfectionRecord, Integer> RELIEFVALVE_IDRELIEFVALVE = createField("RELIEFVALVE_IDRELIEFVALVE", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_IDWATERSYSTEM</code>.
+	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Integer> RELIEFVALVE_WATERSYSTEM_IDWATERSYSTEM = createField("RELIEFVALVE_WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Integer> RELIEFVALVE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("RELIEFVALVE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.RELIEFVALVE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
+	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Integer> RELIEFVALVE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("RELIEFVALVE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.COUNT</code>.
@@ -80,39 +80,19 @@ public class Reliefvalvedesinfection extends TableImpl<ReliefvalvedesinfectionRe
 	public final TableField<ReliefvalvedesinfectionRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.WATERHEIGHT</code>.
+	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.CHLORINEQTY</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> WATERHEIGHT = createField("WATERHEIGHT", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.VOLUME</code>.
-	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> VOLUME = createField("VOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.CHLORINECONCENTRATION</code>.
-	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> CHLORINECONCENTRATION = createField("CHLORINECONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.DEMANDACTIVECHLORINE</code>.
-	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.DEMAND70CHLORINE</code>.
-	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> DEMAND70CHLORINE = createField("DEMAND70CHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Double> CHLORINEQTY = createField("CHLORINEQTY", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.DEMANDSPOONS</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.RELIEFVALVEDESINFECTION.RETENTIONTIME</code>.
 	 */
-	public final TableField<ReliefvalvedesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<ReliefvalvedesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * Create a <code>PUBLIC.RELIEFVALVEDESINFECTION</code> table reference
@@ -157,7 +137,7 @@ public class Reliefvalvedesinfection extends TableImpl<ReliefvalvedesinfectionRe
 	 */
 	@Override
 	public List<ForeignKey<ReliefvalvedesinfectionRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<ReliefvalvedesinfectionRecord, ?>>asList(Keys.FK_RELIEFVALVEDESINFECTION_RELIEFVALVE1);
+		return Arrays.<ForeignKey<ReliefvalvedesinfectionRecord, ?>>asList(Keys.FK_RELIEFVALVEDESINFECTION_DESINFECTION1);
 	}
 
 	/**

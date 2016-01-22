@@ -67,7 +67,7 @@ public class DesignReport extends Report {
 		document.addCreationDate();
 		document.addLanguage(locale.getLanguage().toLowerCase()+"_"+locale.getCountry().toUpperCase());
         PdfWriter.getInstance(document, new FileOutputStream(this.file));
-        document.open();		
+        document.open();
 		
         for(WaterSystem waterSystem : waterSystems){
 			ChlorineCalculation chlorineCalculation = this.ds.getLastChlorineCalculation(waterSystem);
@@ -328,6 +328,9 @@ public class DesignReport extends Report {
 		        document.add(pa);
 				
 				document.close();
+	    	}
+	    	else{
+	    		throw new DocumentException("There's no info about any chlorination");
 	    	}
         }//end for
 	}

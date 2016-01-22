@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Catchment
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Catchmentdesinfection extends TableImpl<CatchmentdesinfectionRecord> {
 
-	private static final long serialVersionUID = 1044540788;
+	private static final long serialVersionUID = 482462821;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CATCHMENTDESINFECTION</code>
@@ -50,9 +50,9 @@ public class Catchmentdesinfection extends TableImpl<CatchmentdesinfectionRecord
 	}
 
 	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.DATE</code>.
+	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.DESINFECTION_DATE</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<CatchmentdesinfectionRecord, Timestamp> DESINFECTION_DATE = createField("DESINFECTION_DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT</code>.
@@ -60,19 +60,19 @@ public class Catchmentdesinfection extends TableImpl<CatchmentdesinfectionRecord
 	public final TableField<CatchmentdesinfectionRecord, Integer> CATCHMENT_IDCATCHMENT = createField("CATCHMENT_IDCATCHMENT", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_IDWATERSYSTEM</code>.
+	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Integer> CATCHMENT_WATERSYSTEM_IDWATERSYSTEM = createField("CATCHMENT_WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<CatchmentdesinfectionRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Integer> CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("CATCHMENT_WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<CatchmentdesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
+	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Integer> CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("CATCHMENT_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<CatchmentdesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.COUNT</code>.
@@ -80,39 +80,19 @@ public class Catchmentdesinfection extends TableImpl<CatchmentdesinfectionRecord
 	public final TableField<CatchmentdesinfectionRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.WATERHEIGHT</code>.
+	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.CHLORINEQTY</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> WATERHEIGHT = createField("WATERHEIGHT", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.VOLUME</code>.
-	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> VOLUME = createField("VOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.CHLORINECONCENTRATION</code>.
-	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> CHLORINECONCENTRATION = createField("CHLORINECONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.DEMANDACTIVECHLORINE</code>.
-	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.DEMAND70CHLORINE</code>.
-	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> DEMAND70CHLORINE = createField("DEMAND70CHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<CatchmentdesinfectionRecord, Double> CHLORINEQTY = createField("CHLORINEQTY", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.DEMANDSPOONS</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<CatchmentdesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CATCHMENTDESINFECTION.RETENTIONTIME</code>.
 	 */
-	public final TableField<CatchmentdesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<CatchmentdesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * Create a <code>PUBLIC.CATCHMENTDESINFECTION</code> table reference
@@ -157,7 +137,7 @@ public class Catchmentdesinfection extends TableImpl<CatchmentdesinfectionRecord
 	 */
 	@Override
 	public List<ForeignKey<CatchmentdesinfectionRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<CatchmentdesinfectionRecord, ?>>asList(Keys.FK_CATCHMENTDESINFECTION_CATCHMENT1);
+		return Arrays.<ForeignKey<CatchmentdesinfectionRecord, ?>>asList(Keys.FK_CATCHMENTDESINFECTION_DESINFECTION1);
 	}
 
 	/**

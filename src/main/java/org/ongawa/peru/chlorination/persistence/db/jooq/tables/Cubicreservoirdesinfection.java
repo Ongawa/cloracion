@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Cubicrese
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Cubicreservoirdesinfection extends TableImpl<CubicreservoirdesinfectionRecord> {
 
-	private static final long serialVersionUID = -1587839828;
+	private static final long serialVersionUID = -2118341871;
 
 	/**
 	 * The reference instance of <code>PUBLIC.CUBICRESERVOIRDESINFECTION</code>
@@ -50,9 +50,9 @@ public class Cubicreservoirdesinfection extends TableImpl<Cubicreservoirdesinfec
 	}
 
 	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.DATE</code>.
+	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.DESINFECTION_DATE</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Timestamp> DESINFECTION_DATE = createField("DESINFECTION_DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_IDCUBICRESERVOIR</code>.
@@ -60,19 +60,19 @@ public class Cubicreservoirdesinfection extends TableImpl<Cubicreservoirdesinfec
 	public final TableField<CubicreservoirdesinfectionRecord, Integer> CUBICRESERVOIR_IDCUBICRESERVOIR = createField("CUBICRESERVOIR_IDCUBICRESERVOIR", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM</code>.
+	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Integer> CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM = createField("CUBICRESERVOIR_WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Integer> CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
+	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Integer> CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("CUBICRESERVOIR_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.COUNT</code>.
@@ -80,39 +80,19 @@ public class Cubicreservoirdesinfection extends TableImpl<Cubicreservoirdesinfec
 	public final TableField<CubicreservoirdesinfectionRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.WATERHEIGHT</code>.
+	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.CHLORINEQTY</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> WATERHEIGHT = createField("WATERHEIGHT", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.VOLUME</code>.
-	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> VOLUME = createField("VOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.CHLORINECONCENTRATION</code>.
-	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> CHLORINECONCENTRATION = createField("CHLORINECONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.DEMANDACTIVECHLORINE</code>.
-	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.DEMAND70CHLORINE</code>.
-	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> DEMAND70CHLORINE = createField("DEMAND70CHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Double> CHLORINEQTY = createField("CHLORINEQTY", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.DEMANDSPOONS</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.CUBICRESERVOIRDESINFECTION.RETENTIONTIME</code>.
 	 */
-	public final TableField<CubicreservoirdesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<CubicreservoirdesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * Create a <code>PUBLIC.CUBICRESERVOIRDESINFECTION</code> table reference
@@ -157,7 +137,7 @@ public class Cubicreservoirdesinfection extends TableImpl<Cubicreservoirdesinfec
 	 */
 	@Override
 	public List<ForeignKey<CubicreservoirdesinfectionRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<CubicreservoirdesinfectionRecord, ?>>asList(Keys.FK_CUBICRESERVOIRDESINFECTION_CUBICRESERVOIR1);
+		return Arrays.<ForeignKey<CubicreservoirdesinfectionRecord, ?>>asList(Keys.FK_CUBICRESERVOIRDESINFECTION_DESINFECTION1);
 	}
 
 	/**

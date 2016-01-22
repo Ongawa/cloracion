@@ -206,4 +206,20 @@ public class KEYS {
 	public static final String REPORT_RESULTS_DESIGN_TANKVOLUME = "report_results_design_tankvolume";
 	public static final String REPORT_RESULTS_GENERIC_WARNINGS_TITLE = "report_results_generic_warnings_title";
 	public static final String REPORT_RESULTS_MANAGEMENT_WARNINGS = "report_results_management_warnings";
+	public static final String REPORT_DESINFECTION_WATERSYSTEMDETAILS_TITLE = "report_desinfection_watersystemdetails_title";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_NUM = "report_desinfection_watersystem_table_num";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_NAME = "report_desinfection_watersystem_table_name";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENT = "report_desinfection_watersystem_table_element";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENT_CUBICRESERVOIR = "report_desinfection_watersystem_table_element_cubicreservoir";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENT_CATCHMENT = "report_desinfection_watersystem_table_element_catchment";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENT_DISTRIBUTIONPIPE = "report_desinfection_watersystem_table_element_distributionpipe";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENT_CONDUCTIONPIPE = "report_desinfection_watersystem_table_element_conductionpipe";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENT_RELIEFVALVE = "report_desinfection_watersystem_table_element_reliefvalve";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_ELEMENTSNUM = "report_desinfection_watersystem_table_elementsnum";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_CHLORINEPERELEMENT = "report_desinfection_watersystem_table_chlorineperelement";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_SPOONSPERELEMENT = "report_desinfection_watersystem_table_spoonsperelement";
+	public static final String REPORT_DESINFECTION_WATERSYSTEM_TABLE_RETENTIONTIME = "report_desinfection_watersystem_table_retentiontime";
+	public static final String REPORT_DESINFECTION_RESULTS_TOTALCHLORINEAMOUNT = "report_desinfection_results_totalchlorineamount";
+	public static final String REPORT_DESINFECTION_RESULTS_DESINFECTIONCOST = "report_desinfection_results_desinfectioncost";
+	public static final String REPORT_DESINFECTION_WARNINGS_CONTENT = "report_desinfection_warnings_content";
 }

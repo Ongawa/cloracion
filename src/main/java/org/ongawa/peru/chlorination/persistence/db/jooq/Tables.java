@@ -12,6 +12,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculati
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoirdesinfection;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe;
@@ -111,6 +112,11 @@ public class Tables {
 	 * The table PUBLIC.RELIEFVALVEDESINFECTION
 	 */
 	public static final Reliefvalvedesinfection RELIEFVALVEDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalvedesinfection.RELIEFVALVEDESINFECTION;
+
+	/**
+	 * The table PUBLIC.DESINFECTION
+	 */
+	public static final Desinfection DESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION;
 
 	/**
 	 * The table PUBLIC.CATCHMENTDESINFECTION
