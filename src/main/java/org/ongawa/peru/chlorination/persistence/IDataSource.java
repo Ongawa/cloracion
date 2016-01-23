@@ -3,10 +3,15 @@ package org.ongawa.peru.chlorination.persistence;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.ongawa.peru.chlorination.persistence.elements.Catchment;
+import org.ongawa.peru.chlorination.persistence.elements.CatchmentDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
+import org.ongawa.peru.chlorination.persistence.elements.ConductionPipe;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoirDesinfection;
+import org.ongawa.peru.chlorination.persistence.elements.Desinfection;
+import org.ongawa.peru.chlorination.persistence.elements.DistributionPipe;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuredFlow;
 import org.ongawa.peru.chlorination.persistence.elements.MeasuringPoint;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
@@ -128,11 +133,27 @@ public interface IDataSource {
 	
 	boolean removeCubicReservoir(CubicReservoir cubicReservoir);
 	
-	Pipe addPipe(Pipe pipe);
+	Catchment addCatchment(Catchment catchment);
 	
-	List<Pipe> getPipes(WaterSystem waterSystem);
+	List<Catchment> getCatchments(WaterSystem waterSystem);
 	
-	Pipe getPipe(WaterSystem waterSystem, int pipeId);
+	Catchment getCatchment(WaterSystem waterSystem, int catchmentId);
+	
+	boolean editCatchment(Catchment catchment);
+	
+	boolean removeCatchment(Catchment catchment);
+	
+	DistributionPipe addDistributionPipe(DistributionPipe pipe);
+	
+	List<DistributionPipe> getDistributionPipes(WaterSystem waterSystem);
+	
+	DistributionPipe getDistributionPipe(WaterSystem waterSystem, int pipeId);
+	
+	ConductionPipe addConductionPipe(ConductionPipe pipe);
+	
+	List<ConductionPipe> getConductionPipes(WaterSystem waterSystem);
+	
+	ConductionPipe getConductionPipe(WaterSystem waterSystem, int pipeId);
 	
 	boolean editPipe(Pipe pipe);
 	
@@ -148,47 +169,49 @@ public interface IDataSource {
 	
 	boolean removeReliefValve(ReliefValve reliefValve);
 	
+	Desinfection addDesinfection(Desinfection desinfection);
+	
+	List<Desinfection> getDesinfections(WaterSystem waterSystem);
+	
+	Desinfection getDesinfection(Timestamp date, WaterSystem waterSystem);
+	
+	Desinfection getLastDesinfection(WaterSystem waterSystem);
+	
+	boolean editDesinfection(Desinfection desinfection);
+	
+	boolean removeDesinfection(Desinfection desinfection);
+	
 	CubicReservoirDesinfection addCubicReservoirDesinfection(CubicReservoirDesinfection cubicReservoirDesinfection);
 	
-	List<CubicReservoirDesinfection> getCubicReservoirDesinfections(CubicReservoir cubicReservoir);
+	CubicReservoirDesinfection getCubicReservoirDesinfection(CubicReservoir cubicReservoir, Desinfection desinfection);
 	
-	List<CubicReservoirDesinfection> getCubicReservoirDesinfections(Timestamp beginDate, Timestamp endDate, CubicReservoir cubicReservoir);
+	boolean editCubicReservoirDesinfection(CubicReservoirDesinfection newCubicReservoirDesinfection);
 	
-	CubicReservoirDesinfection getCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
+	boolean removeCubicReservoirDesinfection(CubicReservoirDesinfection cubicReservoirDesinfection);
 	
-	CubicReservoirDesinfection getLastCubicReservoirDesinfection(CubicReservoir cubicReservoir);
+	CatchmentDesinfection addCatchmentDesinfection(CatchmentDesinfection catchmentDesinfection);
 	
-	boolean editCubicReservoirDesinfection(Timestamp oldCubicReservoirDesinfection, CubicReservoirDesinfection newCubicReservoirDesinfection);
+	CatchmentDesinfection getCatchmentDesinfection(Catchment catchment, Desinfection desinfection);
 	
-	boolean removeCubicReservoirDesinfection(Timestamp date, CubicReservoir cubicReservoir);
+	boolean editCatchmentDesinfection(CatchmentDesinfection newCatchmentDesinfection);
+	
+	boolean removeCatchmentDesinfection(CatchmentDesinfection catchmentDesinfecion);
 	
 	PipeDesinfection addPipeDesinfection(PipeDesinfection pipeDesinfection);
 	
-	List<PipeDesinfection> getPipeDesinfections(Pipe pipe);
+	PipeDesinfection getPipeDesinfection(Pipe pipe, Desinfection desinfection);
 	
-	List<PipeDesinfection> getPipeDesinfections(Timestamp beginDate, Timestamp endDate, Pipe pipe);
+	boolean editPipeDesinfection(PipeDesinfection newPipeDesinfection);
 	
-	PipeDesinfection getPipeDesinfection(Timestamp date, Pipe pipe);
-	
-	PipeDesinfection getLastPipeDesinfection(Pipe pipe);
-	
-	boolean editPipeDesinfection(Timestamp oldPipeDesinfection, PipeDesinfection newPipeDesinfection);
-	
-	boolean removePipeDesinfection(Timestamp date, Pipe pipe);
+	boolean removePipeDesinfection(PipeDesinfection pipeDesinfection);
 	
 	ReliefValveDesinfection addReliefValveDesinfection(ReliefValveDesinfection reliefValveDesinfection);
 	
-	List<ReliefValveDesinfection> getReliefValveDesinfections(ReliefValve reliefValve);
+	ReliefValveDesinfection getReliefValveDesinfection(ReliefValve reliefValve, Desinfection desinfection);
 	
-	List<ReliefValveDesinfection> getReliefValveDesinfections(Timestamp beginDate, Timestamp endDate, ReliefValve reliefValve);
+	boolean editReliefValveDesinfection(ReliefValveDesinfection newReliefValveDesinfection);
 	
-	ReliefValveDesinfection getReliefValveDesinfection(Timestamp date, ReliefValve reliefValve);
-	
-	ReliefValveDesinfection getLastReliefValveDesinfection(ReliefValve reliefValve);
-	
-	boolean editReliefValveDesinfection(Timestamp oldReliefValveDesinfection, ReliefValveDesinfection newReliefValveDesinfection);
-	
-	boolean removeReliefValveDesinfection(Timestamp date, ReliefValveDesinfection reliefValveDesinfection);
+	boolean removeReliefValveDesinfection(ReliefValveDesinfection reliefValveDesinfection);
 	
 	boolean createInitialEnvironment();
 }

@@ -37,23 +37,23 @@
             </rowConstraints> -->
             <children>
                 <Label alignment="CENTER" prefHeight="43.0" prefWidth="135.0" text="Tipo" textAlignment="CENTER" GridPane.columnIndex="1" />
-                <Label fx:id="elementType" alignment="CENTER" prefHeight="43.0" prefWidth="135.0" text="Tuberia" textAlignment="CENTER" GridPane.columnIndex="2" />
+                <Label fx:id="elementType" alignment="CENTER" prefHeight="43.0" prefWidth="135.0" text="Tubería de conducción" textAlignment="CENTER" GridPane.columnIndex="2" />
                 
                 <Label alignment="CENTER" prefHeight="43.0" prefWidth="135.0" text="Nombre" textAlignment="CENTER" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                <TextField fx:id="elementName" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="1" />
                 
                     
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="113.0" text="Concentracion (%)" textAlignment="CENTER" GridPane.columnIndex="4" />
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="113.0" text="Concentración (%)" textAlignment="CENTER" GridPane.columnIndex="4" />
                 <TextField fx:id="clConcetration" prefWidth="135.0" GridPane.columnIndex="5" />
                    
                     
                 <Label alignment="CENTER" prefHeight="50.0" prefWidth="135.0" text="Longitud (metros)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="elementLength" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     
-                <Label alignment="CENTER" prefHeight="50.0" prefWidth="135.0" text="Diametro (Centimetros)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label alignment="CENTER" prefHeight="50.0" prefWidth="135.0" text="Diámetro (Centímetros)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="elementDiameter" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                 
-                <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Tiempo Retencion (horas)" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" />
+                <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Tiempo Retención (horas)" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" />
                 <TextField fx:id="retentionTime" prefWidth="135.0" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                 
                 <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Cantidad" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="2" />

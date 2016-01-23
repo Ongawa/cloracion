@@ -1,10 +1,15 @@
 package org.ongawa.peru.chlorination.persistence.elements;
 
+import org.ongawa.peru.chlorination.logic.DataCalculator;
+
 /**
+ * 
  * @author kiko
+ *
  */
-public class ReliefValve {
-	private int reliefValveId;
+public abstract class Reservoir {
+	
+	private int reservoirId;
 	private String name;
 	private double width;
 	private double length;
@@ -12,9 +17,8 @@ public class ReliefValve {
 	private int count;
 	private WaterSystem waterSystem;
 	
-	public ReliefValve(int reliefValveId, double width, double length, double height, WaterSystem waterSystem) {
-		super();
-		this.reliefValveId = reliefValveId;
+	public Reservoir(int reservoirId, double width, double length, double height, WaterSystem waterSystem) {
+		this.reservoirId = reservoirId;
 		this.width = width;
 		this.length = length;
 		this.height = height;
@@ -22,9 +26,8 @@ public class ReliefValve {
 		this.waterSystem = waterSystem;
 	}
 
-	public ReliefValve(double width, double length, double height, WaterSystem waterSystem) {
-		super();
-		this.reliefValveId = -1;
+	public Reservoir(double width, double length, double height, WaterSystem waterSystem) {
+		this.reservoirId = -1;
 		this.width = width;
 		this.length = length;
 		this.height = height;
@@ -72,12 +75,16 @@ public class ReliefValve {
 		this.count = count;
 	}
 
-	public int getReliefValveId() {
-		return reliefValveId;
+	public int getReservoirId() {
+		return reservoirId;
+	}
+	
+	public void setReservoirId(int reservoirId){
+		this.reservoirId = reservoirId;
 	}
 
 	public double getVolume() {
-		return this.getWidth()*this.getLength()*this.getHeight();
+		return DataCalculator.volTanTam(this.getWidth(), this.getLength(), this.getHeight());
 	}
 
 	public double getCombinedVolume() {

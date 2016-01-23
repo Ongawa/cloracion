@@ -6,10 +6,13 @@ package org.ongawa.peru.chlorination.persistence.db.jooq;
 
 import javax.annotation.Generated;
 
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoirdesinfection;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe;
@@ -86,6 +89,11 @@ public class Tables {
 	public static final Pipe PIPE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE;
 
 	/**
+	 * The table PUBLIC.CATCHMENT
+	 */
+	public static final Catchment CATCHMENT = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT;
+
+	/**
 	 * The table PUBLIC.RELIEFVALVE
 	 */
 	public static final Reliefvalve RELIEFVALVE = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalve.RELIEFVALVE;
@@ -104,4 +112,14 @@ public class Tables {
 	 * The table PUBLIC.RELIEFVALVEDESINFECTION
 	 */
 	public static final Reliefvalvedesinfection RELIEFVALVEDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Reliefvalvedesinfection.RELIEFVALVEDESINFECTION;
+
+	/**
+	 * The table PUBLIC.DESINFECTION
+	 */
+	public static final Desinfection DESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION;
+
+	/**
+	 * The table PUBLIC.CATCHMENTDESINFECTION
+	 */
+	public static final Catchmentdesinfection CATCHMENTDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION;
 }

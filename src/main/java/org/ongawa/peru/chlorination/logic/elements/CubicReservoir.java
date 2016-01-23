@@ -18,6 +18,7 @@ import javafx.beans.property.StringProperty;
 public class CubicReservoir implements SystemElement{
 
     public static final int REQUIRED_CL_QUANTITY = 50;
+    public static final int RETENTION_TIME = 2;
     public static final String TYPE_NAME = "Reservorio";
     
     private org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir;
@@ -44,7 +45,7 @@ public class CubicReservoir implements SystemElement{
      */
     public CubicReservoir(String name, double length, double width, double height, WaterSystem waterSystem){
         this.dbReservoir = new org.ongawa.peru.chlorination.persistence.elements.CubicReservoir( width, length, height, waterSystem);
-        this.dbReservoir.setName(name);
+        this.dbReservoir.setElementName(name);
         this.dbReservoir.setCount(1);
     }
     
@@ -58,7 +59,7 @@ public class CubicReservoir implements SystemElement{
      */
     public CubicReservoir(String name, double length, double width, double height,WaterSystem waterSystem,  int count){
         this.dbReservoir = new org.ongawa.peru.chlorination.persistence.elements.CubicReservoir( width, length, height, waterSystem);
-        this.dbReservoir.setName(name);
+        this.dbReservoir.setElementName(name);
         this.dbReservoir.setCount(count);
     }
     
@@ -69,7 +70,7 @@ public class CubicReservoir implements SystemElement{
 
     @Override
     public StringProperty getName() {
-        return new SimpleStringProperty(this.dbReservoir.getName());
+        return new SimpleStringProperty(this.dbReservoir.getElementName());
     }
     
     @Override
@@ -101,7 +102,7 @@ public class CubicReservoir implements SystemElement{
     }*/
     
     public void setName(String newName) {
-        this.dbReservoir.setName(newName);
+        this.dbReservoir.setElementName(newName);
     }
     
     public double getWidth() {
@@ -112,11 +113,11 @@ public class CubicReservoir implements SystemElement{
         this.dbReservoir.setWidth(width);
     }
 
-    public double getHeigtht() {
+    public double getHeight() {
         return this.dbReservoir.getHeight();
     }
 
-    public void setHeigtht(double height) {
+    public void setHeight(double height) {
         this.dbReservoir.setHeight(height);
     }
     
@@ -147,7 +148,7 @@ public class CubicReservoir implements SystemElement{
     public void save() { 
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
-            if (this.dbReservoir.getCubbicReservoirId() < 0) {
+            if (this.dbReservoir.getReservoirId() < 0) {
                 this.dbReservoir = ds.addCubicReservoir(this.dbReservoir);
             } else {
                 ds.editCubicReservoir(this.dbReservoir);

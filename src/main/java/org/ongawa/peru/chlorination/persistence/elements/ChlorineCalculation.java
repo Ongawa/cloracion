@@ -7,52 +7,76 @@ import java.sql.Timestamp;
  */
 public class ChlorineCalculation {
 	
+	//INPUTS
 	private Timestamp date;
+	private int familiesNum;
 	private int population;
 	private double tankVolume;
-	private double tankUsefulVolume;
 	private double endowment;
 	private double chlorinePureness;
-	private double inputFlow;
+	private double naturalFlow;
+	private double chlorinatedFlow;
+	private String chlorineType;
+	private double drippingHoursPerDay;
+	private double chlorineDemand;
+	private double chlorinePrice;
 	private double reloadTime;
-	private double demandCLR;
-	private double demandActiveChlorine;
-	private double demandCommonProduct;
 	private WaterSystem waterSystem;
 	
-	public ChlorineCalculation(Timestamp date, double demandCLR, double demandActiveChlorine, double demandCommonProduct, WaterSystem waterSystem){
-		super();
-		this.date = date;
-		this.demandCLR = demandCLR;
-		this.demandActiveChlorine = demandActiveChlorine;
-		this.demandCommonProduct = demandCommonProduct;
-		this.waterSystem = waterSystem;
-	}
+	//RESULTS
+	private double chlorineDosePerFortnight;
+	private double chlorineDosePerMonth;
+	private double drippingFlowInMl;
+	private double drippingFlowInDrops;
+	private double chlorinationCost;
 	
-	public ChlorineCalculation(Timestamp date, int population, double tankVolume, double tankUsefulVolume,
-			double endowment, double chlorinePureness, double inputFlow, int reloadTime, double demandCLR,
-			double demandActiveChlorine, double demandCommonProduct, WaterSystem waterSystem) {
+	public ChlorineCalculation(Timestamp date, WaterSystem waterSystem) {
 		super();
 		this.date = date;
-		this.population = population;
-		this.tankVolume = tankVolume;
-		this.tankUsefulVolume = tankUsefulVolume;
-		this.endowment = endowment;
-		this.chlorinePureness = chlorinePureness;
-		this.inputFlow = inputFlow;
-		this.reloadTime = reloadTime;
-		this.demandCLR = demandCLR;
-		this.demandActiveChlorine = demandActiveChlorine;
-		this.demandCommonProduct = demandCommonProduct;
 		this.waterSystem = waterSystem;
 	}
 
+	public ChlorineCalculation(Timestamp date, int familiesNum, int population, double tankVolume, double endowment,
+			double chlorinePureness, double naturalFlow, double chlorinatedFlow, String chlorineType,
+			double drippingHoursPerDay, double chlorineDemand, double chlorinePrice, double reloadTime,
+			WaterSystem waterSystem, double chlorineDosePerFortnight, double chlorineDosePerMonth,
+			double drippingFlowInMl, double drippingFlowInDrops, double chlorinationCost) {
+		super();
+		this.date = date;
+		this.familiesNum = familiesNum;
+		this.population = population;
+		this.tankVolume = tankVolume;
+		this.endowment = endowment;
+		this.chlorinePureness = chlorinePureness;
+		this.naturalFlow = naturalFlow;
+		this.chlorinatedFlow = chlorinatedFlow;
+		this.chlorineType = chlorineType;
+		this.drippingHoursPerDay = drippingHoursPerDay;
+		this.chlorineDemand = chlorineDemand;
+		this.chlorinePrice = chlorinePrice;
+		this.reloadTime = reloadTime;
+		this.waterSystem = waterSystem;
+		this.chlorineDosePerFortnight = chlorineDosePerFortnight;
+		this.chlorineDosePerMonth = chlorineDosePerMonth;
+		this.drippingFlowInMl = drippingFlowInMl;
+		this.drippingFlowInDrops = drippingFlowInDrops;
+		this.chlorinationCost = chlorinationCost;
+	}
+	
 	public Timestamp getDate() {
 		return date;
 	}
 
 	public void setDate(Timestamp date) {
 		this.date = date;
+	}
+	
+	public int getFamiliesNum(){
+		return familiesNum;
+	}
+	
+	public void setFamiliesNum(int familiesNum){
+		this.familiesNum = familiesNum;
 	}
 
 	public int getPopulation() {
@@ -71,14 +95,6 @@ public class ChlorineCalculation {
 		this.tankVolume = tankVolume;
 	}
 
-	public double getTankUsefulVolume() {
-		return tankUsefulVolume;
-	}
-
-	public void setTankUsefulVolume(double tankUsefulVolume) {
-		this.tankUsefulVolume = tankUsefulVolume;
-	}
-
 	public double getEndowment() {
 		return endowment;
 	}
@@ -95,12 +111,52 @@ public class ChlorineCalculation {
 		this.chlorinePureness = chlorinePureness;
 	}
 
-	public double getInputFlow() {
-		return inputFlow;
+	public double getNaturalFlow() {
+		return naturalFlow;
 	}
 
-	public void setInputFlow(double inputFlow) {
-		this.inputFlow = inputFlow;
+	public void setNaturalFlow(double naturalFlow) {
+		this.naturalFlow = naturalFlow;
+	}
+
+	public double getChlorinatedFlow() {
+		return chlorinatedFlow;
+	}
+
+	public void setChlorinatedFlow(double chlorinatedFlow) {
+		this.chlorinatedFlow = chlorinatedFlow;
+	}
+
+	public String getChlorineType() {
+		return chlorineType;
+	}
+
+	public void setChlorineType(String chlorineType) {
+		this.chlorineType = chlorineType;
+	}
+
+	public double getDrippingHoursPerDay() {
+		return drippingHoursPerDay;
+	}
+
+	public void setDrippingHoursPerDay(double drippingHoursPerDay) {
+		this.drippingHoursPerDay = drippingHoursPerDay;
+	}
+
+	public double getChlorineDemand() {
+		return chlorineDemand;
+	}
+
+	public void setChlorineDemand(double chlorineDemand) {
+		this.chlorineDemand = chlorineDemand;
+	}
+
+	public double getChlorinePrice() {
+		return chlorinePrice;
+	}
+
+	public void setChlorinePrice(double chlorinePrice) {
+		this.chlorinePrice = chlorinePrice;
 	}
 
 	public double getReloadTime() {
@@ -111,39 +167,51 @@ public class ChlorineCalculation {
 		this.reloadTime = reloadTime;
 	}
 
-	public double getDemandCLR() {
-		return demandCLR;
+	public double getChlorineDosePerFortnight() {
+		return chlorineDosePerFortnight;
 	}
 
-	public void setDemandCLR(double demandCLR) {
-		this.demandCLR = demandCLR;
+	public void setChlorineDosePerFortnight(double chlorineDosePerFortnight) {
+		this.chlorineDosePerFortnight = chlorineDosePerFortnight;
 	}
 
-	public double getDemandActiveChlorine() {
-		return demandActiveChlorine;
+	public double getChlorineDosePerMonth() {
+		return chlorineDosePerMonth;
 	}
 
-	public void setDemandActiveChlorine(double demandActiveChlorine) {
-		this.demandActiveChlorine = demandActiveChlorine;
+	public void setChlorineDosePerMonth(double chlorineDosePerMonth) {
+		this.chlorineDosePerMonth = chlorineDosePerMonth;
 	}
 
-	public double getDemandCommonProduct() {
-		return demandCommonProduct;
+	public double getDrippingFlowInMl() {
+		return drippingFlowInMl;
 	}
 
-	public void setDemandCommonProduct(double demandCommonProduct) {
-		this.demandCommonProduct = demandCommonProduct;
+	public void setDrippingFlowInMl(double drippingFlowInMl) {
+		this.drippingFlowInMl = drippingFlowInMl;
+	}
+
+	public double getDrippingFlowInDrops() {
+		return drippingFlowInDrops;
+	}
+
+	public void setDrippingFlowInDrops(double drippingFlowInDrops) {
+		this.drippingFlowInDrops = drippingFlowInDrops;
+	}
+
+	public double getChlorinationCost() {
+		return chlorinationCost;
+	}
+
+	public void setChlorinationCost(double chlorinationCost) {
+		this.chlorinationCost = chlorinationCost;
 	}
 
 	public WaterSystem getWaterSystem() {
 		return waterSystem;
 	}
 
-	public void setWaterSystem(WaterSystem waterSystem) {
-		this.waterSystem = waterSystem;
-	}
-	
 	public String toString(){
-		return "WaterSystem: "+this.getWaterSystem().getName()+" Date: "+this.getDate()+" CLR: "+this.getDemandCLR()+" Active: "+this.getDemandActiveChlorine()+" Common: "+this.getDemandCommonProduct();
+		return "WaterSystem: "+this.getWaterSystem().getName()+" Date: "+this.getDate();
 	}
 }

@@ -15,9 +15,11 @@
                 layoutY="14.0" prefWidth="150.0" promptText="Elegir elemento">
                 <items>
                     <FXCollections fx:factory="observableArrayList">
-                        <String fx:value="Tuberia" />
+                        <String fx:value="Tubería de distribución" />
+                        <String fx:value="Tubería de conducción" />
                         <String fx:value="Reservorio" />
-                        <String fx:value="CPR" />
+                        <String fx:value="Captación" />
+                        <String fx:value="CRP" />
                     </FXCollections>
                 </items>
             </ComboBox>

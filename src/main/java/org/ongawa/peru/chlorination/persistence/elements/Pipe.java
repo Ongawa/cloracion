@@ -3,7 +3,10 @@ package org.ongawa.peru.chlorination.persistence.elements;
 /**
  * @author Kiko
  */
-public class Pipe {
+public abstract class Pipe {
+	
+	public static final int DISTRIBUTION_PIPE_TYPE = 1;
+	public static final int CONDUCTION_PIPE_TYPE = 2;
 
 	private int pipeId;
 	private String name;
@@ -37,11 +40,11 @@ public class Pipe {
 		this.pipeId = pipeId;
 	}
 
-	public String getName() {
+	public String getElementName() {
 		return name;
 	}
 
-	public void setName(String name) {
+	public void setElementName(String name) {
 		this.name = name;
 	}
 

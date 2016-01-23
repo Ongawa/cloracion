@@ -13,10 +13,13 @@ import javax.annotation.Generated;
 import org.jooq.Sequence;
 import org.jooq.Table;
 import org.jooq.impl.SchemaImpl;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoir;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Cubicreservoirdesinfection;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuredflow;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Measuringpoint;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe;
@@ -42,7 +45,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWat
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Public extends SchemaImpl {
 
-	private static final long serialVersionUID = 54249637;
+	private static final long serialVersionUID = -666131717;
 
 	/**
 	 * The reference instance of <code>PUBLIC</code>
@@ -65,14 +68,15 @@ public class Public extends SchemaImpl {
 
 	private final List<Sequence<?>> getSequences0() {
 		return Arrays.<Sequence<?>>asList(
-			Sequences.SYSTEM_SEQUENCE_00ED8DC9_74E2_4313_9B53_00BE94A2E2F2,
-			Sequences.SYSTEM_SEQUENCE_1C272693_3780_4363_8279_79B3AECC4A42,
-			Sequences.SYSTEM_SEQUENCE_387E22AB_24F2_4072_866A_F16C4A74FAC0,
-			Sequences.SYSTEM_SEQUENCE_4C3BB443_FC8B_4773_A6F3_1234A38140C5,
-			Sequences.SYSTEM_SEQUENCE_67BA5D32_536C_4D1A_B05C_698E3E69C253,
-			Sequences.SYSTEM_SEQUENCE_80D4B0E6_D08E_4BCC_BD05_91BD2381C466,
-			Sequences.SYSTEM_SEQUENCE_97AF17BE_B1A5_4B94_886D_8855013F364B,
-			Sequences.SYSTEM_SEQUENCE_EEEE937E_FB9E_414B_BB8B_B2DC440D80D5);
+			Sequences.SYSTEM_SEQUENCE_75381486_4E27_472C_8AF9_22B3F51CEB49,
+			Sequences.SYSTEM_SEQUENCE_76014754_1FF2_4DC9_9E7D_5EB4E4106A9A,
+			Sequences.SYSTEM_SEQUENCE_987CC6EF_F945_4A58_94ED_20B75E4997CF,
+			Sequences.SYSTEM_SEQUENCE_9A1962B8_06AC_4890_90E5_6B305100CA64,
+			Sequences.SYSTEM_SEQUENCE_A1B4B21A_EE3F_4480_A2C1_8E260CD01394,
+			Sequences.SYSTEM_SEQUENCE_AEF96653_4E25_4852_BD3F_0F1E83B7F917,
+			Sequences.SYSTEM_SEQUENCE_BAA65B56_3EC2_4471_B21B_8770ECCE5F9A,
+			Sequences.SYSTEM_SEQUENCE_BD860B9A_3CF1_4F3D_8064_9B377C8FAEFC,
+			Sequences.SYSTEM_SEQUENCE_E925F6B3_B6AA_477D_BC45_6ED366425E0E);
 	}
 
 	@Override
@@ -94,9 +98,12 @@ public class Public extends SchemaImpl {
 			Chlorinecalculation.CHLORINECALCULATION,
 			Cubicreservoir.CUBICRESERVOIR,
 			Pipe.PIPE,
+			Catchment.CATCHMENT,
 			Reliefvalve.RELIEFVALVE,
 			Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION,
 			Pipedesinfection.PIPEDESINFECTION,
-			Reliefvalvedesinfection.RELIEFVALVEDESINFECTION);
+			Reliefvalvedesinfection.RELIEFVALVEDESINFECTION,
+			Desinfection.DESINFECTION,
+			Catchmentdesinfection.CATCHMENTDESINFECTION);
 	}
 }

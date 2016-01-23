@@ -34,7 +34,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.Pipedesin
 @SuppressWarnings({ "all", "unchecked", "rawtypes" })
 public class Pipedesinfection extends TableImpl<PipedesinfectionRecord> {
 
-	private static final long serialVersionUID = -1945730630;
+	private static final long serialVersionUID = 1666954284;
 
 	/**
 	 * The reference instance of <code>PUBLIC.PIPEDESINFECTION</code>
@@ -50,9 +50,9 @@ public class Pipedesinfection extends TableImpl<PipedesinfectionRecord> {
 	}
 
 	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.DATE</code>.
+	 * The column <code>PUBLIC.PIPEDESINFECTION.DESINFECTION_DATE</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Timestamp> DATE = createField("DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
+	public final TableField<PipedesinfectionRecord, Timestamp> DESINFECTION_DATE = createField("DESINFECTION_DATE", org.jooq.impl.SQLDataType.TIMESTAMP.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.PIPEDESINFECTION.PIPE_IDPIPE</code>.
@@ -60,19 +60,19 @@ public class Pipedesinfection extends TableImpl<PipedesinfectionRecord> {
 	public final TableField<PipedesinfectionRecord, Integer> PIPE_IDPIPE = createField("PIPE_IDPIPE", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.PIPE_WATERSYSTEM_IDWATERSYSTEM</code>.
+	 * The column <code>PUBLIC.PIPEDESINFECTION.WATERSYSTEM_IDWATERSYSTEM</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Integer> PIPE_WATERSYSTEM_IDWATERSYSTEM = createField("PIPE_WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<PipedesinfectionRecord, Integer> WATERSYSTEM_IDWATERSYSTEM = createField("WATERSYSTEM_IDWATERSYSTEM", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.PIPE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
+	 * The column <code>PUBLIC.PIPEDESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Integer> PIPE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("PIPE_WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<PipedesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_IDCOMMUNITY = createField("WATERSYSTEM_COMMUNITY_IDCOMMUNITY", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.PIPE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
+	 * The column <code>PUBLIC.PIPEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Integer> PIPE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("PIPE_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
+	public final TableField<PipedesinfectionRecord, Integer> WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN = createField("WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN", org.jooq.impl.SQLDataType.INTEGER.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.PIPEDESINFECTION.COUNT</code>.
@@ -80,34 +80,19 @@ public class Pipedesinfection extends TableImpl<PipedesinfectionRecord> {
 	public final TableField<PipedesinfectionRecord, Integer> COUNT = createField("COUNT", org.jooq.impl.SQLDataType.INTEGER.nullable(false).defaulted(true), this, "");
 
 	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.VOLUME</code>.
+	 * The column <code>PUBLIC.PIPEDESINFECTION.CHLORINEQTY</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Double> VOLUME = createField("VOLUME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.CHLORINECONCENTRATION</code>.
-	 */
-	public final TableField<PipedesinfectionRecord, Double> CHLORINECONCENTRATION = createField("CHLORINECONCENTRATION", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.DEMANDACTIVECHLORINE</code>.
-	 */
-	public final TableField<PipedesinfectionRecord, Double> DEMANDACTIVECHLORINE = createField("DEMANDACTIVECHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
-
-	/**
-	 * The column <code>PUBLIC.PIPEDESINFECTION.DEMAND70CHLORINE</code>.
-	 */
-	public final TableField<PipedesinfectionRecord, Double> DEMAND70CHLORINE = createField("DEMAND70CHLORINE", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<PipedesinfectionRecord, Double> CHLORINEQTY = createField("CHLORINEQTY", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.PIPEDESINFECTION.DEMANDSPOONS</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<PipedesinfectionRecord, Double> DEMANDSPOONS = createField("DEMANDSPOONS", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * The column <code>PUBLIC.PIPEDESINFECTION.RETENTIONTIME</code>.
 	 */
-	public final TableField<PipedesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE, this, "");
+	public final TableField<PipedesinfectionRecord, Double> RETENTIONTIME = createField("RETENTIONTIME", org.jooq.impl.SQLDataType.DOUBLE.nullable(false), this, "");
 
 	/**
 	 * Create a <code>PUBLIC.PIPEDESINFECTION</code> table reference
@@ -152,7 +137,7 @@ public class Pipedesinfection extends TableImpl<PipedesinfectionRecord> {
 	 */
 	@Override
 	public List<ForeignKey<PipedesinfectionRecord, ?>> getReferences() {
-		return Arrays.<ForeignKey<PipedesinfectionRecord, ?>>asList(Keys.FK_PIPEDESINFECTION_PIPE1);
+		return Arrays.<ForeignKey<PipedesinfectionRecord, ?>>asList(Keys.FK_PIPEDESINFECTION_DESINFECTION1);
 	}
 
 	/**

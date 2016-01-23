@@ -12,6 +12,7 @@ import javafx.beans.property.StringProperty;
 public class ReliefValve implements SystemElement {
 
     public static final int REQUIRED_CL_QUANTITY = 200;
+    public static final int RETENTION_TIME = 2;
     public static final String TYPE_NAME = "CPR";
 
     private org.ongawa.peru.chlorination.persistence.elements.ReliefValve dbValve;
@@ -41,7 +42,7 @@ public class ReliefValve implements SystemElement {
      */
     public ReliefValve(String name, double length, double width, double height, WaterSystem waterSystem) {
         this.dbValve = new org.ongawa.peru.chlorination.persistence.elements.ReliefValve(width, length, height, waterSystem);
-        this.dbValve.setName(name);
+        this.dbValve.setElementName(name);
         this.dbValve.setCount(1);
     }
 
@@ -56,7 +57,7 @@ public class ReliefValve implements SystemElement {
      */
     public ReliefValve(String name, double length, double width, double height,  WaterSystem waterSystem, int count) {
         this.dbValve = new org.ongawa.peru.chlorination.persistence.elements.ReliefValve(width, length, height, waterSystem);
-        this.dbValve.setName(name);
+        this.dbValve.setElementName(name);
         this.dbValve.setCount(count);
     }
 
@@ -67,11 +68,11 @@ public class ReliefValve implements SystemElement {
 
     @Override
     public StringProperty getName() {
-        return new SimpleStringProperty(this.dbValve.getName());
+        return new SimpleStringProperty(this.dbValve.getElementName());
     }
     
     public void setName(String name) {
-        this.dbValve.setName(name);
+        this.dbValve.setElementName(name);
     }
     
 
