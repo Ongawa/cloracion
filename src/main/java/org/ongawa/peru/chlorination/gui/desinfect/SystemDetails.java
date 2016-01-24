@@ -109,6 +109,33 @@ public class SystemDetails implements Initializable {
         ((ComboBox<String>) childNode.lookup("#newElementCombo")).valueProperty()
                 .addListener((observable, oldValue, newValue) -> showAddForElement(newValue));
     }
+    
+    
+    /**
+     * Delete an element
+     */
+    public void deleteCurrentElement() {
+        SystemElement selected = this.elementsTable.getSelectionModel().getSelectedItem();
+        this.elements.remove(selected);
+        try {
+            IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
+            if (selected.getClass().equals(Catchment.class)) {
+                ds.removeCatchment((Catchment) selected);
+            } else if (selected.getClass().equals(ConductionPipe.class)) {
+                ds.removePipe((ConductionPipe) selected);
+            } else if (selected.getClass().equals(DistributionPipe.class)) {
+                ds.removePipe((DistributionPipe) selected);
+            } else if (selected.getClass().equals(ReliefValve.class)) {
+                ds.removeReliefValve(((ReliefValve) selected).getDbValve());
+            } else {
+                ds.removeCubicReservoir(((CubicReservoir) selected).getDbReservoir());
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            log.warn(e.getMessage());
+        }
+        
+    }
 
     /**
      * Add the New item menu
@@ -539,7 +566,6 @@ public class SystemDetails implements Initializable {
         
         // Set the data to pass ***before*** calling the class loader
         
-        // TODO: Add a "look forward" history
         DataLoader.getDataLoader().setDesinfectResults(this.elements);
         
         Scene future = MainApp.popFuture(DesinfectionResults.class.getSimpleName());
@@ -589,7 +615,7 @@ public class SystemDetails implements Initializable {
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
         	log.warn(e.toString());
         }
-        
+        System.out.println(this.elements.size());
         // Add data sources
         this.nameColumn.setCellValueFactory(cellData -> cellData.getValue().getName());
         this.typeColumn.setCellValueFactory(cellData -> cellData.getValue().getTypeName());
