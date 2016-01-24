@@ -156,6 +156,7 @@ public class DesinfectionResults implements Initializable {
                     CatchmentDesinfection cdesinfect = new CatchmentDesinfection(currentCatchment, currentDesinfection,
                                                            currentCatchment.getCount(), currentResults[0], currentResults[2],
                                                            Catchment.RETENTION_TIME);
+                    ds.addCatchmentDesinfection(cdesinfect);
                     
                 } else {
                     ReliefValve currentVale = (ReliefValve) element;
