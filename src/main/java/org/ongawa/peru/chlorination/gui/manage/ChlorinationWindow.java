@@ -1,16 +1,28 @@
 package org.ongawa.peru.chlorination.gui.manage;
 
+import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.HelpStage;
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.gui.ClAlert;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
+import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.DataValidator;
+import org.ongawa.peru.chlorination.modules.reports.ManagementReport;
+import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
+import org.ongawa.peru.chlorination.persistence.IDataSource;
+import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
+import org.ongawa.peru.chlorination.persistence.elements.Community;
+import org.ongawa.peru.chlorination.persistence.elements.SubBasin;
+import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 
+import com.itextpdf.text.DocumentException;
 import com.sun.javafx.image.impl.ByteIndexed.Getter;
 
 import javafx.beans.value.ChangeListener;
@@ -20,9 +32,12 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class ChlorinationWindow  implements Initializable{
     
@@ -42,7 +57,12 @@ public class ChlorinationWindow  implements Initializable{
     private TextField dripTime;
     @FXML
     private TextField clDemand;
-
+    @FXML
+    private Button saveButton;
+    @FXML
+    private Button printButton;
+    
+    
     /* Results */
     @FXML
     private Label clKgQuin;
@@ -63,8 +83,32 @@ public class ChlorinationWindow  implements Initializable{
     private int familiesCount;
     private int inhabitants;
     
+    private WaterSystem waterSystem;
+    private ChlorineCalculation chlorineCalculation;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        
+        try {
+            
+            // Load the data from a previous calculation, if possible
+            IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
+            this.waterSystem = DataLoader.getDataLoader().getSelectedWaterSystem();
+            ChlorineCalculation lastCalculation = ds.getLastChlorineCalculation(waterSystem);
+            if (lastCalculation != null ){
+                this.naturalCaudal.textProperty().set(String.format("%1$,.2f", lastCalculation.getNaturalFlow()));
+                this.chlorableCaudal.textProperty().set(String.format("%1$,.2f",lastCalculation.getChlorinatedFlow()));
+                this.clPurity.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorinePureness()));
+                this.tankVolume.textProperty().set(String.format("%1$,.2f", lastCalculation.getTankVolume()));
+                this.rechargeTime.textProperty().set(String.format("%1$,.2f", lastCalculation.getReloadTime()));
+                this.dripTime.textProperty().set(String.format("%1$,.2f", lastCalculation.getDrippingHoursPerDay()));
+                this.clDemand.setAccessibleHelp(String.format("%1$,.2f", lastCalculation.getChlorineDemand()));
+                
+            }
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         
         this.naturalCaudal.textProperty().addListener(new ChangeListener<String>() {
             @Override
@@ -114,6 +158,9 @@ public class ChlorinationWindow  implements Initializable{
     }
 
 
+    public void setWaterSystem(WaterSystem ws) {
+        this.waterSystem = ws;
+    }
 
     public String getSystemName() {
         return systemName;
@@ -231,6 +278,29 @@ public class ChlorinationWindow  implements Initializable{
             
             this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/min");
             this.dripMlMin.setText(String.format("%1$,.2f", clResults[4]) + " ml/min");
+            
+            // Create the calculation
+            Timestamp now = new Timestamp(System.currentTimeMillis());
+
+            this.chlorineCalculation = new ChlorineCalculation(now, this.waterSystem);
+            
+            this.chlorineCalculation.setNaturalFlow(Double.valueOf(this.naturalCaudal.getText()));
+            this.chlorineCalculation.setChlorinatedFlow(Double.valueOf(this.chlorableCaudal.getText()));
+            this.chlorineCalculation.setChlorinePureness(Double.valueOf(this.clPurity.getText()));
+            this.chlorineCalculation.setTankVolume(Double.valueOf(this.tankVolume.getText()));
+            this.chlorineCalculation.setReloadTime(Double.valueOf(this.rechargeTime.getText()));
+            
+            this.chlorineCalculation.setDrippingHoursPerDay(Double.valueOf(this.dripTime.getText()));
+            this.chlorineCalculation.setChlorineDemand(Double.valueOf(this.clDemand.getText()));
+            
+            this.chlorineCalculation.setChlorineDosePerFortnight(clResults[1]);
+            this.chlorineCalculation.setChlorineDosePerMonth(clResults[2]);
+            this.chlorineCalculation.setDrippingFlowInMl(clResults[5]);
+            
+            this.chlorineCalculation.setDate(now);
+            
+            // Enable save
+            this.saveButton.setDisable(false);
         } else {
             ClAlert alert = new ClAlert(errorMessage);
             try {
@@ -243,11 +313,37 @@ public class ChlorinationWindow  implements Initializable{
     }
     
     public void triggerSave() {
-        // TODO: Save the results
+        try {
+            IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
+            
+            ds.addChlorineCalculation(chlorineCalculation);
+            
+            // Enable the printing
+            this.printButton.setDisable(false);
+        } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        
     }
     
     public void triggerPrint() {
         // TODO: Print the results
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showOpenDialog(stage);
+        if (file != null) {
+            try {
+                ManagementReport mreport = new ManagementReport(file, Locale.ENGLISH, "");
+                mreport.addWaterSystem(this.waterSystem);
+                mreport.createReport();
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+            
+        }
+        
     }
    
     public void triggerBack() {

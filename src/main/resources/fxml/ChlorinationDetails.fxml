@@ -189,12 +189,12 @@
                         <Button id="triggerBack" layoutX="500"
                             layoutY="192.0" onAction="#triggerBack"
                             text="Atras" />
-                        <Button id="triggerSave" layoutX="664.0"
+                        <Button id="triggerSave" fx:id="saveButton" layoutX="664.0"
                             layoutY="192.0" onAction="#triggerSave"
-                            text="Guardar" />
-                        <Button id="triggerPrint" layoutX="563.0"
+                            text="Guardar" disable="true"/>
+                        <Button id="triggerPrint" fx:id="printButton" layoutX="563.0"
                             layoutY="192.0" onAction="#triggerPrint"
-                            text="Imprimir" />
+                            text="Imprimir" disable="true"/>
                     </children>
                 </AnchorPane>
             </children>

@@ -7,6 +7,7 @@ import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
+import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
@@ -150,8 +151,11 @@ public class ProvinceSelector implements Initializable{
             return;
         }
 
+        DataLoader.getDataLoader().setSelectedWaterSystem(this.selectedWaterSystem);
 
         FXMLLoader loader = new FXMLLoader();
+        
+        
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ChlorinationDetails.fxml"));
 
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
