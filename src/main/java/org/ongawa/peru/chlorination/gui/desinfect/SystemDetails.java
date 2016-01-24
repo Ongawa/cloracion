@@ -64,6 +64,12 @@ public class SystemDetails implements Initializable {
      */
     @FXML
     private TableColumn<SystemElement, String> typeColumn;
+    
+    /**
+     * TextField with the chlorinePurity
+     */
+    @FXML
+    private TextField clPurity;
 
     /**
      * Loader tfor the fxml files
@@ -562,11 +568,18 @@ public class SystemDetails implements Initializable {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
 
-        // TODO: Add cl purity textField
-        
+        String purityValue = this.clPurity.getText();
+        if (purityValue.length() < 1) {
+            ClAlert alert = new ClAlert("Introduce un valor para la pureza del cloro");
+            alert.show();
+            return;
+        }
         // Set the data to pass ***before*** calling the class loader
         
-        DataLoader.getDataLoader().setDesinfectResults(this.elements);
+        DataLoader dl = DataLoader.getDataLoader();
+        dl.setDesinfectResults(this.elements);
+        dl.setValue("clPurity", purityValue);
+        
         
         Scene future = MainApp.popFuture(DesinfectionResults.class.getSimpleName());
         if (future != null) {

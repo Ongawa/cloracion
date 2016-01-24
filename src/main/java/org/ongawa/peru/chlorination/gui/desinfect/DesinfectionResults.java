@@ -70,6 +70,8 @@ public class DesinfectionResults implements Initializable {
     private ObservableList<SystemElement> resultElements;
 
     private List<String[]> desinfectResults;
+    
+    private double clPurity;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -77,6 +79,7 @@ public class DesinfectionResults implements Initializable {
         DataLoader loader = DataLoader.getDataLoader();
 
         this.resultElements = loader.getDesinfectResults();
+        this.clPurity = Double.valueOf(loader.getValue("clPurity"));
         this.resultsTable.setItems(resultElements);
 
         double totalRequired = 0;
@@ -84,7 +87,7 @@ public class DesinfectionResults implements Initializable {
         // Calculate the desinfection for every element
         for (SystemElement elem : resultElements) {
             double[] elemResults = DataCalculator.desinfection(elem.getCount(), elem.getVolume(),
-                    elem.getConcentration(), 70);
+                    elem.getConcentration(), clPurity);
             double vol = elem.getVolume();
             elem.setDesinfectionResults(elemResults);
             
