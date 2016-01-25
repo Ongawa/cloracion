@@ -15,6 +15,10 @@ public class KEYS {
 	
 	public static final String APP_FIRST_RUN = "APP_FIRST_RUN";
 	public static final String RESOURCES_PATH = "RESOURCES_PATH";
+	public static final String APPDATA_PATH = "APPDATA_PATH";
+	public static final String BACKUP_DAYS_LAPSE = "BACKUP_DAYS_LAPSE";
+	public static final String LAST_BACKUP_DATE = "LAST_BACKUP_DATE";
+	public static final String DEFAULT_BACKUP = "DEFAULT_BACKUP";
 	
 	public static final String REPORT_BUNDLE_NAME = "REPORT_BUNDLE_NAME";
 	public static final String REPORT_FRONTPAGE_MAIN_TEXT = "frontpage_main_text";

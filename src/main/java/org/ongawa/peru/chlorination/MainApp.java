@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Properties;
 
+import org.ongawa.peru.chlorination.modules.backups.BackupManager;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.slf4j.Logger;
@@ -79,6 +80,10 @@ public class MainApp extends Application {
     	if(Boolean.parseBoolean(properties.getProperty(KEYS.APP_FIRST_RUN, "true"))){
     		IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
     		ds.createInitialEnvironment();
+    	}
+    	else{
+    		//Checking backup
+    		BackupManager.getInstance().proceed();
     	}
         
         String fxmlFile = "/fxml/selectorWindow.fxml";
