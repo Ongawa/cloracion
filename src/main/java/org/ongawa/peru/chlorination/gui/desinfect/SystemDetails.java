@@ -568,7 +568,7 @@ public class SystemDetails implements Initializable {
         Stage stage = MainApp.getStage();
         MainApp.pushHistory(stage.getScene());
 
-        String purityValue = this.clPurity.getText();
+	        String purityValue = this.clPurity.getText();
         if (purityValue.length() < 1) {
             ClAlert alert = new ClAlert("Introduce un valor para la pureza del cloro");
             alert.show();

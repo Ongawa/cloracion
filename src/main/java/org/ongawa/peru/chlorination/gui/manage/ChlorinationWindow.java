@@ -334,8 +334,7 @@ public class ChlorinationWindow  implements Initializable{
         File file = fileChooser.showOpenDialog(stage);
         if (file != null) {
             try {
-                ManagementReport mreport = new ManagementReport(file, Locale.ENGLISH, "");
-                mreport.addWaterSystem(this.waterSystem);
+                ManagementReport mreport = new ManagementReport(this.waterSystem, file, Locale.ENGLISH, "");
                 mreport.createReport();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
                 // TODO Auto-generated catch block

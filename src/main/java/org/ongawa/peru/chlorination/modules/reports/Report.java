@@ -25,6 +25,7 @@ public abstract class Report {
 	protected String author;
 	protected Font headerFont;
 	protected Font bodyFont;
+	protected Font redBodyFont;
 	protected Font bodyBoldFont;
 	protected DecimalFormat df;
 	protected SimpleDateFormat sdf;
@@ -43,6 +44,8 @@ public abstract class Report {
 		
 		this.headerFont = new Font(FontFamily.HELVETICA, 18);
 		this.bodyFont = new Font(FontFamily.HELVETICA, 12);
+		this.redBodyFont = new Font(this.bodyFont.getFamily(), this.bodyFont.getSize());
+		this.redBodyFont.setColor(BaseColor.RED);
 		this.bodyBoldFont = new Font(this.bodyFont.getFamily(), this.bodyFont.getSize());
 		this.bodyBoldFont.setStyle(Font.BOLD);
 		this.df = new DecimalFormat("#.####");

@@ -114,8 +114,6 @@ public class DesinfectionReport extends Report {
         pa.setSpacingAfter(DEFAULT_SPACING);
         document.add(pa);
         
-        Font redBodyFont = new Font(this.bodyFont.getFamily(), this.bodyFont.getSize());
-        redBodyFont.setColor(BaseColor.RED);
         int tableSize = 7;
 		PdfPTable wsTable = new PdfPTable(tableSize);
 		wsTable.setWidthPercentage(100);
