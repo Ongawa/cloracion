@@ -6,6 +6,7 @@ package org.ongawa.peru.chlorination.persistence.db.jooq;
 
 import javax.annotation.Generated;
 
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
@@ -122,4 +123,9 @@ public class Tables {
 	 * The table PUBLIC.CATCHMENTDESINFECTION
 	 */
 	public static final Catchmentdesinfection CATCHMENTDESINFECTION = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection.CATCHMENTDESINFECTION;
+
+	/**
+	 * The table PUBLIC.BACKUP
+	 */
+	public static final Backup BACKUP = org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP;
 }

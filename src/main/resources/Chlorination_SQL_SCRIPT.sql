@@ -439,3 +439,19 @@ CREATE TABLE IF NOT EXISTS CatchmentDesinfection (
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ;
+
+
+-- -----------------------------------------------------
+-- Table Backup
+-- -----------------------------------------------------
+DROP TABLE IF EXISTS Backup;
+
+CREATE TABLE IF NOT EXISTS Backup (
+	idBackup INT NOT NULL AUTO_INCREMENT,
+	filePath VARCHAR(255) NOT NULL,
+	fileName VARCHAR(255) NOT NULL,
+	serviceName VARCHAR(255) NOT NULL,
+	lastAttempt DATETIME,
+	PRIMARY KEY (idBackup));
+	
+CREATE UNIQUE INDEX backup_filepathfilenameservicename_UNIQUE ON Backup (filePath, fileName, serviceName ASC);

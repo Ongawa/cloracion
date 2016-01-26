@@ -13,6 +13,8 @@ import java.util.Properties;
 
 import org.ongawa.peru.chlorination.ApplicationProperties;
 import org.ongawa.peru.chlorination.KEYS;
+import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
+import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -26,7 +28,7 @@ public class BackupManager {
 		log = LoggerFactory.getLogger(BackupManager.class);
 	}
 	
-	public static BackupManager getInstance() throws IOException{
+	public static BackupManager getInstance() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		if(instance == null)
 			instance = new BackupManager();
 		
@@ -35,10 +37,12 @@ public class BackupManager {
 	
 	private Properties properties;
 	private SimpleDateFormat sdf;
+	private IDataSource ds;
 	
-	private BackupManager() throws IOException{
+	private BackupManager() throws IOException, ClassNotFoundException, InstantiationException, IllegalAccessException{
 		this.properties = ApplicationProperties.getInstance().getProperties();
 		this.sdf = new SimpleDateFormat("yyyy-MM-dd");
+		this.ds = DataSourceFactory.getInstance().getDefaultDataSource();
 	}
 	
 	private void backup() throws ClassNotFoundException, InstantiationException, IllegalAccessException, FileNotFoundException, IOException{
@@ -53,11 +57,15 @@ public class BackupManager {
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date now = Calendar.getInstance().getTime();
-		Path path = FileSystems.getDefault().getPath(System.getProperty("user.home")+properties.getProperty(KEYS.APPDATA_PATH)+File.separator+"backups", "Backup_"+backup.getFormat()+"_"+sdf.format(now)+"."+backup.getFileExtension());
+		String filePath, fileName;
+		filePath = System.getProperty("user.home")+properties.getProperty(KEYS.APPDATA_PATH)+File.separator+"backups";
+		fileName = "Backup_"+backup.getFormat()+"_"+sdf.format(now)+"."+backup.getFileExtension();
+		Path path = FileSystems.getDefault().getPath(filePath, fileName);
 		if(!path.toFile().getParentFile().exists())
 			path.toFile().getParentFile().mkdirs();
 		
 		backup.createBackup(path);
+		this.ds.addBackup(new org.ongawa.peru.chlorination.persistence.elements.Backup(filePath, fileName, DropboxUploader.SERVICENAME));
 		this.properties.setProperty(KEYS.LAST_BACKUP_DATE, sdf.format(now));
 		ApplicationProperties.getInstance().storeProperties();
 	}

@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Properties;
 
 import org.ongawa.peru.chlorination.modules.backups.BackupManager;
+import org.ongawa.peru.chlorination.modules.backups.DropboxUploader;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.slf4j.Logger;
@@ -84,6 +85,7 @@ public class MainApp extends Application {
     	else{
     		//Checking backup
     		BackupManager.getInstance().proceed();
+    		new Thread(new DropboxUploader("ta-j24oUGNAAAAAAAAAACpuo6psQlbfP9bZtjg_ZrqVOQIFM1NXfFeU9cFEDX1cX")).start();
     	}
         
         String fxmlFile = "/fxml/selectorWindow.fxml";

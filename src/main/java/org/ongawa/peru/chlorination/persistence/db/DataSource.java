@@ -5,6 +5,7 @@ import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ import org.jooq.Record2;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
 import org.jooq.Table;
+import org.jooq.exception.DataAccessException;
 import org.jooq.impl.DSL;
 import org.ongawa.peru.chlorination.ApplicationProperties;
 import org.ongawa.peru.chlorination.KEYS;
@@ -37,6 +39,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring;
+import org.ongawa.peru.chlorination.persistence.elements.Backup;
 import org.ongawa.peru.chlorination.persistence.elements.Catchment;
 import org.ongawa.peru.chlorination.persistence.elements.CatchmentDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
@@ -295,6 +298,19 @@ public class DataSource implements IDataSource {
 				record.getValue(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.CHLORINEQTY),
 				record.getValue(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.DEMANDSPOONS),
 				record.getValue(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RETENTIONTIME));
+	}
+	
+	private Backup readBackup(Record record){
+		Backup backup = new Backup(
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.IDBACKUP),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.FILEPATH),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.FILENAME),
+				record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.SERVICENAME));
+		
+		Timestamp date = null;
+		if((date=record.getValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.LASTATTEMPT))!=null) backup.setLastAttempt(new Date(date.getTime()));
+		
+		return backup;
 	}
 	
 	@Override
@@ -3154,5 +3170,146 @@ public class DataSource implements IDataSource {
 		}
 		
 		return true;
+	}
+
+	@Override
+	public Backup addBackup(Backup backup) {
+		if(backup == null)
+			throw new NullArgumentException("backup");
+		Backup newBackup = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext insert = this.prepareDSLContext(this.connection);
+			int result = insert.insertInto(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.FILENAME,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.FILEPATH,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.SERVICENAME,
+					org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.LASTATTEMPT)
+					.values(backup.getFileName(),
+							backup.getFilePath(),
+							backup.getService(),
+							(backup.getLastAttempt()!=null)?new Timestamp(backup.getLastAttempt().getTime()):null)
+					.execute();
+			this.closeConnection();
+			if(result>0)
+				newBackup = this.getBackup(this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.IDBACKUP));
+
+		} catch (SQLException | DataAccessException e) {
+			log.warn(e.toString());
+		}
+		
+		return newBackup;
+	}
+	
+	@Override
+	public Backup getBackup(int idBackup) {
+		Backup backup = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select()
+					.from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.IDBACKUP.eq(idBackup))
+					.limit(1)
+					.fetch();
+			for(Record record : result){
+				backup = this.readBackup(record);
+				break;
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return backup;
+	}
+
+	@Override
+	public List<Backup> getBackups(String service) {
+		if(service == null)
+			throw new NullArgumentException("service");
+		List<Backup> backups = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			backups = new ArrayList<Backup>();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select()
+					.from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.SERVICENAME.eq(service))
+					.fetch();
+			for(Record record : result){
+				backups.add(this.readBackup(record));
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return backups;
+	}
+
+	@Override
+	public List<Backup> getAllBackups() {
+		List<Backup> backups = null;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			backups = new ArrayList<Backup>();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record> result = select.select()
+					.from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP)
+					.fetch();
+			for(Record record : result){
+				backups.add(this.readBackup(record));
+			}
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return backups;
+	}
+
+	@Override
+	public boolean editBackup(Backup backup) {
+		if(backup == null)
+			throw new NullArgumentException("backup");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext update = this.prepareDSLContext(this.connection);
+			result = update.update(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP)
+					.set(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.LASTATTEMPT, (backup.getLastAttempt()!=null)?new Timestamp(backup.getLastAttempt().getTime()):null)
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return result>0;
+	}
+
+	@Override
+	public boolean removeBackup(Backup backup) {
+		if(backup == null)
+			throw new NullArgumentException("backup");
+		int result = 0;
+		
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext remove = this.prepareDSLContext(this.connection);
+			result = remove.delete(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP)
+					.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup.BACKUP.IDBACKUP.eq(backup.getId()))
+					.execute();
+			this.closeConnection();
+		} catch (SQLException e) {
+			log.warn(e.toString());
+		}
+		
+		return result>0;
 	}
 }

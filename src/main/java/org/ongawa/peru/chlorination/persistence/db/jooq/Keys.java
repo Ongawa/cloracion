@@ -10,6 +10,7 @@ import org.jooq.ForeignKey;
 import org.jooq.Identity;
 import org.jooq.UniqueKey;
 import org.jooq.impl.AbstractKeys;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Backup;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchmentdesinfection;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Chlorinecalculation;
@@ -27,6 +28,7 @@ import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Subbasin;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Waterspring;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.Watersystem;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.WatersystemHasWaterspring;
+import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.BackupRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CatchmentRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CatchmentdesinfectionRecord;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.ChlorinecalculationRecord;
@@ -73,6 +75,7 @@ public class Keys {
 	public static final Identity<PipeRecord, Integer> IDENTITY_PIPE = Identities0.IDENTITY_PIPE;
 	public static final Identity<CatchmentRecord, Integer> IDENTITY_CATCHMENT = Identities0.IDENTITY_CATCHMENT;
 	public static final Identity<ReliefvalveRecord, Integer> IDENTITY_RELIEFVALVE = Identities0.IDENTITY_RELIEFVALVE;
+	public static final Identity<BackupRecord, Integer> IDENTITY_BACKUP = Identities0.IDENTITY_BACKUP;
 
 	// -------------------------------------------------------------------------
 	// UNIQUE and PRIMARY KEY definitions
@@ -95,6 +98,7 @@ public class Keys {
 	public static final UniqueKey<ReliefvalvedesinfectionRecord> CONSTRAINT_74 = UniqueKeys0.CONSTRAINT_74;
 	public static final UniqueKey<DesinfectionRecord> CONSTRAINT_3F = UniqueKeys0.CONSTRAINT_3F;
 	public static final UniqueKey<CatchmentdesinfectionRecord> CONSTRAINT_1E = UniqueKeys0.CONSTRAINT_1E;
+	public static final UniqueKey<BackupRecord> CONSTRAINT_745 = UniqueKeys0.CONSTRAINT_745;
 
 	// -------------------------------------------------------------------------
 	// FOREIGN KEY definitions
@@ -131,6 +135,7 @@ public class Keys {
 		public static Identity<PipeRecord, Integer> IDENTITY_PIPE = createIdentity(Pipe.PIPE, Pipe.PIPE.IDPIPE);
 		public static Identity<CatchmentRecord, Integer> IDENTITY_CATCHMENT = createIdentity(Catchment.CATCHMENT, Catchment.CATCHMENT.IDCATCHMENT);
 		public static Identity<ReliefvalveRecord, Integer> IDENTITY_RELIEFVALVE = createIdentity(Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.IDRELIEFVALVE);
+		public static Identity<BackupRecord, Integer> IDENTITY_BACKUP = createIdentity(Backup.BACKUP, Backup.BACKUP.IDBACKUP);
 	}
 
 	private static class UniqueKeys0 extends AbstractKeys {
@@ -151,6 +156,7 @@ public class Keys {
 		public static final UniqueKey<ReliefvalvedesinfectionRecord> CONSTRAINT_74 = createUniqueKey(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.DESINFECTION_DATE, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.RELIEFVALVE_IDRELIEFVALVE, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.WATERSYSTEM_IDWATERSYSTEM, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<DesinfectionRecord> CONSTRAINT_3F = createUniqueKey(Desinfection.DESINFECTION, Desinfection.DESINFECTION.DATE, Desinfection.DESINFECTION.WATERSYSTEM_IDWATERSYSTEM, Desinfection.DESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Desinfection.DESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
 		public static final UniqueKey<CatchmentdesinfectionRecord> CONSTRAINT_1E = createUniqueKey(Catchmentdesinfection.CATCHMENTDESINFECTION, Catchmentdesinfection.CATCHMENTDESINFECTION.DESINFECTION_DATE, Catchmentdesinfection.CATCHMENTDESINFECTION.CATCHMENT_IDCATCHMENT, Catchmentdesinfection.CATCHMENTDESINFECTION.WATERSYSTEM_IDWATERSYSTEM, Catchmentdesinfection.CATCHMENTDESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY, Catchmentdesinfection.CATCHMENTDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN);
+		public static final UniqueKey<BackupRecord> CONSTRAINT_745 = createUniqueKey(Backup.BACKUP, Backup.BACKUP.IDBACKUP);
 	}
 
 	private static class ForeignKeys0 extends AbstractKeys {

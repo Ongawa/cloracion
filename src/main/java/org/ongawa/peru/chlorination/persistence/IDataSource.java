@@ -3,6 +3,7 @@ package org.ongawa.peru.chlorination.persistence;
 import java.sql.Timestamp;
 import java.util.List;
 
+import org.ongawa.peru.chlorination.persistence.elements.Backup;
 import org.ongawa.peru.chlorination.persistence.elements.Catchment;
 import org.ongawa.peru.chlorination.persistence.elements.CatchmentDesinfection;
 import org.ongawa.peru.chlorination.persistence.elements.ChlorineCalculation;
@@ -214,4 +215,16 @@ public interface IDataSource {
 	boolean removeReliefValveDesinfection(ReliefValveDesinfection reliefValveDesinfection);
 	
 	boolean createInitialEnvironment();
+	
+	Backup addBackup(Backup backup);
+	
+	Backup getBackup(int idBackup);
+	
+	List<Backup> getBackups(String service);
+	
+	List<Backup> getAllBackups();
+	
+	boolean editBackup(Backup backup);
+	
+	boolean removeBackup(Backup backup);
 }
