@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
+    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0"
+            prefHeight="464.0" prefWidth="606.0">
+            <children>
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="El tiempo de recarga hace referencia a cada cuanto tiempo vamos a tener que echar una nueva solución de cloro. Suele variar entre 15 días y un mes. Se recomienda cambiarlo cada 15 días porque el cloro es un producto volátil. Esto significa que va a ir perdiendo fuerza con el tiempo."
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Text layoutX="14.0" layoutY="122.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="Cuanto más tiempo de recarga consideremos, el tanque que vamos a necesitar será más grande y por tanto, más caro."
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
+                    prefWidth="200.0" />
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

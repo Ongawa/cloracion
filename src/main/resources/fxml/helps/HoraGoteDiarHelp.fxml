@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
+    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0"
+            prefHeight="464.0" prefWidth="606.0">
+            <children>
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="¡¡Ojo!! Es importante tener en cuenta que no se consume agua las 24 horas del día. Por ejemplo, por la noche, el reservorio se va llenando y durante unas horas rebosa. Así mismo, dependiendo del sistema, puede haber momentos puntuales del día en el que no se utilice mucha agua y también rebose. También depende de la época del año, ya que la cantidad de agua varía mucho entre la época seca y la lluviosa."
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Text layoutX="14.0" layoutY="122.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="Para calcular las horas de goteo diario tenemos que conocer nuestro sistema. Orientativamente se pueden tener en cuenta 15 horas/día."
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
+                    prefWidth="200.0" />
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>
