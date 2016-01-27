@@ -38,6 +38,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.event.ActionEvent;
 
 public class ChlorinationWindow  implements Initializable{
     
@@ -201,8 +202,8 @@ public class ChlorinationWindow  implements Initializable{
         this.inhabitants = inhabitants;
     }
 
-    public void triggerInfo() throws Exception{
-        String fxmlFile = "/fxml/helps/NaturalCaudalHelp.fxml";
+    public void triggerInfo(ActionEvent event) throws Exception{
+        String fxmlFile = "/fxml/helps/" + ((Button)event.getTarget()).getId()+".fxml";
         HelpStage help = new HelpStage(fxmlFile);
         
         // Create the loader and get the root node from the .fxml file describing the scene
@@ -215,7 +216,7 @@ public class ChlorinationWindow  implements Initializable{
         scene.getStylesheets().add("/styles/styles.css");
         
         // Set max size
-        help.setMaxHeight(700);
+        //help.setMaxHeight(700);
         help.setMaxWidth(1000);
         
         help.setTitle("Ayuda");

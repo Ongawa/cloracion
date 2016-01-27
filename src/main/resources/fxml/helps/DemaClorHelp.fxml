@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="1000"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
+    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0"
+            prefHeight="464.0" prefWidth="606.0">
+            <children>
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="${'La demanda de cloro hace referencia a la cantidad de cloro que requiere un agua para estar totalmente libre de microorganismos. Se mide en miligramos de cloro por litro de agua y va a depender de lo limpia que esté el agua. Cuanto más limpia esté el agua, menos cloro requerirá.\n¿Cómo se mide la demanda de cloro?\n Método de los baldes: Para medir la demanda de cloro.\n\t1Preparación del material:\n\t\t14 gr. de Hipoclorito de calcio al 70%\n\t\t1 cuchara de plástico\n\t\tUna jeringuilla\n\t\t5 baldes de 10 L\n\t\t1 balde de 1 L\n\t\tMaterial de protección: Guantes, gafas de protección,  mandil, mascarilla de protección\n\t\tLapicero y libreta\n\t2. Preparación de la solución madre\n\t\tPara la preparación de un litro de solución madre al 1% se requieren 10 gramos de cloro activo, por lo tanto 14 gramos si se trata de hipoclorito del calcio al 70%.\n\t3. Preparación de los baldes para medir la demanda\n\t\tPreparamos entre 5 y 8 baldes con 10 L del agua bruta/cruda cada uno. Con jeringuilla, añadimos diferentes cantidades de solución madre, removiendo un minuto cada balde y empezando siempre por el menos concentrado.Esperamos media hora (mínimo) a que el cloro actúe y medimos el Cloro Libre Residual, anotando en la libreta el resultado para cada balde.\n\t4. Elegimos el balde con 0,5 mg/l de CLR. Con la cantidad de solución madre vamos a poder calcular la demanda de cloro para esa agua.Ejemplo de cálculo:\n\tEn el siguiente ejemplo, dispensamos solución madre desde 0,5 hasta 3,0 mililitros de solución madre. Se recomienda poner los baldes en fila y dispensar en orden de menor a mayor. En la libreta, apuntar siempre las cantidades dispensadas.'}"
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                        <ImageView 
+                            pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="img/baldes.png" />
+                            </image>
+                        </ImageView>
+                <Text layoutX="14.0" layoutY="450.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="${'\nPasados 30 minutos, medimos uno por uno el CLR y anotamos los resultados, seleccionado el balde número 4, que presentaba un Cloro Libre Residual de 0,5 ppm. \n
+Determinamos que para tener los 0,5 ppm CLR necesarios para garantizar que nuestra agua está libre de contaminación fecal, hemos tenido que añadir 2 ml de solución madre.\n
+Sabiendo que 1 L de solución madre contenía 14 gramos de hipoclorito de calcio 70%, podemos calcular que en 2 ml de esta solución contiene 0,028 gramos de hipoclorito de calcio al 70%.\n
+Estos 0,028 gramos fueron disueltos en un balde de 10 L, por lo que la demanda de cloro es de 0,0028 gramos por litro, o 2,8 mg/l.\n
+Con reglas de tres:'}"
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                        <ImageView fitHeight="20.0" fitWidth="20.0"
+                            pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="img/reglas3.png" />
+                            </image>
+                        </ImageView>
+                 <Text layoutX="14.0" layoutY="550.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="Demanda de cloro (Ca(OCl)2 70% ) de nuestra agua: 2,8 mg/L"
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
+                    prefWidth="200.0" />
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

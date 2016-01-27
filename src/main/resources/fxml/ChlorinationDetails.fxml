@@ -29,8 +29,8 @@
                         <Font size="15.0" />
                     </font>
                 </Label>
-                <Button id="naturalCaudalInfo" layoutX="25.0"
-                    layoutY="40" onAction="#triggerInfo">
+                <Button layoutX="25.0"
+                    layoutY="40" onAction="#triggerInfo" id="DemaClorHelp">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
