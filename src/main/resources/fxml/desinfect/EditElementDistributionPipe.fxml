@@ -50,7 +50,7 @@
                 <Label alignment="CENTER" prefHeight="50.0" prefWidth="135.0" text="Longitud (metros)" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                 <TextField fx:id="elementLength" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="2" />
                     
-                <Label alignment="CENTER" prefHeight="50.0" prefWidth="135.0" text="Diámetro (Centímetros)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+                <Label alignment="CENTER" prefHeight="50.0" prefWidth="135.0" text="Diámetro (pulgadas)" GridPane.columnIndex="1" GridPane.rowIndex="3" />
                 <TextField fx:id="elementDiameter" prefWidth="135.0" GridPane.columnIndex="2" GridPane.rowIndex="3" />
                 
                 <Label alignment="CENTER" prefHeight="42.0" prefWidth="141.0" text="Tiempo Retención (horas)" textAlignment="CENTER" GridPane.columnIndex="4" GridPane.rowIndex="1" />
