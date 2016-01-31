@@ -24,8 +24,10 @@
                                     prefHeight="30.0" prefWidth="150.0"
                                     text="Añadir" />
                                 <Button layoutX="150.0" layoutY="469.0"
-                                    mnemonicParsing="false" prefHeight="30.0"
-                                    prefWidth="140.0" text="Elimininar" onAction="#deleteCurrentElement"/>
+                                    mnemonicParsing="false"
+                                    onAction="#deleteCurrentElement"
+                                    prefHeight="30.0" prefWidth="140.0"
+                                    text="Elimininar" />
                                 <TableView fx:id="elementsTable"
                                     prefHeight="470.0" prefWidth="285.0">
                                     <columns>
@@ -51,8 +53,10 @@
                     prefWidth="990">
                     <children>
                         <Label alignment="CENTER" layoutX="57.0"
-                            layoutY="37.0" prefHeight="30.0" prefWidth="200.0"
-                            text="(Errores here - TODO)" textAlignment="CENTER" />
+                            layoutY="37.0" prefHeight="30.0" prefWidth="149.0"
+                            text="Pureza del Cloro (%)" textAlignment="CENTER" />
+                        <TextField layoutX="206.0" layoutY="40.0"
+                            prefHeight="25.0" prefWidth="54.0" fx:id="clPurity"/>    
 
                         <Button id="triggerBack" fx:id="backButton"
                             layoutX="817.0" layoutY="52.0" onAction="#triggerBack"
@@ -62,6 +66,7 @@
                             layoutX="893.0" layoutY="52.0" onAction="#triggerNext"
                             text="Calcular" GridPane.columnIndex="9"
                             GridPane.rowIndex="6" />
+                        
                     </children>
                 </AnchorPane>
             </children>
