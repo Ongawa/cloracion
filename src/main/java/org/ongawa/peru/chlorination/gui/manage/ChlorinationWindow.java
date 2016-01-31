@@ -292,11 +292,13 @@ public class ChlorinationWindow  implements Initializable{
             this.chlorineCalculation.setReloadTime(Double.valueOf(this.rechargeTime.getText()));
             
             this.chlorineCalculation.setDrippingHoursPerDay(Double.valueOf(this.dripTime.getText()));
+            System.out.println(Double.valueOf(this.clDemand.getText()));
             this.chlorineCalculation.setChlorineDemand(Double.valueOf(this.clDemand.getText()));
             
             this.chlorineCalculation.setChlorineDosePerFortnight(clResults[1]);
             this.chlorineCalculation.setChlorineDosePerMonth(clResults[2]);
             this.chlorineCalculation.setDrippingFlowInMl(clResults[5]);
+            
             
             this.chlorineCalculation.setDate(now);
             
@@ -332,10 +334,10 @@ public class ChlorinationWindow  implements Initializable{
         // TODO: Print the results
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
-        File file = fileChooser.showOpenDialog(stage);
+        File file = fileChooser.showSaveDialog(stage);
         if (file != null) {
             try {
-                ManagementReport mreport = new ManagementReport(this.waterSystem, file, Locale.ENGLISH, "");
+                ManagementReport mreport = new ManagementReport(this.waterSystem, file, Locale.getDefault(), "");
                 mreport.createReport();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
                 // TODO Auto-generated catch block
