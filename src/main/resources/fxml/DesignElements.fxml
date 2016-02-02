@@ -4,6 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.collections.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
