@@ -61,6 +61,8 @@ public class PricesController implements Initializable {
     @FXML
     private Label desinfectCl;
     
+    private String clType;
+    
     public void calculateFamilPay() {
         
         DataLoader dataloader = DataLoader.getDataLoader();
@@ -118,6 +120,6 @@ public class PricesController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
-        
+        this.clType = DataLoader.getDataLoader().getValue("clType");
     }
 }

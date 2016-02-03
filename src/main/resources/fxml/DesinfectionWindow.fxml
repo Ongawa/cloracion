@@ -54,11 +54,27 @@
                 <AnchorPane layoutY="500" prefHeight="100"
                     prefWidth="990">
                     <children>
-                        <Label alignment="CENTER" layoutX="57.0"
-                            layoutY="37.0" prefHeight="30.0" prefWidth="149.0"
+                        <Label alignment="CENTER" layoutX="47.0"
+                            layoutY="14.0" prefHeight="30.0" prefWidth="149.0"
                             text="Pureza del Cloro (%)" textAlignment="CENTER" />
-                        <TextField layoutX="206.0" layoutY="40.0"
-                            prefHeight="25.0" prefWidth="54.0" fx:id="clPurity"/>    
+                        <TextField fx:id="clPurity" layoutX="196.0"
+                            layoutY="17.0" prefHeight="25.0" prefWidth="54.0" />
+
+                        <Label layoutX="82.0" layoutY="52.0"
+                            prefHeight="26.0" prefWidth="104.0" text="Tipo de cloro">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox fx:id="clTypeCombo" layoutX="196.0"
+                            layoutY="52.0" prefWidth="150.0">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Polvo" />
+                                    <String fx:value="Liquido" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
 
                         <Button id="triggerBack" fx:id="backButton"
                             layoutX="817.0" layoutY="52.0" onAction="#triggerBack"
@@ -68,7 +84,7 @@
                             layoutX="893.0" layoutY="52.0" onAction="#triggerNext"
                             text="Calcular" GridPane.columnIndex="9"
                             GridPane.rowIndex="6" />
-                        
+
                     </children>
                 </AnchorPane>
             </children>

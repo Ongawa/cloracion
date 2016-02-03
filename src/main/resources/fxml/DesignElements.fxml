@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.text.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.collections.*?>
@@ -52,9 +53,6 @@
                 <AnchorPane layoutY="500" prefHeight="100"
                     prefWidth="990">
                     <children>
-                        <Label alignment="CENTER" layoutX="57.0"
-                            layoutY="37.0" prefHeight="30.0" prefWidth="200.0"
-                            text="(Errores here - TODO)" textAlignment="CENTER" />
 
                         <Button id="triggerBack" fx:id="backButton"
                             layoutX="817.0" layoutY="52.0" onAction="#triggerBack"
@@ -64,6 +62,22 @@
                             layoutX="893.0" layoutY="52.0" onAction="#triggerNext"
                             text="Calcular" GridPane.columnIndex="9"
                             GridPane.rowIndex="6" />
+                        <Label layoutX="47.0" layoutY="39.0"
+                            prefHeight="26.0" prefWidth="104.0" text="Tipo de cloro">
+                            <font>
+                                <Font size="14.0" />
+                            </font>
+                        </Label>
+                        <ComboBox layoutX="151.0" layoutY="38.0"
+                            prefWidth="150.0" fx:id="clTypeCombo">
+                            <items>
+                                <FXCollections fx:factory="observableArrayList">
+                                    <String fx:value="Polvo" />
+                                    <String fx:value="Liquido" />
+                                </FXCollections>
+                            </items>
+                        </ComboBox>
+
                     </children>
                 </AnchorPane>
             </children>

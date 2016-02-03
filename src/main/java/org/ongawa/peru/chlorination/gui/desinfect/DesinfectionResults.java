@@ -72,6 +72,7 @@ public class DesinfectionResults implements Initializable {
     private List<String[]> desinfectResults;
     
     private double clPurity;
+    private String clType;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
@@ -80,6 +81,7 @@ public class DesinfectionResults implements Initializable {
 
         this.resultElements = loader.getDesinfectResults();
         this.clPurity = Double.valueOf(loader.getValue("clPurity"));
+        this.clType = loader.getValue("clType");
         this.resultsTable.setItems(resultElements);
 
         double totalRequired = 0;
@@ -127,7 +129,7 @@ public class DesinfectionResults implements Initializable {
             WaterSystem ws = DataLoader.getDataLoader().getSelectedWaterSystem();
             double chlorinePureness = 0.70;
             double chlorinePrice = 1;
-            Desinfection currentDesinfection = new Desinfection(ws, now, "chlorineType", chlorinePureness, chlorinePrice);
+            Desinfection currentDesinfection = new Desinfection(ws, now, this.clType, chlorinePureness, chlorinePrice);
             currentDesinfection = ds.addDesinfection(currentDesinfection);
             for (SystemElement element : this.resultElements) {  
                 double[] currentResults = element.getDesinfectionResults();

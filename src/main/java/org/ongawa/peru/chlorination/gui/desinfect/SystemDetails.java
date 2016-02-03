@@ -73,6 +73,13 @@ public class SystemDetails implements Initializable {
      */
     @FXML
     private TextField clPurity;
+    
+    /**
+     * Type of chlorine
+     * 
+     */
+    @FXML
+    private ComboBox<String> clTypeCombo;
 
     /**
      * Loader tfor the fxml files
@@ -591,6 +598,7 @@ public class SystemDetails implements Initializable {
         DataLoader dl = DataLoader.getDataLoader();
         dl.setDesinfectResults(this.elements);
         dl.setValue("clPurity", purityValue);
+        dl.setValue("clType", this.clTypeCombo.getValue());
 
         Scene future = MainApp.popFuture(DesinfectionResults.class.getSimpleName());
         if (future != null) {

@@ -70,6 +70,16 @@ public class ElementsController implements Initializable {
     @FXML
     private TableColumn<SystemElement, String> typeColumn;
 
+    
+    
+    /**
+     * Type of chlorine
+     * 
+     */
+    @FXML
+    private ComboBox<String> clTypeCombo;
+
+    
     /**
      * Loader tfor the fxml files
      */
@@ -555,7 +565,9 @@ public class ElementsController implements Initializable {
         }
 
         // Set the data to pass ***before*** calling the class loader
-        DataLoader.getDataLoader().setDesinfectResults(this.elements);
+        DataLoader dl = DataLoader.getDataLoader();
+        dl.setDesinfectResults(this.elements);
+        dl.setValue("clType", this.clTypeCombo.getValue());
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream("/fxml/ResultPrices.fxml"));
 
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
