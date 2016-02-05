@@ -16,10 +16,12 @@ import org.apache.commons.lang.StringUtils;
 import org.jooq.DSLContext;
 import org.jooq.Field;
 import org.jooq.Record;
+import org.jooq.Record1;
 import org.jooq.Record2;
 import org.jooq.Result;
 import org.jooq.SQLDialect;
 import org.jooq.Table;
+import org.jooq.exception.DataAccessException;
 import org.jooq.impl.DSL;
 import org.ongawa.peru.chlorination.ApplicationProperties;
 import org.ongawa.peru.chlorination.KEYS;
@@ -81,7 +83,7 @@ public class DataSource implements IDataSource {
 		try {
 			this.connection.close();
 			log.debug("Closed connection: "+connection);
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 	}
@@ -98,7 +100,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -313,7 +315,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newSubBasin = this.getSubBasin(subBasin.getName());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -340,7 +342,7 @@ public class DataSource implements IDataSource {
 				subBasins.add(subBasin);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}	
 		
@@ -362,7 +364,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -387,7 +389,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -408,7 +410,7 @@ public class DataSource implements IDataSource {
 					.where(Subbasin.SUBBASIN.IDSUBBASIN.eq(subBasin.getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -426,7 +428,7 @@ public class DataSource implements IDataSource {
 			DSLContext delete = this.prepareDSLContext(this.connection);
 			result = delete.delete(Subbasin.SUBBASIN).where(Subbasin.SUBBASIN.IDSUBBASIN.eq(subBasin.getSubBasinId())).execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -455,7 +457,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newCommunity = this.getCommunity(community.getSubBasin(), community.getName());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -488,7 +490,7 @@ public class DataSource implements IDataSource {
 				communities.add(community);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -518,7 +520,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		return community;
@@ -549,7 +551,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		return community;
@@ -570,7 +572,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community.COMMUNITY.SUBBASIN_IDSUBBASIN.eq(community.getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -592,7 +594,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Community.COMMUNITY.SUBBASIN_IDSUBBASIN.eq(community.getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -640,7 +642,7 @@ public class DataSource implements IDataSource {
 			
 			if(result > 0)
 				newWaterSystem = this.getWaterSystem(waterSystem.getCommunity(), waterSystem.getName());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -672,7 +674,7 @@ public class DataSource implements IDataSource {
 				waterSystems.add(waterSystem);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		return waterSystems;
@@ -702,7 +704,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -735,7 +737,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -766,7 +768,7 @@ public class DataSource implements IDataSource {
 					.and(Watersystem.WATERSYSTEM.COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -788,7 +790,7 @@ public class DataSource implements IDataSource {
 					.and(Watersystem.WATERSYSTEM.COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -812,7 +814,7 @@ public class DataSource implements IDataSource {
 			
 			if(result > 0)
 				newWaterSpring = this.getWaterSpring(waterSpring.getName());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -838,7 +840,7 @@ public class DataSource implements IDataSource {
 				waterSprings.add(waterSpring);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -865,7 +867,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -894,7 +896,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -928,7 +930,7 @@ public class DataSource implements IDataSource {
 				waterSprings.add(waterSpring);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -949,7 +951,7 @@ public class DataSource implements IDataSource {
 					.where(Waterspring.WATERSPRING.IDWATERSPRING.eq(waterSpring.getWaterSpringId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -967,7 +969,7 @@ public class DataSource implements IDataSource {
 			DSLContext delete = this.prepareDSLContext(this.connection);
 			result = delete.delete(Waterspring.WATERSPRING).where(Waterspring.WATERSPRING.IDWATERSPRING.eq(waterSpring.getWaterSpringId())).execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -996,7 +998,7 @@ public class DataSource implements IDataSource {
 							waterSpring.getWaterSpringId())
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -1026,7 +1028,7 @@ public class DataSource implements IDataSource {
 				waterSprings.add(waterSpring);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -1051,7 +1053,7 @@ public class DataSource implements IDataSource {
 					.and(WatersystemHasWaterspring.WATERSYSTEM_HAS_WATERSPRING.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getCommunityId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -1083,7 +1085,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newMeasuringPoint = this.getMeasuringPoint(measuringPoint.getWaterSystem(), measuringPoint.getWaterSpring(), measuringPoint.getName());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1118,7 +1120,7 @@ public class DataSource implements IDataSource {
 				measuringPoints.add(measuringPoint);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1153,7 +1155,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1187,7 +1189,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1212,7 +1214,7 @@ public class DataSource implements IDataSource {
 					.and(Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(measuringPoint.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1236,7 +1238,7 @@ public class DataSource implements IDataSource {
 					.and(Measuringpoint.MEASURINGPOINT.WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(measuringPoint.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1274,7 +1276,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				this.getMeasuredFlow(measuredFlow.getDate(), measuredFlow.getMeasuringPoint());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1308,7 +1310,7 @@ public class DataSource implements IDataSource {
 				measuredFlows.add(measuredFlow);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1347,7 +1349,7 @@ public class DataSource implements IDataSource {
 				measuredFlows.add(measuredFlow);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1383,7 +1385,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1421,7 +1423,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1451,7 +1453,7 @@ public class DataSource implements IDataSource {
 					.and(Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newMeasuredFlow.getMeasuringPoint().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1475,7 +1477,7 @@ public class DataSource implements IDataSource {
 					.and(Measuredflow.MEASUREDFLOW.MEASURINGPOINT_WATERSYSTEM_HAS_WATERSPRING_WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(measuredFlow.getMeasuringPoint().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1541,7 +1543,7 @@ public class DataSource implements IDataSource {
 			if(result>0)
 				newChlorineCalculation = this.getChlorineCalculation(chlorineCalculation.getDate(), chlorineCalculation.getWaterSystem());
 					
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1573,7 +1575,7 @@ public class DataSource implements IDataSource {
 				chlorineCalculations.add(chlorineCalculation);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1610,7 +1612,7 @@ public class DataSource implements IDataSource {
 				chlorineCalculations.add(chlorineCalculation);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1644,7 +1646,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1677,7 +1679,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1720,7 +1722,7 @@ public class DataSource implements IDataSource {
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newChlorineCalculation.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1743,7 +1745,7 @@ public class DataSource implements IDataSource {
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(chlorineCalculation.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1781,7 +1783,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newCubicReservoir = this.getCubicReservoir(cubicReservoir.getWaterSystem(), this.getMaxValue(Cubicreservoir.CUBICRESERVOIR, Cubicreservoir.CUBICRESERVOIR.IDCUBICRESERVOIR));
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1811,7 +1813,7 @@ public class DataSource implements IDataSource {
 				cubicReservoirs.add(cubicReservoir);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1841,7 +1843,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1869,7 +1871,7 @@ public class DataSource implements IDataSource {
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1892,7 +1894,7 @@ public class DataSource implements IDataSource {
 					.and(Cubicreservoir.CUBICRESERVOIR.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoir.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1930,7 +1932,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newCatchment = this.getCatchment(catchment.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.IDCATCHMENT));
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1960,7 +1962,7 @@ public class DataSource implements IDataSource {
 				catchments.add(cubicReservoir);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -1990,7 +1992,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2018,7 +2020,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2041,7 +2043,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Catchment.CATCHMENT.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchment.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2078,7 +2080,7 @@ public class DataSource implements IDataSource {
 			this.closeConnection();
 			if(result>0)
 				newPipe = this.getDistributionPipe(pipe.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE));
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2108,7 +2110,7 @@ public class DataSource implements IDataSource {
 				pipes.add(pipe);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2138,7 +2140,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2175,7 +2177,7 @@ public class DataSource implements IDataSource {
 			this.closeConnection();
 			if(result>0)
 				newPipe = this.getConductionPipe(pipe.getWaterSystem(), this.getMaxValue(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE, org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.IDPIPE));
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2205,7 +2207,7 @@ public class DataSource implements IDataSource {
 				pipes.add(pipe);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2235,7 +2237,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2262,7 +2264,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(pipe.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2285,7 +2287,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Pipe.PIPE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(pipe.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2323,7 +2325,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newReliefValve = this.getReliefValve(reliefValve.getWaterSystem(), this.getMaxValue(Reliefvalve.RELIEFVALVE, Reliefvalve.RELIEFVALVE.IDRELIEFVALVE));
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2352,7 +2354,7 @@ public class DataSource implements IDataSource {
 				reliefValves.add(reliefValve);
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2381,7 +2383,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2409,7 +2411,7 @@ public class DataSource implements IDataSource {
 					.and(Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(reliefValve.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2432,7 +2434,7 @@ public class DataSource implements IDataSource {
 					.and(Reliefvalve.RELIEFVALVE.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(reliefValve.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.getMessage());
 		}
 		
@@ -2468,7 +2470,7 @@ public class DataSource implements IDataSource {
 			this.closeConnection();
 			if(result>0)
 				newDesinfection = this.getDesinfection(desinfection.getDate(), desinfection.getWaterSystem());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2497,11 +2499,37 @@ public class DataSource implements IDataSource {
 				desinfections.add(this.readDesinfection(record, waterSystem));
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
 		return desinfections;
+	}
+
+	@Override
+	public int getCountDesinfectionsPerYear(WaterSystem waterSystem, int year) {
+		if(waterSystem == null)
+			throw new NullArgumentException("waterSystem");
+		
+		int count = 0;
+		try {
+			this.connection = ConnectionsPool.getInstance().getConnection();
+			DSLContext select = this.prepareDSLContext(this.connection);
+			Result<Record1<Integer>> result = select.select(DSL.count().as("COUNT"))
+			.from(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION)
+			.where(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION.DATE.between(Timestamp.valueOf(year+"-01-01 00:00:00"), Timestamp.valueOf(year+"-12-31 23:59:59")))
+			.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION.WATERSYSTEM_IDWATERSYSTEM.eq(waterSystem.getWaterSystemId()))
+			.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(waterSystem.getCommunity().getCommunityId()))
+			.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(waterSystem.getCommunity().getSubBasin().getSubBasinId()))
+			.fetch();
+			
+			count = (Integer)result.get(0).getValue("COUNT");
+			this.closeConnection();
+		} catch (SQLException | DataAccessException e) {
+			log.warn(e.toString());
+		}
+		
+		return count;
 	}
 
 	@Override
@@ -2529,7 +2557,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2564,7 +2592,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2589,7 +2617,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(desinfection.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2612,7 +2640,7 @@ public class DataSource implements IDataSource {
 					.and(org.ongawa.peru.chlorination.persistence.db.jooq.tables.Desinfection.DESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(desinfection.getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2652,7 +2680,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newCubicReservoirDesinfection = this.getCubicReservoirDesinfection(cubicReservoirDesinfection.getCubicReservoir(), cubicReservoirDesinfection.getDesinfection());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2685,7 +2713,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2713,7 +2741,7 @@ public class DataSource implements IDataSource {
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newCubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2737,7 +2765,7 @@ public class DataSource implements IDataSource {
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(cubicReservoirDesinfection.getCubicReservoir().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2777,7 +2805,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newCatchmentDesinfection = this.getCatchmentDesinfection(catchmentDesinfection.getCatchment(), catchmentDesinfection.getDesinfection());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2808,7 +2836,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2836,7 +2864,7 @@ public class DataSource implements IDataSource {
 					.and(Cubicreservoirdesinfection.CUBICRESERVOIRDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newCatchmentDesinfection.getCatchment().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2860,7 +2888,7 @@ public class DataSource implements IDataSource {
 					.and(Catchmentdesinfection.CATCHMENTDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(catchmentDesinfection.getCatchment().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2900,7 +2928,7 @@ public class DataSource implements IDataSource {
 			
 			if(result>0)
 				newPipeDesinfection = this.getPipeDesinfection(pipeDesinfection.getPipe(), pipeDesinfection.getDesinfection());
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2933,7 +2961,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2961,7 +2989,7 @@ public class DataSource implements IDataSource {
 					.and(Pipedesinfection.PIPEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newPipeDesinfection.getPipe().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -2985,7 +3013,7 @@ public class DataSource implements IDataSource {
 					.and(Pipedesinfection.PIPEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(pipeDesinfection.getPipe().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -3027,7 +3055,7 @@ public class DataSource implements IDataSource {
 			if(result>0)
 				newReliefValveDesinfection = this.getReliefValveDesinfection(reliefValveDesinfection.getReliefValve(), reliefValveDesinfection.getDesinfection());
 					
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		return newReliefValveDesinfection;
@@ -3059,7 +3087,7 @@ public class DataSource implements IDataSource {
 				break;
 			}
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -3087,7 +3115,7 @@ public class DataSource implements IDataSource {
 					.and(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(newReliefValveDesinfection.getReliefValve().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -3111,7 +3139,7 @@ public class DataSource implements IDataSource {
 					.and(Reliefvalvedesinfection.RELIEFVALVEDESINFECTION.WATERSYSTEM_COMMUNITY_SUBBASIN_IDSUBBASIN.eq(reliefValveDesinfection.getReliefValve().getWaterSystem().getCommunity().getSubBasin().getSubBasinId()))
 					.execute();
 			this.closeConnection();
-		} catch (SQLException e) {
+		} catch (SQLException | DataAccessException e) {
 			log.warn(e.toString());
 		}
 		
@@ -3128,7 +3156,7 @@ public class DataSource implements IDataSource {
 			insert.execute(script);
 			this.closeConnection();
 			log.debug("Loaded TEST DATA");
-		} catch (SQLException | IOException e) {
+		} catch (SQLException | DataAccessException | IOException e) {
 			e.toString();
 		}
 	}
@@ -3149,7 +3177,7 @@ public class DataSource implements IDataSource {
 			
 			//TEMPORARY
 			this.insertData();
-		} catch (SQLException | IOException e) {
+		} catch (SQLException | DataAccessException | IOException e) {
 			log.warn(e.toString());
 		}
 		

@@ -13,9 +13,11 @@ public class WaterSystem {
 	private double growingIndex;
 	private double endowment;
 	private int JASSNum;
+	private double currentNeededFlow;
 	private double futureNeededFlow;
 	private double reservoirVolume;
 	private int systemElevation;
+	private String climate;
 	private Community community;
 	
 	public WaterSystem(int waterSystemId, String name, Community community) {
@@ -96,6 +98,14 @@ public class WaterSystem {
 		JASSNum = jASSNum;
 	}
 	
+	public double getCurrentNeededFlow() {
+		return currentNeededFlow;
+	}
+
+	public void setCurrentNeededFlow(double currentNeededFlow) {
+		this.currentNeededFlow = currentNeededFlow;
+	}
+
 	public double getFutureNeededFlow() {
 		return futureNeededFlow;
 	}
@@ -120,6 +130,14 @@ public class WaterSystem {
 		this.systemElevation = systemElevation;
 	}
 	
+	public String getClimate() {
+		return climate;
+	}
+
+	public void setClimate(String climate) {
+		this.climate = climate;
+	}
+
 	public Community getCommunity() {
 		return community;
 	}

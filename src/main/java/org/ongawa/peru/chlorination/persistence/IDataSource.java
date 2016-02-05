@@ -177,6 +177,8 @@ public interface IDataSource {
 	
 	Desinfection getLastDesinfection(WaterSystem waterSystem);
 	
+	int getCountDesinfectionsPerYear(WaterSystem waterSystem, int year);
+	
 	boolean editDesinfection(Desinfection desinfection);
 	
 	boolean removeDesinfection(Desinfection desinfection);
