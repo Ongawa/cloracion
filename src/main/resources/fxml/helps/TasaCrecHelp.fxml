@@ -10,8 +10,7 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Las poblaciones crecen año tras año, ya que normalmente, el número de nacimientos supera a las defunciones. Esto se debe, entre otras cosas, a que cada vez tenemos mas acceso a cuidados, mejores condiciones de higiene que hacen que cada vez vivamos mas tiempo. " textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                <Text layoutX="14.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se calcula que la tasa de crecimiento esta entre un 1% y un 2% anual. Si queremos que nuestros calculos sean holgados, que es lo recomendable, elegiremos un 2%. Pero a veces nos puede interesar hacer calculos muy exactos. En ese caso, elegiremos una tasa de crecimiento del 1%." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${'Las poblaciones crecen año tras año, ya que normalmente, el número de nacimientos supera a las defunciones. Esto se debe, entre otras cosas, a que cada vez tenemos mas acceso a cuidados, mejores condiciones de higiene que hacen que cada vez vivamos mas tiempo.\nSe calcula que la tasa de crecimiento esta entre un 1% y un 2% anual.\nSi queremos que nuestros calculos sean holgados, que es lo recomendable, elegiremos un 2%.\nPero a veces nos puede interesar hacer calculos muy exactos. En ese caso, elegiremos una tasa de crecimiento del 1%.'}" textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
                 <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </AnchorPane>

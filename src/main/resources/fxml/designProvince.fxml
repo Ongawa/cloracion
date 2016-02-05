@@ -7,6 +7,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
 
 <ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
     minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
@@ -58,8 +61,32 @@
                 <Label text="Tasa de Crecimento:"
                     GridPane.columnIndex="0" GridPane.columnSpan="1"
                     GridPane.rowIndex="5" />
+                    <Button mnemonicParsing="false" prefHeight="25.0"
+                    prefWidth="40.0" onAction="#triggerInfo" id="TasaCrecHelp"
+                    GridPane.columnIndex="3" GridPane.rowIndex="5">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0"
+                            pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="img/info.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
                 <Label text="Dotación:" GridPane.columnIndex="0"
                     GridPane.columnSpan="1" GridPane.rowIndex="6" />
+                    <Button mnemonicParsing="false" prefHeight="25.0"
+                    prefWidth="40.0" onAction="#triggerInfo" id="DotaHelp"
+                    GridPane.columnIndex="4" GridPane.rowIndex="6">
+                    <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0"
+                            pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="img/info.png" />
+                            </image>
+                        </ImageView>
+                    </graphic>
+                </Button>
                 <TextField id="consumption" fx:id="consumption"
                     GridPane.columnIndex="1" GridPane.columnSpan="2"
                     GridPane.rowIndex="6" />

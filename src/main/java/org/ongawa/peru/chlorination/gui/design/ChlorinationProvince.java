@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
+import org.ongawa.peru.chlorination.HelpStage;
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.gui.manage.ProvinceSelector;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
@@ -18,6 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javafx.collections.FXCollections;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -144,7 +146,27 @@ public class ChlorinationProvince implements Initializable{
     		this.growthRate.setValue("");
     	}
     }
-    
+    public void triggerInfo(ActionEvent event) throws Exception{
+        String fxmlFile = "/fxml/helps/" + ((Button)event.getTarget()).getId()+".fxml";
+        HelpStage help = new HelpStage(fxmlFile);
+        
+        // Create the loader and get the root node from the .fxml file describing the scene
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+        
+        // Create the scene (maybe get the size from the stage?
+        // Only after the .show(): stage.getWidth() 
+        Scene scene = new Scene(rootNode, 700, 600);
+        scene.getStylesheets().add("/styles/styles.css");
+        
+        // Set max size
+        //help.setMaxHeight(700);
+        help.setMaxWidth(1000);
+        
+        help.setTitle("Ayuda");
+        help.setScene(scene);
+        help.show();
+        }
     public void triggerBack() {
         // Add future
         Scene current =  MainApp.getStage().getScene();

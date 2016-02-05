@@ -15,7 +15,7 @@
             <children>
                 <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
                     strokeWidth="0.0"
-                    text="Caudal diseñado para la población actual."
+                    text="${'Caudal diseñado para la población actual.\nCon la dotación y el número de usuarios, puede hacerse una estimación del caudal de agua necesario para una determinada comunidad y, por tanto, para su sistema.´}"
                     textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
                 <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
                     prefWidth="200.0" />

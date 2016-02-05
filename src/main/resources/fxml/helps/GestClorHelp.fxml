@@ -10,7 +10,8 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${'La dotación es el agua que necesita una persona al dia, para cubrir sus necesidades vitales. Entre ellas se incluyen: beber, preparacion de alimentos, asearse...\nSe calcula que para el contexto andino, la dotacion es de 80 litros por persona y dia.'}" textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${'Cálculos para una cloración responsable.\nEs importante tener en cuenta que la reacción del cloro con el agua también produce sustancias que podrían hacer daño al organismo. Por tanto, no es recomendable echar cantidades de cloro por encima de lo necesario para asegurar la cloración.\nHay que calcular cuál es la demanda de cloro de nuestra agua en particular, y ajustarnos a dichos cálculos.  '}" textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                
                 <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </AnchorPane>
