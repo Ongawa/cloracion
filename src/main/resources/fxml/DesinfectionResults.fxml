@@ -21,14 +21,8 @@
             </columns>
         </TableView>
       <Label layoutX="81.0" layoutY="552.0" text="Cantidad total de cloro (kg):">
-         <font>
-            <Font size="24.0" />
-         </font>
       </Label>
       <Label layoutX="451.0" layoutY="552.0" text="{{resultado}}" id="clTotal" fx:id="clTotal">
-         <font>
-            <Font size="24.0" />
-         </font>
       </Label>
     </children>
 </AnchorPane>
