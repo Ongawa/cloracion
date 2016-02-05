@@ -62,9 +62,6 @@
 
                         <Label layoutX="82.0" layoutY="52.0"
                             prefHeight="26.0" prefWidth="104.0" text="Tipo de cloro">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
                         </Label>
                         <ComboBox fx:id="clTypeCombo" layoutX="196.0"
                             layoutY="52.0" prefWidth="150.0">

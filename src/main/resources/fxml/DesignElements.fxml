@@ -64,9 +64,6 @@
                             GridPane.rowIndex="6" />
                         <Label layoutX="47.0" layoutY="39.0"
                             prefHeight="26.0" prefWidth="104.0" text="Tipo de cloro">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
                         </Label>
                         <ComboBox layoutX="151.0" layoutY="38.0"
                             prefWidth="150.0" fx:id="clTypeCombo">
