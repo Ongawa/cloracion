@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
+    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0"
+            prefHeight="464.0" prefWidth="606.0">
+            <children>
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="${'El cloro se puede encontrar en el mercado más o menos concentrado. El porcentaje de cloro que hay en el cloro comercial se llama “pureza” y tiene que venir siempre indicado en el envoltorio.\nNormalmente trabajamos con hipoclorito de calcio al 70%, que significa que el producto tiene un 70% de cloro frente a un 30% de carbonato cálcico.\nEste carbonato cálcico es el poso blanquecino que, cuando hacemos la disolución en un balde de 10 o 20 litros transparente, vemos que se sedimenta en el fondo.'}"
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
+                    prefWidth="200.0" />
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>

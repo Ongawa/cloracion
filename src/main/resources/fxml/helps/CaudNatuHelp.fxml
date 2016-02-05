@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.scene.layout.VBox?>
+
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
+    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
+    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <content>
+        <AnchorPane minHeight="0.0" minWidth="0.0"
+            prefHeight="464.0" prefWidth="606.0">
+            <children>
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
+                    strokeWidth="0.0"
+                    text="${'Método volumétrico: Para medir el caudal\n
+Material:\n\t
+-	Balde de volumen conocido\n\t
+-	Cronómetro\n\t
+-	Libreta y lapicero\n
+1. Ponemos el balde bajo el flujo de agua a la vez que activamos el cronómetro. Paramos el cronómetro cuando el balde esté lleno, intentando ser lo más precisos posible.\n
+2. Anotamos el tiempo en la libreta y repetimos dos veces más. Si alguna medida desentona con las otras dos, la descartamos y volvemos a medir.\n
+3. Dividimos el volumen del balde por la media de las tres mediciones para calcular el caudal en l/seg.\n\n
+Ejemplo de cálculo:\n\t
+Resultado 1: 58 seg\n\t
+Resultado 2: 1 min 2 seg\n\t
+Resultado 3: 59 seg\n\t
+Volumen de nuestro balde: 10 L\n\t
+Para calcular el caudal (Q) utilizamos la siguiente fórmula:\n\t\t
+Q=V/((R1+R2+R3)*3)=10/((58+62+59)*3)=0,17 l/seg\n\t
+Donde:\n\t
+V = Volumen del balde (l)\n\t
+Rx= Resultado x (seg)\n\n
+Si medimos el caudal en una capación es posible que haya varios llorones (o caídas de agua entubada). Agrupar los llorones o medirlos de uno en uno, cerciorándonos de que no rebosa nada de agua. Hacer los mismos cálculos para cada llorón y luego sumarlos para saber el caudal total del manantial.
+'}"
+                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                
+                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
+                    prefWidth="200.0" />
+            </children>
+        </AnchorPane>
+    </content>
+</ScrollPane>
