@@ -6,19 +6,12 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
-    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
-    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0"
-            prefHeight="464.0" prefWidth="606.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
-                    strokeWidth="0.0"
-                    text="El tiempo de retencion hace referencia al tiempo que tenemos que retener el cloro en un sistema para que haga efecto. Se recomiendan 2 horas de retencion en la captacion y tuberia de conduccion y 4 horas en el reservorio y tuberia de distribucion. Es muy importante respetar estos tiempos y por tanto hay que tenerlos en cuenta a la hora de planificar la faena de desinfeccion."
-                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
-                    prefWidth="200.0" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El tiempo de retención hace referencia al tiempo que tenemos que retener el cloro en un sistema para que haga efecto. Se recomiendan 2 horas de retención en la captación y tubería de conducción y 4 horas en el reservorio y tubería de distribución. Es muy importante respetar estos tiempos y por tanto hay que tenerlos en cuenta a la hora de planificar la faena de desinfección." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </AnchorPane>
     </content>

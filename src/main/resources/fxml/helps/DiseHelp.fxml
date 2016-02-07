@@ -10,7 +10,7 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para instalar un nuevo sistema de cloracion necesitamos hacer unos pocos calculos, que incluye averiguar el caudal que necesita la poblacion, calcular la cantidad de cloro que va a requerir el agua que consume esa comunidad (va a necesitar mas cloro cuanto mas sucia este, protegiendo bien los manantiales y manteniendo el sistema en buenas condiciones, conseguimos reducir el consumo de cloro notablemente) y el tamaño del tanque para la solucion clorada." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Para instalar un nuevo sistema de cloración necesitamos hacer unos pocos cálculos, que incluye averiguar el caudal que necesita la población, calcular la cantidad de cloro que va a requerir el agua que consume esa comunidad (va a necesitar más cloro cuanto más sucia esté, protegiendo bien los manantiales y manteniendo el sistema en buenas condiciones, conseguimos reducir el consumo de cloro notablemente) y el tamaño del tanque para la solución clorada." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
                 
                 <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
             </children>

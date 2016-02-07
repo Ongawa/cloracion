@@ -10,7 +10,7 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El clima tambien afecta al sistema. Cuando el clima es frio el agua permite menores concentraciones de cloro en la solucion clorada. Por tanto, en sistemas de zonas frias, el tanque para la solucion clorada tendra necesariamente que ser mas grande por lo que hay que tenerlo en cuenta a la hora de diseñar un sistema." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El clima tambien afecta al sistema. Cuando el clima es frío el agua permite menores concentraciones de cloro en la solución clorada. Por tanto, en sistemas de zonas frías, el tanque para la solución clorada tendrá necesariamente que ser más grande por lo que hay que tenerlo en cuenta a la hora de diseñar un sistema." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
                 <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
             </children>
         </AnchorPane>
