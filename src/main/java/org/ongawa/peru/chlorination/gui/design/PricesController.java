@@ -1,7 +1,11 @@
 package org.ongawa.peru.chlorination.gui.design;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
@@ -12,18 +16,25 @@ import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
 import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.logic.SystemElement;
+import org.ongawa.peru.chlorination.modules.reports.DesignReport;
+import org.ongawa.peru.chlorination.modules.reports.DesinfectionReport;
 import org.ongawa.peru.chlorination.persistence.db.jooq.tables.records.CubicreservoirRecord;
 import org.ongawa.peru.chlorination.persistence.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.persistence.elements.Pipe;
 import org.ongawa.peru.chlorination.persistence.elements.ReliefValve;
 import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 
+import com.itextpdf.text.DocumentException;
+
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class PricesController implements Initializable {
     
@@ -60,6 +71,9 @@ public class PricesController implements Initializable {
     
     @FXML
     private Label desinfectCl;
+    
+    @FXML
+    private Button printButton;
     
     private String clType;
     
@@ -122,4 +136,42 @@ public class PricesController implements Initializable {
         // TODO Auto-generated method stub
         this.clType = DataLoader.getDataLoader().getValue("clType");
     }
+    
+    public void triggerSave(){
+        // Enable the print button
+        
+        this.printButton.setDisable(false);
+    }
+
+    public void triggerPrint() {
+        // TODO: Print the results
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            try {
+                DesignReport dreport = new DesignReport( DataLoader.getDataLoader().getSelectedWaterSystem(),
+                                                         file, new Locale("es_ES"), ""); 
+                dreport.createReport();
+             // Open the file with the default editor
+                Thread t = new Thread(new Runnable() {
+                    
+                    @Override
+                    public void run() {
+                        try {
+                            Desktop.getDesktop().open(file);
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                t.start();
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+    }
+    
 }

@@ -8,112 +8,127 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<ScrollPane id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity"
-    minHeight="-Infinity" minWidth="-Infinity" prefHeight="700"
-    prefWidth="1000" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8"
+
+<AnchorPane xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="org.ongawa.peru.chlorination.gui.design.PricesController">
-    <content>
+    <children>
+        <ScrollPane id="rootPane" maxHeight="-Infinity"
+            maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+            prefHeight="700" prefWidth="1000">
+            <content>
 
-        <GridPane hgap="10" layoutX="20" layoutY="20"
-            styleClass="main-panel" vgap="10" xmlns:fx="http://javafx.com/fxml">
-            <children>
-                <Label text="Precio del Cloro:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="0" />
-                <TextField id="clPrice" fx:id="clPrice"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="0" />
-                <Label text="soles/kg" GridPane.columnIndex="2"
-                    GridPane.columnSpan="1" GridPane.rowIndex="0" />
+                <GridPane hgap="10" layoutX="20" layoutY="20"
+                    styleClass="main-panel" vgap="10"
+                    xmlns:fx="http://javafx.com/fxml">
+                    <children>
+                        <Label text="Precio del Cloro:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="0" />
+                        <TextField id="clPrice" fx:id="clPrice"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="0" />
+                        <Label text="soles/kg"
+                            GridPane.columnIndex="2"
+                            GridPane.columnSpan="1" GridPane.rowIndex="0" />
 
-                <Label text="Número de desinfecciones al año:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="1" />
-                <TextField id="nDesinfects" fx:id="nDesinfects"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="1" />
+                        <Label text="Número de desinfecciones al año:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="1" />
+                        <TextField id="nDesinfects" fx:id="nDesinfects"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="1" />
 
-                <Label text="Cloro para operación:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="2" />
-                <Label fx:id="regularCl" text="N soles /año:"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="2" />
-                <Label text="Cloro para desinfección:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="3" />
-                <Label fx:id="desinfectCl" text="N soles /año:"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="3" />
-                <Label text="Repuestos SAP:" GridPane.columnIndex="0"
-                    GridPane.columnSpan="1" GridPane.rowIndex="4" />
-                <TextField fx:id="repairPay" text="0"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="4" />
-                <Label text="Gestion JASS:" GridPane.columnIndex="0"
-                    GridPane.columnSpan="1" GridPane.rowIndex="5" />
-                <TextField fx:id="jassPay" text="0"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="5" />
-                <Label text="Pago al operador:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="6" />
-                <TextField fx:id="workerPay" text="0"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="6" />
-                <Button id="calcFamPay" fx:id="calcFamPay"
-                    onAction="#calculateFamilPay" text="Calcular Cuota Familiar"
-                    GridPane.columnIndex="5" GridPane.rowIndex="8" />
+                        <Label text="Cloro para operación:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="2" />
+                        <Label fx:id="regularCl" text="N soles /año:"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="2" />
+                        <Label text="Cloro para desinfección:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="3" />
+                        <Label fx:id="desinfectCl" text="N soles /año:"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="3" />
+                        <Label text="Repuestos SAP:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="4" />
+                        <TextField fx:id="repairPay" text="0"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="4" />
+                        <Label text="Gestion JASS:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="5" />
+                        <TextField fx:id="jassPay" text="0"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="5" />
+                        <Label text="Pago al operador:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="6" />
+                        <TextField fx:id="workerPay" text="0"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="6" />
+                        <Button id="calcFamPay" fx:id="calcFamPay"
+                            onAction="#calculateFamilPay" text="Calcular Cuota Familiar"
+                            GridPane.columnIndex="5" GridPane.rowIndex="8" />
 
-                <Label text="Total de gastos Anual:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="9" />
-                <Label fx:id="yearTotal" text=""
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="9" />
-                <Label text="Total de gastos mensual:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="10" />
-                <Label fx:id="monthTotal" text="N soles/mes"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="10" />
-                <Label text="Cutoa familar:" GridPane.columnIndex="3"
-                    GridPane.columnSpan="1" GridPane.rowIndex="11" />
-                <Label fx:id="monthlyFamilyPay" text="N soles/mes"
-                    GridPane.columnIndex="4" GridPane.columnSpan="1"
-                    GridPane.rowIndex="11" />
+                        <Label text="Total de gastos Anual:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="9" />
+                        <Label fx:id="yearTotal" text=""
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="9" />
+                        <Label text="Total de gastos mensual:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="10" />
+                        <Label fx:id="monthTotal" text="N soles/mes"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="10" />
+                        <Label text="Cutoa familar:"
+                            GridPane.columnIndex="3"
+                            GridPane.columnSpan="1" GridPane.rowIndex="11" />
+                        <Label fx:id="monthlyFamilyPay" text="N soles/mes"
+                            GridPane.columnIndex="4"
+                            GridPane.columnSpan="1" GridPane.rowIndex="11" />
 
-                <Label text="Cutoa familar solo cloro:"
-                    GridPane.columnIndex="0" GridPane.columnSpan="1"
-                    GridPane.rowIndex="13" />
-                <Label fx:id="monthlyFamilyPayNoCl" text="N soles/mes"
-                    GridPane.columnIndex="1" GridPane.columnSpan="1"
-                    GridPane.rowIndex="13" />
-            </children>
-            <columnConstraints>
-                <ColumnConstraints />
-                <ColumnConstraints />
-                <ColumnConstraints />
-                <ColumnConstraints />
-                <ColumnConstraints />
-                <ColumnConstraints />
-            </columnConstraints>
-            <rowConstraints>
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-                <RowConstraints />
-            </rowConstraints>
-        </GridPane>
-    </content>
-</ScrollPane>
+                        <Label text="Cutoa familar solo cloro:"
+                            GridPane.columnIndex="0"
+                            GridPane.columnSpan="1" GridPane.rowIndex="13" />
+                        <Label fx:id="monthlyFamilyPayNoCl" text="N soles/mes"
+                            GridPane.columnIndex="1"
+                            GridPane.columnSpan="1" GridPane.rowIndex="13" />
+                    </children>
+                    <columnConstraints>
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                        <ColumnConstraints />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                    </rowConstraints>
+                </GridPane>
+            </content>
+        </ScrollPane>
+        <Button layoutX="560.0" layoutY="421.0" mnemonicParsing="false"
+            text="Guardar" onAction="#triggerSave"/>
+        <Button layoutX="680.0" layoutY="421.0" mnemonicParsing="false"
+            prefHeight="25.0" prefWidth="91.0" text="Imprimir"
+            onAction="#triggerPrint" disable="true" fx:id="printButton"/>
+    </children>
+</AnchorPane>

@@ -1,8 +1,12 @@
 package org.ongawa.peru.chlorination.gui.desinfect;
 
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
 import java.net.URL;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Locale;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.MainApp;
@@ -14,6 +18,8 @@ import org.ongawa.peru.chlorination.logic.elements.ConductionPipe;
 import org.ongawa.peru.chlorination.logic.elements.CubicReservoir;
 import org.ongawa.peru.chlorination.logic.elements.DistributionPipe;
 import org.ongawa.peru.chlorination.logic.elements.ReliefValve;
+import org.ongawa.peru.chlorination.modules.reports.DesinfectionReport;
+import org.ongawa.peru.chlorination.modules.reports.ManagementReport;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.ongawa.peru.chlorination.persistence.db.DataSource;
@@ -26,15 +32,20 @@ import org.ongawa.peru.chlorination.persistence.elements.WaterSystem;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.itextpdf.text.DocumentException;
+
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class DesinfectionResults implements Initializable {
 	
@@ -74,6 +85,14 @@ public class DesinfectionResults implements Initializable {
     private double clPurity;
     private String clType;
 
+    @FXML
+    private Button printButton;
+    
+    /**
+     * Desinfection
+     */
+    private Desinfection currentDesinfection;
+    
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         // TODO Auto-generated method stub
@@ -130,8 +149,8 @@ public class DesinfectionResults implements Initializable {
             WaterSystem ws = DataLoader.getDataLoader().getSelectedWaterSystem();
             double chlorinePureness = 0.70;
             double chlorinePrice = 1;
-            Desinfection currentDesinfection = new Desinfection(ws, now, this.clType, chlorinePureness, chlorinePrice);
-            currentDesinfection = ds.addDesinfection(currentDesinfection);
+            this.currentDesinfection = new Desinfection(ws, now, this.clType, chlorinePureness, chlorinePrice);
+            this.currentDesinfection = ds.addDesinfection(currentDesinfection);
             for (SystemElement element : this.resultElements) {  
                 double[] currentResults = element.getDesinfectionResults();
                 
@@ -172,9 +191,42 @@ public class DesinfectionResults implements Initializable {
                 }
 
             }
+            // Enable print.
+            this.printButton.setDisable(false);
 
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             log.warn(e.toString());
+        }
+    }
+    
+    
+    public void triggerPrint() {
+        // TODO: Print the results
+        Stage stage = new Stage();
+        FileChooser fileChooser = new FileChooser();
+        File file = fileChooser.showSaveDialog(stage);
+        if (file != null) {
+            try {
+                DesinfectionReport dreport = new DesinfectionReport(this.currentDesinfection, file, new Locale("es_ES"), "");
+                dreport.createReport();
+                // Open the file with the default editor
+                Thread t = new Thread(new Runnable() {
+                    
+                    @Override
+                    public void run() {
+                        try {
+                            Desktop.getDesktop().open(file);
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                t.start();
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
         }
     }
 

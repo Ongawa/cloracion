@@ -6,23 +6,42 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="700.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="org.ongawa.peru.chlorination.gui.desinfect.DesinfectionResults">
+<AnchorPane prefHeight="700.0" prefWidth="1000.0"
+    xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="org.ongawa.peru.chlorination.gui.desinfect.DesinfectionResults">
     <children>
-        <Button layoutX="700.0" layoutY="600.0" mnemonicParsing="false" onAction="#triggerBack" prefHeight="25.0" prefWidth="79.0" text="Atras" />
-        <Button layoutX="800.0" layoutY="600.0" mnemonicParsing="false" onAction="#saveDesinfection" prefHeight="25.0" prefWidth="106.0" text="Guardar" />
-        <TableView fx:id="resultsTable" layoutX="33.0" layoutY="35.0" prefHeight="418.0" prefWidth="939.0">
+        <Button layoutX="642.0" layoutY="600.0" mnemonicParsing="false"
+            onAction="#triggerBack" prefHeight="25.0" prefWidth="79.0"
+            text="Atras" />
+        <Button layoutX="742.0" layoutY="600.0" mnemonicParsing="false"
+            onAction="#saveDesinfection" prefHeight="25.0" prefWidth="106.0"
+            text="Guardar" />
+        <TableView fx:id="resultsTable" layoutX="33.0"
+            layoutY="35.0" prefHeight="418.0" prefWidth="939.0">
             <columns>
-                <TableColumn fx:id="nameColumn" prefWidth="171.0" text="Nombre" />
-                <TableColumn fx:id="typeColumn" prefWidth="137.0" text="Tipo" />
-                <TableColumn fx:id="elementCountColumn" prefWidth="119.0" text="Numero total" />
-                <TableColumn fx:id="clRequiredColumn" prefWidth="153.0" text="Cloro por elemento (gr)" />
-                <TableColumn fx:id="spoonsRequiredColumn" prefWidth="184.0" text="Cucharadas/elemento" />
-                <TableColumn fx:id="timeRequiredColumn" prefWidth="174.0" text="Tiempo de retencion" />
+                <TableColumn fx:id="nameColumn" prefWidth="171.0"
+                    text="Nombre" />
+                <TableColumn fx:id="typeColumn" prefWidth="137.0"
+                    text="Tipo" />
+                <TableColumn fx:id="elementCountColumn"
+                    prefWidth="119.0" text="Numero total" />
+                <TableColumn fx:id="clRequiredColumn"
+                    prefWidth="153.0" text="Cloro por elemento (gr)" />
+                <TableColumn fx:id="spoonsRequiredColumn"
+                    prefWidth="184.0" text="Cucharadas/elemento" />
+                <TableColumn fx:id="timeRequiredColumn"
+                    prefWidth="174.0" text="Tiempo de retencion" />
             </columns>
         </TableView>
-      <Label layoutX="81.0" layoutY="552.0" text="Cantidad total de cloro (kg):">
-      </Label>
-      <Label layoutX="451.0" layoutY="552.0" text="{{resultado}}" id="clTotal" fx:id="clTotal">
-      </Label>
+        <Label layoutX="81.0" layoutY="552.0"
+            text="Cantidad total de cloro (kg):">
+        </Label>
+        <Label id="clTotal" fx:id="clTotal" layoutX="451.0"
+            layoutY="552.0" text="{{resultado}}">
+        </Label>
+        <Button layoutX="875.0" layoutY="600.0" mnemonicParsing="false"
+            prefHeight="25.0" prefWidth="95.0" text="Imprimir"
+            onAction="#triggerPrint" disable="true"
+            fx:id="printButton" />
     </children>
 </AnchorPane>

@@ -1,5 +1,6 @@
 package org.ongawa.peru.chlorination.gui.manage;
 
+import java.awt.Desktop;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
@@ -306,9 +307,9 @@ public class ChlorinationWindow  implements Initializable{
             
             this.chlorineCalculation.setChlorineDosePerFortnight(clResults[1]);
             this.chlorineCalculation.setChlorineDosePerMonth(clResults[2]);
-            this.chlorineCalculation.setDrippingFlowInMl(clResults[5]);
+            this.chlorineCalculation.setDrippingFlowInMl(clResults[4]);
+            this.chlorineCalculation.setDrippingFlowInDrops(clResults[5]);
             this.chlorineCalculation.setChlorinePrice(Double.valueOf(this.clPrice.getText()));
-            
             
             this.chlorineCalculation.setDate(now);
             
@@ -349,13 +350,26 @@ public class ChlorinationWindow  implements Initializable{
             try {
                 ManagementReport mreport = new ManagementReport(this.waterSystem, file, new Locale("es", "ES"), "");
                 mreport.createReport();
+                // Open the file with the default editor
+                Thread t = new Thread(new Runnable() {
+                    
+                    @Override
+                    public void run() {
+                        try {
+                            Desktop.getDesktop().open(file);
+                        } catch (IOException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
+                    }
+                });
+                t.start();
             } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
             
         }
-        
     }
    
     public void triggerBack() {

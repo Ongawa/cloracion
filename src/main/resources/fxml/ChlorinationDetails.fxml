@@ -167,7 +167,7 @@
                 <Label layoutX="539.0" layoutY="133.0" prefHeight="29.0"
                     prefWidth="137.0" text="Precio del cloro" />
                 <TextField layoutX="685.0" layoutY="135.0"
-                    prefHeight="25.0" prefWidth="90.0" fx:id="clPrice"/>
+                    prefHeight="25.0" prefWidth="90.0" minWidth="90" fx:id="clPrice"/>
                 <Label layoutX="789.0" layoutY="135.0" prefHeight="26.0"
                     prefWidth="81.0" text="Soles / kg" />
 
