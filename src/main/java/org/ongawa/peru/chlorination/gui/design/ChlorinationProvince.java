@@ -7,9 +7,11 @@ import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.HelpStage;
 import org.ongawa.peru.chlorination.MainApp;
+import org.ongawa.peru.chlorination.gui.ClAlert;
 import org.ongawa.peru.chlorination.gui.manage.ProvinceSelector;
 import org.ongawa.peru.chlorination.logic.DataCalculator;
 import org.ongawa.peru.chlorination.logic.DataLoader;
+import org.ongawa.peru.chlorination.logic.DataValidator;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.ongawa.peru.chlorination.persistence.elements.Community;
@@ -177,9 +179,28 @@ public class ChlorinationProvince implements Initializable{
             MainApp.getStage().setScene(scene);
 
     }
+    
+    /**
+     * Validates the input data.
+     * 
+     * @return
+     */
+    public String isDataValid() {
+        String dotaResult = DataValidator.checkDota(Double.valueOf(this.consumption.getText()));
+        if (dotaResult.length() > 0)
+            return dotaResult;
+        
+        // If more validations are needed, follow that pattern. 
+        return "";
+    }
 
     public void triggerNext() throws Exception {
-        
+        String validationResult = isDataValid();
+        if (validationResult.length() > 0) {
+            ClAlert alert = new ClAlert(validationResult);
+            alert.show();
+            return;
+        }
         // Create the system if it does not exists
         if (this.selectedWaterSystem == null){
             if (this.selectedCommunity == null) {
