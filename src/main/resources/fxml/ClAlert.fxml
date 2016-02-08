@@ -3,12 +3,23 @@
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
 
-<AnchorPane prefHeight="200.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
-   <children>
-      <Label layoutX="14.0" layoutY="14.0" text="Datos invalidos:" />
-      <Label id="errorMessage" fx:id="errorMessage" alignment="TOP_LEFT" layoutX="13.0" layoutY="35.0" prefHeight="121.0" prefWidth="379.0" text="{{error}}" />
-      <Button id="closeButton" fx:id="closeButton" layoutX="169.0" layoutY="161.0" mnemonicParsing="false" text="Cerrar" />
-   </children>
-</AnchorPane>
+<FlowPane fx:id="alertRoot" prefHeight="200.0" prefWidth="400.0"
+    xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="org.ongawa.peru.chlorination.gui.AlertController">
+    <children>
+        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0"
+            prefHeight="40.0" prefWidth="400.0" text="Datos invalidos:" />
+        <Label id="errorMessage" fx:id="errorMessage" alignment="CENTER"
+            prefHeight="90.0" prefWidth="400.0"
+            text="{{error}}" />
+        <AnchorPane prefHeight="50.0" prefWidth="400.0">
+            <children>
+                <Button id="closeButton" fx:id="closeButton"
+                    layoutX="170.0" layoutY="0" mnemonicParsing="false"
+                    onAction="#closeWindow" text="Cerrar" />
+            </children>
+        </AnchorPane>
+    </children>
+</FlowPane>
