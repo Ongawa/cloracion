@@ -81,4 +81,9 @@ public class DistributionPipe extends org.ongawa.peru.chlorination.persistence.e
     public double[] getDesinfectionResults() {
         return this.desinfectionResults;
     }
+
+    @Override
+    public int getRetentionTime() {
+        return RETENTION_TIME;
+    }
 }

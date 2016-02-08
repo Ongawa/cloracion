@@ -88,4 +88,9 @@ public class Catchment extends org.ongawa.peru.chlorination.persistence.elements
 	public double[] getDesinfectionResults() {
 		return this.desinfectionResults;
 	}
+
+    @Override
+    public int getRetentionTime() {
+        return RETENTION_TIME;
+    }
 }

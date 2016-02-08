@@ -161,4 +161,9 @@ public class CubicReservoir implements SystemElement{
                 
     }
 
+    @Override
+    public int getRetentionTime() {
+        return RETENTION_TIME;
+    }
+
 }

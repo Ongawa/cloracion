@@ -105,7 +105,8 @@ public class DesinfectionResults implements Initializable {
                 cellData -> new SimpleStringProperty(String.format("%1$,.2f",cellData.getValue().getDesinfectionResults()[0])));
         this.spoonsRequiredColumn.setCellValueFactory(
                 cellData -> new SimpleStringProperty(String.format("%1$,.2f",cellData.getValue().getDesinfectionResults()[2])));
-        this.timeRequiredColumn.setCellValueFactory(cellData -> new SimpleStringProperty("Por calcular"));
+        this.timeRequiredColumn.setCellValueFactory(
+                cellData -> new SimpleStringProperty(String.valueOf(cellData.getValue().getRetentionTime())));
         this.elementCountColumn.setCellValueFactory(
                 cellData -> new ReadOnlyStringWrapper(String.valueOf(cellData.getValue().getCount())));
         

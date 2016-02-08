@@ -58,6 +58,12 @@ public interface SystemElement {
     public void save();
     
     /**
+     * Returns the required retention Time
+     * 
+     */
+    public int getRetentionTime();
+    
+    /**
      * Temporarily saves the desinfections requirements results
      * 
      */
