@@ -59,9 +59,12 @@ public class ChlorinationWindow  implements Initializable{
     @FXML
     private TextField clDemand;
     @FXML
+    private TextField clPrice;
+    @FXML
     private Button saveButton;
     @FXML
     private Button printButton;
+    
     
     
     /* Results */
@@ -103,7 +106,8 @@ public class ChlorinationWindow  implements Initializable{
                 this.tankVolume.textProperty().set(String.format("%1$,.2f", lastCalculation.getTankVolume()));
                 this.rechargeTime.textProperty().set(String.format("%1$,.2f", lastCalculation.getReloadTime()));
                 this.dripTime.textProperty().set(String.format("%1$,.2f", lastCalculation.getDrippingHoursPerDay()));
-                this.clDemand.setAccessibleHelp(String.format("%1$,.2f", lastCalculation.getChlorineDemand()));
+                this.clDemand.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorineDemand()));
+                this.clPrice.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorinePrice()));
                 
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
@@ -242,6 +246,7 @@ public class ChlorinationWindow  implements Initializable{
         fieldValues.add(this.rechargeTime.getText());
         fieldValues.add(this.dripTime.getText());
         fieldValues.add(this.clDemand.getText());
+        fieldValues.add(this.clPrice.getText());
         String formatError =  DataValidator.checkChlorinationData(fieldValues);
         if(formatError.length() > 1 )
             return formatError;
@@ -262,6 +267,10 @@ public class ChlorinationWindow  implements Initializable{
             return errorString;
         
         errorString = DataValidator.checkPure(Double.valueOf(this.clPurity.getText()));
+        if (errorString.length() < 1)
+            return errorString;
+        
+        errorString = DataValidator.checkPrecClor(Double.valueOf(this.clPrice.getText()));
         if (errorString.length() < 1)
             return errorString;
         return "";
@@ -298,6 +307,7 @@ public class ChlorinationWindow  implements Initializable{
             this.chlorineCalculation.setChlorineDosePerFortnight(clResults[1]);
             this.chlorineCalculation.setChlorineDosePerMonth(clResults[2]);
             this.chlorineCalculation.setDrippingFlowInMl(clResults[5]);
+            this.chlorineCalculation.setChlorinePrice(Double.valueOf(this.clPrice.getText()));
             
             
             this.chlorineCalculation.setDate(now);

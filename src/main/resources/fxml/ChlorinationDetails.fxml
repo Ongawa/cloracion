@@ -26,8 +26,8 @@
                 <Label layoutX="15.0" layoutY="7.0" prefHeight="26.0"
                     prefWidth="205.0" text="Parametros de Diseño">
                 </Label>
-                <Button layoutX="25.0"
-                    layoutY="40" onAction="#triggerInfo" id="CaudNatuHelp">
+                <Button id="CaudNatuHelp" layoutX="25.0" layoutY="40"
+                    onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -42,12 +42,13 @@
                     prefWidth="107.0" text="Caudal Natural" />
                 <TextField id="naturalCaudal" fx:id="naturalCaudal"
                     layoutX="185.0" layoutY="42.0" maxWidth="100.0"
-                    prefHeight="25.0" prefWidth="90" minWidth="90" />
-                <Label layoutX="280.0" layoutY="40" text="Litros / seg" prefHeight="30.0"/>
-                
-                
-                 <Button layoutX="25.0"
-                    layoutY="85" onAction="#triggerInfo" id="CaudAClorHelp">
+                    minWidth="90" prefHeight="25.0" prefWidth="90" />
+                <Label layoutX="280.0" layoutY="40" prefHeight="30.0"
+                    text="Litros / seg" />
+
+
+                <Button id="CaudAClorHelp" layoutX="25.0"
+                    layoutY="85" onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -57,15 +58,17 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Label layoutX="75.0" layoutY="85.0" text="Caudal a clorar" prefHeight="40"/>
+                <Label layoutX="75.0" layoutY="85.0" prefHeight="40"
+                    text="Caudal a clorar" />
                 <TextField id="chlorableCaudal" fx:id="chlorableCaudal"
                     layoutX="185.0" layoutY="90.0" maxWidth="100.0"
-                    prefWidth="90" minWidth="90" />
-                <Label layoutX="280.0" layoutY="85" text="Litros / seg" prefHeight="40.0"/>
-                
-                
-                <Button layoutX="25.0"
-                    layoutY="130" onAction="#triggerInfo" id="PureClorHelp">
+                    minWidth="90" prefWidth="90" />
+                <Label layoutX="280.0" layoutY="85" prefHeight="40.0"
+                    text="Litros / seg" />
+
+
+                <Button id="PureClorHelp" layoutX="25.0" layoutY="130"
+                    onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -75,14 +78,16 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Label layoutX="75.0" layoutY="130.0" text="Pureza del cloro" prefHeight="40.0"/>
+                <Label layoutX="75.0" layoutY="130.0" prefHeight="40.0"
+                    text="Pureza del cloro" />
                 <TextField id="clPurity" fx:id="clPurity"
                     layoutX="188.0" layoutY="135.0" maxWidth="100.0"
-                    prefWidth="90" minWidth="90" />
-                <Label layoutX="298.0" layoutY="130.0" text="\%" prefHeight="40.0"/>
-                
-                <Button layoutX="25.0"
-                    layoutY="175" onAction="#triggerInfo" id="VoluTanqHelp">
+                    minWidth="90" prefWidth="90" />
+                <Label layoutX="298.0" layoutY="130.0" prefHeight="40.0"
+                    text="\%" />
+
+                <Button id="VoluTanqHelp" layoutX="25.0" layoutY="175"
+                    onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -92,14 +97,16 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Label layoutX="75.0" layoutY="175.0" text="Volumen del tanque" prefHeight="40.0"/>
+                <Label layoutX="75.0" layoutY="175.0" prefHeight="40.0"
+                    text="Volumen del tanque" />
                 <TextField id="tankVolume" fx:id="tankVolume"
                     layoutX="215.0" layoutY="182.0" maxWidth="100.0"
-                    prefWidth="90" minWidth="90" />
-                <Label layoutX="315.0" layoutY="175.0" text="Litros" prefHeight="40.0"/>
-                
-                <Button layoutX="25.0"
-                    layoutY="220" onAction="#triggerInfo" id="TiemRecaHelp">
+                    minWidth="90" prefWidth="90" />
+                <Label layoutX="315.0" layoutY="175.0" prefHeight="40.0"
+                    text="Litros" />
+
+                <Button id="TiemRecaHelp" layoutX="25.0" layoutY="220"
+                    onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -109,17 +116,19 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Label layoutX="73.0" layoutY="220" text="Tiempo de recarga" prefHeight="40.0"/>
+                <Label layoutX="73.0" layoutY="220" prefHeight="40.0"
+                    text="Tiempo de recarga" />
                 <TextField id="rechargeTime" fx:id="rechargeTime"
                     layoutX="209.0" layoutY="227.0" maxWidth="100.0"
-                    prefWidth="90" minWidth="90" />
-                <Label layoutX="310.0" layoutY="220.0" text="Días" prefHeight="40.0" />
-                
-                
+                    minWidth="90" prefWidth="90" />
+                <Label layoutX="310.0" layoutY="220.0" prefHeight="40.0"
+                    text="Días" />
+
+
                 <!-- Rigth 'column' -->
-                
-                <Button  layoutX="489.0"
-                    layoutY="40.0" onAction="#triggerInfo" id="HoraGoteDiarHelp">
+
+                <Button id="HoraGoteDiarHelp" layoutX="489.0"
+                    layoutY="40.0" onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -129,15 +138,16 @@
                         </ImageView>
                     </graphic>
                 </Button>
-                <Label layoutX="537.0" layoutY="40.0"
-                    text="Horas de goteo diario" prefHeight="40.0"/>
+                <Label layoutX="537.0" layoutY="40.0" prefHeight="40.0"
+                    text="Horas de goteo diario" />
                 <TextField id="dripTime" fx:id="dripTime"
-                    layoutX="685.0" layoutY="44.0"
-                    prefWidth="90" minWidth="90"/>
-                <Label layoutX="800.0" layoutY="40.0" text="Horas" prefHeight="40.0"/>
-                
-                <Button layoutX="489.0"
-                    layoutY="87.0" onAction="#triggerInfo" id="DemaClorHelp">
+                    layoutX="685.0" layoutY="44.0" minWidth="90"
+                    prefWidth="90" />
+                <Label layoutX="800.0" layoutY="40.0" prefHeight="40.0"
+                    text="Horas" />
+
+                <Button id="DemaClorHelp" layoutX="489.0"
+                    layoutY="87.0" onAction="#triggerInfo">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
@@ -150,16 +160,22 @@
 
                 <Label layoutX="537.0" layoutY="95.0" text="Demanda de cloro" />
                 <TextField id="clDemand" fx:id="clDemand"
-                    layoutX="696.0" layoutY="90.0" 
-                    prefWidth="90" minWidth="90" />
+                    layoutX="685.0" layoutY="90.0" minWidth="90"
+                    prefWidth="90" />
                 <Label layoutX="800.0" layoutY="97.0" text="mg/l" />
-                
-                
+
+                <Label layoutX="539.0" layoutY="133.0" prefHeight="29.0"
+                    prefWidth="137.0" text="Precio del cloro" />
+                <TextField layoutX="685.0" layoutY="135.0"
+                    prefHeight="25.0" prefWidth="90.0" fx:id="clPrice"/>
+                <Label layoutX="789.0" layoutY="135.0" prefHeight="26.0"
+                    prefWidth="81.0" text="Soles / kg" />
+
                 <Button id="triggerCalculation" layoutX="821.0"
                     layoutY="249.0" onAction="#triggerCalculation" text="Calcular" />
 
                 <Line endX="950.0" layoutY="300" startX="-0.0" />
-                    
+
                 <AnchorPane layoutY="280.0" prefHeight="249.0"
                     prefWidth="950.0">
                     <children>
@@ -170,28 +186,31 @@
                         <Label layoutX="15.0" layoutY="70.0"
                             text="Contenido de cloro" />
                         <Label id="clKgQuin" fx:id="clKgQuin"
-                            layoutX="150.0" layoutY="95.0" prefHeight="15.0"
-                            prefWidth="85.0" text="kg/quincena" />
+                            layoutX="150.0" layoutY="95.0" prefHeight="28.0"
+                            prefWidth="175.0" text="kg/quincena" />
                         <Label id="clKgMonth" fx:id="clKgMonth"
-                            layoutX="300.0" layoutY="95.0" text="kg/mes" />
+                            layoutX="346.0" layoutY="95.0" prefHeight="29.0"
+                            prefWidth="172.0" text="kg/mes" />
 
                         <!-- Drip rate -->
                         <Label layoutX="15.0" layoutY="130.0"
                             text="Caudal de goteo" />
                         <Label id="dripMin" fx:id="dripMin"
-                            layoutX="150.0" layoutY="150.0" text="gotas/min" />
+                            layoutX="150.0" layoutY="150.0" prefHeight="23.0"
+                            prefWidth="171.0" text="gotas/min" />
                         <Label id="dripMlMin" fx:id="dripMlMin"
-                            layoutX="300.0" layoutY="150.0" text="ml/min" />
+                            layoutX="346.0" layoutY="150.0" prefHeight="24.0"
+                            prefWidth="156.0" text="ml/min" />
 
                         <Button id="triggerBack" layoutX="500"
                             layoutY="192.0" onAction="#triggerBack"
                             text="Atras" />
-                        <Button id="triggerSave" fx:id="saveButton" layoutX="664.0"
-                            layoutY="192.0" onAction="#triggerSave"
-                            text="Guardar" disable="true"/>
-                        <Button id="triggerPrint" fx:id="printButton" layoutX="563.0"
-                            layoutY="192.0" onAction="#triggerPrint"
-                            text="Imprimir" disable="true"/>
+                        <Button id="triggerSave" fx:id="saveButton"
+                            disable="true" layoutX="664.0" layoutY="192.0"
+                            onAction="#triggerSave" text="Guardar" />
+                        <Button id="triggerPrint" fx:id="printButton"
+                            disable="true" layoutX="563.0" layoutY="192.0"
+                            onAction="#triggerPrint" text="Imprimir" />
                     </children>
                 </AnchorPane>
             </children>
