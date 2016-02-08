@@ -46,8 +46,8 @@
                 <Label layoutX="280.0" layoutY="40" text="Litros / seg" prefHeight="30.0"/>
                 
                 
-                <Button layoutX="25.0"
-                    layoutY="85" onAction="#triggerInfo" id="CaudClorHelp">
+                 <Button layoutX="25.0"
+                    layoutY="85" onAction="#triggerInfo" id="CaudAClorHelp">
                     <graphic>
                         <ImageView fitHeight="20.0" fitWidth="20.0"
                             pickOnBounds="true" preserveRatio="true">
