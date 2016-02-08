@@ -243,7 +243,7 @@ public class ChlorinationWindow  implements Initializable{
         fieldValues.add(this.dripTime.getText());
         fieldValues.add(this.clDemand.getText());
         String formatError =  DataValidator.checkChlorinationData(fieldValues);
-        if(formatError.length() < 1 )
+        if(formatError.length() > 1 )
             return formatError;
         
         String errorString= DataValidator.checkCaud(Double.valueOf(this.naturalCaudal.getText()));

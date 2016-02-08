@@ -144,7 +144,7 @@
 						</Button>
 						<Label layoutX="540.0" layoutY="65.0" prefHeight="25.0"
 							prefWidth="144.0" text="Demanda de cloro:" />
-						<TextField id="clDemmand" fx:id="clDemmand" layoutX="674.0"
+						<TextField id="clDemand" fx:id="clDemand" layoutX="674.0"
 							layoutY="67.0" minWidth="90" prefHeight="25.0" prefWidth="90" />
 						<Label layoutX="775.0" layoutY="65.0" prefHeight="30.0"
 							prefWidth="42.0" text="mg/l" />
@@ -186,9 +186,12 @@
 							<items>
 								<FXCollections fx:factory="observableArrayList">
 									<String fx:value="Población futura" />
-									<String fx:value="POblación actual" />
+									<String fx:value="Población actual" />
 								</FXCollections>
 							</items>
+                            <value>
+                                <String fx:value="Población futura"/>
+                            </value>
 						</ComboBox>
 
 

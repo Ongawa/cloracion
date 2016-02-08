@@ -29,6 +29,13 @@ public class DataValidator {
         else 
         	return "";
     }
+	
+	public static String checkTankVolume(double num) {
+	    if (num < 0.01)
+	        return "[ERROR] El volumen del tanque debe ser un valor positivo";
+	    return "";
+	}
+	
 	/*Function checkWaterQ(double turbidez, double pH)
 	 * El agua ha de cumplir unos requisitos mínimos para ser considerada “clorable”.
 	 * Los dos parámetros más importantes son la turbidez y el pH.
