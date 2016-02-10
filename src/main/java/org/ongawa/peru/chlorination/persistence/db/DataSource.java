@@ -1,6 +1,9 @@
 package org.ongawa.peru.chlorination.persistence.db;
 
+import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.nio.file.FileSystems;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -10,6 +13,8 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.apache.commons.lang.NullArgumentException;
 import org.apache.commons.lang.StringUtils;
@@ -3151,8 +3156,11 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext insert = this.prepareDSLContext(this.connection);
 			Properties properties = ApplicationProperties.getInstance().getProperties();
-			Path path  = FileSystems.getDefault().getPath(properties.getProperty(KEYS.RESOURCES_PATH), "Cloracion_INSERT_real_data.sql");
-			String script = StringUtils.join(Files.readAllLines(path), "\n");
+			//Path path  = FileSystems.getDefault().getPath(properties.getProperty(KEYS.RESOURCES_PATH), "Cloracion_INSERT_real_data.sql");
+			InputStream istream = DataSource.class.getResourceAsStream(properties.getProperty(KEYS.DATABASE_INITIAL_DATA));
+            BufferedReader reader = new BufferedReader(new InputStreamReader(istream));
+            String script = StringUtils.join(reader.lines().collect(Collectors.toList()), "\n");
+			//String script = StringUtils.join(Files.readAllLines(path), "\n");
 			insert.execute(script);
 			this.closeConnection();
 			log.debug("Loaded TEST DATA");
@@ -3167,8 +3175,11 @@ public class DataSource implements IDataSource {
 			this.connection = ConnectionsPool.getInstance().getConnection();
 			DSLContext insert = this.prepareDSLContext(this.connection);
 			Properties properties = ApplicationProperties.getInstance().getProperties();
-			Path path  = FileSystems.getDefault().getPath(properties.getProperty(KEYS.RESOURCES_PATH), properties.getProperty(KEYS.DATABASE_CREATION_SCRIPT));
-			String script = StringUtils.join(Files.readAllLines(path), "\n");
+			//Path path  = FileSystems.getDefault().getPath(properties.getProperty(KEYS.RESOURCES_PATH), properties.getProperty(KEYS.DATABASE_CREATION_SCRIPT));
+			System.out.println(properties.getProperty(KEYS.DATABASE_CREATION_SCRIPT));
+			InputStream istream = DataSource.class.getResourceAsStream(properties.getProperty(KEYS.DATABASE_CREATION_SCRIPT));
+			BufferedReader reader = new BufferedReader(new InputStreamReader(istream));			
+			String script = StringUtils.join(reader.lines().collect(Collectors.toList()), "\n");
 			insert.execute(script);
 			log.info("Database created");
 			properties.setProperty(KEYS.APP_FIRST_RUN, "false");

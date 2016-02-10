@@ -10,6 +10,7 @@ public class KEYS {
 	public static final String DATABASE_USERNAME = "DATABASE_USERNAME";
 	public static final String DATABASE_PASSWORD = "DATABASE_PASSWORD";
 	public static final String DATABASE_CREATION_SCRIPT = "DATABASE_CREATION_SCRIPT";
+	public static final String DATABASE_INITIAL_DATA = "DATABASE_INITIAL_DATA";
 	
 	public static final String DEFAULT_DATASOURCE = "DEFAULT_DATASOURCE";
 	
