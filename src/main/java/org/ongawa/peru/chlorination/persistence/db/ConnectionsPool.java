@@ -47,6 +47,7 @@ public class ConnectionsPool {
 	
 	public Connection getConnection() throws SQLException{
 		String url = properties.getProperty(KEYS.DATABASE_URL);
+		url = url.replace("~", System.getProperty("user.home"));
 		String username = properties.getProperty(KEYS.DATABASE_USERNAME);
 		String password = properties.containsKey(KEYS.DATABASE_PASSWORD)?properties.getProperty(KEYS.DATABASE_PASSWORD):"";
 		
