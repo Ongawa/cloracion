@@ -52,7 +52,7 @@ public class ApplicationProperties {
 		
 		// Absolute path for files:
 		if (! localPropertiesFile.exists()) {
-		    localDataFolder.getAbsoluteFile().mkdir();
+		    localDataFolder.getAbsoluteFile().mkdirs();
 		    localPropertiesFile.createNewFile();
 		    bundledProperties.store(new FileOutputStream(localPropertiesFile),"Initial properties for Chlorination app");
 		}
