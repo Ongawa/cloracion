@@ -39,6 +39,12 @@ Para compilar el proyecto y generar los ejecutables necesarios, es suficiente co
 usuario@ongawa:~/chlorination$ mvn package
 ``` 
 
+Para generar el jar empaquetado con dependencias, por el momento hay que ejecutar a la vez los goal _package_ y _assembly:single_, por una limitación en el assembly plugin de maven [StackOverflow](http://stackoverflow.com/questions/23777934/why-maven-assembly-plugin-does-not-include-my-project-files-in-the-jar-with-depe):
+
+```bash
+usuario@ongawa:~/chlorination$ mvn package assembly:single
+``` 
+
 ## Autores
 
 * Alberto Mardomingo
