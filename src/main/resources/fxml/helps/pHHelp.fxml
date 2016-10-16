@@ -10,10 +10,7 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="20.0" layoutY="57.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El pH mide la acidez o basicidad del agua. La escala del pH va de 0 a 14. Valores por encima de 7 indican que el agua es básica, mientras que valores por debajo de 7 indican que el agua es ácida." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-		<Text layoutX="14.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El agua potable debe tener un pH entre 6,5 y 8,5" textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-		<Text layoutX="14.0" layoutY="156.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Por otro lado, el pH también afecta a la efectividad de la cloración. Entre 6,5 y 7,5 el cloro tiene su mayor potencia de desinfección. Por otro lado, a partir de pH=8 la cloracion es mucho menos efectiva y el agua puede necesitar un poco más de cloro. Esto tendremos que comprobarlo in situ, midiendo con el comparador de cloro el cloro residual en el reservorio y las casas." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
+                <Text layoutX="20.0" layoutY="26.0" strokeType="OUTSIDE" strokeWidth="0.0" text="El pH mide la acidez o basicidad del agua. La escala del pH va de 0 a 14. Valores por encima de 7 indican que el agua es básica, mientras que valores por debajo de 7 indican que el agua es ácida. &#10;&#10;El agua potable debe tener un pH entre 6,5 y 8,5&#10;&#10;Por otro lado, el pH también afecta a la efectividad de la cloración. Entre 6,5 y 7,5 el cloro tiene su mayor potencia de desinfección. A partir de pH=8 la cloración es mucho menos efectiva y el agua puede necesitar un poco más de cloro. Esto tendremos que comprobarlo in situ, midiendo con el comparador de cloro el cloro residual en el reservorio y las casas." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
             </children>
         </AnchorPane>
     </content>

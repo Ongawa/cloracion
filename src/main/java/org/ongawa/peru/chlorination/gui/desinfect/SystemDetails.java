@@ -91,7 +91,7 @@ public class SystemDetails implements Initializable {
      */
     @FXML
     private AnchorPane editPane;
-
+    
     private WaterSystem waterSystem;
 
     private SystemElement currentEditableElement;
@@ -657,6 +657,8 @@ public class SystemDetails implements Initializable {
         // Add listener for selected element to edit
         this.elementsTable.getSelectionModel().selectedItemProperty()
                 .addListener((observable, oldValue, newValue) -> showEditElement(newValue));
+        
+        
     }
 
     public void triggerInfo(MouseEvent event) {
@@ -685,4 +687,26 @@ public class SystemDetails implements Initializable {
             e.printStackTrace();
         }
     }
+    
+    public void triggerHelp(ActionEvent event) throws Exception{
+        String fxmlFile = "/fxml/helps/" + ((Button)event.getTarget()).getId()+".fxml";
+        HelpStage help = new HelpStage(fxmlFile);
+        
+        // Create the loader and get the root node from the .fxml file describing the scene
+        FXMLLoader loader = new FXMLLoader();
+        Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
+        
+        // Create the scene (maybe get the size from the stage?
+        // Only after the .show(): stage.getWidth() 
+        Scene scene = new Scene(rootNode, 700, 600);
+        scene.getStylesheets().add("/styles/styles.css");
+        
+        // Set max size
+        //help.setMaxHeight(700);
+        help.setMaxWidth(1000);
+        
+        help.setTitle("Ayuda");
+        help.setScene(scene);
+        help.show();
+        }
 }

@@ -37,8 +37,6 @@ Si medimos el caudal en una capaciÃ³n es posible que haya varios llorones (o caÃ
 '}"
                     textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
                 
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
-                    prefWidth="200.0" />
             </children>
         </AnchorPane>
     </content>

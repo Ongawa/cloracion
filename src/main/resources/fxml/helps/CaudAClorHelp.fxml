@@ -1,26 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.scene.control.*?>
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
+<ScrollPane maxHeight="-Infinity" maxWidth="1000"
     minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
-    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    prefWidth="655" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0"
-            prefHeight="464.0" prefWidth="606.0">
+        <FlowPane prefHeight="1300.0" prefWidth="655">
             <children>
                 <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
                     strokeWidth="0.0"
-                    text="${'Caudal diseñado para la población actual.\nCon la dotación y el número de usuarios, puede hacerse una estimación del caudal de agua necesario para una determinada comunidad y, por tanto, para su sistema.'}"
-                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
-                    prefWidth="200.0" />
+                    text="Aunque tengamos un manantial con mucho caudal no podemos clorar todo el agua, ya que ello significaría un aumento en el consumo de cloro y, por tanto, en el costo de cloración. &#10;Para hacer un cálculo real del consumo de cloro que va a tener un sistema  tenemos que decidir cuánto agua realmente necesito. Así, cloraremos únicamente lo necesario. Para ello tendremos, en la mayoría de los casos, que reducir la cantidad de agua que entra en el reservorio. &#10;¿Cómo reducimos la cantidad de agua que entra en el reservorio?&#10;Si hay presupuesto se puede incorporar una válvula justo antes del reservorio (con tapa y perno) para que esté accesible. De lo contrario, entre dos personas se puede ir cerrando poco a poco la válvula de salida de la captación hasta conseguir el caudal de entrada al reservorio deseado. Para medir el caudal en el reservorio hay que, en un momento del día en que no rebose, cerrar la válvula de salida y cuando empiece a rebosar medir el caudal de rebose. Cuando el reservorio está lleno, el caudal de rebose es igual al caudal de entrada.&#10;Para calcularlo, el método más sencillo es el método volumétrico:&#10;Método volumétrico: Para medir el caudal&#10;Material:&#10;Balde de volumen conocido&#10;Cronómetro&#10;Libreta y lapicero&#10;1. Ponemos el balde bajo el flujo de agua a la vez que activamos el cronómetro. Paramos el cronómetro cuando el balde esté lleno, intentando ser lo más precisos posible.&#10;2. Anotamos el tiempo en la libreta y repetimos dos veces más. Si alguna medida desentona con las otras dos, la descartamos y volvemos a medir.&#10;3. Dividimos el volumen del balde por la media de las tres mediciones para calcular el caudal en l/seg.&#10;Ejemplo de cálculo:&#10;Resultado 1: 58 seg&#10;Resultado 2: 1 min 2 seg&#10;Resultado 3: 59 seg&#10;Volumen de nuestro balde: 10 L&#10;Para calcular el caudal (Q) utilizamos la siguiente fórmula, donde:&#10;V = Volumen del balde (l)&#10;Rx = Resultado x (seg)"
+                    textAlignment="JUSTIFY" wrappingWidth="650" />
+                <ImageView fitHeight="80.0" fitWidth="250"
+                    pickOnBounds="true">
+                    <image>
+                        <Image url="img/formQ.png" />
+                    </image>
+                </ImageView>
             </children>
-        </AnchorPane>
+        </FlowPane>
     </content>
 </ScrollPane>

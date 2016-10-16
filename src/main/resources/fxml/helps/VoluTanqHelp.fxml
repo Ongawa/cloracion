@@ -10,8 +10,7 @@
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${'Cuando hablamos de volumen activo nos referimos al volumen del tanque que se está utilizando o se quiere utilizar, ya que no siempre se hace uso de la capacidad total del tanque.'}" textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Volumen activo del tanque donde se vierte la solución clorada.&#10;&#10;Hablamos de volumen activo cuando nos referimos al volumen del tanque que se está utilizando o se quiere utilizar, ya que no siempre se hace uso de la capacidad total del tanque." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
             </children>
         </AnchorPane>
     </content>

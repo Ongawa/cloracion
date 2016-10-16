@@ -5,14 +5,25 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.TextFlow?>
+<?import javafx.scene.text.Text?>
 
 <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <content>
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="464.0" prefWidth="606.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="${'Cálculos para una cloración responsable.\nEs importante tener en cuenta que la reacción del cloro con el agua también produce sustancias que podrían hacer daño al organismo. Por tanto, no es recomendable echar cantidades de cloro por encima de lo necesario para asegurar la cloración.\nHay que calcular cuál es la demanda de cloro de nuestra agua en particular, y ajustarnos a dichos cálculos.  '}" textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
+                <TextFlow>
+                   <children>
+                       <Text wrappingWidth="234.810546875">Utilice esta opción para calcular:
+                    </Text>
+                   </children>
+                </TextFlow>
+                    <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0" prefWidth="200.0" />
+                 <Text layoutX="29.0" layoutY="28.0" text="• La cantidad o dosis de cloro que necesita para la cloración.">
+                    </Text>
+                 <Text layoutX="28.0" layoutY="43.0" text="• Caudal de goteo de sus sistema de cloración.">
+                    </Text>
+                 <Text layoutX="29.0" layoutY="58.0" text="• Costo de la cloración."></Text>
             </children>
         </AnchorPane>
     </content>

@@ -27,7 +27,7 @@
 
 
         <Label alignment="CENTER" layoutX="330.0" layoutY="55.0"
-            prefHeight="29.0" prefWidth="135.0" text="Concentración (%)"
+            prefHeight="29.0" prefWidth="135.0" text="Concentración solucion (%)"
             textAlignment="CENTER" />
         <TextField fx:id="clConcetration" layoutX="480.0"
             layoutY="57.0" minWidth="115.0" prefHeight="25.0" prefWidth="130" />

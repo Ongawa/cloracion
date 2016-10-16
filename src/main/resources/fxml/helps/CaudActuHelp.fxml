@@ -6,20 +6,13 @@
 <?import javafx.scene.text.*?>
 <?import javafx.scene.layout.VBox?>
 
-<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity"
-    minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0"
-    prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="463.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0"
-            prefHeight="464.0" prefWidth="606.0">
+        <FlowPane prefHeight="1300.0" prefWidth="888.0">
             <children>
-                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE"
-                    strokeWidth="0.0"
-                    text="${'Caudal diseñado para la población actual.\nCon la dotación y el número de usuarios, puede hacerse una estimación del caudal de agua necesario para una determinada comunidad y, por tanto, para su sistema.´}"
-                    textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
-                <Pane layoutX="90.0" layoutY="232.0" prefHeight="200.0"
-                    prefWidth="200.0" />
+                <Text layoutX="14.0" layoutY="14.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Se calcula multiplicando la población actual por los litros que consume cada persona en un día (dotación)." textAlignment="JUSTIFY" wrappingWidth="566.7294921875" />
+            
             </children>
-        </AnchorPane>
+        </FlowPane>
     </content>
 </ScrollPane>

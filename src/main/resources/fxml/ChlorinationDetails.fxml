@@ -98,7 +98,7 @@
                     </graphic>
                 </Button>
                 <Label layoutX="75.0" layoutY="175.0" prefHeight="40.0"
-                    text="Volumen del tanque" />
+                    text="Volumen activo del tanque" />
                 <TextField id="tankVolume" fx:id="tankVolume"
                     layoutX="215.0" layoutY="182.0" maxWidth="100.0"
                     minWidth="90" prefWidth="90" />
