@@ -177,7 +177,7 @@ public class DataSource implements IDataSource {
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH))!=null) chlorineCalculation.setChlorineDosePerMonth(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML))!=null) chlorineCalculation.setDrippingFlowInMl(dodo);
 		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS))!=null) chlorineCalculation.setDrippingFlowInDrops(dodo);
-		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST))!=null) chlorineCalculation.setChlorinationCost(dodo);
+		if((dodo=record.getValue(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST))!=null) chlorineCalculation.setChlorinationCostMonth((dodo));
 				
 		return chlorineCalculation;
 	}
@@ -1538,7 +1538,7 @@ public class DataSource implements IDataSource {
 							chlorineCalculation.getChlorineDosePerMonth(),
 							chlorineCalculation.getDrippingFlowInMl(),
 							chlorineCalculation.getDrippingFlowInDrops(),
-							chlorineCalculation.getChlorinationCost(),
+							chlorineCalculation.getChlorinationCostMonth(),
 							chlorineCalculation.getWaterSystem().getWaterSystemId(),
 							chlorineCalculation.getWaterSystem().getCommunity().getCommunityId(),
 							chlorineCalculation.getWaterSystem().getCommunity().getSubBasin().getSubBasinId())
@@ -1720,7 +1720,7 @@ public class DataSource implements IDataSource {
 					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINEDOSEPERMONTH, newChlorineCalculation.getChlorineDosePerMonth())
 					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINML, newChlorineCalculation.getDrippingFlowInMl())
 					.set(Chlorinecalculation.CHLORINECALCULATION.DRIPPINGFLOWINDROPS, newChlorineCalculation.getDrippingFlowInDrops())
-					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST, newChlorineCalculation.getChlorinationCost())
+					.set(Chlorinecalculation.CHLORINECALCULATION.CHLORINATIONCOST, newChlorineCalculation.getChlorinationCostMonth())
 					.where(Chlorinecalculation.CHLORINECALCULATION.DATE.eq(oldChlorineCalculationDate))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_IDWATERSYSTEM.eq(newChlorineCalculation.getWaterSystem().getWaterSystemId()))
 					.and(Chlorinecalculation.CHLORINECALCULATION.WATERSYSTEM_COMMUNITY_IDCOMMUNITY.eq(newChlorineCalculation.getWaterSystem().getCommunity().getCommunityId()))

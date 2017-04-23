@@ -38,9 +38,10 @@ public class MainApp extends Application {
     }
     
     public static void pushHistory(Scene sceneToPush) {
-        if (history != null ) {
-            history.add(sceneToPush);
-        }
+        if (history == null ) 
+            history = new ArrayList<Scene>();
+        
+        history.add(sceneToPush);
     }
     
     public static void pushFuture(String controllerName, Scene sceneToPush) {

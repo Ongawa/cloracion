@@ -192,24 +192,34 @@
                             layoutX="346.0" layoutY="95.0" prefHeight="29.0"
                             prefWidth="172.0" text="kg/mes" />
 
-                        <!-- Drip rate -->
+                        <!-- Costs -->
                         <Label layoutX="15.0" layoutY="130.0"
+                            text="Costes" />
+                        <Label id="costQuin" fx:id="costQuin"
+                            layoutX="150.0" layoutY="150.0" prefHeight="23.0"
+                            prefWidth="171.0" text="soles/periodo" />
+                        <Label id="costMonth" fx:id="costMonth"
+                            layoutX="346.0" layoutY="150.0" prefHeight="24.0"
+                            prefWidth="156.0" text="soles/mes" />
+                            
+                        <!-- Drip rate -->
+                        <Label layoutX="15.0" layoutY="180.0"
                             text="Caudal de goteo" />
                         <Label id="dripMin" fx:id="dripMin"
-                            layoutX="150.0" layoutY="150.0" prefHeight="23.0"
+                            layoutX="150.0" layoutY="200.0" prefHeight="23.0"
                             prefWidth="171.0" text="gotas/min" />
                         <Label id="dripMlMin" fx:id="dripMlMin"
-                            layoutX="346.0" layoutY="150.0" prefHeight="24.0"
+                            layoutX="346.0" layoutY="200.0" prefHeight="24.0"
                             prefWidth="156.0" text="ml/min" />
 
                         <Button id="triggerBack" layoutX="500"
-                            layoutY="192.0" onAction="#triggerBack"
+                            layoutY="220.0" onAction="#triggerBack"
                             text="Atras" />
                         <Button id="triggerSave" fx:id="saveButton"
-                            disable="true" layoutX="664.0" layoutY="192.0"
+                            disable="true" layoutX="664.0" layoutY="220.0"
                             onAction="#triggerSave" text="Guardar" />
                         <Button id="triggerPrint" fx:id="printButton"
-                            disable="true" layoutX="563.0" layoutY="192.0"
+                            disable="true" layoutX="563.0" layoutY="220"
                             onAction="#triggerPrint" text="Imprimir" />
                     </children>
                 </AnchorPane>

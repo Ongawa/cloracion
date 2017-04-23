@@ -28,7 +28,8 @@ public class ChlorineCalculation {
 	private double chlorineDosePerMonth;
 	private double drippingFlowInMl;
 	private double drippingFlowInDrops;
-	private double chlorinationCost;
+	private double chlorinationCostPeriod;
+	private double chlorinationCostMonth;
 	
 	public ChlorineCalculation(Timestamp date, WaterSystem waterSystem) {
 		super();
@@ -40,7 +41,7 @@ public class ChlorineCalculation {
 			double chlorinePureness, double naturalFlow, double chlorinatedFlow, String chlorineType,
 			double drippingHoursPerDay, double chlorineDemand, double chlorinePrice, double reloadTime,
 			WaterSystem waterSystem, double chlorineDosePerFortnight, double chlorineDosePerMonth,
-			double drippingFlowInMl, double drippingFlowInDrops, double chlorinationCost) {
+			double drippingFlowInMl, double drippingFlowInDrops, double chlorinationCostPeriod , double chlorinationCostMonth) {
 		super();
 		this.date = date;
 		this.familiesNum = familiesNum;
@@ -60,7 +61,8 @@ public class ChlorineCalculation {
 		this.chlorineDosePerMonth = chlorineDosePerMonth;
 		this.drippingFlowInMl = drippingFlowInMl;
 		this.drippingFlowInDrops = drippingFlowInDrops;
-		this.chlorinationCost = chlorinationCost;
+		this.chlorinationCostPeriod = chlorinationCostPeriod;
+		this.chlorinationCostMonth = chlorinationCostMonth;
 	}
 	
 	public Timestamp getDate() {
@@ -199,13 +201,21 @@ public class ChlorineCalculation {
 		this.drippingFlowInDrops = drippingFlowInDrops;
 	}
 
-	public double getChlorinationCost() {
-		return chlorinationCost;
+	public double getChlorinationCostPeriod() {
+		return chlorinationCostPeriod;
+	}
+	
+    public double getChlorinationCostMonth() {
+        return chlorinationCostMonth;
+    }
+
+	public void setChlorinationCostPeriod(double chlorinationCost) {
+		this.chlorinationCostPeriod = chlorinationCost;
 	}
 
-	public void setChlorinationCost(double chlorinationCost) {
-		this.chlorinationCost = chlorinationCost;
-	}
+    public void setChlorinationCostMonth(double chlorinationCost) {
+        this.chlorinationCostMonth = chlorinationCost;
+    }
 
 	public WaterSystem getWaterSystem() {
 		return waterSystem;

@@ -212,11 +212,11 @@ public class CLCalculator implements Initializable {
         if (this.targetPopulation.getValue().contains("future")) {
             clResults = DataCalculator.chlorination(String.valueOf(futCaudal), this.clPurity.getText(),
                     String.valueOf(reservoirVolume), this.rechargePeriod.getText(), this.dailyDripRate.getText(),
-                    this.clDemand.getText());
+                    this.clDemand.getText(), "3");
         } else {
             clResults = DataCalculator.chlorination(String.valueOf(minCaudal), this.clPurity.getText(),
                     String.valueOf(reservoirVolume), this.rechargePeriod.getText(), this.dailyDripRate.getText(),
-                    this.clDemand.getText());
+                    this.clDemand.getText(), "3");
         }
 
         this.kgquin.setText(String.format("%1$,.2f", clResults[1]) + " kg/periodo");

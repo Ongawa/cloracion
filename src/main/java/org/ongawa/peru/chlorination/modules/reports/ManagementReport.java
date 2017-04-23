@@ -120,7 +120,8 @@ public class ManagementReport extends Report {
 	        pa = new Paragraph(new Chunk(this.messages.getString(KEYS.REPORT_RESULTS_MANAGEMENT_DRIPPINGFLOW).replaceFirst("&result1", df.format(chlorineCalculation.getDrippingFlowInMl())).replaceFirst("&result2", df.format(chlorineCalculation.getDrippingFlowInDrops())), redBodyFont));
 	        pa.setFirstLineIndent(LEFT_IDENTATION);
 	        document.add(pa);
-	        pa = new Paragraph(new Chunk(this.messages.getString(KEYS.REPORT_RESULTS_MANAGEMENT_CHLORINATIONCOST)+" "+df.format(chlorineCalculation.getChlorinationCost())));
+	        pa = new Paragraph(new Chunk(this.messages.getString(KEYS.REPORT_RESULTS_MANAGEMENT_CHLORINATIONCOST).replaceFirst("&result1",
+	                df.format(chlorineCalculation.getChlorinationCostMonth()))));
 	        pa.setFirstLineIndent(LEFT_IDENTATION);
 	        document.add(pa);
 	        

@@ -9,6 +9,8 @@ import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 
+import javax.management.loading.ClassLoaderRepository;
+
 import org.ongawa.peru.chlorination.HelpStage;
 import org.ongawa.peru.chlorination.MainApp;
 import org.ongawa.peru.chlorination.gui.ClAlert;
@@ -41,10 +43,9 @@ import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 
-public class ChlorinationWindow  implements Initializable{
-    
-    
-    /* User inputs*/
+public class ChlorinationWindow implements Initializable {
+
+    /* User inputs */
     @FXML
     private TextField naturalCaudal;
     @FXML
@@ -66,69 +67,74 @@ public class ChlorinationWindow  implements Initializable{
     @FXML
     private Button printButton;
     
-    
-    
+
     /* Results */
     @FXML
     private Label clKgQuin;
     @FXML
     private Label clKgMonth;
     @FXML
+    private Label costQuin;
+    @FXML
+    private Label costMonth;
+    @FXML
     private Label dripMin;
     @FXML
     private Label dripMlMin;
 
-    
     private String basin;
-    
+
     private String town;
-    
+
     private String systemName;
-    
+
+    private double cost;
     private int familiesCount;
     private int inhabitants;
-    
+
     private WaterSystem waterSystem;
     private ChlorineCalculation chlorineCalculation;
-    
+
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        
+
         try {
-            
+
             // Load the data from a previous calculation, if possible
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
             this.waterSystem = DataLoader.getDataLoader().getSelectedWaterSystem();
+            this.familiesCount = this.waterSystem.getFamiliesNum();
+            this.inhabitants = this.waterSystem.getPopulation();
             ChlorineCalculation lastCalculation = ds.getLastChlorineCalculation(waterSystem);
-            if (lastCalculation != null ){
+            if (lastCalculation != null) {
                 this.naturalCaudal.textProperty().set(String.format("%1$,.2f", lastCalculation.getNaturalFlow()));
-                this.chlorableCaudal.textProperty().set(String.format("%1$,.2f",lastCalculation.getChlorinatedFlow()));
+                this.chlorableCaudal.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorinatedFlow()));
                 this.clPurity.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorinePureness()));
                 this.tankVolume.textProperty().set(String.format("%1$,.2f", lastCalculation.getTankVolume()));
                 this.rechargeTime.textProperty().set(String.format("%1$,.2f", lastCalculation.getReloadTime()));
                 this.dripTime.textProperty().set(String.format("%1$,.2f", lastCalculation.getDrippingHoursPerDay()));
                 this.clDemand.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorineDemand()));
                 this.clPrice.textProperty().set(String.format("%1$,.2f", lastCalculation.getChlorinePrice()));
-                
+
             }
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
         this.naturalCaudal.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                System.out.println("Old: "+oldValue);
+                System.out.println("Old: " + oldValue);
                 System.out.println("New" + newValue);
             }
         });
-        
+
         this.chlorableCaudal.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, String newValue) {
-                //I can only chlorate a caudal smaller than the natural one.
-                if (Double.valueOf(naturalCaudal.textProperty().get()) < Double.valueOf(newValue)){
+                // I can only chlorate a caudal smaller than the natural one.
+                if (Double.valueOf(naturalCaudal.textProperty().get()) < Double.valueOf(newValue)) {
                     chlorableCaudal.setStyle("-fx-text-fill: red;");
                     // TODO: Add a text alert
                 } else {
@@ -136,33 +142,24 @@ public class ChlorinationWindow  implements Initializable{
                 }
             }
         });
-        
+
     }
-    
-    
-    
+
     public String getBasin() {
         return basin;
     }
-
-
 
     public void setBasin(String basin) {
         this.basin = basin;
     }
 
-
-
     public String getTown() {
         return town;
     }
 
-
-
     public void setTown(String town) {
         this.town = town;
     }
-
 
     public void setWaterSystem(WaterSystem ws) {
         this.waterSystem = ws;
@@ -172,28 +169,22 @@ public class ChlorinationWindow  implements Initializable{
         return systemName;
     }
 
-
-
     public void setSystemName(String systemName) {
         this.systemName = systemName;
     }
 
-    
     public TextField getNaturalCaudal() {
         return naturalCaudal;
     }
-
-
 
     public void setNaturalCaudal(TextField naturalCaudal) {
         this.naturalCaudal = naturalCaudal;
     }
 
-
     public void setFamiliesCount(int familiesCount) {
         this.familiesCount = familiesCount;
     }
-    
+
     public int getFamiliesCount() {
         return this.familiesCount;
     }
@@ -202,39 +193,38 @@ public class ChlorinationWindow  implements Initializable{
         return inhabitants;
     }
 
-
     public void setInhabitants(int inhabitants) {
         this.inhabitants = inhabitants;
     }
 
-    public void triggerInfo(ActionEvent event) throws Exception{
-        String fxmlFile = "/fxml/helps/" + ((Button)event.getTarget()).getId()+".fxml";
+    public void triggerInfo(ActionEvent event) throws Exception {
+        String fxmlFile = "/fxml/helps/" + ((Button) event.getTarget()).getId() + ".fxml";
         HelpStage help = new HelpStage(fxmlFile);
-        
-        // Create the loader and get the root node from the .fxml file describing the scene
+
+        // Create the loader and get the root node from the .fxml file
+        // describing the scene
         FXMLLoader loader = new FXMLLoader();
         Parent rootNode = (Parent) loader.load(getClass().getResourceAsStream(fxmlFile));
-        
+
         // Create the scene (maybe get the size from the stage?
-        // Only after the .show(): stage.getWidth() 
+        // Only after the .show(): stage.getWidth()
         Scene scene = new Scene(rootNode, 700, 600);
         scene.getStylesheets().add("/styles/styles.css");
-        
+
         // Set max size
-        //help.setMaxHeight(700);
+        // help.setMaxHeight(700);
         help.setMaxWidth(1000);
-        
+
         help.setTitle("Ayuda");
         help.setScene(scene);
         help.show();
-        }
-    
-    
+    }
+
     /* General methods */
 
     /**
-     * Checks the values, and shows a popup is the
-     * data in the fields is not valid.
+     * Checks the values, and shows a popup is the data in the fields is not
+     * valid.
      * 
      * @return
      */
@@ -248,71 +238,86 @@ public class ChlorinationWindow  implements Initializable{
         fieldValues.add(this.dripTime.getText());
         fieldValues.add(this.clDemand.getText());
         fieldValues.add(this.clPrice.getText());
-        String formatError =  DataValidator.checkChlorinationData(fieldValues);
-        if(formatError.length() > 1 )
+        String formatError = DataValidator.checkChlorinationData(fieldValues);
+        if (formatError.length() > 1)
             return formatError;
-        
-        String errorString= DataValidator.checkCaud(Double.valueOf(this.naturalCaudal.getText()));
+
+        String errorString = DataValidator.checkCaud(Double.valueOf(this.naturalCaudal.getText()));
         if (errorString.length() < 1)
             return errorString;
         errorString = DataValidator.checkCaud(Double.valueOf(this.chlorableCaudal.getText()));
         if (errorString.length() < 1)
             return errorString;
-        
+
         errorString = DataValidator.checkHoraGote(Double.valueOf(this.dripTime.getText()));
         if (errorString.length() < 1)
             return errorString;
-        
+
         errorString = DataValidator.checkTiemRecar(Double.valueOf(this.rechargeTime.getText()));
         if (errorString.length() < 1)
             return errorString;
-        
+
         errorString = DataValidator.checkPure(Double.valueOf(this.clPurity.getText()));
         if (errorString.length() < 1)
             return errorString;
-        
+
         errorString = DataValidator.checkPrecClor(Double.valueOf(this.clPrice.getText()));
         if (errorString.length() < 1)
             return errorString;
         return "";
     }
-    
-    public void triggerCalculation(){
-        String errorMessage = isDataValid(); 
+
+    public void triggerCalculation() {
+        String errorMessage = isDataValid();
         if (errorMessage.length() < 1) {
-            double[] clResults = DataCalculator.chlorination(this.chlorableCaudal.getText(),
-                                this.clPurity.getText(), this.tankVolume.getText(),
-                                this.rechargeTime.getText(), this.dripTime.getText(), this.clDemand.getText());
-            
-            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/periodo"); //TODO: Change the string to trecarga
+            double[] clResults = DataCalculator.chlorination(this.chlorableCaudal.getText(), this.clPurity.getText(),
+                    this.tankVolume.getText(), this.rechargeTime.getText(), this.dripTime.getText(),
+                    this.clDemand.getText(), this.clPrice.getText());
+
+            this.clKgQuin.setText(String.format("%1$,.2f", clResults[1]) + " kg/periodo"); 
+            // TODO: Change the string  to trecarga
             this.clKgMonth.setText(String.format("%1$,.2f", clResults[2]) + " kg/mes");
+
+            this.costQuin.setText(String.format("%1$,.2f", clResults[6]) + " soles/periodo");
+            this.costMonth.setText(String.format("%1$,.2f", clResults[7]) + " soles/mes");
             
             this.dripMin.setText(String.format("%1$,.2f", clResults[5]) + " gotas/min");
             this.dripMlMin.setText(String.format("%1$,.2f", clResults[4]) + " ml/min");
-            
+
             // Create the calculation
             Timestamp now = new Timestamp(System.currentTimeMillis());
 
             this.chlorineCalculation = new ChlorineCalculation(now, this.waterSystem);
+
+            // Set type as Solid for now
+            this.chlorineCalculation.setChlorineType("Polvo"); 
+            // TODO: Put this on a selector.
             
+            // Set number of families
+            this.chlorineCalculation.setFamiliesNum(this.familiesCount);
+            this.chlorineCalculation.setPopulation(this.inhabitants);
+
             this.chlorineCalculation.setNaturalFlow(Double.valueOf(this.naturalCaudal.getText()));
             this.chlorineCalculation.setChlorinatedFlow(Double.valueOf(this.chlorableCaudal.getText()));
             this.chlorineCalculation.setChlorinePureness(Double.valueOf(this.clPurity.getText()));
             this.chlorineCalculation.setTankVolume(Double.valueOf(this.tankVolume.getText()));
             this.chlorineCalculation.setReloadTime(Double.valueOf(this.rechargeTime.getText()));
-            
+
             this.chlorineCalculation.setDrippingHoursPerDay(Double.valueOf(this.dripTime.getText()));
             System.out.println(Double.valueOf(this.clDemand.getText()));
             this.chlorineCalculation.setChlorineDemand(Double.valueOf(this.clDemand.getText()));
-            
+
             this.chlorineCalculation.setChlorineDosePerFortnight(clResults[1]);
             this.chlorineCalculation.setChlorineDosePerMonth(clResults[2]);
             this.chlorineCalculation.setDrippingFlowInMl(clResults[4]);
             this.chlorineCalculation.setDrippingFlowInDrops(clResults[5]);
             this.chlorineCalculation.setChlorinePrice(Double.valueOf(this.clPrice.getText()));
-            
+
             this.chlorineCalculation.setDate(now);
             
+            this.chlorineCalculation.setChlorinationCostPeriod(clResults[6]);
+            this.chlorineCalculation.setChlorinationCostMonth(clResults[7]);
+
             // Enable save
             this.saveButton.setDisable(false);
         } else {
@@ -325,22 +330,22 @@ public class ChlorinationWindow  implements Initializable{
             }
         }
     }
-    
+
     public void triggerSave() {
         try {
             IDataSource ds = DataSourceFactory.getInstance().getDefaultDataSource();
-            
+
             ds.addChlorineCalculation(chlorineCalculation);
-            
+
             // Enable the printing
             this.printButton.setDisable(false);
         } catch (ClassNotFoundException | InstantiationException | IllegalAccessException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        
+
     }
-    
+
     public void triggerPrint() {
         // TODO: Print the results
         Stage stage = new Stage();
@@ -352,7 +357,7 @@ public class ChlorinationWindow  implements Initializable{
                 mreport.createReport();
                 // Open the file with the default editor
                 Thread t = new Thread(new Runnable() {
-                    
+
                     @Override
                     public void run() {
                         try {
@@ -364,20 +369,20 @@ public class ChlorinationWindow  implements Initializable{
                     }
                 });
                 t.start();
-            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException | DocumentException e) {
+            } catch (ClassNotFoundException | InstantiationException | IllegalAccessException | IOException
+                    | DocumentException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }
-            
+
         }
     }
-   
+
     public void triggerBack() {
         // Add future
-        Scene current =  MainApp.getStage().getScene();
+        Scene current = MainApp.getStage().getScene();
         MainApp.pushFuture(this.getClass().getSimpleName(), current);
-        
-        
+
         Scene scene = MainApp.popHistory();
         if (scene != null)
             MainApp.getStage().setScene(scene);

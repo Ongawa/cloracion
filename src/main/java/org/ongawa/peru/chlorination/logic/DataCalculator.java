@@ -69,14 +69,15 @@ public class DataCalculator {
      *  output: mgr/l of Cl 
      *  		drops per min
     */
-    public static double[] chlorination(String caudal,String concentracionCl, String volTanque, String tRegarga, String hGoteoDia, String demCl) {
-    	double[] res = new double[6];
+    public static double[] chlorination(String caudal,String concentracionCl, String volTanque, String tRegarga, String hGoteoDia, String demCl, String clPricePerKG) {
+    	double[] res = new double[8];
     	double vTank = Double.parseDouble(volTanque);
     	double dC = Double.parseDouble(demCl); 
         double flNat= Double.parseDouble(caudal); 
         double hGoteo = Double.parseDouble(hGoteoDia);
         double dRecarga = Double.parseDouble(tRegarga); 
         double perCl = Double.parseDouble(concentracionCl)/100;
+        double clPrice = Double.valueOf(clPricePerKG);
         double cloroAdosificar=  dC * flNat * DIA2S * hGoteo * dRecarga / (perCl  * 24 * 1000000) ; // kg en el tiempo de recarga
         res[0] = cloroAdosificar*1000/dRecarga;// 1000 stands for g and dRecargar for day (g/day)
         res[1] = cloroAdosificar;//  (kg/periodoRecarga)
@@ -85,6 +86,10 @@ public class DataCalculator {
         res[3] = caudalGoteo;//l/min
         res[4] = caudalGoteo*1000;//1000 stands for ml (ml/min)
         res[5] = caudalGoteo*1000*ML2GOTAS; //1000 stands for ml  (gotas/min)
+        
+        // Prices
+        res[6] = res[1] * clPrice;
+        res[7] = res[2] * clPrice;
         return res; 
     }
 
