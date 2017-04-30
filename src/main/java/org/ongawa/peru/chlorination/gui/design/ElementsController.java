@@ -38,6 +38,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Label;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
@@ -213,7 +214,7 @@ public class ElementsController implements Initializable {
                             .setText(String.valueOf(((DistributionPipe) element).getDiameter()));
                     ((TextField) this.editPane.lookup("#elementLength"))
                             .setText(String.valueOf(((DistributionPipe) element).getLength()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
+                    ((Label) this.editPane.lookup("#retentionTime"))
                             .setText(String.valueOf(DistributionPipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((DistributionPipe) element).getConcentration()));
@@ -233,7 +234,7 @@ public class ElementsController implements Initializable {
                             .setText(String.valueOf(((ConductionPipe) element).getDiameter()));
                     ((TextField) this.editPane.lookup("#elementLength"))
                             .setText(String.valueOf(((ConductionPipe) element).getLength()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
+                    ((Label) this.editPane.lookup("#retentionTime"))
                             .setText(String.valueOf(ConductionPipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((ConductionPipe) element).getConcentration()));
@@ -254,7 +255,7 @@ public class ElementsController implements Initializable {
                             .setText(String.valueOf(((CubicReservoir) element).getLength()));
                     ((TextField) this.editPane.lookup("#elementHeight"))
                             .setText(String.valueOf(((CubicReservoir) element).getHeight()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
+                    ((Label) this.editPane.lookup("#retentionTime"))
                             .setText(String.valueOf(CubicReservoir.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((CubicReservoir) element).getConcentration()));
@@ -275,7 +276,7 @@ public class ElementsController implements Initializable {
                             .setText(String.valueOf(((Catchment) element).getLength()));
                     ((TextField) this.editPane.lookup("#elementHeight"))
                             .setText(String.valueOf(((Catchment) element).getHeight()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
+                    ((Label) this.editPane.lookup("#retentionTime"))
                             .setText(String.valueOf(Catchment.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((Catchment) element).getConcentration()));
@@ -295,7 +296,7 @@ public class ElementsController implements Initializable {
                             .setText(String.valueOf(((ReliefValve) element).getLength()));
                     ((TextField) this.editPane.lookup("#elementHeight"))
                             .setText(String.valueOf(((ReliefValve) element).getHeigtht()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
+                    ((Label) this.editPane.lookup("#retentionTime"))
                             .setText(String.valueOf(ReliefValve.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((ReliefValve) element).getConcentration()));

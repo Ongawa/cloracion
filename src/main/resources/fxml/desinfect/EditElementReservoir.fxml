@@ -9,34 +9,20 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane layoutY="0" prefHeight="362.0" prefWidth="690.0"
-    xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane layoutY="0" prefHeight="362.0" prefWidth="690.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
     <children>
-        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0"
-            prefHeight="25.0" prefWidth="135.0" text="Tipo"
-            textAlignment="CENTER" />
-        <Label fx:id="elementType" alignment="CENTER" layoutX="149.0"
-            layoutY="16.0" minWidth="115.0" prefHeight="25.0" prefWidth="130"
-            text="Reservorio" textAlignment="CENTER" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="135.0" text="Tipo" textAlignment="CENTER" />
+        <Label fx:id="elementType" alignment="CENTER" layoutX="149.0" layoutY="16.0" minWidth="115.0" prefHeight="25.0" prefWidth="130" text="Reservorio" textAlignment="CENTER" />
 
-        <Label alignment="CENTER" layoutX="14.0" layoutY="57.0"
-            prefHeight="25.0" prefWidth="135.0" text="Nombre"
-            textAlignment="CENTER" />
-        <TextField fx:id="elementName" layoutX="149.0"
-            layoutY="57.0" minWidth="115.0" prefWidth="130" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="57.0" prefHeight="25.0" prefWidth="135.0" text="Nombre" textAlignment="CENTER" />
+        <TextField fx:id="elementName" layoutX="149.0" layoutY="57.0" minWidth="115.0" prefWidth="130" />
 
 
-        <Label alignment="CENTER" layoutX="330.0" layoutY="55.0"
-            prefHeight="29.0" prefWidth="135.0" text="Concentración solución (%)"
-            textAlignment="CENTER" />
-        <TextField fx:id="clConcetration" layoutX="480.0"
-            layoutY="57.0" minWidth="115.0" prefHeight="25.0" prefWidth="130" />
-        <Button id="infoClConc" fx:id="infoClConc" layoutX="620.0"
-            layoutY="55.0" mnemonicParsing="false" prefHeight="25.0"
-            prefWidth="40.0">
+        <Label alignment="CENTER" layoutX="300.0" layoutY="55.0" prefHeight="29.0" prefWidth="185.0" text="Concentración solución (%)" textAlignment="CENTER" />
+        <TextField fx:id="clConcetration" layoutX="499.0" layoutY="57.0" minWidth="111.0" prefHeight="25.0" prefWidth="111.0" />
+        <Button id="infoClConc" fx:id="infoClConc" layoutX="620.0" layoutY="55.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0">
             <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0"
-                    pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="img/info.png" />
                     </image>
@@ -45,34 +31,21 @@
         </Button>
 
 
-        <Label alignment="CENTER" layoutX="14.0" layoutY="99.0"
-            prefHeight="25.0" prefWidth="135.0" text="Altura (metros)" />
-        <TextField fx:id="elementHeight" layoutX="149.0"
-            layoutY="99.0" minWidth="115.0" prefHeight="25.0" prefWidth="130.0" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="99.0" prefHeight="25.0" prefWidth="135.0" text="Altura (metros)" />
+        <TextField fx:id="elementHeight" layoutX="149.0" layoutY="99.0" minWidth="115.0" prefHeight="25.0" prefWidth="130.0" />
 
-        <Label alignment="CENTER" layoutX="14.0" layoutY="142.0"
-            prefHeight="19.0" prefWidth="135.0" text="Anchura (metros)" />
-        <TextField fx:id="elementWidth" layoutX="149.0"
-            layoutY="139.0" minWidth="115.0" prefHeight="25.0"
-            prefWidth="130.0" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="142.0" prefHeight="19.0" prefWidth="135.0" text="Anchura (metros)" />
+        <TextField fx:id="elementWidth" layoutX="149.0" layoutY="139.0" minWidth="115.0" prefHeight="25.0" prefWidth="130.0" />
 
-        <Label alignment="CENTER" layoutX="14.0" layoutY="179.0"
-            prefHeight="25.0" prefWidth="135.0" text="Longitud (metros)" />
-        <TextField fx:id="elementLength" layoutX="149.0"
-            layoutY="179.0" minWidth="115.0" prefWidth="130"  prefHeight="25.0" />
+        <Label alignment="CENTER" layoutX="14.0" layoutY="179.0" prefHeight="25.0" prefWidth="135.0" text="Longitud (metros)" />
+        <TextField fx:id="elementLength" layoutX="149.0" layoutY="179.0" minWidth="115.0" prefHeight="25.0" prefWidth="130" />
 
 
-        <Label alignment="CENTER" layoutX="280.0" layoutY="14.0"
-            prefHeight="29.0" prefWidth="185.0" text="Tiempo Retención (horas)"
-            textAlignment="CENTER" />
-        <TextField fx:id="retentionTime" layoutX="480.0"
-            layoutY="16.0" minWidth="115.0" prefWidth="130" prefHeight="25.0" />
-        <Button id="infoRetTime" fx:id="infoRetTime" layoutX="620.0"
-            layoutY="14.0" mnemonicParsing="false" prefHeight="25.0"
-            prefWidth="40.0">
+        <Label alignment="CENTER" layoutX="305.0" layoutY="14.0" prefHeight="29.0" prefWidth="185.0" text="Tiempo Retención (horas)" textAlignment="CENTER" />
+        <Label fx:id="retentionTime" layoutX="499.0" layoutY="16.0" minWidth="111.0" prefHeight="25.0" prefWidth="111.0" text="4" />
+        <Button id="infoRetTime" fx:id="infoRetTime" layoutX="620.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="40.0">
             <graphic>
-                <ImageView fitHeight="20.0" fitWidth="20.0"
-                    pickOnBounds="true" preserveRatio="true">
+                <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                     <image>
                         <Image url="img/info.png" />
                     </image>
@@ -80,15 +53,9 @@
             </graphic>
         </Button>
 
-        <Label alignment="CENTER" layoutX="396.0" layoutY="97.0"
-            prefHeight="30.0" prefWidth="69.0" text="Cantidad"
-            textAlignment="CENTER" />
-        <TextField fx:id="cuantity" layoutX="480.0" layoutY="99.0"
-            minWidth="115.0" prefHeight="25.0" prefWidth="130" />
+        <Label alignment="CENTER" layoutX="396.0" layoutY="97.0" prefHeight="30.0" prefWidth="92.0" text="Cantidad" textAlignment="CENTER" />
+        <TextField fx:id="cuantity" layoutX="499.0" layoutY="99.0" minWidth="111.0" prefHeight="25.0" prefWidth="111.0" />
 
-        <Button fx:id="saveData" alignment="CENTER"
-            contentDisplay="CENTER" layoutX="465.0" layoutY="162.0"
-            mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0"
-            text="Guardar" textAlignment="CENTER" />
+        <Button fx:id="saveData" alignment="CENTER" contentDisplay="CENTER" layoutX="465.0" layoutY="162.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="98.0" text="Guardar" textAlignment="CENTER" />
     </children>
 </AnchorPane>

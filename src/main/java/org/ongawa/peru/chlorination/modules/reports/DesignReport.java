@@ -14,6 +14,7 @@ import java.util.ResourceBundle;
 import org.apache.commons.lang.NullArgumentException;
 import org.ongawa.peru.chlorination.ApplicationProperties;
 import org.ongawa.peru.chlorination.KEYS;
+import org.ongawa.peru.chlorination.logic.DataLoader;
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
 import org.ongawa.peru.chlorination.persistence.IDataSource;
 import org.ongawa.peru.chlorination.persistence.elements.Catchment;
@@ -67,6 +68,7 @@ public class DesignReport extends Report {
 
 	@Override
 	public void createReport() throws FileNotFoundException, DocumentException {
+	    DataLoader dataloader = DataLoader.getDataLoader();
 		Document document = new Document();
 		document.addAuthor(author);
 		document.addCreationDate();
@@ -135,7 +137,7 @@ public class DesignReport extends Report {
 	        Paragraph pa = new Paragraph(new Chunk(this.messages.getString(KEYS.REPORT_RESULTS_DESIGN_CHLORINEAMOUNTNEEDED).replaceFirst("&result1", (clCalc!=null)?df.format(clCalc.getChlorineDosePerFortnight()):"---").replaceFirst("&result2", (clCalc!=null)?df.format(clCalc.getChlorineDosePerMonth()):"---"), bodyFont));
 	        pa.setFirstLineIndent(LEFT_IDENTATION);
 	        document.add(pa);
-	        pa = new Paragraph(new Chunk(this.messages.getString(KEYS.REPORT_RESULTS_DESIGN_TANKVOLUME).replaceFirst("&result1", "XXXXXXXXXXXXXX"), bodyFont));
+	        pa = new Paragraph(new Chunk(this.messages.getString(KEYS.REPORT_RESULTS_DESIGN_TANKVOLUME).replaceFirst("&result1", df.format(chlorineCalculation.getTankVolume())), bodyFont));
 	        pa.setFirstLineIndent(LEFT_IDENTATION);
 	        pa.setSpacingAfter(DEFAULT_SPACING);
 	        document.add(pa);
@@ -375,32 +377,32 @@ public class DesignReport extends Report {
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_CHLORINEFORCHLORINATION_ROW));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell("XXXXXXX");
+			feeTable.addCell(dataloader.getValue("solescl"));
 			
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_CHLORINEFORDESINFECTION_ROW));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell("XXXXXXX");
+			feeTable.addCell(dataloader.getValue("solesDes"));
 			
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_SAPSPARES_ROW));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell("XXXXXXX");
+			feeTable.addCell(dataloader.getValue("sapSpares"));
 			
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_JASSMANAGEMENT_ROW));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell("XXXXXXX");
+			feeTable.addCell(dataloader.getValue("jassManage"));
 			
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_OPERATORPAYMENT_ROW));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell("XXXXXXX");
+			feeTable.addCell(dataloader.getValue("workerPay"));
 			
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(new Phrase(new Chunk(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_TOTAL_ROW), this.bodyBoldFont)));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell(new Phrase(new Chunk("XXXXXXX", this.bodyBoldFont)));
+			feeTable.addCell(new Phrase(new Chunk(dataloader.getValue("yearTotal"), this.bodyBoldFont)));
 			
 			float oldHeight = feeTable.getDefaultCell().getFixedHeight();
 			feeTable.getDefaultCell().setFixedHeight(10f);
@@ -412,7 +414,7 @@ public class DesignReport extends Report {
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(new Phrase(new Chunk(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_ONLYCHLORINE), this.bodyFont)));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell(new Phrase(new Chunk("XXXXXXX", this.bodyFont)));
+			feeTable.addCell(new Phrase(new Chunk(dataloader.getValue("justCL"), this.bodyFont)));
 			document.add(feeTable);
 			
 			oldColor = this.bodyFont.getColor();
@@ -420,7 +422,7 @@ public class DesignReport extends Report {
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_RIGHT);
 			feeTable.addCell(new Phrase(new Chunk(this.messages.getString(KEYS.REPORT_DESIGN_FEECALCULATION_FAMILYFEE), this.bodyFont)));
 			feeTable.getDefaultCell().setHorizontalAlignment(Element.ALIGN_LEFT);
-			feeTable.addCell(new Phrase(new Chunk("XXXXXXX", this.bodyFont)));
+			feeTable.addCell(new Phrase(new Chunk(dataloader.getValue("famCuot"), this.bodyFont)));
 			feeTable.setSpacingAfter(DEFAULT_SPACING*3);
 			document.add(feeTable);
 			feeTable.setComplete(true);

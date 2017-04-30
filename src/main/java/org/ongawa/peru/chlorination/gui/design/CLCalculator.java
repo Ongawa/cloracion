@@ -191,9 +191,13 @@ public class CLCalculator implements Initializable {
             return;
         }
         DataLoader dataloader = DataLoader.getDataLoader();
+        
+        // Save the purity
+        dataloader.setValue("clPurity", clPurity.getText());
         String ph = dataloader.getValue("ph");
         String turbidity = dataloader.getValue("turbidity");
         double population = this.selectedWaterSystem.getPopulation();
+        this.selectedWaterSystem.setClimate(this.climateCombo.getValue());
 
         double futPopulation = Double.valueOf(DataCalculator.getFutPopulation(
                 this.selectedWaterSystem.getGrowingIndex(), this.selectedWaterSystem.getPopulation()));
@@ -222,6 +226,7 @@ public class CLCalculator implements Initializable {
         this.kgquin.setText(String.format("%1$,.2f", clResults[1]) + " kg/periodo");
         this.kgmes.setText(String.format("%1$,.2f", clResults[2]) + " kg/mes");
         DataLoader.getDataLoader().setValue("kgmes", String.valueOf(clResults[2]));
+        this.selectedWaterSystem.setCurrentNeededFlow(Double.valueOf(minCaudal));
         this.selectedWaterSystem.setFutureNeededFlow(Double.valueOf(futCaudal));
 
         /*
@@ -256,7 +261,6 @@ public class CLCalculator implements Initializable {
         Scene scene = new Scene(rootNode, stage.getWidth(), stage.getHeight());
         scene.getStylesheets().add("/styles/styles.css");
         stage.setScene(scene);
-
     }
 
     @Override

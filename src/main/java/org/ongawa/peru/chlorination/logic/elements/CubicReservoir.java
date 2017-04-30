@@ -18,7 +18,7 @@ import javafx.beans.property.StringProperty;
 public class CubicReservoir implements SystemElement{
 
     public static final int REQUIRED_CL_QUANTITY = 50;
-    public static final int RETENTION_TIME = 2;
+    public static final int RETENTION_TIME = 4;
     public static final String TYPE_NAME = "Reservorio";
     
     private org.ongawa.peru.chlorination.persistence.elements.CubicReservoir dbReservoir;

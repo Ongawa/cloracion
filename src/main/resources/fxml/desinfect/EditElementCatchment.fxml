@@ -27,7 +27,7 @@
 
 
         <Label alignment="CENTER" layoutX="330.0" layoutY="55.0"
-            prefHeight="29.0" prefWidth="135.0" text="Concentración solucion (%)"
+		prefHeight="29.0" prefWidth="135.0" text="Concentración solucion (mg/l)"
             textAlignment="CENTER" />
         <TextField fx:id="clConcetration" layoutX="480.0"
             layoutY="57.0" minWidth="115.0" prefHeight="25.0" prefWidth="130" />
@@ -65,8 +65,9 @@
         <Label alignment="CENTER" layoutX="280.0" layoutY="14.0"
             prefHeight="29.0" prefWidth="185.0" text="Tiempo Retención (horas)"
             textAlignment="CENTER" />
-        <TextField fx:id="retentionTime" layoutX="480.0"
-            layoutY="16.0" minWidth="115.0" prefWidth="130" prefHeight="25.0" />
+        <Label fx:id="retentionTime" layoutX="480.0"
+            layoutY="16.0" minWidth="115.0" prefWidth="130" prefHeight="25.0" 
+            text="2"/>
         <Button id="infoRetTime" fx:id="infoRetTime" layoutX="620.0"
             layoutY="14.0" mnemonicParsing="false" prefHeight="25.0"
             prefWidth="40.0">

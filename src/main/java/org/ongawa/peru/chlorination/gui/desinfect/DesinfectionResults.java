@@ -207,7 +207,7 @@ public class DesinfectionResults implements Initializable {
         File file = fileChooser.showSaveDialog(stage);
         if (file != null) {
             try {
-                DesinfectionReport dreport = new DesinfectionReport(this.currentDesinfection, file, new Locale("es_ES"), "");
+                DesinfectionReport dreport = new DesinfectionReport(this.currentDesinfection, file, new Locale("es", "ES"), "");
                 dreport.createReport();
                 // Open the file with the default editor
                 Thread t = new Thread(new Runnable() {

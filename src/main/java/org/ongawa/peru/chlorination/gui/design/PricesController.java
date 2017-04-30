@@ -6,6 +6,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.Locale;
+import java.util.Observable;
 import java.util.ResourceBundle;
 
 import org.ongawa.peru.chlorination.persistence.DataSourceFactory;
@@ -84,17 +85,42 @@ public class PricesController implements Initializable {
         String families = String.valueOf(wsystem.getFamiliesNum());
         String kgmes = dataloader.getValue("kgmes");
         // TODO: We need to store the desinfect results.
-        double desinfectCLPrice = getDesinfectCL(Double.valueOf(this.clPrice.getText()));
-        double[] calcResults = DataCalculator.gastosCl(this.clPrice.getText(), kgmes, this.nDesinfects.getText(), desinfectCLPrice, families);
+        //double desinfectCLPrice = getDesinfectCL(Double.valueOf(this.clPrice.getText()));
+        double[] calcResults = DataCalculator.gastosCl(this.clPrice.getText(), kgmes, this.nDesinfects.getText(), getDesinfectCL(), families);
         double[] familyTotals = DataCalculator.cuotaFam(calcResults[0], this.repairPay.getText(), this.jassPay.getText(), this.workerPay.getText(), families);
         
+        ObservableList<SystemElement> desResults = dataloader.getDesinfectResults();
+        double clPurity = Double.valueOf(dataloader.getValue("clPurity"));
+        double kgDesinfect = 0;
+        for (SystemElement elem: desResults) {
+            double[] elemResults = DataCalculator.desinfection(elem.getCount(), elem.getVolume(),
+                    elem.getConcentration(), clPurity);
+            double vol = elem.getVolume();
+            elem.setDesinfectionResults(elemResults);
+            
+            // gr to kg
+            kgDesinfect += elemResults[1]/1000;        }
         this.regularCl.setText(String.format("%1$,.2f", Double.valueOf(kgmes)) + " kg/mes");
-        this.desinfectCl.setText("0 kg/desinfección");
+        this.desinfectCl.setText(String.format("%1$,.2f",kgDesinfect)+ " kg/desinfección");;
         
         this.yearTotal.setText(String.format("%1$,.2f", familyTotals[1]*12) + " soles/año");
         this.monthTotal.setText(String.format("%1$,.2f", familyTotals[1]) + " soles/mes");
         this.monthlyFamilyPay.setText(String.format("%1$,.2f", familyTotals[0]) + " soles/mes");
         this.monthlyFamilyPayNoCl.setText(String.format("%1$,.2f", calcResults[1]) + "soles/mes");
+        
+        // Set all the needed values for the report
+        // TODO: WE really need to refactor this.
+        dataloader.setValue("solescl", String.format("%1$,.2f", Double.valueOf(kgmes)*Double.valueOf(this.clPrice.getText())));
+        dataloader.setValue("solesDes", String.format("%1$,.2f", getDesinfectCL()*Double.valueOf(this.nDesinfects.getText())));
+        
+        dataloader.setValue("sapSpares", this.repairPay.getText());
+        dataloader.setValue("jassManage", this.jassPay.getText());
+        dataloader.setValue("workerPay", this.workerPay.getText());
+        dataloader.setValue("yearTotal", String.format("%1$,.2f", familyTotals[1]*12));
+        
+        dataloader.setValue("justCL", String.format("%1$,.2f", calcResults[1] * 12 * Double.valueOf(families)));
+        dataloader.setValue("famCuot", String.format("%1$,.2f", familyTotals[0] * 12) );
+        
     }
     
     public void triggerBack() {
@@ -107,7 +133,7 @@ public class PricesController implements Initializable {
 
     }
     
-    private double getDesinfectCL(double clPrice) {
+    private double getDesinfectCL() {
         double totalRequired = 0;
         try {
             ObservableList<SystemElement> elements = DataLoader.getDataLoader().getDesinfectResults();
@@ -128,7 +154,7 @@ public class PricesController implements Initializable {
             //TODO: Handle exception 
         }
         
-        return totalRequired*clPrice;
+        return totalRequired;
     }
 
     @Override
@@ -139,11 +165,11 @@ public class PricesController implements Initializable {
     
     public void triggerSave(){
         // Enable the print button
-        
         this.printButton.setDisable(false);
     }
 
     public void triggerPrint() {
+                
         // TODO: Print the results
         Stage stage = new Stage();
         FileChooser fileChooser = new FileChooser();
@@ -151,9 +177,9 @@ public class PricesController implements Initializable {
         if (file != null) {
             try {
                 DesignReport dreport = new DesignReport( DataLoader.getDataLoader().getSelectedWaterSystem(),
-                                                         file, new Locale("es_ES"), ""); 
+                                                         file, new Locale("es", "ES"), ""); 
                 dreport.createReport();
-             // Open the file with the default editor
+                // Open the file with the default editor
                 Thread t = new Thread(new Runnable() {
                     
                     @Override

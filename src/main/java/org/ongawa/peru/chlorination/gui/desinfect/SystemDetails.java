@@ -26,6 +26,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Label;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.Node;
@@ -242,8 +243,6 @@ public class SystemDetails implements Initializable {
                             .setText(String.valueOf(((DistributionPipe) element).getDiameter()));
                     ((TextField) this.editPane.lookup("#elementLength"))
                             .setText(String.valueOf(((DistributionPipe) element).getLength()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
-                            .setText(String.valueOf(DistributionPipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((DistributionPipe) element).getConcentration()));
                     ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
@@ -262,8 +261,6 @@ public class SystemDetails implements Initializable {
                             .setText(String.valueOf(((ConductionPipe) element).getDiameter()));
                     ((TextField) this.editPane.lookup("#elementLength"))
                             .setText(String.valueOf(((ConductionPipe) element).getLength()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
-                            .setText(String.valueOf(ConductionPipe.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((ConductionPipe) element).getConcentration()));
                     ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
@@ -283,8 +280,6 @@ public class SystemDetails implements Initializable {
                             .setText(String.valueOf(((CubicReservoir) element).getLength()));
                     ((TextField) this.editPane.lookup("#elementHeight"))
                             .setText(String.valueOf(((CubicReservoir) element).getHeight()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
-                            .setText(String.valueOf(CubicReservoir.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((CubicReservoir) element).getConcentration()));
                     ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
@@ -304,8 +299,6 @@ public class SystemDetails implements Initializable {
                             .setText(String.valueOf(((Catchment) element).getLength()));
                     ((TextField) this.editPane.lookup("#elementHeight"))
                             .setText(String.valueOf(((Catchment) element).getHeight()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
-                            .setText(String.valueOf(Catchment.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((Catchment) element).getConcentration()));
                     ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
@@ -324,8 +317,6 @@ public class SystemDetails implements Initializable {
                             .setText(String.valueOf(((ReliefValve) element).getLength()));
                     ((TextField) this.editPane.lookup("#elementHeight"))
                             .setText(String.valueOf(((ReliefValve) element).getHeigtht()));
-                    ((TextField) this.editPane.lookup("#retentionTime"))
-                            .setText(String.valueOf(ReliefValve.RETENTION_TIME));
                     ((TextField) this.editPane.lookup("#clConcetration"))
                             .setText(String.valueOf(((ReliefValve) element).getConcentration()));
                     ((TextField) this.editPane.lookup("#cuantity")).setText(String.valueOf(element.getCount()));
